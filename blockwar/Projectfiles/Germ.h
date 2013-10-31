@@ -14,12 +14,13 @@
     CGPoint origin;
     ccColor4F color;
     CGSize size;
+    CGFloat speed;
     
 }
 
 -(id)initWithPosition:(CGPoint)pos;
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor;
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize;
+-(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andSpeed:(CGFloat)theSpeed;
 -(void) draw;
+-(void) update:(ccTime)delta;
 
 @end

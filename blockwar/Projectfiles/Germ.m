@@ -18,26 +18,21 @@
         color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
         // default size is 10x10(?)
         size = CGSizeMake(10.0f, 10.0f);
+        // default speed is 10 pixels per second
+        speed = 10.0f;
 
         origin = pos;
     }
     return self;
 }
 
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor
+-(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andSpeed:(CGFloat)theSpeed
 {
     if ((self = [self initWithPosition:pos]))
     {
         color = theColor;
-    }
-    return self;
-}
-
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize
-{
-    if ((self = [self initWithPosition:pos andColor:theColor]))
-    {
         size = theSize;
+        speed = theSpeed;
     }
     return self;
 }
@@ -46,6 +41,12 @@
 {
     // draw germ around origin (origin is center of germ)
     ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), color);
+}
+
+-(void) update:(ccTime) delta
+{
+    // add 3 pixels per second to the x value of the position
+    origin.x += speed*delta;
 }
 
 @end

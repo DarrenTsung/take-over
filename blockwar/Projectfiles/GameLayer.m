@@ -32,6 +32,7 @@ CGRect touch_area;
         
         player_units = [[NSMutableArray alloc] init];
     }
+    [self schedule:@selector(nextFrame) interval:0.03]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
     return self;
 }
@@ -60,6 +61,14 @@ CGRect touch_area;
         {
             [player_units addObject:[[Germ alloc] initWithPosition:pos]];
         }
+    }
+}
+
+-(void) nextFrame
+{
+    for (Germ *unit in player_units)
+    {
+        [unit update:0.03];
     }
 }
 
