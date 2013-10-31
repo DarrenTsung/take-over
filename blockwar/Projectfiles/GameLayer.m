@@ -8,11 +8,18 @@
 
 #import "GameLayer.h"
 #import "Germ.h"
+#import "Enemy_AI.h"
 
 NSMutableArray *player_units;
+NSMutableArray *enemy_units;
 CGRect touch_area;
 CGFloat touch_indicator_radius;
 CGPoint touch_indicator_center;
+Enemy_AI *theEnemy;
+
+CGFloat enemy_spawn_timer;
+#define UPDATE_INTERVAL 0.03f
+
 
 @implementation GameLayer
 
@@ -33,8 +40,12 @@ CGPoint touch_indicator_center;
         touch_area.size = CGSizeMake(screenWidth/7, screenHeight);
         
         player_units = [[NSMutableArray alloc] init];
+        enemy_units = [[NSMutableArray alloc] init];
+        enemy_spawn_timer = 1.0f;
+        
+        theEnemy = [[Enemy_AI alloc] initWithReferenceToEnemyArray:enemy_units];
     }
-    [self schedule:@selector(nextFrame) interval:0.03]; // updates 30 frames a second (hopefully?)
+    [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
     return self;
 }
@@ -51,6 +62,10 @@ CGPoint touch_indicator_center;
     }
     
     for (Germ *unit in player_units)
+    {
+        [unit draw];
+    }
+    for (Germ *unit in enemy_units)
     {
         [unit draw];
     }
@@ -92,7 +107,18 @@ CGPoint touch_indicator_center;
 {
     for (Germ *unit in player_units)
     {
-        [unit update:0.03];
+        [unit update:UPDATE_INTERVAL];
+    }
+    for (Germ *unit in enemy_units)
+    {
+        [unit update:UPDATE_INTERVAL];
+    }
+    enemy_spawn_timer -= UPDATE_INTERVAL;
+    if (enemy_spawn_timer <= 0)
+    {
+        // send enemy wave every 5 seconds
+        [theEnemy spawnWave];
+        enemy_spawn_timer = 5.0f;
     }
 }
 

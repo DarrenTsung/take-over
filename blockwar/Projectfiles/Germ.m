@@ -20,19 +20,24 @@
         size = CGSizeMake(20.0f, 20.0f);
         // default speed is 30 pixels per second
         speed = 30.0f;
+        owner = @"Player";
 
         origin = pos;
     }
     return self;
 }
 
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andSpeed:(CGFloat)theSpeed
+-(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andSpeed:(CGFloat)theSpeed andIsOpponents:(BOOL)isOpponents
 {
     if ((self = [self initWithPosition:pos]))
     {
         color = theColor;
         size = theSize;
         speed = theSpeed;
+        if(isOpponents)
+        {
+            owner = @"Opponent";
+        }
     }
     return self;
 }
@@ -46,7 +51,14 @@
 -(void) update:(ccTime) delta
 {
     // add 3 pixels per second to the x value of the position
-    origin.x += speed*delta;
+    if([owner isEqualToString:@"Player"])
+    {
+        origin.x += speed*delta;
+    }
+    else
+    {
+        origin.x -= speed*delta;
+    }
 }
 
 @end
