@@ -16,10 +16,10 @@
     {
         // default player color
         color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
-        // default size is 10x10(?)
-        size = CGSizeMake(10.0f, 10.0f);
-        // default speed is 10 pixels per second
-        speed = 10.0f;
+        // default size is 20x20
+        size = CGSizeMake(20.0f, 20.0f);
+        // default speed is 30 pixels per second
+        speed = 30.0f;
 
         origin = pos;
     }

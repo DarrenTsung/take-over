@@ -11,6 +11,8 @@
 
 NSMutableArray *player_units;
 CGRect touch_area;
+CGFloat touch_indicator_radius;
+CGPoint touch_indicator_center;
 
 @implementation GameLayer
 
@@ -43,6 +45,11 @@ CGRect touch_area;
     ccColor4F area_color = ccc4f(0.4f, 0.6f, 0.5f, 0.1f);
     ccDrawSolidRect(touch_area.origin, CGPointMake(touch_area.size.width + touch_area.origin.x, touch_area.size.height + touch_area.origin.y), area_color);
     
+    if (touch_indicator_radius > 30.0f)
+    {
+        ccDrawCircle(touch_indicator_center, touch_indicator_radius, CC_DEGREES_TO_RADIANS(60), 16, YES);
+    }
+    
     for (Germ *unit in player_units)
     {
         [unit draw];
@@ -55,12 +62,29 @@ CGRect touch_area;
     KKInput* input = [KKInput sharedInput];
     CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
     
-    if(input.touchesAvailable)
+    bool inTouchArea = CGRectContainsPoint(touch_area, pos);
+    if(input.anyTouchBeganThisFrame)
     {
-        if (CGRectContainsPoint(touch_area, pos))
+        if (inTouchArea)
+        touch_indicator_center = pos;
+        touch_indicator_radius = 30.0f;
+    }
+    else if(input.anyTouchEndedThisFrame)
+    {
+        [player_units addObject:[[Germ alloc] initWithPosition:touch_indicator_center]];
+        touch_indicator_radius = 30.0f;
+    }
+    else if(input.touchesAvailable)
+    {
+        if (inTouchArea)
         {
-            [player_units addObject:[[Germ alloc] initWithPosition:pos]];
+            touch_indicator_center = pos;
         }
+        else    // only update the up-down movement if pos is out of bounds
+        {
+            touch_indicator_center.y = pos.y;
+        }
+        touch_indicator_radius += 0.4f;
     }
 }
 
