@@ -1,5 +1,5 @@
 //
-//  Enemy_AI.h
+//  EnemyAI.h
 //  blockwar
 //
 //  Created by Darren Tsung on 10/31/13.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Enemy_AI : NSObject
+@interface EnemyAI : NSObject
 {
     @private
     NSMutableArray *army;

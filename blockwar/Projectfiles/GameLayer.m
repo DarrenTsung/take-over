@@ -8,14 +8,15 @@
 
 #import "GameLayer.h"
 #import "Germ.h"
-#import "Enemy_AI.h"
+#import "EnemyAI.h"
 
 NSMutableArray *player_units;
 NSMutableArray *enemy_units;
+NSMutableArray *units_to_be_deleted;
 CGRect touch_area;
 CGFloat touch_indicator_radius;
 CGPoint touch_indicator_center;
-Enemy_AI *theEnemy;
+EnemyAI *theEnemy;
 
 CGFloat enemy_spawn_timer;
 #define UPDATE_INTERVAL 0.03f
@@ -43,7 +44,7 @@ CGFloat enemy_spawn_timer;
         enemy_units = [[NSMutableArray alloc] init];
         enemy_spawn_timer = 1.0f;
         
-        theEnemy = [[Enemy_AI alloc] initWithReferenceToEnemyArray:enemy_units];
+        theEnemy = [[EnemyAI alloc] initWithReferenceToEnemyArray:enemy_units];
     }
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
@@ -52,7 +53,6 @@ CGFloat enemy_spawn_timer;
 
 -(void) draw
 {
-    ccColor4F player_color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
     ccColor4F area_color = ccc4f(0.4f, 0.6f, 0.5f, 0.1f);
     ccDrawSolidRect(touch_area.origin, CGPointMake(touch_area.size.width + touch_area.origin.x, touch_area.size.height + touch_area.origin.y), area_color);
     
@@ -113,6 +113,7 @@ CGFloat enemy_spawn_timer;
     {
         [unit update:UPDATE_INTERVAL];
     }
+    
     enemy_spawn_timer -= UPDATE_INTERVAL;
     if (enemy_spawn_timer <= 0)
     {
@@ -120,7 +121,32 @@ CGFloat enemy_spawn_timer;
         [theEnemy spawnWave];
         enemy_spawn_timer = 5.0f;
     }
+    
+    // after units are done spawning / moving, check for collisions
+    [self checkForCollisionsAndRemove];
 }
 
+-(void) checkForCollisionsAndRemove
+{
+    NSMutableArray *player_discarded_units = [[NSMutableArray alloc] init];
+    NSMutableArray *enemy_discarded_units = [[NSMutableArray alloc] init];
+    
+    // quick and dirty check for collisions
+    for (Germ *unit in player_units)
+    {
+        for (Germ *enemy_unit in enemy_units)
+        {
+            if ([unit isCollidingWith:enemy_unit])
+            {
+                NSLog(@"Collision!");
+                [player_discarded_units addObject:unit];
+                [enemy_discarded_units addObject:enemy_unit];
+                break;
+            }
+        }
+    }
+    [player_units removeObjectsInArray:player_discarded_units];
+    [enemy_units removeObjectsInArray:enemy_discarded_units];
+}
 
 @end

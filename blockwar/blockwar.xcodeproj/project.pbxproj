@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		6CBF7EA11822EEC8000395D0 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA01822EEC8000395D0 /* GameLayer.m */; };
 		6CBF7EA41822F904000395D0 /* Germ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA31822F904000395D0 /* Germ.m */; };
-		6CBF7EA718230F0A000395D0 /* Enemy_AI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA618230F0A000395D0 /* Enemy_AI.m */; };
+		6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA618230F0A000395D0 /* EnemyAI.m */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -56,8 +56,8 @@
 		6CBF7EA01822EEC8000395D0 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		6CBF7EA21822F904000395D0 /* Germ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Germ.h; sourceTree = "<group>"; };
 		6CBF7EA31822F904000395D0 /* Germ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Germ.m; sourceTree = "<group>"; };
-		6CBF7EA518230F0A000395D0 /* Enemy_AI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy_AI.h; sourceTree = "<group>"; };
-		6CBF7EA618230F0A000395D0 /* Enemy_AI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy_AI.m; sourceTree = "<group>"; };
+		6CBF7EA518230F0A000395D0 /* EnemyAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyAI.h; sourceTree = "<group>"; };
+		6CBF7EA618230F0A000395D0 /* EnemyAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyAI.m; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -233,8 +233,8 @@
 			children = (
 				6CBF7E9F1822EEC8000395D0 /* GameLayer.h */,
 				6CBF7EA01822EEC8000395D0 /* GameLayer.m */,
-				6CBF7EA518230F0A000395D0 /* Enemy_AI.h */,
-				6CBF7EA618230F0A000395D0 /* Enemy_AI.m */,
+				6CBF7EA518230F0A000395D0 /* EnemyAI.h */,
+				6CBF7EA618230F0A000395D0 /* EnemyAI.m */,
 				6CBF7EA21822F904000395D0 /* Germ.h */,
 				6CBF7EA31822F904000395D0 /* Germ.m */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
@@ -384,7 +384,7 @@
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				6CBF7EA11822EEC8000395D0 /* GameLayer.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
-				6CBF7EA718230F0A000395D0 /* Enemy_AI.m in Sources */,
+				6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -16,12 +16,13 @@
     CGSize size;
     CGFloat speed;
     NSString *owner;
-    
+    CGRect bounding_rect;
 }
 
 -(id)initWithPosition:(CGPoint)pos;
 -(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andSpeed:(CGFloat)theSpeed andIsOpponents:(BOOL)isOpponents;
 -(void) draw;
 -(void) update:(ccTime)delta;
+-(BOOL) isCollidingWith:(Germ *)otherGerm;
 
 @end

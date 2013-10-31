@@ -1,15 +1,15 @@
 //
-//  Enemy_AI.m
+//  EnemyAI.m
 //  blockwar
 //
 //  Created by Darren Tsung on 10/31/13.
 //
 //
 
-#import "Enemy_AI.h"
+#import "EnemyAI.h"
 #import "Germ.h"
 
-@implementation Enemy_AI
+@implementation EnemyAI
 
 -(id) initWithReferenceToEnemyArray:(NSMutableArray *)army_array
 {
