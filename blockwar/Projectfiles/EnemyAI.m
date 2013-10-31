@@ -17,16 +17,21 @@
     {
         army = army_array;
         color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
-        wave_size = 5;
+        wave_size = 8;
     }
     return self;
 }
 
 -(void) spawnWave
 {
-    for(int x=0; x<wave_size; x++)
+    int x;
+    for(x=0; x<wave_size/2; x++)
     {
-        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(570, arc4random()%200 + 50) andColor:color andSize:CGSizeMake(15.0f, 15.0f) andSpeed:25.0f andIsOpponents:YES]];
+        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(570, arc4random()%200 + 50) andColor:color andSize:CGSizeMake(10.0f, 10.0f) andSpeed:35.0f andIsOpponents:YES]];
+    }
+    for(; x<wave_size; x++)
+    {
+        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(580, arc4random()%200 + 50) andColor:color andSize:CGSizeMake(10.0f, 10.0f) andSpeed:35.0f andIsOpponents:YES]];
     }
 }
 

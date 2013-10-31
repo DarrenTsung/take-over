@@ -86,7 +86,11 @@ CGFloat enemy_spawn_timer;
     }
     else if(input.anyTouchEndedThisFrame)
     {
-        [player_units addObject:[[Germ alloc] initWithPosition:touch_indicator_center]];
+        for (int i=0; i<2*(((int)touch_indicator_radius/10) - 2); i++)
+        {
+            CGPoint random_pos = CGPointMake(touch_indicator_center.x + arc4random()%50 - 25, touch_indicator_center.y + arc4random()%50 - 25);
+            [player_units addObject:[[Germ alloc] initWithPosition:random_pos]];
+        }
         touch_indicator_radius = 30.0f;
     }
     else if(input.touchesAvailable)
@@ -99,7 +103,10 @@ CGFloat enemy_spawn_timer;
         {
             touch_indicator_center.y = pos.y;
         }
-        touch_indicator_radius += 0.4f;
+        if (touch_indicator_radius < 50.0f)
+        {
+            touch_indicator_radius += 0.4f;
+        }
     }
 }
 

@@ -17,10 +17,10 @@
         origin = pos;
         // default player color
         color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
-        // default size is 20x20
-        size = CGSizeMake(20.0f, 20.0f);
+        // default size is 10x10
+        size = CGSizeMake(10.0f, 10.0f);
         // default speed is 30 pixels per second
-        speed = 30.0f;
+        speed = 45.0f;
         owner = @"Player";
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         bounding_rect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
