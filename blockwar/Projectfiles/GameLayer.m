@@ -7,6 +7,7 @@
 //
 
 #import "GameLayer.h"
+#import "Germ.h"
 
 NSMutableArray *player_units;
 CGRect touch_area;
@@ -29,14 +30,36 @@ CGRect touch_area;
         
         player_units = [[NSMutableArray alloc] init];
     }
+    [self scheduleUpdate];
     return self;
 }
 
 -(void) draw
 {
     ccColor4F player_color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
-    ccColor4F area_color = ccc4f(0.8f, 0.5f, 0.5f, 0.1f);
+    ccColor4F area_color = ccc4f(0.4f, 0.6f, 0.5f, 0.1f);
     ccDrawSolidRect(touch_area.origin, CGPointMake(touch_area.size.width + touch_area.origin.x, touch_area.size.height + touch_area.origin.y), area_color);
+    
+    for (Germ *unit in player_units)
+    {
+        [unit draw];
+    }
 }
+
+-(void) update:(ccTime)delta
+{
+    // handle touch input
+    KKInput* input = [KKInput sharedInput];
+    CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+    
+    if(input.touchesAvailable)
+    {
+        if (CGRectContainsPoint(touch_area, pos))
+        {
+            [player_units addObject:[[Germ alloc] initWithPosition:pos]];
+        }
+    }
+}
+
 
 @end
