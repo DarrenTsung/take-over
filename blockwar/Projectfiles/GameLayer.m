@@ -21,8 +21,10 @@ CGRect touch_area;
         NSLog(@"Game initializing...");
         
         CGSize screenBounds = [[UIScreen mainScreen] bounds].size;
-        CGFloat screenWidth = screenBounds.width;
-        CGFloat screenHeight = screenBounds.height;
+        // remember that we're in landscape mode
+        CGFloat screenWidth = screenBounds.height;
+        CGFloat screenHeight = screenBounds.width;
+        NSLog(@"The screen width and height are (%f, %f)", screenWidth, screenHeight);
         
         // touch_area is the player's spawning area
         touch_area.origin = CGPointMake(0.0f, 0.0f);
