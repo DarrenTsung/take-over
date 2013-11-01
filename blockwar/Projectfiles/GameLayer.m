@@ -21,6 +21,13 @@ EnemyAI *theEnemy;
 CGFloat enemy_spawn_timer;
 #define UPDATE_INTERVAL 0.03f
 
+@interface GameLayer()
+
+-(CGSize) returnScreenBounds;
+
+@end
+
+
 
 @implementation GameLayer
 
@@ -138,6 +145,8 @@ CGFloat enemy_spawn_timer;
     NSMutableArray *player_discarded_units = [[NSMutableArray alloc] init];
     NSMutableArray *enemy_discarded_units = [[NSMutableArray alloc] init];
     
+    CGSize screen_bounds = [self returnScreenBounds];
+    
     // quick and dirty check for collisions
     for (Germ *unit in player_units)
     {
@@ -152,8 +161,34 @@ CGFloat enemy_spawn_timer;
             }
         }
     }
+    
+    for (Germ *unit in player_units)
+    {
+        if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
+        {
+            [player_discarded_units addObject:unit];
+        }
+    }
+    for (Germ *unit in enemy_units)
+    {
+        if (CGRectIntersectsRect(unit->bounding_rect, touch_area))
+        {
+            [enemy_discarded_units addObject:unit];
+        }
+    }
     [player_units removeObjectsInArray:player_discarded_units];
     [enemy_units removeObjectsInArray:enemy_discarded_units];
 }
+
+-(CGSize) returnScreenBounds
+{
+    CGSize screen_bounds = [[UIScreen mainScreen] bounds].size;
+    // flip the height and width since we're in landscape mode
+    CGFloat temp = screen_bounds.height;
+    screen_bounds.height = screen_bounds.width;
+    screen_bounds.width = temp;
+    return screen_bounds;
+}
+
 
 @end
