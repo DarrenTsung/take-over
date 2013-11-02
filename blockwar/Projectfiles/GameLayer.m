@@ -18,8 +18,11 @@ CGFloat touch_indicator_radius;
 CGPoint touch_indicator_center;
 EnemyAI *theEnemy;
 
+bool isDone = FALSE;
+
 CGFloat enemy_spawn_timer;
 #define UPDATE_INTERVAL 0.03f
+#define UNIT_PADDING 15.0f
 
 @interface GameLayer()
 
@@ -42,10 +45,10 @@ CGFloat enemy_spawn_timer;
         CGFloat screenWidth = screenBounds.height;
         CGFloat screenHeight = screenBounds.width;
         NSLog(@"The screen width and height are (%f, %f)", screenWidth, screenHeight);
-        
+        CGFloat playHeight = 11.2*screenHeight/12.2;
         // touch_area is the player's spawning area
-        touch_area.origin = CGPointMake(0.0f, 0.0f);
-        touch_area.size = CGSizeMake(screenWidth/7, screenHeight);
+        touch_area.origin = CGPointMake(0.0f, -(screenHeight - playHeight));
+        touch_area.size = CGSizeMake(screenWidth/7, playHeight);
         
         player_units = [[NSMutableArray alloc] init];
         enemy_units = [[NSMutableArray alloc] init];
@@ -89,16 +92,40 @@ CGFloat enemy_spawn_timer;
     {
         if (inTouchArea)
         touch_indicator_center = pos;
-        touch_indicator_radius = 30.0f;
+        touch_indicator_radius = 40.0f;
     }
     else if(input.anyTouchEndedThisFrame)
     {
-        for (int i=0; i<2*(((int)touch_indicator_radius/10) - 2); i++)
+        NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
+        for (int i=0; i<(int)touch_indicator_radius/10; i++)
         {
-            CGPoint random_pos = CGPointMake(touch_indicator_center.x + arc4random()%50 - 25, touch_indicator_center.y + arc4random()%50 - 25);
-            [player_units addObject:[[Germ alloc] initWithPosition:random_pos]];
+            CGPoint random_pos;
+            bool not_near = false;
+            while (!not_near)
+            {
+                not_near = true;
+                random_pos = CGPointMake(touch_indicator_center.x + arc4random()%50 - 25, touch_indicator_center.y + arc4random()%50 - 25);
+                for (NSValue *o_pos in positions_to_be_spawned)
+                {
+                    CGPoint other_pos = [o_pos CGPointValue];
+                    CGFloat xDist = other_pos.x - random_pos.x;
+                    CGFloat yDist = other_pos.y - random_pos.y;
+                    // if distance between two points is less than padding
+                    if (sqrt((xDist*xDist) + (yDist*yDist)) < UNIT_PADDING)
+                    {
+                        // too close to another point, generate again
+                        not_near = false;
+                        break;
+                    }
+                }
+            }
+            [positions_to_be_spawned addObject:[NSValue valueWithCGPoint:random_pos]];
         }
-        touch_indicator_radius = 30.0f;
+        for (NSValue *position in positions_to_be_spawned)
+        {
+            [player_units addObject:[[Germ alloc] initWithPosition:[position CGPointValue]]];
+        }
+        touch_indicator_radius = 0.0f;
     }
     else if(input.touchesAvailable)
     {
@@ -114,30 +141,37 @@ CGFloat enemy_spawn_timer;
         {
             touch_indicator_radius += 0.4f;
         }
+        else
+        {
+            touch_indicator_radius = arc4random()%5 + 50.0f;
+        }
     }
 }
 
 -(void) nextFrame
 {
-    for (Germ *unit in player_units)
+    if (!isDone)
     {
-        [unit update:UPDATE_INTERVAL];
+        for (Germ *unit in player_units)
+        {
+            [unit update:UPDATE_INTERVAL];
+        }
+        for (Germ *unit in enemy_units)
+        {
+            [unit update:UPDATE_INTERVAL];
+        }
+        
+        enemy_spawn_timer -= UPDATE_INTERVAL;
+        if (enemy_spawn_timer <= 0)
+        {
+            // send enemy wave every 5 seconds
+            [theEnemy spawnWave];
+            enemy_spawn_timer = 5.0f;
+        }
+        
+        // after units are done spawning / moving, check for collisions
+        [self checkForCollisionsAndRemove];
     }
-    for (Germ *unit in enemy_units)
-    {
-        [unit update:UPDATE_INTERVAL];
-    }
-    
-    enemy_spawn_timer -= UPDATE_INTERVAL;
-    if (enemy_spawn_timer <= 0)
-    {
-        // send enemy wave every 5 seconds
-        [theEnemy spawnWave];
-        enemy_spawn_timer = 5.0f;
-    }
-    
-    // after units are done spawning / moving, check for collisions
-    [self checkForCollisionsAndRemove];
 }
 
 -(void) checkForCollisionsAndRemove
@@ -154,7 +188,6 @@ CGFloat enemy_spawn_timer;
         {
             if ([unit isCollidingWith:enemy_unit])
             {
-                NSLog(@"Collision!");
                 unit->health -= enemy_unit->damage;
                 enemy_unit->health -= unit->damage;
                 
