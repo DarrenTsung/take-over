@@ -10,6 +10,7 @@
 #import "Germ.h"
 #import "EnemyAI.h"
 #import "HealthBar.h"
+#import "RegeneratableBar.h"
 
 NSMutableArray *player_units;
 NSMutableArray *enemy_units;
@@ -23,6 +24,8 @@ EnemyAI *theEnemy;
 
 HealthBar *player_hp;
 HealthBar *enemy_hp;
+
+RegeneratableBar *player_resources;
 
 bool isDone = FALSE;
 
@@ -67,8 +70,9 @@ CGFloat enemy_spawn_timer;
         
         theEnemy = [[EnemyAI alloc] initWithReferenceToEnemyArray:enemy_units];
         
-        enemy_hp = [[HealthBar alloc] initWithOrigin:CGPointMake(screen_bounds.width - 10.0f, screen_bounds.height - 30.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
-        player_hp = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screen_bounds.height - 30.0f) andOrientation:@"Right" andColor:ccc4f(0.3f, 0.9f, 0.4f, 1.0f)];
+        enemy_hp = [[HealthBar alloc] initWithOrigin:CGPointMake(screen_bounds.width - 10.0f, screen_bounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
+        player_hp = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screen_bounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(0.3f, 0.9f, 0.4f, 1.0f)];
+        player_resources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screen_bounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(0.0f, 0.45f, 0.8f, 1.0f)];
     }
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
@@ -96,6 +100,7 @@ CGFloat enemy_spawn_timer;
     
     [player_hp draw];
     [enemy_hp draw];
+    [player_resources draw];
 }
 
 -(void) update:(ccTime)delta
@@ -114,7 +119,7 @@ CGFloat enemy_spawn_timer;
                 touch_indicator_radius = TOUCH_RADIUS_MIN;
             }
         }
-        else if(input.anyTouchEndedThisFrame && touch_indicator_radius > TOUCH_RADIUS_MIN)
+        else if(input.anyTouchEndedThisFrame && touch_indicator_radius > TOUCH_RADIUS_MIN && [player_resources getCurrentValue] > touch_indicator_radius)
         {
             NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
             for (int i=0; i<(int)touch_indicator_radius/10; i++)
@@ -145,6 +150,7 @@ CGFloat enemy_spawn_timer;
             {
                 [player_units addObject:[[Germ alloc] initWithPosition:[position CGPointValue]]];
             }
+            [player_resources decreaseValueBy:touch_indicator_radius];
             touch_indicator_radius = 0.0f;
         }
         else if(input.touchesAvailable)
@@ -188,6 +194,7 @@ CGFloat enemy_spawn_timer;
     }
     if (!isDone)
     {
+        [player_resources update:UPDATE_INTERVAL];
         for (Germ *unit in player_units)
         {
             [unit update:UPDATE_INTERVAL];
@@ -256,7 +263,7 @@ CGFloat enemy_spawn_timer;
         if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
         {
             [player_discarded_units addObject:unit];
-            [enemy_hp decreaseHealthBy:unit->damage];
+            [enemy_hp decreaseValueBy:unit->damage];
         }
     }
     for (Germ *unit in enemy_units)
@@ -264,7 +271,7 @@ CGFloat enemy_spawn_timer;
         if (CGRectIntersectsRect(unit->bounding_rect, touch_area))
         {
             [enemy_discarded_units addObject:unit];
-            [player_hp decreaseHealthBy:unit->damage];
+            [player_hp decreaseValueBy:unit->damage];
         }
     }
     [player_units removeObjectsInArray:player_discarded_units];

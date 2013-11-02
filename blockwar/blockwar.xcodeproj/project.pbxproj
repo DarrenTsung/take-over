@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6CBA5BE8182491F700E52FC7 /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BE7182491F700E52FC7 /* HealthBar.m */; };
+		6CBA5BEB182499B600E52FC7 /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BEA182499B600E52FC7 /* Bar.m */; };
+		6CBA5BF118249A6300E52FC7 /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BF018249A6300E52FC7 /* HealthBar.m */; };
+		6CBA5BF418249AAB00E52FC7 /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BF318249AAB00E52FC7 /* RegeneratableBar.m */; };
 		6CBF7EA11822EEC8000395D0 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA01822EEC8000395D0 /* GameLayer.m */; };
 		6CBF7EA41822F904000395D0 /* Germ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA31822F904000395D0 /* Germ.m */; };
 		6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA618230F0A000395D0 /* EnemyAI.m */; };
@@ -53,8 +55,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		6CBA5BE6182491F700E52FC7 /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
-		6CBA5BE7182491F700E52FC7 /* HealthBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthBar.m; sourceTree = "<group>"; };
+		6CBA5BE9182499B600E52FC7 /* Bar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bar.h; sourceTree = "<group>"; };
+		6CBA5BEA182499B600E52FC7 /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bar.m; sourceTree = "<group>"; };
+		6CBA5BEF18249A6300E52FC7 /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
+		6CBA5BF018249A6300E52FC7 /* HealthBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthBar.m; sourceTree = "<group>"; };
+		6CBA5BF218249AAB00E52FC7 /* RegeneratableBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegeneratableBar.h; sourceTree = "<group>"; };
+		6CBA5BF318249AAB00E52FC7 /* RegeneratableBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegeneratableBar.m; sourceTree = "<group>"; };
 		6CBF7E9F1822EEC8000395D0 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		6CBF7EA01822EEC8000395D0 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		6CBF7EA21822F904000395D0 /* Germ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Germ.h; sourceTree = "<group>"; };
@@ -147,6 +153,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CBA5BF518249AB200E52FC7 /* Bar Class */ = {
+			isa = PBXGroup;
+			children = (
+				6CBA5BE9182499B600E52FC7 /* Bar.h */,
+				6CBA5BEA182499B600E52FC7 /* Bar.m */,
+				6CBA5BEF18249A6300E52FC7 /* HealthBar.h */,
+				6CBA5BF018249A6300E52FC7 /* HealthBar.m */,
+				6CBA5BF218249AAB00E52FC7 /* RegeneratableBar.h */,
+				6CBA5BF318249AAB00E52FC7 /* RegeneratableBar.m */,
+			);
+			name = "Bar Class";
+			sourceTree = "<group>";
+		};
 		DCC1A0D613A94EC0005BD75D = {
 			isa = PBXGroup;
 			children = (
@@ -236,8 +255,7 @@
 			children = (
 				6CBF7E9F1822EEC8000395D0 /* GameLayer.h */,
 				6CBF7EA01822EEC8000395D0 /* GameLayer.m */,
-				6CBA5BE6182491F700E52FC7 /* HealthBar.h */,
-				6CBA5BE7182491F700E52FC7 /* HealthBar.m */,
+				6CBA5BF518249AB200E52FC7 /* Bar Class */,
 				6CBF7EA518230F0A000395D0 /* EnemyAI.h */,
 				6CBF7EA618230F0A000395D0 /* EnemyAI.m */,
 				6CBF7EA21822F904000395D0 /* Germ.h */,
@@ -386,11 +404,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CBF7EA41822F904000395D0 /* Germ.m in Sources */,
+				6CBA5BEB182499B600E52FC7 /* Bar.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				6CBF7EA11822EEC8000395D0 /* GameLayer.m in Sources */,
-				6CBA5BE8182491F700E52FC7 /* HealthBar.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
+				6CBA5BF418249AAB00E52FC7 /* RegeneratableBar.m in Sources */,
 				6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */,
+				6CBA5BF118249A6300E52FC7 /* HealthBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
