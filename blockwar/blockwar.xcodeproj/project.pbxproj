@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CBA5BE8182491F700E52FC7 /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BE7182491F700E52FC7 /* HealthBar.m */; };
 		6CBF7EA11822EEC8000395D0 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA01822EEC8000395D0 /* GameLayer.m */; };
 		6CBF7EA41822F904000395D0 /* Germ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA31822F904000395D0 /* Germ.m */; };
 		6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA618230F0A000395D0 /* EnemyAI.m */; };
@@ -52,6 +53,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6CBA5BE6182491F700E52FC7 /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
+		6CBA5BE7182491F700E52FC7 /* HealthBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HealthBar.m; sourceTree = "<group>"; };
 		6CBF7E9F1822EEC8000395D0 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		6CBF7EA01822EEC8000395D0 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
 		6CBF7EA21822F904000395D0 /* Germ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Germ.h; sourceTree = "<group>"; };
@@ -233,6 +236,8 @@
 			children = (
 				6CBF7E9F1822EEC8000395D0 /* GameLayer.h */,
 				6CBF7EA01822EEC8000395D0 /* GameLayer.m */,
+				6CBA5BE6182491F700E52FC7 /* HealthBar.h */,
+				6CBA5BE7182491F700E52FC7 /* HealthBar.m */,
 				6CBF7EA518230F0A000395D0 /* EnemyAI.h */,
 				6CBF7EA618230F0A000395D0 /* EnemyAI.m */,
 				6CBF7EA21822F904000395D0 /* Germ.h */,
@@ -383,6 +388,7 @@
 				6CBF7EA41822F904000395D0 /* Germ.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				6CBF7EA11822EEC8000395D0 /* GameLayer.m in Sources */,
+				6CBA5BE8182491F700E52FC7 /* HealthBar.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */,
 			);
