@@ -53,6 +53,11 @@
     current -= value;
 }
 
+-(void) resetHP
+{
+    current = max;
+}
+
 -(CGFloat) getCurrentValue
 {
     return current;

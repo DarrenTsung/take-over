@@ -82,10 +82,6 @@ CGFloat enemySpawnTimer;
 
 -(void) draw
 {
-    //draw clear button
-    ccColor4F resetBtnColor = ccc4f(1.0f, 0.0f, 0.0f, 1.0f);
-    ccDrawSolidRect(ccp(600, 0), ccp(500, 30), resetBtnColor);
-    
     ccColor4F area_color = ccc4f(0.4f, 0.6f, 0.5f, 0.1f);
     ccDrawSolidRect(touchArea.origin, CGPointMake(touchArea.size.width + touchArea.origin.x, touchArea.size.height + touchArea.origin.y), area_color);
     
@@ -113,6 +109,8 @@ CGFloat enemySpawnTimer;
     // handle touch input
     KKInput* input = [KKInput sharedInput];
     CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
+    
+
     if (!isDone)
     {
         bool inTouchArea = CGRectContainsPoint(touchArea, pos);
@@ -224,8 +222,8 @@ CGFloat enemySpawnTimer;
 
 -(void) checkForCollisionsAndRemove
 {
-    NSMutableArray *player_discarded_units = [[NSMutableArray alloc] init];
-    NSMutableArray *enemy_discarded_units = [[NSMutableArray alloc] init];
+    NSMutableArray *playerDiscardedUnits = [[NSMutableArray alloc] init];
+    NSMutableArray *enemyDiscardedUnits = [[NSMutableArray alloc] init];
     
     CGSize screen_bounds = [self returnScreenBounds];
     
@@ -241,7 +239,7 @@ CGFloat enemySpawnTimer;
                 
                 if (unit->health < 0.0f)
                 {
-                    [player_discarded_units addObject:unit];
+                    [playerDiscardedUnits addObject:unit];
                 }
                 else
                 {
@@ -250,7 +248,7 @@ CGFloat enemySpawnTimer;
                 
                 if (enemyUnit->health < 0.0f)
                 {
-                    [enemy_discarded_units addObject:enemyUnit];
+                    [enemyDiscardedUnits addObject:enemyUnit];
                 }
                 else
                 {
@@ -267,7 +265,7 @@ CGFloat enemySpawnTimer;
     {
         if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
         {
-            [player_discarded_units addObject:unit];
+            [playerDiscardedUnits addObject:unit];
             [enemyHP decreaseValueBy:unit->damage];
         }
     }
@@ -275,16 +273,20 @@ CGFloat enemySpawnTimer;
     {
         if (CGRectIntersectsRect(unit->boundingRect, touchArea))
         {
-            [enemy_discarded_units addObject:unit];
+            [enemyDiscardedUnits addObject:unit];
             [playerHP decreaseValueBy:unit->damage];
         }
     }
-    [playerUnits removeObjectsInArray:player_discarded_units];
-    [enemyUnits removeObjectsInArray:enemy_discarded_units];
+    [playerUnits removeObjectsInArray:playerDiscardedUnits];
+    [enemyUnits removeObjectsInArray:enemyDiscardedUnits];
 }
 
 -(void) reset
 {
+    [playerHP resetHP];
+    [enemyHP resetHP];
+    [playerUnits removeAllObjects];
+    [enemyUnits removeAllObjects];
     isDone = false;
     
 }

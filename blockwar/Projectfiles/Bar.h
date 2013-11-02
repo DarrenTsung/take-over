@@ -21,6 +21,7 @@
 -(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor;
 -(void) draw;
 -(void) decreaseValueBy:(CGFloat)value;
+-(void) resetHP;
 -(CGFloat) getCurrentValue;
 
 @end
