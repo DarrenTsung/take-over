@@ -27,11 +27,11 @@
     int x;
     for(x=0; x<wave_size/2; x++)
     {
-        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(570, arc4random()%200 + 50) andColor:color andSize:CGSizeMake(10.0f, 10.0f) andSpeed:35.0f andIsOpponents:YES]];
+        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(570, arc4random()%200 + 50) andIsOpponents:YES]];
     }
     for(; x<wave_size; x++)
     {
-        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(580, arc4random()%200 + 50) andColor:color andSize:CGSizeMake(10.0f, 10.0f) andSpeed:35.0f andIsOpponents:YES]];
+        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(580, arc4random()%200 + 50) andIsOpponents:YES]];
     }
 }
 

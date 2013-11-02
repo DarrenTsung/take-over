@@ -155,8 +155,28 @@ CGFloat enemy_spawn_timer;
             if ([unit isCollidingWith:enemy_unit])
             {
                 NSLog(@"Collision!");
-                [player_discarded_units addObject:unit];
-                [enemy_discarded_units addObject:enemy_unit];
+                unit->health -= enemy_unit->damage;
+                enemy_unit->health -= unit->damage;
+                
+                if (unit->health < 0.0f)
+                {
+                    [player_discarded_units addObject:unit];
+                }
+                else
+                {
+                    unit->velocity = -(unit->velocity);
+                }
+                
+                if (enemy_unit->health < 0.0f)
+                {
+                    [enemy_discarded_units addObject:enemy_unit];
+                }
+                else
+                {
+                    enemy_unit->velocity = -(enemy_unit->velocity);
+                }
+                
+                // breaks out of checking the current player unit with any more enemy_units
                 break;
             }
         }

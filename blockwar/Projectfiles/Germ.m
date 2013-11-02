@@ -19,8 +19,14 @@
         color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
         // default size is 10x10
         size = CGSizeMake(10.0f, 10.0f);
-        // default speed is 30 pixels per second
-        speed = 45.0f;
+        // construct movement variables
+        velocity = 40.0f;
+        max_velocity = 45.0f;
+        acceleration = 90.0f;
+        
+        health = 40.0f;
+        damage = 5.0f;
+        
         owner = @"Player";
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         bounding_rect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
@@ -28,16 +34,36 @@
     return self;
 }
 
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andSpeed:(CGFloat)theSpeed andIsOpponents:(BOOL)isOpponents
+-(id)initWithPosition:(CGPoint)pos andIsOpponents:(BOOL)isOppenents
+{
+    if ((self = [self initWithPosition:pos]))
+    {
+        if (isOppenents)
+        {
+            owner = @"Opponent";
+            color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
+            velocity = -velocity;
+            max_velocity = -max_velocity;
+            acceleration = -acceleration;
+        }
+    }
+    return self;
+}
+
+-(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat)theVelocity andAcceleration:(CGFloat)theAcceleration andIsOpponents:(BOOL)isOpponents
 {
     if ((self = [self initWithPosition:pos]))
     {
         color = theColor;
         size = theSize;
-        speed = theSpeed;
+        velocity = theVelocity;
+        acceleration = theAcceleration;
         if(isOpponents)
         {
             owner = @"Opponent";
+            velocity = -velocity;
+            max_velocity = -max_velocity;
+            acceleration = -acceleration;
         }
         bounding_rect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
     }
@@ -55,17 +81,16 @@
 
 -(void) update:(ccTime) delta
 {
-    // add 3 pixels per second to the x value of the position
-    if([owner isEqualToString:@"Player"])
+    // compute position
+    origin.x += delta*velocity;
+    
+    // update velocity
+    velocity += delta*acceleration;
+    if (abs(velocity) > abs(max_velocity))
     {
-        origin.x += speed*delta;
-        bounding_rect.origin.x += speed*delta;
+        velocity = max_velocity;
     }
-    else
-    {
-        origin.x -= speed*delta;
-        bounding_rect.origin.x -= speed*delta;
-    }
+    bounding_rect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
 }
 
 -(BOOL)isCollidingWith:(Germ *)otherGerm
