@@ -17,14 +17,14 @@
         origin = pos;
         // default player color
         color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
-        // default size is 10x10
-        size = CGSizeMake(10.0f, 10.0f);
+        // default size is 15x15
+        size = CGSizeMake(15.0f, 15.0f);
         // construct movement variables
-        velocity = 40.0f;
-        maxVelocity = 45.0f;
-        acceleration = 90.0f;
+        velocity = 90.0f;
+        maxVelocity = 90.0f;
+        acceleration = 100.0f;
         
-        health = 40.0f;
+        health = 60.0f;
         damage = 5.0f;
         
         owner = @"Player";

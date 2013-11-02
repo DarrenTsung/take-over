@@ -11,8 +11,10 @@
 #import "EnemyAI.h"
 #import "HealthBar.h"
 #import "RegeneratableBar.h"
+#import "SuperGerm.h"
 
 NSMutableArray *playerUnits;
+NSMutableArray *playerSuperUnits;
 NSMutableArray *enemyUnits;
 NSMutableArray *unitsToBeDeleted;
 CGRect touchArea;
@@ -31,10 +33,12 @@ bool isDone = FALSE;
 
 CGFloat enemySpawnTimer;
 #define UPDATE_INTERVAL 0.03f
-#define UNIT_PADDING 15.0f
+#define UNIT_PADDING 20.0f
 
-#define TOUCH_RADIUS_MAX 50.0f
+#define TOUCH_RADIUS_MAX 53.0f
 #define TOUCH_RADIUS_MIN 40.0f
+
+#define ENEMY_WAVE_TIMER 25.0f;
 
 @interface GameLayer()
 
@@ -65,6 +69,7 @@ CGFloat enemySpawnTimer;
         touchArea.size = CGSizeMake(screenWidth/7, playHeight);
         
         playerUnits = [[NSMutableArray alloc] init];
+        playerSuperUnits = [[NSMutableArray alloc] init];
         enemyUnits = [[NSMutableArray alloc] init];
         enemySpawnTimer = 1.0f;
         
@@ -124,34 +129,44 @@ CGFloat enemySpawnTimer;
         }
         else if(input.anyTouchEndedThisFrame && touchIndicatorRadius > TOUCH_RADIUS_MIN && [playerResources getCurrentValue] > touchIndicatorRadius)
         {
-            NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
-            for (int i = 0; i < (int)touchIndicatorRadius/10; i++)
+            // spawn SuperGerm if radius is greater than max (and fluctuating)
+            if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
             {
-                CGPoint random_pos;
-                bool not_near = false;
-                while (!not_near)
+                SuperGerm *unit = [[SuperGerm alloc] initWithPosition:pos];
+                [playerUnits addObject:unit];
+                [playerSuperUnits addObject:unit];
+            }
+            else
+            {
+                NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
+                for (int i = 0; i < (int)touchIndicatorRadius/10; i++)
                 {
-                    not_near = true;
-                    random_pos = CGPointMake(touchIndicatorCenter.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touchIndicatorCenter.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
-                    for (NSValue *o_pos in positions_to_be_spawned)
+                    CGPoint random_pos;
+                    bool not_near = false;
+                    while (!not_near)
                     {
-                        CGPoint other_pos = [o_pos CGPointValue];
-                        CGFloat xDist = other_pos.x - random_pos.x;
-                        CGFloat yDist = other_pos.y - random_pos.y;
-                        // if distance between two points is less than padding
-                        if (sqrt((xDist*xDist) + (yDist*yDist)) < UNIT_PADDING)
+                        not_near = true;
+                        random_pos = CGPointMake(touchIndicatorCenter.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touchIndicatorCenter.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
+                        for (NSValue *o_pos in positions_to_be_spawned)
                         {
-                            // too close to another point, generate again
-                            not_near = false;
-                            break;
+                            CGPoint other_pos = [o_pos CGPointValue];
+                            CGFloat xDist = other_pos.x - random_pos.x;
+                            CGFloat yDist = other_pos.y - random_pos.y;
+                            // if distance between two points is less than padding
+                            if (sqrt((xDist*xDist) + (yDist*yDist)) < UNIT_PADDING)
+                            {
+                                // too close to another point, generate again
+                                not_near = false;
+                                break;
+                            }
                         }
                     }
+                    [positions_to_be_spawned addObject:[NSValue valueWithCGPoint:random_pos]];
                 }
-                [positions_to_be_spawned addObject:[NSValue valueWithCGPoint:random_pos]];
-            }
-            for (NSValue *position in positions_to_be_spawned)
-            {
-                [playerUnits addObject:[[Germ alloc] initWithPosition:[position CGPointValue]]];
+                for (NSValue *position in positions_to_be_spawned)
+                {
+                    [playerUnits addObject:[[Germ alloc] initWithPosition:[position CGPointValue]]];
+                }
             }
             [playerResources decreaseValueBy:touchIndicatorRadius];
             touchIndicatorRadius = 0.0f;
@@ -198,6 +213,10 @@ CGFloat enemySpawnTimer;
     if (!isDone)
     {
         [playerResources update:UPDATE_INTERVAL];
+        for (SuperGerm *unit in playerSuperUnits)
+        {
+            [unit influenceUnits:playerUnits];
+        }
         for (Germ *unit in playerUnits)
         {
             [unit update:UPDATE_INTERVAL];
@@ -212,7 +231,12 @@ CGFloat enemySpawnTimer;
         {
             // send enemy wave every 5 seconds
             [theEnemy spawnWave];
-            enemySpawnTimer = 5.0f;
+            enemySpawnTimer = ENEMY_WAVE_TIMER;
+            // 2/3 of the time, add 3 seconds to the next timer to space it out
+            if (arc4random()%3 > 1)
+            {
+                enemySpawnTimer += 3.0f;
+            }
         }
         
         // after units are done spawning / moving, check for collisions
@@ -227,13 +251,16 @@ CGFloat enemySpawnTimer;
     
     CGSize screen_bounds = [self returnScreenBounds];
     
+    int counter = 0;
     // quick and dirty check for collisions
     for (Germ *unit in playerUnits)
     {
         for (Germ *enemyUnit in enemyUnits)
         {
+            counter++;
             if ([unit isCollidingWith: enemyUnit])
             {
+                
                 unit->health -= enemyUnit->damage;
                 enemyUnit->health -= unit->damage;
                 
@@ -243,7 +270,7 @@ CGFloat enemySpawnTimer;
                 }
                 else
                 {
-                    unit->velocity = -(unit->velocity);
+                    unit->velocity = -(unit->maxVelocity);
                 }
                 
                 if (enemyUnit->health < 0.0f)
@@ -252,7 +279,7 @@ CGFloat enemySpawnTimer;
                 }
                 else
                 {
-                    enemyUnit->velocity = -(enemyUnit->velocity);
+                    enemyUnit->velocity = -(enemyUnit->maxVelocity);
                 }
                 
                 // breaks out of checking the current player unit with any more enemy_units
@@ -260,7 +287,7 @@ CGFloat enemySpawnTimer;
             }
         }
     }
-    
+    NSLog(@"Compared %d times this iteration!", counter);
     for (Germ *unit in playerUnits)
     {
         if (unit->origin.x - unit->size.width/2 > screen_bounds.width)

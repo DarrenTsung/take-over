@@ -27,3 +27,6 @@ profile
 DerivedData
 .idea/
 *.pyc
+
+Kobold2D*
+blockwar/blockwar.xcode*
