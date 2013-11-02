@@ -283,8 +283,8 @@ CGFloat enemySpawnTimer;
 
 -(void) reset
 {
-    [playerHP resetHP];
-    [enemyHP resetHP];
+    [playerHP resetValueToMax];
+    [enemyHP resetValueToMax];
     [playerUnits removeAllObjects];
     [enemyUnits removeAllObjects];
     isDone = false;

@@ -53,7 +53,7 @@
     current -= value;
 }
 
--(void) resetHP
+-(void) resetValueToMax
 {
     current = max;
 }
