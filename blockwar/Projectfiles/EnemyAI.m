@@ -11,13 +11,13 @@
 
 @implementation EnemyAI
 
--(id) initWithReferenceToEnemyArray:(NSMutableArray *)army_array
+-(id) initWithReferenceToEnemyArray:(NSMutableArray *)armyArray
 {
     if((self = [super init]))
     {
-        army = army_array;
+        army = armyArray;
         color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
-        wave_size = 8;
+        waveSize = 8;
     }
     return self;
 }
@@ -25,13 +25,13 @@
 -(void) spawnWave
 {
     int x;
-    for(x=0; x<wave_size/2; x++)
+    for(x = 0; x < waveSize/2; x++)
     {
-        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(570, arc4random()%200 + 25) andIsOpponents:YES]];
+        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(570, arc4random()%200 + 25) andIsOpponents: YES]];
     }
-    for(; x<wave_size; x++)
+    for(; x < waveSize; x++)
     {
-        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(580, arc4random()%200 + 25) andIsOpponents:YES]];
+        [army addObject:[[Germ alloc] initWithPosition:CGPointMake(580, arc4random()%200 + 25) andIsOpponents: YES]];
     }
 }
 

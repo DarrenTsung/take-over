@@ -12,24 +12,24 @@
 #import "HealthBar.h"
 #import "RegeneratableBar.h"
 
-NSMutableArray *player_units;
-NSMutableArray *enemy_units;
-NSMutableArray *units_to_be_deleted;
-CGRect touch_area;
+NSMutableArray *playerUnits;
+NSMutableArray *enemyUnits;
+NSMutableArray *unitsToBeDeleted;
+CGRect touchArea;
 CGFloat playHeight;
-CGFloat touch_indicator_radius;
-CGPoint touch_indicator_center;
-CGSize screen_bounds;
+CGFloat touchIndicatorRadius;
+CGPoint touchIndicatorCenter;
+CGSize screenBounds;
 EnemyAI *theEnemy;
 
-HealthBar *player_hp;
-HealthBar *enemy_hp;
+HealthBar *playerHP;
+HealthBar *enemyHP;
 
-RegeneratableBar *player_resources;
+RegeneratableBar *playerResources;
 
 bool isDone = FALSE;
 
-CGFloat enemy_spawn_timer;
+CGFloat enemySpawnTimer;
 #define UPDATE_INTERVAL 0.03f
 #define UNIT_PADDING 15.0f
 
@@ -53,27 +53,28 @@ CGFloat enemy_spawn_timer;
         NSLog(@"Game initializing...");
         
         // returns screenBounds flipped automatically (since we're in landscape mode)
-        screen_bounds = [self returnScreenBounds];
+        screenBounds = [self returnScreenBounds];
         
-        CGFloat screenWidth = screen_bounds.width;
-        CGFloat screenHeight = screen_bounds.height;
+        CGFloat screenWidth = screenBounds.width;
+        CGFloat screenHeight = screenBounds.height;
         NSLog(@"The screen width and height are (%f, %f)", screenWidth, screenHeight);
-        playHeight = 10.2*screenHeight/12.2;
+        playHeight = 10.2 * screenHeight/12.2;
         
         // touch_area is the player's spawning area
-        touch_area.origin = CGPointMake(0.0f, 0.0f);
-        touch_area.size = CGSizeMake(screenWidth/7, playHeight);
+        touchArea.origin = CGPointMake(0.0f, 0.0f);
+        touchArea.size = CGSizeMake(screenWidth/7, playHeight);
         
-        player_units = [[NSMutableArray alloc] init];
-        enemy_units = [[NSMutableArray alloc] init];
-        enemy_spawn_timer = 1.0f;
+        playerUnits = [[NSMutableArray alloc] init];
+        enemyUnits = [[NSMutableArray alloc] init];
+        enemySpawnTimer = 1.0f;
         
-        theEnemy = [[EnemyAI alloc] initWithReferenceToEnemyArray:enemy_units];
+        theEnemy = [[EnemyAI alloc] initWithReferenceToEnemyArray:enemyUnits];
         
-        enemy_hp = [[HealthBar alloc] initWithOrigin:CGPointMake(screen_bounds.width - 10.0f, screen_bounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
-        player_hp = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screen_bounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(0.3f, 0.9f, 0.4f, 1.0f)];
-        player_resources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screen_bounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(0.0f, 0.45f, 0.8f, 1.0f)];
+        enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
+        playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(0.3f, 0.9f, 0.4f, 1.0f)];
+        playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(0.0f, 0.45f, 0.8f, 1.0f)];
     }
+    
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
     return self;
@@ -81,26 +82,30 @@ CGFloat enemy_spawn_timer;
 
 -(void) draw
 {
+    //draw clear button
+    ccColor4F resetBtnColor = ccc4f(1.0f, 0.0f, 0.0f, 1.0f);
+    ccDrawSolidRect(ccp(600, 0), ccp(500, 30), resetBtnColor);
+    
     ccColor4F area_color = ccc4f(0.4f, 0.6f, 0.5f, 0.1f);
-    ccDrawSolidRect(touch_area.origin, CGPointMake(touch_area.size.width + touch_area.origin.x, touch_area.size.height + touch_area.origin.y), area_color);
+    ccDrawSolidRect(touchArea.origin, CGPointMake(touchArea.size.width + touchArea.origin.x, touchArea.size.height + touchArea.origin.y), area_color);
     
-    if (touch_indicator_radius > 30.0f)
+    if (touchIndicatorRadius > 30.0f)
     {
-        ccDrawCircle(touch_indicator_center, touch_indicator_radius, CC_DEGREES_TO_RADIANS(60), 16, YES);
+        ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, YES);
     }
     
-    for (Germ *unit in player_units)
-    {
-        [unit draw];
-    }
-    for (Germ *unit in enemy_units)
+    for (Germ *unit in playerUnits)
     {
         [unit draw];
     }
+    for (Germ *unit in enemyUnits)
+    {
+        [unit draw];
+    }
     
-    [player_hp draw];
-    [enemy_hp draw];
-    [player_resources draw];
+    [playerHP draw];
+    [enemyHP draw];
+    [playerResources draw];
 }
 
 -(void) update:(ccTime)delta
@@ -110,26 +115,26 @@ CGFloat enemy_spawn_timer;
     CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
     if (!isDone)
     {
-        bool inTouchArea = CGRectContainsPoint(touch_area, pos);
+        bool inTouchArea = CGRectContainsPoint(touchArea, pos);
         if(input.anyTouchBeganThisFrame)
         {
             if (inTouchArea)
             {
-                touch_indicator_center = pos;
-                touch_indicator_radius = TOUCH_RADIUS_MIN;
+                touchIndicatorCenter = pos;
+                touchIndicatorRadius = TOUCH_RADIUS_MIN;
             }
         }
-        else if(input.anyTouchEndedThisFrame && touch_indicator_radius > TOUCH_RADIUS_MIN && [player_resources getCurrentValue] > touch_indicator_radius)
+        else if(input.anyTouchEndedThisFrame && touchIndicatorRadius > TOUCH_RADIUS_MIN && [playerResources getCurrentValue] > touchIndicatorRadius)
         {
             NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
-            for (int i=0; i<(int)touch_indicator_radius/10; i++)
+            for (int i = 0; i < (int)touchIndicatorRadius/10; i++)
             {
                 CGPoint random_pos;
                 bool not_near = false;
                 while (!not_near)
                 {
                     not_near = true;
-                    random_pos = CGPointMake(touch_indicator_center.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touch_indicator_center.y + arc4random()%(int)TOUCH_RADIUS_MAX - 25);
+                    random_pos = CGPointMake(touchIndicatorCenter.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touchIndicatorCenter.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
                     for (NSValue *o_pos in positions_to_be_spawned)
                     {
                         CGPoint other_pos = [o_pos CGPointValue];
@@ -148,10 +153,10 @@ CGFloat enemy_spawn_timer;
             }
             for (NSValue *position in positions_to_be_spawned)
             {
-                [player_units addObject:[[Germ alloc] initWithPosition:[position CGPointValue]]];
+                [playerUnits addObject:[[Germ alloc] initWithPosition:[position CGPointValue]]];
             }
-            [player_resources decreaseValueBy:touch_indicator_radius];
-            touch_indicator_radius = 0.0f;
+            [playerResources decreaseValueBy:touchIndicatorRadius];
+            touchIndicatorRadius = 0.0f;
         }
         else if(input.touchesAvailable)
         {
@@ -159,24 +164,24 @@ CGFloat enemy_spawn_timer;
             {
                 if (inTouchArea)
                 {
-                    touch_indicator_center = pos;
+                    touchIndicatorCenter = pos;
                 }
                 else    // only update the up-down movement if pos is out of bounds
                 {
-                    touch_indicator_center.y = pos.y;
+                    touchIndicatorCenter.y = pos.y;
                 }
-                if (touch_indicator_radius < TOUCH_RADIUS_MAX)
+                if (touchIndicatorRadius < TOUCH_RADIUS_MAX)
                 {
-                    touch_indicator_radius += 0.4f;
+                    touchIndicatorRadius += 0.4f;
                 }
                 else
                 {
-                    touch_indicator_radius = arc4random()%5 + TOUCH_RADIUS_MAX;
+                    touchIndicatorRadius = arc4random()%5 + TOUCH_RADIUS_MAX;
                 }
             }
             else
             {
-                touch_indicator_radius = 0.0f;
+                touchIndicatorRadius = 0.0f;
             }
         }
     }
@@ -184,32 +189,32 @@ CGFloat enemy_spawn_timer;
 
 -(void) nextFrame
 {
-    if ([player_hp getCurrentValue] < 0.0f)
+    if ([playerHP getCurrentValue] < 0.0f)
     {
         isDone = true;
     }
-    else if ([enemy_hp getCurrentValue] < 0.0f)
+    else if ([enemyHP getCurrentValue] < 0.0f)
     {
         isDone = true;
     }
     if (!isDone)
     {
-        [player_resources update:UPDATE_INTERVAL];
-        for (Germ *unit in player_units)
+        [playerResources update:UPDATE_INTERVAL];
+        for (Germ *unit in playerUnits)
         {
             [unit update:UPDATE_INTERVAL];
         }
-        for (Germ *unit in enemy_units)
+        for (Germ *unit in enemyUnits)
         {
             [unit update:UPDATE_INTERVAL];
         }
         
-        enemy_spawn_timer -= UPDATE_INTERVAL;
-        if (enemy_spawn_timer <= 0)
+        enemySpawnTimer -= UPDATE_INTERVAL;
+        if (enemySpawnTimer <= 0)
         {
             // send enemy wave every 5 seconds
             [theEnemy spawnWave];
-            enemy_spawn_timer = 5.0f;
+            enemySpawnTimer = 5.0f;
         }
         
         // after units are done spawning / moving, check for collisions
@@ -225,14 +230,14 @@ CGFloat enemy_spawn_timer;
     CGSize screen_bounds = [self returnScreenBounds];
     
     // quick and dirty check for collisions
-    for (Germ *unit in player_units)
+    for (Germ *unit in playerUnits)
     {
-        for (Germ *enemy_unit in enemy_units)
+        for (Germ *enemyUnit in enemyUnits)
         {
-            if ([unit isCollidingWith:enemy_unit])
+            if ([unit isCollidingWith: enemyUnit])
             {
-                unit->health -= enemy_unit->damage;
-                enemy_unit->health -= unit->damage;
+                unit->health -= enemyUnit->damage;
+                enemyUnit->health -= unit->damage;
                 
                 if (unit->health < 0.0f)
                 {
@@ -243,13 +248,13 @@ CGFloat enemy_spawn_timer;
                     unit->velocity = -(unit->velocity);
                 }
                 
-                if (enemy_unit->health < 0.0f)
+                if (enemyUnit->health < 0.0f)
                 {
-                    [enemy_discarded_units addObject:enemy_unit];
+                    [enemy_discarded_units addObject:enemyUnit];
                 }
                 else
                 {
-                    enemy_unit->velocity = -(enemy_unit->velocity);
+                    enemyUnit->velocity = -(enemyUnit->velocity);
                 }
                 
                 // breaks out of checking the current player unit with any more enemy_units
@@ -258,35 +263,42 @@ CGFloat enemy_spawn_timer;
         }
     }
     
-    for (Germ *unit in player_units)
+    for (Germ *unit in playerUnits)
     {
         if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
         {
             [player_discarded_units addObject:unit];
-            [enemy_hp decreaseValueBy:unit->damage];
+            [enemyHP decreaseValueBy:unit->damage];
         }
     }
-    for (Germ *unit in enemy_units)
+    for (Germ *unit in enemyUnits)
     {
-        if (CGRectIntersectsRect(unit->bounding_rect, touch_area))
+        if (CGRectIntersectsRect(unit->boundingRect, touchArea))
         {
             [enemy_discarded_units addObject:unit];
-            [player_hp decreaseValueBy:unit->damage];
+            [playerHP decreaseValueBy:unit->damage];
         }
     }
-    [player_units removeObjectsInArray:player_discarded_units];
-    [enemy_units removeObjectsInArray:enemy_discarded_units];
+    [playerUnits removeObjectsInArray:player_discarded_units];
+    [enemyUnits removeObjectsInArray:enemy_discarded_units];
+}
+
+-(void) reset
+{
+    isDone = false;
+    
 }
 
 -(CGSize) returnScreenBounds
 {
-    CGSize screen_bounds = [[UIScreen mainScreen] bounds].size;
+    CGSize screenBounds = [[UIScreen mainScreen] bounds].size;
     // flip the height and width since we're in landscape mode
-    CGFloat temp = screen_bounds.height;
-    screen_bounds.height = screen_bounds.width;
-    screen_bounds.width = temp;
-    return screen_bounds;
+    CGFloat temp = screenBounds.height;
+    screenBounds.height = screenBounds.width;
+    screenBounds.width = temp;
+    return screenBounds;
 }
+
 
 
 @end

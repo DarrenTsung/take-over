@@ -14,14 +14,14 @@
 {
     if ((self = [super initWithOrigin:theOrigin andOrientation:theOrientation andColor:theColor]))
     {
-        regen_rate = 30.0f;
+        regenRate = 30.0f;
     }
     return self;
 }
 
 -(void) update:(ccTime) delta
 {
-    current += regen_rate*delta;
+    current += regenRate*delta;
     if (current > max)
     {
         current = max;

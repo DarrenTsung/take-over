@@ -21,7 +21,7 @@
         size = CGSizeMake(10.0f, 10.0f);
         // construct movement variables
         velocity = 40.0f;
-        max_velocity = 45.0f;
+        maxVelocity = 45.0f;
         acceleration = 90.0f;
         
         health = 40.0f;
@@ -29,7 +29,7 @@
         
         owner = @"Player";
         // make the bounding rect here so we don't have to construct each time we're checking collisions
-        bounding_rect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
+        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
     }
     return self;
 }
@@ -43,7 +43,7 @@
             owner = @"Opponent";
             color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
             velocity = -velocity;
-            max_velocity = -max_velocity;
+            maxVelocity = -maxVelocity;
             acceleration = -acceleration;
         }
     }
@@ -62,10 +62,10 @@
         {
             owner = @"Opponent";
             velocity = -velocity;
-            max_velocity = -max_velocity;
+            maxVelocity = -maxVelocity;
             acceleration = -acceleration;
         }
-        bounding_rect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
+        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
     }
     return self;
 }
@@ -86,16 +86,16 @@
     
     // update velocity
     velocity += delta*acceleration;
-    if (abs(velocity) > abs(max_velocity))
+    if (abs(velocity) > abs(maxVelocity))
     {
-        velocity = max_velocity;
+        velocity = maxVelocity;
     }
-    bounding_rect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
+    boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
 }
 
 -(BOOL)isCollidingWith:(Germ *)otherGerm
 {
-    if(CGRectIntersectsRect(bounding_rect, otherGerm->bounding_rect))
+    if(CGRectIntersectsRect(boundingRect, otherGerm->boundingRect))
     {
         return TRUE;
     }

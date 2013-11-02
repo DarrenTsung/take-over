@@ -14,17 +14,17 @@
     CGPoint origin;
     ccColor4F color;
     CGSize size;
-    CGFloat velocity, acceleration, max_velocity;
+    CGFloat velocity, acceleration, maxVelocity;
     CGFloat damage, health;
     NSString *owner;
-    CGRect bounding_rect;
+    CGRect boundingRect;
 }
 
 -(id)initWithPosition:(CGPoint)pos;
--(id)initWithPosition:(CGPoint)pos andIsOpponents:(BOOL)isOppenents;
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat)theVelocity andAcceleration:(CGFloat)theAcceleration andIsOpponents:(BOOL)isOpponents;
+-(id)initWithPosition:(CGPoint)pos andIsOpponents:(BOOL) isOppenents;
+-(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat) theVelocity andAcceleration:(CGFloat) theAcceleration andIsOpponents:(BOOL) isOpponents;
 -(void) draw;
--(void) update:(ccTime)delta;
--(BOOL) isCollidingWith:(Germ *)otherGerm;
+-(void) update:(ccTime) delta;
+-(BOOL) isCollidingWith:(Germ *) otherGerm;
 
 @end

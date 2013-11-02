@@ -11,7 +11,7 @@
 @interface RegeneratableBar : Bar
 {
     @private
-    CGFloat regen_rate;
+    CGFloat regenRate;
 }
 
 -(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor;
