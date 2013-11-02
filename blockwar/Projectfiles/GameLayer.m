@@ -15,6 +15,7 @@ NSMutableArray *player_units;
 NSMutableArray *enemy_units;
 NSMutableArray *units_to_be_deleted;
 CGRect touch_area;
+CGFloat playHeight;
 CGFloat touch_indicator_radius;
 CGPoint touch_indicator_center;
 CGSize screen_bounds;
@@ -28,6 +29,9 @@ bool isDone = FALSE;
 CGFloat enemy_spawn_timer;
 #define UPDATE_INTERVAL 0.03f
 #define UNIT_PADDING 15.0f
+
+#define TOUCH_RADIUS_MAX 50.0f
+#define TOUCH_RADIUS_MIN 40.0f
 
 @interface GameLayer()
 
@@ -51,10 +55,10 @@ CGFloat enemy_spawn_timer;
         CGFloat screenWidth = screen_bounds.width;
         CGFloat screenHeight = screen_bounds.height;
         NSLog(@"The screen width and height are (%f, %f)", screenWidth, screenHeight);
-        CGFloat playHeight = 11.2*screenHeight/12.2;
+        playHeight = 10.2*screenHeight/12.2;
         
         // touch_area is the player's spawning area
-        touch_area.origin = CGPointMake(0.0f, -(screenHeight - playHeight));
+        touch_area.origin = CGPointMake(0.0f, 0.0f);
         touch_area.size = CGSizeMake(screenWidth/7, playHeight);
         
         player_units = [[NSMutableArray alloc] init];
@@ -105,10 +109,12 @@ CGFloat enemy_spawn_timer;
         if(input.anyTouchBeganThisFrame)
         {
             if (inTouchArea)
-            touch_indicator_center = pos;
-            touch_indicator_radius = 40.0f;
+            {
+                touch_indicator_center = pos;
+                touch_indicator_radius = TOUCH_RADIUS_MIN;
+            }
         }
-        else if(input.anyTouchEndedThisFrame)
+        else if(input.anyTouchEndedThisFrame && touch_indicator_radius > TOUCH_RADIUS_MIN)
         {
             NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
             for (int i=0; i<(int)touch_indicator_radius/10; i++)
@@ -118,7 +124,7 @@ CGFloat enemy_spawn_timer;
                 while (!not_near)
                 {
                     not_near = true;
-                    random_pos = CGPointMake(touch_indicator_center.x + arc4random()%50 - 25, touch_indicator_center.y + arc4random()%50 - 25);
+                    random_pos = CGPointMake(touch_indicator_center.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touch_indicator_center.y + arc4random()%(int)TOUCH_RADIUS_MAX - 25);
                     for (NSValue *o_pos in positions_to_be_spawned)
                     {
                         CGPoint other_pos = [o_pos CGPointValue];
@@ -143,21 +149,28 @@ CGFloat enemy_spawn_timer;
         }
         else if(input.touchesAvailable)
         {
-            if (inTouchArea)
+            if (pos.y < playHeight)
             {
-                touch_indicator_center = pos;
-            }
-            else    // only update the up-down movement if pos is out of bounds
-            {
-                touch_indicator_center.y = pos.y;
-            }
-            if (touch_indicator_radius < 50.0f)
-            {
-                touch_indicator_radius += 0.4f;
+                if (inTouchArea)
+                {
+                    touch_indicator_center = pos;
+                }
+                else    // only update the up-down movement if pos is out of bounds
+                {
+                    touch_indicator_center.y = pos.y;
+                }
+                if (touch_indicator_radius < TOUCH_RADIUS_MAX)
+                {
+                    touch_indicator_radius += 0.4f;
+                }
+                else
+                {
+                    touch_indicator_radius = arc4random()%5 + TOUCH_RADIUS_MAX;
+                }
             }
             else
             {
-                touch_indicator_radius = arc4random()%5 + 50.0f;
+                touch_indicator_radius = 0.0f;
             }
         }
     }
