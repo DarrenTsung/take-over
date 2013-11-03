@@ -43,18 +43,20 @@
 -(void) draw
 {
     CGPoint offset = CGPointMake(0.0f, 0.0f);
-    if (shakeTimer > 0.0f)
+    if (shakeTimer > 0.0f && current > 0.0f)
     {
         offset = CGPointMake(arc4random()%17/5.0f, arc4random()%17/5.0f);
     }
 
+    // opposite point to the origin of the health_bar
+    CGPoint newOrigin = CGPointMake(origin.x + offset.x, origin.y + offset.y);
+    CGPoint otherPoint = CGPointMake(newOrigin.x + modifier*size.width*(current/max), newOrigin.y - size.height);
+    CGPoint maxPoint = CGPointMake(newOrigin.x + modifier*size.width, newOrigin.y - size.height);
     if (current > 0.0f)
     {
-        // opposite point to the origin of the health_bar
-        CGPoint newOrigin = CGPointMake(origin.x + offset.x, origin.y + offset.y);
-        CGPoint otherPoint = CGPointMake(newOrigin.x + modifier*size.width*(current/max), newOrigin.y - size.height);
         ccDrawSolidRect(newOrigin, otherPoint, color);
     }
+    ccDrawRect(newOrigin, maxPoint);
 }
 
 -(void) update:(ccTime)delta

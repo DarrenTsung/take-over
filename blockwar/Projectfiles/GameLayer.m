@@ -100,7 +100,7 @@ CGFloat enemySpawnTimer;
     
     if (touchIndicatorRadius > 30.0f)
     {
-        ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, YES);
+        ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, NO);
     }
     
     [germMaster drawGerms];
