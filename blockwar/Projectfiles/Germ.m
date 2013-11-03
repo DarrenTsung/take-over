@@ -17,6 +17,8 @@
         origin = pos;
         // default player color
         color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
+        displayColor = color;
+        
         // default size is 15x15
         size = CGSizeMake(15.0f, 15.0f);
         // construct movement variables
@@ -24,8 +26,10 @@
         maxVelocity = 90.0f;
         acceleration = 100.0f;
         
-        health = 60.0f;
+        health = 40.0f;
         damage = 5.0f;
+        
+        flashTimer = 0.0f;
         
         owner = @"Player";
         // make the bounding rect here so we don't have to construct each time we're checking collisions
@@ -42,6 +46,7 @@
         {
             owner = @"Opponent";
             color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
+            displayColor = color;
             velocity = -velocity;
             maxVelocity = -maxVelocity;
             acceleration = -acceleration;
@@ -55,6 +60,7 @@
     if ((self = [self initWithPosition:pos]))
     {
         color = theColor;
+        displayColor = color;
         size = theSize;
         velocity = theVelocity;
         acceleration = theAcceleration;
@@ -73,7 +79,7 @@
 -(void) draw
 {
     // draw germ around origin (origin is center of germ)
-    ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), color);
+    ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), displayColor);
     
     // DEBUG: UNCOMMENT TO SEE BOUNDING RECTANGLES DRAWN IN WHITE
     //ccDrawSolidRect(bounding_rect.origin, CGPointMake(bounding_rect.origin.x + bounding_rect.size.width, bounding_rect.origin.y + bounding_rect.size.height), ccc4f(1.0f, 1.0f, 1.0f, 1.0f));
@@ -91,6 +97,13 @@
         velocity = maxVelocity;
     }
     boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
+    
+    // update displayColor if flashing white
+    if (flashTimer > 0.0f)
+    {
+        displayColor = ccc4f(color.r + 1.0f*flashTimer, color.g + 1.0f*flashTimer, color.b + 1.0f*flashTimer, 1.0f);
+        flashTimer -= delta;
+    }
 }
 
 -(BOOL)isCollidingWith:(Germ *)otherGerm
@@ -103,6 +116,11 @@
     {
         return FALSE;
     }
+}
+
+-(void)flashWhiteFor:(CGFloat)time
+{
+    flashTimer = time;
 }
 
 @end

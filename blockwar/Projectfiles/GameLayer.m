@@ -269,6 +269,7 @@ CGFloat enemySpawnTimer;
                 }
                 else
                 {
+                    [unit flashWhiteFor:0.6f];
                     unit->velocity = -(unit->maxVelocity);
                 }
                 
@@ -278,6 +279,7 @@ CGFloat enemySpawnTimer;
                 }
                 else
                 {
+                    [enemyUnit flashWhiteFor:0.6f];
                     enemyUnit->velocity = -(enemyUnit->maxVelocity);
                 }
                 

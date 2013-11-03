@@ -12,10 +12,11 @@
 {
     @public
     CGPoint origin;
-    ccColor4F color;
+    ccColor4F color, displayColor;
     CGSize size;
     CGFloat velocity, acceleration, maxVelocity;
     CGFloat damage, health;
+    CGFloat flashTimer;
     NSString *owner;
     CGRect boundingRect;
 }
@@ -26,5 +27,6 @@
 -(void) draw;
 -(void) update:(ccTime) delta;
 -(BOOL) isCollidingWith:(Germ *) otherGerm;
+-(void)flashWhiteFor:(CGFloat)time;
 
 @end
