@@ -20,8 +20,8 @@
     {
         army = armyArray;
         color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
-        waveSize = 12;
-        rowSize = 6;
+        waveSize = 24;
+        rowSize = 8;
     }
     return self;
 }

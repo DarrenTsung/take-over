@@ -26,8 +26,8 @@
         maxVelocity = 90.0f;
         acceleration = 100.0f;
         
-        health = 40.0f;
-        damage = 5.0f;
+        health = 5.0f;
+        damage = 1.0f;
         
         flashTimer = 0.0f;
         
@@ -47,9 +47,10 @@
             owner = @"Opponent";
             color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
             displayColor = color;
-            velocity = -velocity;
-            maxVelocity = -maxVelocity;
-            acceleration = -acceleration;
+
+            // enemy units are weaker
+            health = 3.0f;
+            damage = 0.5f;
         }
     }
     return self;
@@ -67,9 +68,6 @@
         if(isOpponents)
         {
             owner = @"Opponent";
-            velocity = -velocity;
-            maxVelocity = -maxVelocity;
-            acceleration = -acceleration;
         }
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
     }
@@ -88,11 +86,18 @@
 -(void) update:(ccTime) delta
 {
     // compute position
-    origin.x += delta*velocity;
+    if ([owner isEqualToString:@"Opponent"])
+    {
+        origin.x -= delta*velocity;
+    }
+    else
+    {
+        origin.x += delta*velocity;
+    }
     
     // update velocity
     velocity += delta*acceleration;
-    if (abs(velocity) > abs(maxVelocity))
+    if (velocity > maxVelocity)
     {
         velocity = maxVelocity;
     }
@@ -121,6 +126,11 @@
 -(void)flashWhiteFor:(CGFloat)time
 {
     flashTimer = time;
+}
+
+-(void)hitFor:(CGFloat)hitDamage
+{
+    velocity = -(hitDamage*maxVelocity);
 }
 
 @end

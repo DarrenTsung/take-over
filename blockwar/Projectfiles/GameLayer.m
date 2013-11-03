@@ -21,6 +21,9 @@ CGRect touchArea;
 CGFloat playHeight;
 CGFloat touchIndicatorRadius;
 CGPoint touchIndicatorCenter;
+#define SPAWN_SIZE 5
+#define UNIT_COST 10
+
 CGSize screenBounds;
 EnemyAI *theEnemy;
 
@@ -40,7 +43,7 @@ CGFloat enemySpawnTimer;
 #define TOUCH_RADIUS_MAX 53.0f
 #define TOUCH_RADIUS_MIN 40.0f
 
-#define ENEMY_WAVE_TIMER 5.0f;
+#define ENEMY_WAVE_TIMER 4.0f;
 
 @interface GameLayer()
 
@@ -91,7 +94,7 @@ CGFloat enemySpawnTimer;
 
 -(void) draw
 {
-    ccColor4F area_color = ccc4f(0.4f, 0.6f, 0.5f, 0.1f);
+    ccColor4F area_color = ccc4f(0.3f, 0.1f, 0.1f, 0.5f);
     ccDrawSolidRect(touchArea.origin, CGPointMake(touchArea.size.width + touchArea.origin.x, touchArea.size.height + touchArea.origin.y), area_color);
     
     if (touchIndicatorRadius > 30.0f)
@@ -138,11 +141,12 @@ CGFloat enemySpawnTimer;
                 SuperGerm *unit = [[SuperGerm alloc] initWithPosition:pos];
                 [playerUnits addObject:unit];
                 [playerSuperUnits addObject:unit];
+                [playerResources decreaseValueBy:7*UNIT_COST];
             }
             else
             {
                 NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
-                for (int i = 0; i < (int)touchIndicatorRadius/10; i++)
+                for (int i = 0; i < SPAWN_SIZE; i++)
                 {
                     CGPoint random_pos;
                     bool not_near = false;
@@ -170,8 +174,8 @@ CGFloat enemySpawnTimer;
                 {
                     [playerUnits addObject:[[Germ alloc] initWithPosition:[position CGPointValue]]];
                 }
+                [playerResources decreaseValueBy:SPAWN_SIZE*UNIT_COST];
             }
-            [playerResources decreaseValueBy:touchIndicatorRadius];
             touchIndicatorRadius = 0.0f;
         }
         else if(input.touchesAvailable)
@@ -284,7 +288,7 @@ CGFloat enemySpawnTimer;
                 else
                 {
                     [unit flashWhiteFor:0.6f];
-                    unit->velocity = -(unit->maxVelocity);
+                    [unit hitFor:enemyUnit->damage];
                 }
                 
                 if (enemyUnit->health < 0.0f)
@@ -294,7 +298,7 @@ CGFloat enemySpawnTimer;
                 else
                 {
                     [enemyUnit flashWhiteFor:0.6f];
-                    enemyUnit->velocity = -(enemyUnit->maxVelocity);
+                    [enemyUnit hitFor:unit->damage];
                 }
                 
                 // breaks out of checking the current player unit with any more enemy_units

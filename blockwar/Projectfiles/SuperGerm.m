@@ -17,7 +17,7 @@
         size = CGSizeMake(20.0f, 20.0f);
         maxVelocity += 30.0f;
         velocity += 30.0f;
-        damage += 3.0f;
+        damage += 0.4f;
         
         health += 20.0f;
         

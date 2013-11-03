@@ -28,5 +28,6 @@
 -(void) update:(ccTime) delta;
 -(BOOL) isCollidingWith:(Germ *) otherGerm;
 -(void)flashWhiteFor:(CGFloat)time;
+-(void)hitFor:(CGFloat)hitDamage;
 
 @end
