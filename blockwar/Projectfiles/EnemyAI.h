@@ -7,16 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "GermFactory.h"
 
 @interface EnemyAI : NSObject
 {
     @private
-    NSMutableArray *army;
+    GermFactory *spawner;
     ccColor4F color;
     int waveSize, rowSize;
 }
 
--(id) initWithReferenceToEnemyArray:(NSMutableArray *) armyArray;
+-(id) initWithReferenceToGermFactory:(GermFactory *)germMaster;
 -(void) spawnWaveWithPlayHeight:(CGFloat)playHeight;
 
 @end

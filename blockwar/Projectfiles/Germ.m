@@ -50,7 +50,7 @@
 
             // enemy units are weaker
             health = 3.0f;
-            damage = 0.5f;
+            damage = 0.7f;
         }
     }
     return self;

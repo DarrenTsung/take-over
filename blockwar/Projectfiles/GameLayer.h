@@ -9,5 +9,12 @@
 #import "CCLayer.h"
 
 @interface GameLayer : CCLayer
+{
+    @public
+    CGRect touchArea;
+}
+
+-(CGSize) returnScreenBounds;
+-(void) handleMessage:(NSArray *)message;
 
 @end

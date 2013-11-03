@@ -8,17 +8,18 @@
 
 #import "EnemyAI.h"
 #import "Germ.h"
+#import "GermFactory.h"
 
 #define PADDING 20.0f
 #define UNIT_SIZE_Y 15.0f
 
 @implementation EnemyAI
 
--(id) initWithReferenceToEnemyArray:(NSMutableArray *)armyArray
+-(id) initWithReferenceToGermFactory:(GermFactory *)germMaster
 {
     if((self = [super init]))
     {
-        army = armyArray;
+        spawner = germMaster;
         color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
         waveSize = 24;
         rowSize = 8;
@@ -30,7 +31,7 @@
 {
     int x = 0;
     int counter = 0;
-    CGPoint spawnPoint = CGPointMake(575, arc4random()%(int)(playHeight - (rowSize - 1)*PADDING - UNIT_SIZE_Y));
+    CGPoint spawnPoint = CGPointMake(575, arc4random()%(int)(playHeight - ((rowSize - 1)*PADDING + UNIT_SIZE_Y) + 10.0f));
     
     while(x < waveSize)
     {
@@ -38,7 +39,7 @@
         for(int i=0; i<rowSize; i++)
         {
             CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);
-            [army addObject:[[Germ alloc] initWithPosition:lesserPoint andIsOpponents: YES]];
+            [spawner insertGerm:[[Germ alloc] initWithPosition:lesserPoint andIsOpponents: YES] intoSortedArrayWithName:@"enemyUnits"];
             x++;
         }
         //NSLog(@"added a row! offset %d", counter%2);
