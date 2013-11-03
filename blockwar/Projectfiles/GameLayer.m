@@ -30,6 +30,8 @@ HealthBar *enemyHP;
 RegeneratableBar *playerResources;
 
 bool isDone = FALSE;
+CGFloat resetTimer = 0.0f;
+#define RESET_TIME 3.0f;
 
 CGFloat enemySpawnTimer;
 #define UPDATE_INTERVAL 0.03f
@@ -73,8 +75,10 @@ CGFloat enemySpawnTimer;
         enemyUnits = [[NSMutableArray alloc] init];
         enemySpawnTimer = 1.0f;
         
+        // theEnemy.. oo ominous!
         theEnemy = [[EnemyAI alloc] initWithReferenceToEnemyArray:enemyUnits];
         
+        // Resource Bars
         enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
         playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(0.3f, 0.9f, 0.4f, 1.0f)];
         playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(0.0f, 0.45f, 0.8f, 1.0f)];
@@ -197,17 +201,25 @@ CGFloat enemySpawnTimer;
             }
         }
     }
+    else        // update the reset timer and reset after 5 seconds
+    {
+        NSLog(@"resetTimer is %f", resetTimer);
+        if (resetTimer > 0.0f)
+        {
+            resetTimer -= delta;
+        }
+        else
+        {
+            [self reset];
+        }
+    }
 }
 
 -(void) nextFrame
 {
-    if ([playerHP getCurrentValue] < 0.0f)
+    if (!isDone && ([playerHP getCurrentValue] <= 0.0f || [enemyHP getCurrentValue] <= 0.0f))
     {
-        isDone = true;
-    }
-    else if ([enemyHP getCurrentValue] < 0.0f)
-    {
-        isDone = true;
+        [self endGame];
     }
     if (!isDone)
     {
@@ -317,10 +329,12 @@ CGFloat enemySpawnTimer;
 {
     [playerHP resetValueToMax];
     [enemyHP resetValueToMax];
+    [playerResources resetValueToMax];
     [playerUnits removeAllObjects];
     [enemyUnits removeAllObjects];
-    isDone = false;
+    enemySpawnTimer = ENEMY_WAVE_TIMER;
     
+    isDone = false;
 }
 
 -(CGSize) returnScreenBounds
@@ -333,6 +347,10 @@ CGFloat enemySpawnTimer;
     return screenBounds;
 }
 
-
+-(void) endGame
+{
+    isDone = true;
+    resetTimer = RESET_TIME;
+}
 
 @end

@@ -73,6 +73,8 @@
 -(void) resetValueToMax
 {
     current = max;
+    // also disable any shake when resetting
+    shakeTimer = 0.0f;
 }
 
 -(CGFloat) getCurrentValue

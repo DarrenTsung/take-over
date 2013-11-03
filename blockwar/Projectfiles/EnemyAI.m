@@ -41,7 +41,7 @@
             [army addObject:[[Germ alloc] initWithPosition:lesserPoint andIsOpponents: YES]];
             x++;
         }
-        NSLog(@"added a row! offset %d", counter%2);
+        //NSLog(@"added a row! offset %d", counter%2);
         counter++;
     }
 }
