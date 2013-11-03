@@ -17,8 +17,8 @@
         // default size is 150 pixels
         size = CGSizeMake(150.0f, 10.0f);
         // default max is 120.0f
-        max = 120.0f;
-        current = 120.0f;
+        max = 50.0f;
+        current = 50.0f;
         
         origin = theOrigin;
         color = theColor;

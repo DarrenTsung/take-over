@@ -15,6 +15,8 @@
     if ((self = [super initWithOrigin:theOrigin andOrientation:theOrientation andColor:theColor]))
     {
         regenRate = 30.0f;
+        max = 120.0f;
+        current = max;
     }
     return self;
 }

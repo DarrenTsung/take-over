@@ -18,8 +18,7 @@
 GermFactory *germMaster;
 
 NSMutableArray *unitsToBeDeleted;
-CGRect touchArea;
-CGFloat playHeight;
+
 CGFloat touchIndicatorRadius;
 CGPoint touchIndicatorCenter;
 #define SPAWN_SIZE 3
@@ -39,14 +38,11 @@ bool isDone = FALSE;
 CGFloat resetTimer = 0.0f;
 #define RESET_TIME 3.0f;
 
-CGFloat enemySpawnTimer;
 #define UPDATE_INTERVAL 0.03f
 #define UNIT_PADDING 20.0f
 
 #define TOUCH_RADIUS_MAX 53.0f
 #define TOUCH_RADIUS_MIN 40.0f
-
-#define ENEMY_WAVE_TIMER 4.0f;
 
 @interface GameLayer()
 
@@ -78,9 +74,8 @@ CGFloat enemySpawnTimer;
         
         germMaster = [[GermFactory alloc] initWithReferenceToViewController:self];
         
-        enemySpawnTimer = 1.0f;
         // theEnemy.. oo ominous!
-        theEnemy = [[EnemyAI alloc] initWithReferenceToGermFactory:germMaster];
+        theEnemy = [[EnemyAI alloc] initWithReferenceToGermFactory:germMaster andWaveTimer:1.0f andViewController:self];
         
         // Resource Bars
         enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
@@ -229,18 +224,7 @@ CGFloat enemySpawnTimer;
         
         [germMaster update:UPDATE_INTERVAL];
         
-        enemySpawnTimer -= UPDATE_INTERVAL;
-        if (enemySpawnTimer <= 0)
-        {
-            // send enemy wave every 5 seconds
-            [theEnemy spawnWaveWithPlayHeight:playHeight];
-            enemySpawnTimer = ENEMY_WAVE_TIMER;
-            // 2/3 of the time, add 3 seconds to the next timer to space it out
-            if (arc4random()%3 > 1)
-            {
-                enemySpawnTimer += 3.0f;
-            }
-        }
+        [theEnemy update:UPDATE_INTERVAL];
         
         // after units are done spawning / moving, check for collisions
         [germMaster checkForCollisionsAndRemove];
@@ -268,7 +252,7 @@ CGFloat enemySpawnTimer;
     [enemyHP resetValueToMax];
     [playerResources resetValueToMax];
     [germMaster reset];
-    enemySpawnTimer = ENEMY_WAVE_TIMER;
+    [theEnemy reset];
     
     isDone = false;
 }

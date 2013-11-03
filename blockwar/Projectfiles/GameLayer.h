@@ -12,6 +12,7 @@
 {
     @public
     CGRect touchArea;
+    CGFloat playHeight;
 }
 
 -(CGSize) returnScreenBounds;

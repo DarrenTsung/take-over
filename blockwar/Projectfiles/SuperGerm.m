@@ -19,7 +19,7 @@
         velocity += 30.0f;
         damage += 0.4f;
         
-        health += 20.0f;
+        health += 3.0f;
         
         // default influenceRange is 50.0f
         influenceRange = 50.0f;
