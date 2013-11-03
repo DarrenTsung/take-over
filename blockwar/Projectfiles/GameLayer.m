@@ -211,6 +211,8 @@ CGFloat enemySpawnTimer;
     }
     if (!isDone)
     {
+        [playerHP update:UPDATE_INTERVAL];
+        [enemyHP update:UPDATE_INTERVAL];
         [playerResources update:UPDATE_INTERVAL];
         for (SuperGerm *unit in playerSuperUnits)
         {
@@ -295,6 +297,7 @@ CGFloat enemySpawnTimer;
         {
             [playerDiscardedUnits addObject:unit];
             [enemyHP decreaseValueBy:unit->damage];
+            [enemyHP shakeForTime:0.5f];
         }
     }
     for (Germ *unit in enemyUnits)
@@ -303,6 +306,7 @@ CGFloat enemySpawnTimer;
         {
             [enemyDiscardedUnits addObject:unit];
             [playerHP decreaseValueBy:unit->damage];
+            [playerHP shakeForTime:0.5f];
         }
     }
     [playerUnits removeObjectsInArray:playerDiscardedUnits];

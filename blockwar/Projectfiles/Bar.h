@@ -16,6 +16,7 @@
     CGPoint origin;
     NSString *orientation;
     ccColor4F color;
+    CGFloat shakeTimer;
 }
 
 -(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor;
@@ -23,5 +24,7 @@
 -(void) decreaseValueBy:(CGFloat)value;
 -(void) resetValueToMax;
 -(CGFloat) getCurrentValue;
+-(void) shakeForTime:(CGFloat)time;
+-(void) update:(ccTime)delta;
 
 @end
