@@ -38,7 +38,7 @@ CGFloat enemySpawnTimer;
 #define TOUCH_RADIUS_MAX 53.0f
 #define TOUCH_RADIUS_MIN 40.0f
 
-#define ENEMY_WAVE_TIMER 25.0f;
+#define ENEMY_WAVE_TIMER 5.0f;
 
 @interface GameLayer()
 
@@ -115,7 +115,6 @@ CGFloat enemySpawnTimer;
     KKInput* input = [KKInput sharedInput];
     CGPoint pos = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
     
-
     if (!isDone)
     {
         bool inTouchArea = CGRectContainsPoint(touchArea, pos);
@@ -185,7 +184,7 @@ CGFloat enemySpawnTimer;
                 }
                 if (touchIndicatorRadius < TOUCH_RADIUS_MAX)
                 {
-                    touchIndicatorRadius += 0.4f;
+                    touchIndicatorRadius += 0.3f;
                 }
                 else
                 {
@@ -230,7 +229,7 @@ CGFloat enemySpawnTimer;
         if (enemySpawnTimer <= 0)
         {
             // send enemy wave every 5 seconds
-            [theEnemy spawnWave];
+            [theEnemy spawnWaveWithPlayHeight:playHeight];
             enemySpawnTimer = ENEMY_WAVE_TIMER;
             // 2/3 of the time, add 3 seconds to the next timer to space it out
             if (arc4random()%3 > 1)
@@ -287,7 +286,7 @@ CGFloat enemySpawnTimer;
             }
         }
     }
-    NSLog(@"Compared %d times this iteration!", counter);
+    //NSLog(@"Compared %d times this iteration!", counter);
     for (Germ *unit in playerUnits)
     {
         if (unit->origin.x - unit->size.width/2 > screen_bounds.width)

@@ -9,6 +9,9 @@
 #import "EnemyAI.h"
 #import "Germ.h"
 
+#define PADDING 20.0f
+#define UNIT_SIZE_Y 15.0f
+
 @implementation EnemyAI
 
 -(id) initWithReferenceToEnemyArray:(NSMutableArray *)armyArray
@@ -17,24 +20,29 @@
     {
         army = armyArray;
         color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
-        waveSize = 8;
+        waveSize = 12;
+        rowSize = 6;
     }
     return self;
 }
 
--(void) spawnWave
+-(void) spawnWaveWithPlayHeight:(CGFloat)playHeight
 {
-    int x;
-    CGPoint spawnPoint = CGPointMake(575, arc4random()%200 + 25);
-    for(x = 0; x < waveSize/2; x++)
+    int x = 0;
+    int counter = 0;
+    CGPoint spawnPoint = CGPointMake(575, arc4random()%(int)(playHeight - (rowSize - 1)*PADDING - UNIT_SIZE_Y));
+    
+    while(x < waveSize)
     {
-        CGPoint lesserPoint = CGPointMake(spawnPoint.x, spawnPoint.y + 20.0f*x);
-        [army addObject:[[Germ alloc] initWithPosition:lesserPoint andIsOpponents: YES]];
-    }
-    for(; x < waveSize; x++)
-    {
-        CGPoint lesserPoint = CGPointMake(spawnPoint.x + 20.0f, spawnPoint.y + 20.0f*(x-waveSize/2 + 0.5f));
-        [army addObject:[[Germ alloc] initWithPosition:lesserPoint andIsOpponents: YES]];
+        int offset = (counter%2 == 1) ? 5.0f : 0.0f;
+        for(int i=0; i<rowSize; i++)
+        {
+            CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);
+            [army addObject:[[Germ alloc] initWithPosition:lesserPoint andIsOpponents: YES]];
+            x++;
+        }
+        NSLog(@"added a row! offset %d", counter%2);
+        counter++;
     }
 }
 

@@ -156,7 +156,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6CBA5BF518249AB200E52FC7 /* Bar Class */ = {
+		6CBA5BF518249AB200E52FC7 /* Bars */ = {
 			isa = PBXGroup;
 			children = (
 				6CBA5BE9182499B600E52FC7 /* Bar.h */,
@@ -166,7 +166,7 @@
 				6CBA5BF218249AAB00E52FC7 /* RegeneratableBar.h */,
 				6CBA5BF318249AAB00E52FC7 /* RegeneratableBar.m */,
 			);
-			name = "Bar Class";
+			name = Bars;
 			sourceTree = "<group>";
 		};
 		6CD3616418259DF500A56D5C /* Units */ = {
@@ -269,7 +269,7 @@
 			children = (
 				6CBF7E9F1822EEC8000395D0 /* GameLayer.h */,
 				6CBF7EA01822EEC8000395D0 /* GameLayer.m */,
-				6CBA5BF518249AB200E52FC7 /* Bar Class */,
+				6CBA5BF518249AB200E52FC7 /* Bars */,
 				6CBF7EA518230F0A000395D0 /* EnemyAI.h */,
 				6CBF7EA618230F0A000395D0 /* EnemyAI.m */,
 				6CD3616418259DF500A56D5C /* Units */,

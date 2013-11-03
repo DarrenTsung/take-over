@@ -13,10 +13,10 @@
     @private
     NSMutableArray *army;
     ccColor4F color;
-    int waveSize;
+    int waveSize, rowSize;
 }
 
 -(id) initWithReferenceToEnemyArray:(NSMutableArray *) armyArray;
--(void) spawnWave;
+-(void) spawnWaveWithPlayHeight:(CGFloat)playHeight;
 
 @end
