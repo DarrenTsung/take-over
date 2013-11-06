@@ -11,6 +11,7 @@
 #import "Germ.h"
 #import "SuperGerm.h"
 #import "GameLayer.h"
+#import "CircleExplosion.h"
 
 
 @implementation GermFactory
@@ -23,6 +24,7 @@
         playerUnits = [[NSMutableArray alloc] init];
         enemyUnits = [[NSMutableArray alloc] init];
         playerSuperUnits = [[NSMutableArray alloc] init];
+        particleArray = [[NSMutableArray alloc] init];
     }
     return self;
 }
@@ -108,6 +110,7 @@
             {
                 unit->health -= enemyUnit->damage;
                 enemyUnit->health -= unit->damage;
+                [particleArray addObject:[[CircleExplosion alloc] initWithPos:CGPointMake(unit->boundingRect.origin.x + unit->boundingRect.size.width, unit->boundingRect.origin.y + unit->boundingRect.size.height/2)]];
                 
                 if (unit->health < 0.0f)
                 {
@@ -170,6 +173,19 @@
     {
         [unit update:delta];
     }
+    NSMutableArray *discardExplosions = [[NSMutableArray alloc] init];
+    for(CircleExplosion *explosion in particleArray)
+    {
+        if (explosion->isDone)
+        {
+            [discardExplosions addObject:explosion];
+        }
+        else
+        {
+            [explosion update:delta];
+        }
+    }
+    [particleArray removeObjectsInArray:discardExplosions];
 }
 
 -(void) drawGerms
@@ -182,6 +198,10 @@
     {
         [unit draw];
     }
+    for (CircleExplosion *explosion in particleArray)
+    {
+        [explosion draw];
+    }
 }
 
 -(void) reset
@@ -189,6 +209,7 @@
     [playerUnits removeAllObjects];
     [enemyUnits removeAllObjects];
     [playerSuperUnits removeAllObjects];
+    [particleArray removeAllObjects];
 }
 
 @end

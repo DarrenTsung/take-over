@@ -36,7 +36,7 @@
         owner = @"Player";
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         // make it 1.5x the size of the blocks so that they hit each other more often
-        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
+        boundingRect = CGRectMake(origin.x - size.width*BOUNDING_RECT_MODIFIER/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width*BOUNDING_RECT_MODIFIER, size.height*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
@@ -72,7 +72,7 @@
         {
             owner = @"Opponent";
         }
-        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
+        boundingRect = CGRectMake(origin.x - size.width*BOUNDING_RECT_MODIFIER/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width*BOUNDING_RECT_MODIFIER, size.height*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
@@ -104,7 +104,7 @@
     {
         velocity = maxVelocity;
     }
-    boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
+    boundingRect = CGRectMake(origin.x - size.width*BOUNDING_RECT_MODIFIER/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width*BOUNDING_RECT_MODIFIER, size.height*BOUNDING_RECT_MODIFIER);
     
     // update displayColor if flashing white
     if (flashTimer > 0.0f)

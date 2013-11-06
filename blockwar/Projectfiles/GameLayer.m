@@ -14,10 +14,12 @@
 #import "RegeneratableBar.h"
 #import "SuperGerm.h"
 #import "GermFactory.h"
+#import "CircleExplosion.h"
 
 GermFactory *germMaster;
 
 NSMutableArray *unitsToBeDeleted;
+NSMutableArray *particleArray;
 
 CGFloat touchIndicatorRadius;
 CGPoint touchIndicatorCenter;
@@ -72,7 +74,11 @@ CGFloat resetTimer = 0.0f;
         touchArea.origin = CGPointMake(0.0f, 0.0f);
         touchArea.size = CGSizeMake(screenWidth/7, playHeight);
         
+        // germMaster controls and models all the germs
         germMaster = [[GermFactory alloc] initWithReferenceToViewController:self];
+        
+        // particleArray keeps track of all the particles
+        particleArray = [[NSMutableArray alloc] init];
         
         // theEnemy.. oo ominous!
         theEnemy = [[EnemyAI alloc] initWithReferenceToGermFactory:germMaster andWaveTimer:1.0f andViewController:self];
@@ -97,7 +103,7 @@ CGFloat resetTimer = 0.0f;
     {
         ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, NO);
     }
-    
+ 
     [germMaster drawGerms];
     
     [playerHP draw];
