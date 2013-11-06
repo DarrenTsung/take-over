@@ -8,6 +8,8 @@
 
 #import "Germ.h"
 
+#define BOUNDING_RECT_MODIFIER 2.0f
+
 @implementation Germ
 
 -(id)initWithPosition:(CGPoint)pos
@@ -33,7 +35,8 @@
         
         owner = @"Player";
         // make the bounding rect here so we don't have to construct each time we're checking collisions
-        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
+        // make it 1.5x the size of the blocks so that they hit each other more often
+        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
@@ -69,7 +72,7 @@
         {
             owner = @"Opponent";
         }
-        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
+        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
@@ -80,7 +83,7 @@
     ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), displayColor);
     
     // DEBUG: UNCOMMENT TO SEE BOUNDING RECTANGLES DRAWN IN WHITE
-    //ccDrawSolidRect(bounding_rect.origin, CGPointMake(bounding_rect.origin.x + bounding_rect.size.width, bounding_rect.origin.y + bounding_rect.size.height), ccc4f(1.0f, 1.0f, 1.0f, 1.0f));
+    //ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
 }
 
 -(void) update:(ccTime) delta
@@ -101,7 +104,7 @@
     {
         velocity = maxVelocity;
     }
-    boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height/2, size.width, size.height);
+    boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     
     // update displayColor if flashing white
     if (flashTimer > 0.0f)
