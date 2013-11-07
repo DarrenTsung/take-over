@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>zombie1.png</key>
+            <key>zombie0.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{0,0},{11,15}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{11,15}</string>
             </dict>
-            <key>zombie2.png</key>
+            <key>zombie1.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{0,15},{11,15}}</string>
@@ -40,7 +40,7 @@
             <key>size</key>
             <string>{16,32}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:263bfba053c00d103adcbe598138ecdc:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:bb2a3322b2973e88de4acff13aeb39ed:1/1$</string>
             <key>textureFileName</key>
             <string>zombieframes.png</string>
         </dict>
