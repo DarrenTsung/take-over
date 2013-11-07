@@ -7,14 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CAE6D98182B69C400602F39 /* Blocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE6D97182B69C400602F39 /* Blocker.m */; };
 		6CBA5BEB182499B600E52FC7 /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BEA182499B600E52FC7 /* Bar.m */; };
 		6CBA5BF118249A6300E52FC7 /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BF018249A6300E52FC7 /* HealthBar.m */; };
 		6CBA5BF418249AAB00E52FC7 /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BF318249AAB00E52FC7 /* RegeneratableBar.m */; };
 		6CBF7EA11822EEC8000395D0 /* GameLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA01822EEC8000395D0 /* GameLayer.m */; };
-		6CBF7EA41822F904000395D0 /* Germ.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA31822F904000395D0 /* Germ.m */; };
+		6CBF7EA41822F904000395D0 /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA31822F904000395D0 /* Unit.m */; };
 		6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF7EA618230F0A000395D0 /* EnemyAI.m */; };
-		6CD3616318259DED00A56D5C /* SuperGerm.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3616218259DED00A56D5C /* SuperGerm.m */; };
-		6CD361671826CF2E00A56D5C /* GermFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD361661826CF2E00A56D5C /* GermFactory.m */; };
+		6CD3616318259DED00A56D5C /* SuperUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3616218259DED00A56D5C /* SuperUnit.m */; };
+		6CD361671826CF2E00A56D5C /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD361661826CF2E00A56D5C /* GameModel.m */; };
 		6CD3616A182AD64C00A56D5C /* CircleExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD36169182AD64C00A56D5C /* CircleExplosion.m */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
@@ -58,6 +59,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6CAE6D96182B69C400602F39 /* Blocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blocker.h; sourceTree = "<group>"; };
+		6CAE6D97182B69C400602F39 /* Blocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blocker.m; sourceTree = "<group>"; };
 		6CBA5BE9182499B600E52FC7 /* Bar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bar.h; sourceTree = "<group>"; };
 		6CBA5BEA182499B600E52FC7 /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bar.m; sourceTree = "<group>"; };
 		6CBA5BEF18249A6300E52FC7 /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
@@ -66,14 +69,14 @@
 		6CBA5BF318249AAB00E52FC7 /* RegeneratableBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegeneratableBar.m; sourceTree = "<group>"; };
 		6CBF7E9F1822EEC8000395D0 /* GameLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameLayer.h; sourceTree = "<group>"; };
 		6CBF7EA01822EEC8000395D0 /* GameLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameLayer.m; sourceTree = "<group>"; };
-		6CBF7EA21822F904000395D0 /* Germ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Germ.h; sourceTree = "<group>"; };
-		6CBF7EA31822F904000395D0 /* Germ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Germ.m; sourceTree = "<group>"; };
+		6CBF7EA21822F904000395D0 /* Unit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unit.h; sourceTree = "<group>"; };
+		6CBF7EA31822F904000395D0 /* Unit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unit.m; sourceTree = "<group>"; };
 		6CBF7EA518230F0A000395D0 /* EnemyAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnemyAI.h; sourceTree = "<group>"; };
 		6CBF7EA618230F0A000395D0 /* EnemyAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnemyAI.m; sourceTree = "<group>"; };
-		6CD3616118259DED00A56D5C /* SuperGerm.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperGerm.h; sourceTree = "<group>"; };
-		6CD3616218259DED00A56D5C /* SuperGerm.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperGerm.m; sourceTree = "<group>"; };
-		6CD361651826CF2E00A56D5C /* GermFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GermFactory.h; sourceTree = "<group>"; };
-		6CD361661826CF2E00A56D5C /* GermFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GermFactory.m; sourceTree = "<group>"; };
+		6CD3616118259DED00A56D5C /* SuperUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SuperUnit.h; sourceTree = "<group>"; };
+		6CD3616218259DED00A56D5C /* SuperUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SuperUnit.m; sourceTree = "<group>"; };
+		6CD361651826CF2E00A56D5C /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
+		6CD361661826CF2E00A56D5C /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 		6CD36168182AD64C00A56D5C /* CircleExplosion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleExplosion.h; sourceTree = "<group>"; };
 		6CD36169182AD64C00A56D5C /* CircleExplosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleExplosion.m; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
@@ -178,10 +181,12 @@
 		6CD3616418259DF500A56D5C /* Units */ = {
 			isa = PBXGroup;
 			children = (
-				6CBF7EA21822F904000395D0 /* Germ.h */,
-				6CBF7EA31822F904000395D0 /* Germ.m */,
-				6CD3616118259DED00A56D5C /* SuperGerm.h */,
-				6CD3616218259DED00A56D5C /* SuperGerm.m */,
+				6CBF7EA21822F904000395D0 /* Unit.h */,
+				6CBF7EA31822F904000395D0 /* Unit.m */,
+				6CD3616118259DED00A56D5C /* SuperUnit.h */,
+				6CD3616218259DED00A56D5C /* SuperUnit.m */,
+				6CAE6D96182B69C400602F39 /* Blocker.h */,
+				6CAE6D97182B69C400602F39 /* Blocker.m */,
 			);
 			name = Units;
 			sourceTree = "<group>";
@@ -287,8 +292,8 @@
 				6CBA5BF518249AB200E52FC7 /* Resource Bars */,
 				6CBF7EA518230F0A000395D0 /* EnemyAI.h */,
 				6CBF7EA618230F0A000395D0 /* EnemyAI.m */,
-				6CD361651826CF2E00A56D5C /* GermFactory.h */,
-				6CD361661826CF2E00A56D5C /* GermFactory.m */,
+				6CD361651826CF2E00A56D5C /* GameModel.h */,
+				6CD361661826CF2E00A56D5C /* GameModel.m */,
 				6CD3616418259DF500A56D5C /* Units */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
@@ -434,16 +439,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CBF7EA41822F904000395D0 /* Germ.m in Sources */,
+				6CBF7EA41822F904000395D0 /* Unit.m in Sources */,
 				6CBA5BEB182499B600E52FC7 /* Bar.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				6CBF7EA11822EEC8000395D0 /* GameLayer.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				6CBA5BF418249AAB00E52FC7 /* RegeneratableBar.m in Sources */,
+				6CAE6D98182B69C400602F39 /* Blocker.m in Sources */,
 				6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */,
-				6CD361671826CF2E00A56D5C /* GermFactory.m in Sources */,
+				6CD361671826CF2E00A56D5C /* GameModel.m in Sources */,
 				6CD3616A182AD64C00A56D5C /* CircleExplosion.m in Sources */,
-				6CD3616318259DED00A56D5C /* SuperGerm.m in Sources */,
+				6CD3616318259DED00A56D5C /* SuperUnit.m in Sources */,
 				6CBA5BF118249A6300E52FC7 /* HealthBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -6,11 +6,11 @@
 //
 //
 
-#import "Germ.h"
+#import "Unit.h"
 
 #define BOUNDING_RECT_MODIFIER 1.5f
 
-@implementation Germ
+@implementation Unit
 
 -(id)initWithPosition:(CGPoint)pos
 {
@@ -25,13 +25,15 @@
         size = CGSizeMake(15.0f, 15.0f);
         // construct movement variables
         velocity = 90.0f;
-        maxVelocity = 90.0f;
+        [self setMaxVelocity:90.0f];
         acceleration = 100.0f;
+        pushBack = -maxVelocity;
         
         health = 5.0f;
-        damage = 1.0f;
+        [self setDamage:1.0f];
         
         flashTimer = 0.0f;
+        buffed = false;
         
         owner = @"Player";
         // make the bounding rect here so we don't have to construct each time we're checking collisions
@@ -41,11 +43,12 @@
     return self;
 }
 
--(id)initWithPosition:(CGPoint)pos andIsOpponents:(BOOL)isOppenents
+
+-(id)initWithPosition:(CGPoint)pos andIsOpponents:(BOOL)isOpponents
 {
     if ((self = [self initWithPosition:pos]))
     {
-        if (isOppenents)
+        if (isOpponents)
         {
             owner = @"Opponent";
             color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
@@ -53,7 +56,7 @@
 
             // enemy units are weaker
             health = 3.0f;
-            damage = 0.7f;
+            [self setDamage:0.7f];
         }
     }
     return self;
@@ -97,6 +100,7 @@
     {
         origin.x += delta*velocity;
     }
+    [self checkBuffed];
     
     // update velocity
     velocity += delta*acceleration;
@@ -114,9 +118,23 @@
     }
 }
 
--(BOOL)isCollidingWith:(Germ *)otherGerm
+-(void)checkBuffed
 {
-    if(CGRectIntersectsRect(boundingRect, otherGerm->boundingRect))
+    if (buffed)
+    {
+        maxVelocity = baseMaxVelocity*1.3f;
+        damage = baseDamage*1.4f;
+    }
+    else
+    {
+        maxVelocity = baseMaxVelocity;
+        damage = baseDamage;
+    }
+}
+
+-(BOOL)isCollidingWith:(Unit *)otherUnit
+{
+    if(CGRectIntersectsRect(boundingRect, otherUnit->boundingRect))
     {
         return TRUE;
     }
@@ -133,7 +151,19 @@
 
 -(void)hitFor:(CGFloat)hitDamage
 {
-    velocity = -(hitDamage*maxVelocity);
+    velocity = pushBack;
+}
+
+-(void) setDamage:(CGFloat)theDamage
+{
+    damage = theDamage;
+    baseDamage = damage;
+}
+
+-(void) setMaxVelocity:(CGFloat)theMaxVelocity
+{
+    maxVelocity = theMaxVelocity;
+    baseMaxVelocity = maxVelocity;
 }
 
 @end

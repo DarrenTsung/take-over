@@ -8,21 +8,22 @@
 //
 
 #import "GameLayer.h"
-#import "Germ.h"
+#import "Unit.h"
+#import "Blocker.h"
 #import "EnemyAI.h"
 #import "HealthBar.h"
 #import "RegeneratableBar.h"
-#import "SuperGerm.h"
-#import "GermFactory.h"
-#import "CircleExplosion.h"
+#import "SuperUnit.h"
+#import "GameModel.h"
 
-GermFactory *germMaster;
+GameModel *model;
 
 NSMutableArray *unitsToBeDeleted;
 NSMutableArray *particleArray;
 
 CGFloat touchIndicatorRadius;
 CGPoint touchIndicatorCenter;
+CGPoint touchStartPoint;
 #define SPAWN_SIZE 3
 #define UNIT_COST 10
 // super units cost 7 times what regular units cost
@@ -74,14 +75,14 @@ CGFloat resetTimer = 0.0f;
         touchArea.origin = CGPointMake(0.0f, 0.0f);
         touchArea.size = CGSizeMake(screenWidth/7, playHeight);
         
-        // germMaster controls and models all the germs
-        germMaster = [[GermFactory alloc] initWithReferenceToViewController:self];
+        // model controls and models all the germs
+        model = [[GameModel alloc] initWithReferenceToViewController:self];
         
         // particleArray keeps track of all the particles
         particleArray = [[NSMutableArray alloc] init];
         
         // theEnemy.. oo ominous!
-        theEnemy = [[EnemyAI alloc] initWithReferenceToGermFactory:germMaster andWaveTimer:1.0f andViewController:self];
+        theEnemy = [[EnemyAI alloc] initWithReferenceToGameModel:model andWaveTimer:1.0f andViewController:self];
         
         // Resource Bars
         enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
@@ -104,7 +105,7 @@ CGFloat resetTimer = 0.0f;
         ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, NO);
     }
  
-    [germMaster drawGerms];
+    [model drawUnits];
     
     [playerHP draw];
     [enemyHP draw];
@@ -124,77 +125,133 @@ CGFloat resetTimer = 0.0f;
         {
             if (inTouchArea)
             {
+                touchStartPoint = pos;
                 touchIndicatorCenter = pos;
                 touchIndicatorRadius = TOUCH_RADIUS_MIN;
             }
         }
         else if(input.anyTouchEndedThisFrame)
         {
-            if (touchIndicatorRadius > TOUCH_RADIUS_MIN && [playerResources getCurrentValue] > touchIndicatorRadius)
+            CGFloat xChange = pos.x - touchStartPoint.x;
+            CGFloat yChange = pos.y - touchStartPoint.y;
+            CGFloat distanceChange = sqrt((xChange*xChange) + (yChange*yChange));
+            // if distance between two points is less than 30.0f
+            NSLog(@"xChange, yChange = (%f, %f) :: distanceChange = %f!", xChange, yChange, distanceChange);
+            if (distanceChange < 30.0f)
             {
-                // spawn SuperGerm if radius is greater than max (and fluctuating)
-                if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
+                if (touchIndicatorRadius > TOUCH_RADIUS_MIN && [playerResources getCurrentValue] > touchIndicatorRadius)
                 {
-                    SuperGerm *unit = [[SuperGerm alloc] initWithPosition:pos];
-                    [germMaster insertGerm:unit intoSortedArrayWithName:@"playerSuperUnits"];
-                    [germMaster insertGerm:unit intoSortedArrayWithName:@"playerUnits"];
-                    [playerResources decreaseValueBy:SUPER_UNIT_MULTIPLIER*UNIT_COST];
-                }
-                else
-                {
-                    NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
-                    for (int i = 0; i < SPAWN_SIZE; i++)
+                    // spawn SuperGerm if radius is greater than max (and fluctuating)
+                    if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
                     {
-                        CGPoint random_pos;
-                        bool not_near = false;
-                        while (!not_near)
+                        SuperUnit *unit = [[SuperUnit alloc] initWithPosition:pos];
+                        [model insertUnit:unit intoSortedArrayWithName:@"playerSuperUnits"];
+                        [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
+                        
+                        /*
+                        Blocker *blockerUnit = [[Blocker alloc] initWithPosition:pos];
+                        [model insertUnit:blockerUnit intoSortedArrayWithName:@"playerUnits"];
+                        */
+                        [playerResources decreaseValueBy:SUPER_UNIT_MULTIPLIER*UNIT_COST];
+                    }
+                    else
+                    {
+                        NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
+                        for (int i = 0; i < SPAWN_SIZE; i++)
                         {
-                            not_near = true;
-                            random_pos = CGPointMake(touchIndicatorCenter.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touchIndicatorCenter.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
-                            for (NSValue *o_pos in positions_to_be_spawned)
+                            CGPoint random_pos;
+                            bool not_near = false;
+                            while (!not_near)
                             {
-                                CGPoint other_pos = [o_pos CGPointValue];
-                                CGFloat xDist = other_pos.x - random_pos.x;
-                                CGFloat yDist = other_pos.y - random_pos.y;
-                                // if distance between two points is less than padding
-                                if (sqrt((xDist*xDist) + (yDist*yDist)) < UNIT_PADDING)
+                                not_near = true;
+                                random_pos = CGPointMake(touchIndicatorCenter.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touchIndicatorCenter.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
+                                for (NSValue *o_pos in positions_to_be_spawned)
                                 {
-                                    // too close to another point, generate again
-                                    not_near = false;
-                                    break;
+                                    CGPoint other_pos = [o_pos CGPointValue];
+                                    CGFloat xDist = other_pos.x - random_pos.x;
+                                    CGFloat yDist = other_pos.y - random_pos.y;
+                                    // if distance between two points is less than padding
+                                    if (sqrt((xDist*xDist) + (yDist*yDist)) < UNIT_PADDING)
+                                    {
+                                        // too close to another point, generate again
+                                        not_near = false;
+                                        break;
+                                    }
                                 }
                             }
+                            [positions_to_be_spawned addObject:[NSValue valueWithCGPoint:random_pos]];
                         }
-                        [positions_to_be_spawned addObject:[NSValue valueWithCGPoint:random_pos]];
+                        for (NSValue *position in positions_to_be_spawned)
+                        {
+                            [model insertUnit:[[Unit alloc] initWithPosition:[position CGPointValue]] intoSortedArrayWithName:@"playerUnits"];
+                        }
+                        [playerResources decreaseValueBy:SPAWN_SIZE*UNIT_COST];
                     }
-                    for (NSValue *position in positions_to_be_spawned)
+                }
+            }
+            else if (abs(xChange) < 30.0f && abs(yChange) > 40.0f)
+            {
+                NSLog(@"Should be spawning blockers!");
+                // blockers have a 1.3 size modifier
+                int numUnits = yChange/(UNIT_PADDING*1.3);
+                if ([playerResources getCurrentValue] > numUnits*UNIT_COST*1.3)
+                {
+                    if (numUnits > 0.0f)
                     {
-                        [germMaster insertGerm:[[Germ alloc] initWithPosition:[position CGPointValue]] intoSortedArrayWithName:@"playerUnits"];
+                        // don't let the player spawn more than 5 blockers
+                        if (numUnits > 5)
+                        {
+                            numUnits = 5;
+                        }
+                        for (int i=0; i<numUnits; i++)
+                        {
+                            [model insertUnit:[[Blocker alloc] initWithPosition:CGPointMake(touchStartPoint.x + arc4random()%5, touchStartPoint.y + i*(UNIT_PADDING*1.3))] intoSortedArrayWithName:@"playerUnits"];
+                        }
+                        [playerResources decreaseValueBy:numUnits*UNIT_COST*1.3];
                     }
-                    [playerResources decreaseValueBy:SPAWN_SIZE*UNIT_COST];
+                    else
+                    {
+                        // don't let the player spawn more than 5 blockers
+                        if (numUnits < -5)
+                        {
+                            numUnits = -5;
+                        }
+                        for (int i=0; i>numUnits; i--)
+                        {
+                            [model insertUnit:[[Blocker alloc] initWithPosition:CGPointMake(touchStartPoint.x + arc4random()%5, touchStartPoint.y + i*(UNIT_PADDING*1.3))] intoSortedArrayWithName:@"playerUnits"];
+                        }
+                        [playerResources decreaseValueBy:abs(numUnits)*UNIT_COST*1.3];
+                    }
                 }
             }
             touchIndicatorRadius = 0.0f;
+            touchStartPoint = CGPointMake(0.0f, 0.0f);
         }
         else if(input.touchesAvailable)
         {
             if (pos.y < playHeight)
             {
-                if (inTouchArea)
+                CGFloat xChange = pos.x - touchStartPoint.x;
+                CGFloat yChange = pos.y - touchStartPoint.y;
+                CGFloat distanceChange = sqrt((xChange*xChange) + (yChange*yChange));
+                if (distanceChange < 30.f)
                 {
-                    touchIndicatorCenter = pos;
-                }
-                else    // only update the up-down movement if pos is out of bounds
-                {
-                    touchIndicatorCenter.y = pos.y;
-                }
-                if (touchIndicatorRadius < TOUCH_RADIUS_MAX)
-                {
-                    touchIndicatorRadius += 0.3f;
-                }
-                else
-                {
-                    touchIndicatorRadius = arc4random()%5 + TOUCH_RADIUS_MAX;
+                    if (inTouchArea)
+                    {
+                        touchIndicatorCenter = pos;
+                    }
+                    else    // only update the up-down movement if pos is out of bounds
+                    {
+                        touchIndicatorCenter.y = pos.y;
+                    }
+                    if (touchIndicatorRadius < TOUCH_RADIUS_MAX)
+                    {
+                        touchIndicatorRadius += 0.3f;
+                    }
+                    else
+                    {
+                        touchIndicatorRadius = arc4random()%5 + TOUCH_RADIUS_MAX;
+                    }
                 }
             }
             else
@@ -228,12 +285,12 @@ CGFloat resetTimer = 0.0f;
         [enemyHP update:UPDATE_INTERVAL];
         [playerResources update:UPDATE_INTERVAL];
         
-        [germMaster update:UPDATE_INTERVAL];
+        [model update:UPDATE_INTERVAL];
         
         [theEnemy update:UPDATE_INTERVAL];
         
         // after units are done spawning / moving, check for collisions
-        [germMaster checkForCollisionsAndRemove];
+        [model checkForCollisionsAndRemove];
     }
 }
 
@@ -257,7 +314,7 @@ CGFloat resetTimer = 0.0f;
     [playerHP resetValueToMax];
     [enemyHP resetValueToMax];
     [playerResources resetValueToMax];
-    [germMaster reset];
+    [model reset];
     [theEnemy reset];
     
     isDone = false;

@@ -1,14 +1,14 @@
 //
-//  SuperGerm.h
+//  SuperUnit.h
 //  blockwar
 //
 //  Created by Darren Tsung on 11/2/13.
 //
 //
 
-#import "Germ.h"
+#import "Unit.h"
 
-@interface SuperGerm : Germ
+@interface SuperUnit : Unit
 {
     @protected
     CGFloat influenceRange;

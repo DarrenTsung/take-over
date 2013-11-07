@@ -7,20 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GermFactory.h"
+#import "GameModel.h"
 #import "GameLayer.h"
 
 @interface EnemyAI : NSObject
 {
     @private
-    GermFactory *spawner;
+    GameModel *model;
     ccColor4F color;
     int waveSize, rowSize;
     CGFloat spawnTimer, waveTimer;
     GameLayer *viewController;
+    int waveConsecutiveCount;
 }
 
--(id) initWithReferenceToGermFactory:(GermFactory *)germMaster andWaveTimer:(CGFloat)theWaveTimer andViewController:(GameLayer *)theViewController;
+-(id) initWithReferenceToGameModel:(GameModel *)modelMaster andWaveTimer:(CGFloat)theWaveTimer andViewController:(GameLayer *)theViewController;
 -(void) spawnWaveWithPlayHeight:(CGFloat)playHeight;
 -(void) update:(ccTime)delta;
 -(void) reset;

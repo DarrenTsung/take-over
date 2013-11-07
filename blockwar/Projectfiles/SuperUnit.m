@@ -1,25 +1,25 @@
 //
-//  SuperGerm.m
+//  SuperUnit.m
 //  blockwar
 //
 //  Created by Darren Tsung on 11/2/13.
 //
 //
 
-#import "SuperGerm.h"
+#import "SuperUnit.h"
 
-@implementation SuperGerm
+@implementation SuperUnit
 
 -(id) initWithPosition:(CGPoint)pos
 {
     if ((self = [super initWithPosition:pos]))
     {
         size = CGSizeMake(20.0f, 20.0f);
-        maxVelocity += 30.0f;
-        velocity += 30.0f;
-        damage += 0.4f;
+        [self setMaxVelocity:maxVelocity*1.2];
+        velocity = maxVelocity;
+        [self setDamage:damage*1.4];
         
-        health += 3.0f;
+        health *= 1.6f;
         
         // default influenceRange is 50.0f
         influenceRange = 50.0f;
@@ -29,16 +29,18 @@
 
 -(void) influenceUnits:(NSMutableArray *)unitArray
 {
-    for (Germ *unit in unitArray)
+    for (Unit *unit in unitArray)
     {
         CGFloat xDist = unit->origin.x - origin.x;
         CGFloat yDist = unit->origin.y - origin.y;
         CGFloat distance = sqrt((xDist*xDist) + (yDist*yDist));
         if (distance < influenceRange)
         {
-            // units in influence will move at the same speed as the SuperGerm and deal more damage
-            unit->maxVelocity = maxVelocity;
-            unit->damage = damage;
+            unit->buffed = true;
+        }
+        else
+        {
+            unit->buffed = false;
         }
     }
 }

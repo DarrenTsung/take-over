@@ -7,14 +7,13 @@
 //  MODEL
 //
 
-#import "GermFactory.h"
-#import "Germ.h"
-#import "SuperGerm.h"
+#import "GameModel.h"
+#import "Unit.h"
+#import "SuperUnit.h"
 #import "GameLayer.h"
-#import "CircleExplosion.h"
 
 
-@implementation GermFactory
+@implementation GameModel
 
 -(id) initWithReferenceToViewController:(GameLayer *)theViewController
 {
@@ -30,7 +29,7 @@
 }
 
 // uses binary search to insert the unit while keeping the array sorted by y-coordinates
--(void) insertGerm:(Germ *)unit intoSortedArrayWithName:(NSString *)arrayName
+-(void) insertUnit:(Unit *)unit intoSortedArrayWithName:(NSString *)arrayName
 {
     NSMutableArray *array;
     if ([arrayName isEqualToString:@"playerUnits"])
@@ -59,7 +58,7 @@
     while (left <= right)
     {
         mid = (left + right)/2;
-        midY = ((Germ *)array[mid])->origin.y;
+        midY = ((Unit *)array[mid])->origin.y;
         if (midY == yCoord)
         {
             break;
@@ -101,9 +100,9 @@
     
     int counter = 0;
     // quick and dirty check for collisions
-    for (Germ *unit in playerUnits)
+    for (Unit *unit in playerUnits)
     {
-        for (Germ *enemyUnit in enemyUnits)
+        for (Unit *enemyUnit in enemyUnits)
         {
             counter++;
             if ([unit isCollidingWith: enemyUnit])
@@ -138,7 +137,7 @@
         }
     }
     //NSLog(@"Compared %d times this iteration!", counter);
-    for (Germ *unit in playerUnits)
+    for (Unit *unit in playerUnits)
     {
         if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
         {
@@ -146,7 +145,7 @@
             [viewController handleMessage:@[@"enemyHit", [NSNumber numberWithFloat:unit->damage]]];
         }
     }
-    for (Germ *unit in enemyUnits)
+    for (Unit *unit in enemyUnits)
     {
         if (CGRectIntersectsRect(unit->boundingRect, viewController->touchArea))
         {
@@ -161,46 +160,29 @@
 
 -(void) update:(ccTime) delta
 {
-    for (SuperGerm *unit in playerSuperUnits)
+    for (SuperUnit *unit in playerSuperUnits)
     {
         [unit influenceUnits:playerUnits];
     }
-    for (Germ *unit in playerUnits)
+    for (Unit *unit in playerUnits)
     {
         [unit update:delta];
     }
-    for (Germ *unit in enemyUnits)
+    for (Unit *unit in enemyUnits)
     {
         [unit update:delta];
     }
-    NSMutableArray *discardExplosions = [[NSMutableArray alloc] init];
-    for(CircleExplosion *explosion in particleArray)
-    {
-        if (explosion->isDone)
-        {
-            [discardExplosions addObject:explosion];
-        }
-        else
-        {
-            [explosion update:delta];
-        }
-    }
-    [particleArray removeObjectsInArray:discardExplosions];
 }
 
--(void) drawGerms
+-(void) drawUnits
 {
-    for (Germ *unit in playerUnits)
+    for (Unit *unit in playerUnits)
     {
         [unit draw];
     }
-    for (Germ *unit in enemyUnits)
+    for (Unit *unit in enemyUnits)
     {
         [unit draw];
-    }
-    for (CircleExplosion *explosion in particleArray)
-    {
-        [explosion draw];
     }
 }
 

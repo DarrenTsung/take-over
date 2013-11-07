@@ -8,10 +8,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Germ.h"
+#import "Unit.h"
 #import "GameLayer.h"
 
-@interface GermFactory : NSObject
+@interface GameModel : NSObject
 {
     @public
     NSMutableArray *playerUnits, *enemyUnits, *playerSuperUnits, *particleArray;
@@ -19,10 +19,10 @@
 }
 
 -(id) initWithReferenceToViewController:(GameLayer *)theViewController;
--(void) insertGerm:(Germ *)unit intoSortedArrayWithName:(NSString *)arrayName;
+-(void) insertUnit:(Unit *)unit intoSortedArrayWithName:(NSString *)arrayName;
 -(void) checkForCollisionsAndRemove;
 -(void) update:(ccTime)delta;
--(void) drawGerms;
+-(void) drawUnits;
 -(void) reset;
 
 @end

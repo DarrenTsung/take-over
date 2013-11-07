@@ -7,8 +7,8 @@
 //
 
 #import "EnemyAI.h"
-#import "Germ.h"
-#import "GermFactory.h"
+#import "Unit.h"
+#import "GameModel.h"
 #import "GameLayer.h"
 
 #define PADDING 20.0f
@@ -16,16 +16,18 @@
 
 @implementation EnemyAI
 
--(id) initWithReferenceToGermFactory:(GermFactory *)germMaster andWaveTimer:(CGFloat)theWaveTimer andViewController:(GameLayer *)theViewController
+-(id) initWithReferenceToGameModel:(GameModel *)theModel andWaveTimer:(CGFloat)theWaveTimer andViewController:(GameLayer *)theViewController
 {
     if((self = [super init]))
     {
-        spawner = germMaster;
+        model = theModel;
         color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
         waveSize = 12;
         rowSize = 6;
         
         waveTimer = theWaveTimer;
+        waveConsecutiveCount = 0;
+        
         spawnTimer = waveTimer;
         viewController = theViewController;
     }
@@ -44,7 +46,7 @@
         for(int i=0; i<rowSize; i++)
         {
             CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);
-            [spawner insertGerm:[[Germ alloc] initWithPosition:lesserPoint andIsOpponents: YES] intoSortedArrayWithName:@"enemyUnits"];
+            [model insertUnit:[[Unit alloc] initWithPosition:lesserPoint andIsOpponents: YES] intoSortedArrayWithName:@"enemyUnits"];
             x++;
         }
         //NSLog(@"added a row! offset %d", counter%2);
@@ -60,14 +62,23 @@
     }
     else
     {
-        // send enemy wave every 5 seconds
-        [self spawnWaveWithPlayHeight:viewController->playHeight];
-        spawnTimer = waveTimer;
-        // 2/3 of the time, add 3 seconds to the next timer to space it out
-        if (arc4random()%3 > 1.0f)
+        if (waveConsecutiveCount < 4)
         {
-            NSLog(@"does this happen?");
+            // send enemy wave every 5 seconds
+            [self spawnWaveWithPlayHeight:viewController->playHeight];
+            spawnTimer = waveTimer;
+            // 2/3 of the time, add 3 seconds to the next timer to space it out
+            if (arc4random()%3 > 1.0f)
+            {
+                spawnTimer += 3.0f;
+                waveConsecutiveCount = 0;
+            }
+            waveConsecutiveCount++;
+        }
+        else
+        {
             spawnTimer += 3.0f;
+            waveConsecutiveCount = 0;
         }
     }
 }
