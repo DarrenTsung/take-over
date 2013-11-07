@@ -63,6 +63,7 @@ CGFloat resetTimer = 0.0f;
     {
         NSLog(@"Game initializing...");
         
+
         // returns screenBounds flipped automatically (since we're in landscape mode)
         screenBounds = [self returnScreenBounds];
         
@@ -82,7 +83,7 @@ CGFloat resetTimer = 0.0f;
         particleArray = [[NSMutableArray alloc] init];
         
         // theEnemy.. oo ominous!
-        theEnemy = [[EnemyAI alloc] initWithReferenceToGameModel:model andWaveTimer:1.0f andViewController:self];
+        theEnemy = [[EnemyAI alloc] initAIType:@"randomAI" withReferenceToGameModel:model andViewController:self];
         
         // Resource Bars
         enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];

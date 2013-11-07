@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6CAE6D98182B69C400602F39 /* Blocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE6D97182B69C400602F39 /* Blocker.m */; };
+		6CAE6D9A182C361A00602F39 /* randomAI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6D99182C361A00602F39 /* randomAI.plist */; };
 		6CBA5BEB182499B600E52FC7 /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BEA182499B600E52FC7 /* Bar.m */; };
 		6CBA5BF118249A6300E52FC7 /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BF018249A6300E52FC7 /* HealthBar.m */; };
 		6CBA5BF418249AAB00E52FC7 /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BF318249AAB00E52FC7 /* RegeneratableBar.m */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		6CAE6D96182B69C400602F39 /* Blocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blocker.h; sourceTree = "<group>"; };
 		6CAE6D97182B69C400602F39 /* Blocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blocker.m; sourceTree = "<group>"; };
+		6CAE6D99182C361A00602F39 /* randomAI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = randomAI.plist; sourceTree = "<group>"; };
 		6CBA5BE9182499B600E52FC7 /* Bar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bar.h; sourceTree = "<group>"; };
 		6CBA5BEA182499B600E52FC7 /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bar.m; sourceTree = "<group>"; };
 		6CBA5BEF18249A6300E52FC7 /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
@@ -165,6 +167,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CAE6D9B182C362D00602F39 /* Artifical Intelligence */ = {
+			isa = PBXGroup;
+			children = (
+				6CBF7EA518230F0A000395D0 /* EnemyAI.h */,
+				6CBF7EA618230F0A000395D0 /* EnemyAI.m */,
+				6CAE6D99182C361A00602F39 /* randomAI.plist */,
+			);
+			name = "Artifical Intelligence";
+			sourceTree = "<group>";
+		};
 		6CBA5BF518249AB200E52FC7 /* Resource Bars */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,8 +302,7 @@
 				6CBF7E9F1822EEC8000395D0 /* GameLayer.h */,
 				6CBF7EA01822EEC8000395D0 /* GameLayer.m */,
 				6CBA5BF518249AB200E52FC7 /* Resource Bars */,
-				6CBF7EA518230F0A000395D0 /* EnemyAI.h */,
-				6CBF7EA618230F0A000395D0 /* EnemyAI.m */,
+				6CAE6D9B182C362D00602F39 /* Artifical Intelligence */,
 				6CD361651826CF2E00A56D5C /* GameModel.h */,
 				6CD361661826CF2E00A56D5C /* GameModel.m */,
 				6CD3616418259DF500A56D5C /* Units */,
@@ -413,6 +424,7 @@
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
+				6CAE6D9A182C361A00602F39 /* randomAI.plist in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,

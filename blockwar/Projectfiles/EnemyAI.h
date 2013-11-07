@@ -16,12 +16,12 @@
     GameModel *model;
     ccColor4F color;
     int waveSize, rowSize;
-    CGFloat spawnTimer, waveTimer;
+    CGFloat spawnTimer, waveTimer, probabilityWaveDelay, waveDelay;
     GameLayer *viewController;
-    int waveConsecutiveCount;
+    int waveConsecutiveCount, maxConsecutiveWaves;
 }
 
--(id) initWithReferenceToGameModel:(GameModel *)modelMaster andWaveTimer:(CGFloat)theWaveTimer andViewController:(GameLayer *)theViewController;
+-(id) initAIType:(NSString *)theType withReferenceToGameModel:(GameModel *)modelMaster andViewController:(GameLayer *)theViewController;
 -(void) spawnWaveWithPlayHeight:(CGFloat)playHeight;
 -(void) update:(ccTime)delta;
 -(void) reset;
