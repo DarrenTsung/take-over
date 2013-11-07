@@ -10,7 +10,6 @@
 #import <Foundation/Foundation.h>
 #import "Germ.h"
 #import "GameLayer.h"
-#import "CircleExplosion.h"
 
 @interface GermFactory : NSObject
 {

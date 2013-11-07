@@ -110,7 +110,7 @@
             {
                 unit->health -= enemyUnit->damage;
                 enemyUnit->health -= unit->damage;
-                [particleArray addObject:[[CircleExplosion alloc] initWithPos:CGPointMake(unit->boundingRect.origin.x + unit->boundingRect.size.width, unit->boundingRect.origin.y + unit->boundingRect.size.height/2)]];
+                //[particleArray addObject:[[CircleExplosion alloc] initWithPos:CGPointMake(unit->boundingRect.origin.x + unit->boundingRect.size.width, unit->boundingRect.origin.y + unit->boundingRect.size.height/2)]];
                 
                 if (unit->health < 0.0f)
                 {
