@@ -42,6 +42,7 @@
         
         owner = @"Player";
         name = @"marine";
+        whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@White.png", name]];
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         // make it 1.5x the size of the blocks so that they hit each other more often
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
@@ -90,16 +91,19 @@
     return self;
 }
 
+
 /*
 -(void) draw
 {
+    [super draw];
     // draw germ around origin (origin is center of germ)
-    ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), displayColor);
+    //ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), displayColor);
     
     // DEBUG: UNCOMMENT TO SEE BOUNDING RECTANGLES DRAWN IN WHITE
     //ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
 }
 */
+
 
 -(void) update:(ccTime) delta
 {
@@ -122,7 +126,6 @@
     }
     boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     self.position = origin;
-    ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
     
     if (frameTimer > 0.0f)
     {
@@ -138,7 +141,12 @@
     // update displayColor if flashing white
     if (flashTimer > 0.0f)
     {
-        displayColor = ccc4f(color.r + 1.0f*flashTimer, color.g + 1.0f*flashTimer, color.b + 1.0f*flashTimer, 1.0f);
+        CGFloat displayOpacity = 1.0f - flashTimer;
+        if (displayOpacity < 0.0f)
+        {
+            displayOpacity = 0.0f;
+        }
+        [self setOpacity:255*displayOpacity];
         flashTimer -= delta;
     }
 }

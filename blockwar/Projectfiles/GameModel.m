@@ -89,6 +89,7 @@
         [array insertObject:unit atIndex:mid];
     }
     [viewController addChild:unit z:1];
+    [viewController addChild:unit->whiteSprite z:0];
 }
 
 // checks for collisions between playerUnits and enemyUnits and removes dead Germs (naive implementation)
@@ -116,6 +117,7 @@
                 if (unit->health < 0.0f)
                 {
                     [playerDiscardedUnits addObject:unit];
+                    [playerDiscardedUnits addObject:unit->whiteSprite];
                     if ([unit isKindOfClass:[SuperUnit class]])
                     {
                         [playerDiscardedSuperUnits addObject:unit];
@@ -130,6 +132,7 @@
                 if (enemyUnit->health < 0.0f)
                 {
                     [enemyDiscardedUnits addObject:enemyUnit];
+                    [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
                 }
                 else
                 {
@@ -143,19 +146,25 @@
         }
     }
     //NSLog(@"Compared %d times this iteration!", counter);
-    for (Unit *unit in playerUnits)
+    for (Unit *enemyUnit in playerUnits)
     {
-        if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
+        if (enemyUnit->origin.x - enemyUnit->size.width/2 > screen_bounds.width)
         {
-            [playerDiscardedUnits addObject:unit];
-            [viewController handleMessage:@[@"enemyHit", [NSNumber numberWithFloat:unit->damage]]];
+            [enemyDiscardedUnits addObject:enemyUnit];
+            [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
+            [viewController handleMessage:@[@"enemyHit", [NSNumber numberWithFloat:enemyUnit->damage]]];
         }
     }
     for (Unit *unit in enemyUnits)
     {
         if (CGRectIntersectsRect(unit->boundingRect, viewController->touchArea))
         {
-            [enemyDiscardedUnits addObject:unit];
+            [playerDiscardedUnits addObject:unit];
+            [playerDiscardedUnits addObject:unit->whiteSprite];
+            if ([unit isKindOfClass:[SuperUnit class]])
+            {
+                [playerDiscardedSuperUnits addObject:unit];
+            }
             [viewController handleMessage:@[@"playerHit", [NSNumber numberWithFloat:unit->damage]]];
 
         }

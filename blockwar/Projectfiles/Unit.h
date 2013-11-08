@@ -24,12 +24,14 @@
     
     int currentFrame, framesPerSecond;
     CGFloat frameTimer, frameDelay;
+    
+    CCSprite *whiteSprite;
 }
 
 -(id)initWithPosition:(CGPoint)pos;
 -(id)initWithPosition:(CGPoint)pos andIsOpponents:(BOOL) isOpponents;
 -(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat) theVelocity andAcceleration:(CGFloat) theAcceleration andIsOpponents:(BOOL) isOpponents;
--(void)draw;
+//-(void)draw;
 -(void)update:(ccTime) delta;
 -(BOOL)isCollidingWith:(Unit *) otherUnit;
 -(void)flashWhiteFor:(CGFloat)time;
