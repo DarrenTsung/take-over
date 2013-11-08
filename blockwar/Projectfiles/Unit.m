@@ -42,7 +42,7 @@
         
         owner = @"Player";
         name = @"marine";
-        whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@White.png", name]];
+        whiteSprite = [CCSprite spriteWithSpriteFrameName:@"marineWhite0.png"];
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         // make it 1.5x the size of the blocks so that they hit each other more often
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
@@ -62,6 +62,7 @@
             color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
             displayColor = color;
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombie0.png"]];
+            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombieWhite0.png"]];
 
             // enemy units are weaker
             health = 3.0f;
@@ -85,6 +86,7 @@
             owner = @"Opponent";
             name = @"zombie";
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombie0.png"]];
+            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombieWhite0.png"]];
         }
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     }
@@ -126,6 +128,7 @@
     }
     boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     self.position = origin;
+    whiteSprite.position = origin;
     
     if (frameTimer > 0.0f)
     {
@@ -135,6 +138,7 @@
     {
         currentFrame = (currentFrame + 1)%2;
         [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+        [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@White%d.png", name, currentFrame]]];
         frameTimer = frameDelay;
     }
     

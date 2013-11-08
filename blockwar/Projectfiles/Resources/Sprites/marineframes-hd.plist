@@ -20,6 +20,32 @@
             <key>marine1.png</key>
             <dict>
                 <key>frame</key>
+                <string>{{36,0},{36,41}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{36,41}}</string>
+                <key>sourceSize</key>
+                <string>{36,41}</string>
+            </dict>
+            <key>marineWhite0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{72,0},{36,41}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{36,41}}</string>
+                <key>sourceSize</key>
+                <string>{36,41}</string>
+            </dict>
+            <key>marineWhite1.png</key>
+            <dict>
+                <key>frame</key>
                 <string>{{0,41},{36,41}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
@@ -38,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>marineframes-hd.png</string>
             <key>size</key>
-            <string>{64,128}</string>
+            <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:e69d9283ef7c23409980bda57972c658:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:db8653d2fffb5cecf422522b598ed6a9:1/1$</string>
             <key>textureFileName</key>
             <string>marineframes-hd.png</string>
         </dict>

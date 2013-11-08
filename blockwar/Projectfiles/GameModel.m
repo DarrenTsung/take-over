@@ -146,18 +146,9 @@
         }
     }
     //NSLog(@"Compared %d times this iteration!", counter);
-    for (Unit *enemyUnit in playerUnits)
+    for (Unit *unit in playerUnits)
     {
-        if (enemyUnit->origin.x - enemyUnit->size.width/2 > screen_bounds.width)
-        {
-            [enemyDiscardedUnits addObject:enemyUnit];
-            [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
-            [viewController handleMessage:@[@"enemyHit", [NSNumber numberWithFloat:enemyUnit->damage]]];
-        }
-    }
-    for (Unit *unit in enemyUnits)
-    {
-        if (CGRectIntersectsRect(unit->boundingRect, viewController->touchArea))
+        if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
         {
             [playerDiscardedUnits addObject:unit];
             [playerDiscardedUnits addObject:unit->whiteSprite];
@@ -165,7 +156,16 @@
             {
                 [playerDiscardedSuperUnits addObject:unit];
             }
-            [viewController handleMessage:@[@"playerHit", [NSNumber numberWithFloat:unit->damage]]];
+            [viewController handleMessage:@[@"enemyHit", [NSNumber numberWithFloat:unit->damage]]];
+        }
+    }
+    for (Unit *enemyUnit in enemyUnits)
+    {
+        if (CGRectIntersectsRect(enemyUnit->boundingRect, viewController->touchArea))
+        {
+            [enemyDiscardedUnits addObject:enemyUnit];
+            [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
+            [viewController handleMessage:@[@"playerHit", [NSNumber numberWithFloat:enemyUnit->damage]]];
 
         }
     }
@@ -209,11 +209,23 @@
 -(void) reset
 {
     [viewController removeChildrenInArray:playerUnits cleanup:YES];
+    [self removeWhiteSpritesFrom:playerUnits];
     [viewController removeChildrenInArray:playerSuperUnits cleanup:YES];
+    [self removeWhiteSpritesFrom:playerSuperUnits];
     [viewController removeChildrenInArray:enemyUnits cleanup:YES];
+    [self removeWhiteSpritesFrom:enemyUnits];
     [playerUnits removeAllObjects];
     [enemyUnits removeAllObjects];
     [playerSuperUnits removeAllObjects];
+}
+
+-(void) removeWhiteSpritesFrom:(NSMutableArray *)array
+{
+    for (Unit *unit in array)
+    {
+        [viewController removeChild:unit->whiteSprite cleanup:YES];
+    }
+    
 }
 
 @end

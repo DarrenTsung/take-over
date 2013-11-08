@@ -30,6 +30,32 @@
                 <key>sourceSize</key>
                 <string>{30,41}</string>
             </dict>
+            <key>zombieWhite0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{0,41},{30,41}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,41}}</string>
+                <key>sourceSize</key>
+                <string>{30,41}</string>
+            </dict>
+            <key>zombieWhite1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{30,41},{30,41}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{30,41}}</string>
+                <key>sourceSize</key>
+                <string>{30,41}</string>
+            </dict>
         </dict>
         <key>metadata</key>
         <dict>
@@ -38,9 +64,9 @@
             <key>realTextureFileName</key>
             <string>zombieframes-hd.png</string>
             <key>size</key>
-            <string>{64,64}</string>
+            <string>{64,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:88c6cc26e848fda880bd5e8023b9352d:1/1$</string>
+            <string>$TexturePacker:SmartUpdate:fb0d1ff897ded82277f846b47cace41d:1/1$</string>
             <key>textureFileName</key>
             <string>zombieframes-hd.png</string>
         </dict>
