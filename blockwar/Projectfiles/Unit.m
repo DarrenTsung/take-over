@@ -136,10 +136,19 @@
     }
     else
     {
-        currentFrame = (currentFrame + 1)%2;
-        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
-        [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@White%d.png", name, currentFrame]]];
-        frameTimer = frameDelay;
+        if (velocity > 0.0f)
+        {
+            currentFrame = (currentFrame + 1)%2;
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@White%d.png", name, currentFrame]]];
+            CGFloat velocityRatio = velocity/maxVelocity;
+            if (velocityRatio > 0.0f)
+            {
+                // velocityRatio is from 0.0 - 1.0f, we want to map it so that [0.0f - 1.0f] == [2.0f - 1.0f]
+                velocityRatio = abs(velocityRatio - 1.0f) + 1.0;
+            }
+            frameTimer = velocityRatio*frameDelay;
+        }
     }
     
     // update displayColor if flashing white
