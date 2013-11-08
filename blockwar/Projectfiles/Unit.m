@@ -14,7 +14,7 @@
 
 -(id)initWithPosition:(CGPoint)pos
 {
-    if ((self = [super init]))
+    if ((self = [super initWithSpriteFrameName:@"marine0.png"]))
     {
         origin = pos;
         // default player color
@@ -29,6 +29,11 @@
         acceleration = 100.0f;
         pushBack = -maxVelocity;
         
+        currentFrame = 0;
+        framesPerSecond = 10;
+        frameDelay = (1.0/framesPerSecond);
+        frameTimer = frameDelay;
+        
         health = 5.0f;
         [self setDamage:1.0f];
         
@@ -36,6 +41,7 @@
         buffed = false;
         
         owner = @"Player";
+        name = @"marine";
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         // make it 1.5x the size of the blocks so that they hit each other more often
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
@@ -51,8 +57,10 @@
         if (isOpponents)
         {
             owner = @"Opponent";
+            name = @"zombie";
             color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
             displayColor = color;
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombie0.png"]];
 
             // enemy units are weaker
             health = 3.0f;
@@ -74,12 +82,15 @@
         if(isOpponents)
         {
             owner = @"Opponent";
+            name = @"zombie";
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombie0.png"]];
         }
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
 
+/*
 -(void) draw
 {
     // draw germ around origin (origin is center of germ)
@@ -88,6 +99,7 @@
     // DEBUG: UNCOMMENT TO SEE BOUNDING RECTANGLES DRAWN IN WHITE
     //ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
 }
+*/
 
 -(void) update:(ccTime) delta
 {
@@ -109,6 +121,19 @@
         velocity = maxVelocity;
     }
     boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
+    self.position = origin;
+    ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
+    
+    if (frameTimer > 0.0f)
+    {
+        frameTimer -= delta;
+    }
+    else
+    {
+        currentFrame = (currentFrame + 1)%2;
+        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+        frameTimer = frameDelay;
+    }
     
     // update displayColor if flashing white
     if (flashTimer > 0.0f)

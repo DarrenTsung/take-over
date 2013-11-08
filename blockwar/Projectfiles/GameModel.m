@@ -88,12 +88,14 @@
     {
         [array insertObject:unit atIndex:mid];
     }
+    [viewController addChild:unit z:1];
 }
 
 // checks for collisions between playerUnits and enemyUnits and removes dead Germs (naive implementation)
 -(void) checkForCollisionsAndRemove
 {
     NSMutableArray *playerDiscardedUnits = [[NSMutableArray alloc] init];
+    NSMutableArray *playerDiscardedSuperUnits = [[NSMutableArray alloc] init];
     NSMutableArray *enemyDiscardedUnits = [[NSMutableArray alloc] init];
     
     CGSize screen_bounds = [viewController returnScreenBounds];
@@ -114,6 +116,10 @@
                 if (unit->health < 0.0f)
                 {
                     [playerDiscardedUnits addObject:unit];
+                    if ([unit isKindOfClass:[SuperUnit class]])
+                    {
+                        [playerDiscardedSuperUnits addObject:unit];
+                    }
                 }
                 else
                 {
@@ -156,6 +162,9 @@
     }
     [playerUnits removeObjectsInArray:playerDiscardedUnits];
     [enemyUnits removeObjectsInArray:enemyDiscardedUnits];
+    [playerSuperUnits removeObjectsInArray:playerDiscardedSuperUnits];
+    [viewController removeChildrenInArray:playerDiscardedUnits cleanup:YES];
+    [viewController removeChildrenInArray:enemyDiscardedUnits cleanup:YES];
 }
 
 -(void) update:(ccTime) delta
@@ -174,6 +183,7 @@
     }
 }
 
+/*
 -(void) drawUnits
 {
     for (Unit *unit in playerUnits)
@@ -185,13 +195,16 @@
         [unit draw];
     }
 }
+*/
 
 -(void) reset
 {
+    [viewController removeChildrenInArray:playerUnits cleanup:YES];
+    [viewController removeChildrenInArray:playerSuperUnits cleanup:YES];
+    [viewController removeChildrenInArray:enemyUnits cleanup:YES];
     [playerUnits removeAllObjects];
     [enemyUnits removeAllObjects];
     [playerSuperUnits removeAllObjects];
-    [particleArray removeAllObjects];
 }
 
 @end

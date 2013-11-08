@@ -18,9 +18,12 @@
     CGFloat baseMaxVelocity, baseDamage, baseHealth;
     CGFloat damage, health, pushBack;
     CGFloat flashTimer;
-    NSString *owner;
+    NSString *owner, *name;
     CGRect boundingRect;
     bool buffed;
+    
+    int currentFrame, framesPerSecond;
+    CGFloat frameTimer, frameDelay;
 }
 
 -(id)initWithPosition:(CGPoint)pos;

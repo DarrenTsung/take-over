@@ -9,6 +9,14 @@
 /* Begin PBXBuildFile section */
 		6CAE6D98182B69C400602F39 /* Blocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE6D97182B69C400602F39 /* Blocker.m */; };
 		6CAE6D9A182C361A00602F39 /* randomAI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6D99182C361A00602F39 /* randomAI.plist */; };
+		6CAE6DAC182C5D8F00602F39 /* marineframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA4182C5D8F00602F39 /* marineframes-hd.plist */; };
+		6CAE6DAD182C5D8F00602F39 /* marineframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA5182C5D8F00602F39 /* marineframes-hd.png */; };
+		6CAE6DAE182C5D8F00602F39 /* marineframes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA6182C5D8F00602F39 /* marineframes.plist */; };
+		6CAE6DAF182C5D8F00602F39 /* marineframes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA7182C5D8F00602F39 /* marineframes.png */; };
+		6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */; };
+		6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */; };
+		6CAE6DB2182C5D8F00602F39 /* zombieframes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DAA182C5D8F00602F39 /* zombieframes.plist */; };
+		6CAE6DB3182C5D8F00602F39 /* zombieframes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DAB182C5D8F00602F39 /* zombieframes.png */; };
 		6CBA5BEB182499B600E52FC7 /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BEA182499B600E52FC7 /* Bar.m */; };
 		6CBA5BF118249A6300E52FC7 /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BF018249A6300E52FC7 /* HealthBar.m */; };
 		6CBA5BF418249AAB00E52FC7 /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBA5BF318249AAB00E52FC7 /* RegeneratableBar.m */; };
@@ -63,6 +71,14 @@
 		6CAE6D96182B69C400602F39 /* Blocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blocker.h; sourceTree = "<group>"; };
 		6CAE6D97182B69C400602F39 /* Blocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blocker.m; sourceTree = "<group>"; };
 		6CAE6D99182C361A00602F39 /* randomAI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = randomAI.plist; sourceTree = "<group>"; };
+		6CAE6DA4182C5D8F00602F39 /* marineframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "marineframes-hd.plist"; path = "Sprites/marineframes-hd.plist"; sourceTree = "<group>"; };
+		6CAE6DA5182C5D8F00602F39 /* marineframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "marineframes-hd.png"; path = "Sprites/marineframes-hd.png"; sourceTree = "<group>"; };
+		6CAE6DA6182C5D8F00602F39 /* marineframes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = marineframes.plist; path = Sprites/marineframes.plist; sourceTree = "<group>"; };
+		6CAE6DA7182C5D8F00602F39 /* marineframes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = marineframes.png; path = Sprites/marineframes.png; sourceTree = "<group>"; };
+		6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "zombieframes-hd.plist"; path = "Sprites/zombieframes-hd.plist"; sourceTree = "<group>"; };
+		6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zombieframes-hd.png"; path = "Sprites/zombieframes-hd.png"; sourceTree = "<group>"; };
+		6CAE6DAA182C5D8F00602F39 /* zombieframes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = zombieframes.plist; path = Sprites/zombieframes.plist; sourceTree = "<group>"; };
+		6CAE6DAB182C5D8F00602F39 /* zombieframes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zombieframes.png; path = Sprites/zombieframes.png; sourceTree = "<group>"; };
 		6CBA5BE9182499B600E52FC7 /* Bar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bar.h; sourceTree = "<group>"; };
 		6CBA5BEA182499B600E52FC7 /* Bar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bar.m; sourceTree = "<group>"; };
 		6CBA5BEF18249A6300E52FC7 /* HealthBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HealthBar.h; sourceTree = "<group>"; };
@@ -318,6 +334,14 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6CAE6DA4182C5D8F00602F39 /* marineframes-hd.plist */,
+				6CAE6DA5182C5D8F00602F39 /* marineframes-hd.png */,
+				6CAE6DA6182C5D8F00602F39 /* marineframes.plist */,
+				6CAE6DA7182C5D8F00602F39 /* marineframes.png */,
+				6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */,
+				6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */,
+				6CAE6DAA182C5D8F00602F39 /* zombieframes.plist */,
+				6CAE6DAB182C5D8F00602F39 /* zombieframes.png */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
 			);
 			path = Resources;
@@ -417,16 +441,24 @@
 			files = (
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
+				6CAE6DAE182C5D8F00602F39 /* marineframes.plist in Resources */,
+				6CAE6DAF182C5D8F00602F39 /* marineframes.png in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
+				6CAE6DB3182C5D8F00602F39 /* zombieframes.png in Resources */,
+				6CAE6DB2182C5D8F00602F39 /* zombieframes.plist in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
+				6CAE6DAC182C5D8F00602F39 /* marineframes-hd.plist in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
+				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
+				6CAE6DAD182C5D8F00602F39 /* marineframes-hd.png in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
 				6CAE6D9A182C361A00602F39 /* randomAI.plist in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
+				6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
 			);

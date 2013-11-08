@@ -22,7 +22,7 @@
 -(void) insertUnit:(Unit *)unit intoSortedArrayWithName:(NSString *)arrayName;
 -(void) checkForCollisionsAndRemove;
 -(void) update:(ccTime)delta;
--(void) drawUnits;
+//-(void) drawUnits;
 -(void) reset;
 
 @end

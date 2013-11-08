@@ -76,6 +76,13 @@ CGFloat resetTimer = 0.0f;
         touchArea.origin = CGPointMake(0.0f, 0.0f);
         touchArea.size = CGSizeMake(screenWidth/7, playHeight);
         
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"marineframes.plist"];
+        CCSpriteBatchNode *marineSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"marineframes.png"];
+        [self addChild:marineSpriteSheet];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
+        CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.png"];
+        [self addChild:zombieSpriteSheet];
+        
         // model controls and models all the germs
         model = [[GameModel alloc] initWithReferenceToViewController:self];
         
@@ -106,7 +113,7 @@ CGFloat resetTimer = 0.0f;
         ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, NO);
     }
  
-    [model drawUnits];
+    //[model drawUnits];
     
     [playerHP draw];
     [enemyHP draw];
@@ -184,7 +191,8 @@ CGFloat resetTimer = 0.0f;
                         }
                         for (NSValue *position in positions_to_be_spawned)
                         {
-                            [model insertUnit:[[Unit alloc] initWithPosition:[position CGPointValue]] intoSortedArrayWithName:@"playerUnits"];
+                            Unit *unit = [[Unit alloc] initWithPosition:[position CGPointValue]];
+                            [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
                         }
                         [playerResources decreaseValueBy:SPAWN_SIZE*UNIT_COST];
                     }
