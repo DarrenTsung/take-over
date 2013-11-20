@@ -168,8 +168,8 @@
 {
     if (buffed)
     {
-        maxVelocity = baseMaxVelocity*1.3f;
-        damage = baseDamage*1.4f;
+        maxVelocity = baseMaxVelocity*1.1f;
+        damage = baseDamage*1.2f;
     }
     else
     {

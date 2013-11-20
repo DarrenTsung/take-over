@@ -15,9 +15,9 @@
     if ((self = [super initWithPosition:pos]))
     {
         size = CGSizeMake(20.0f, 20.0f);
-        [self setMaxVelocity:maxVelocity*1.2];
+        [self setMaxVelocity:maxVelocity*1.1];
         velocity = maxVelocity;
-        [self setDamage:damage*1.4];
+        [self setDamage:damage*1.25];
         
         health *= 1.6f;
         

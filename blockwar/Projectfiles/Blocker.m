@@ -30,7 +30,7 @@
 {
     if (buffed)
     {
-        maxVelocity = baseMaxVelocity*1.3f;
+        maxVelocity = baseMaxVelocity*1.1f;
     }
     else
     {

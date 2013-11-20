@@ -40,7 +40,8 @@
         probabilityWaveDelay = [[AIproperties objectForKey:@"probabilityWaveDelay"] floatValue];
         waveDelay = [[AIproperties objectForKey:@"waveDelay"] floatValue];
         
-        spawnTimer = waveTimer;
+        // add delay to initial wave
+        spawnTimer = waveTimer + 0.9f;
         viewController = theViewController;
     }
     return self;
