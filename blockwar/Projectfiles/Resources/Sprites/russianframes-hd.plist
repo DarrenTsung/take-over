@@ -4,7 +4,7 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>zombie0.png</key>
+            <key>russian0.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,2},{42,49}}</string>
@@ -17,7 +17,7 @@
                 <key>sourceSize</key>
                 <string>{42,49}</string>
             </dict>
-            <key>zombie1.png</key>
+            <key>russian1.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{46,2},{42,49}}</string>
@@ -30,7 +30,7 @@
                 <key>sourceSize</key>
                 <string>{42,49}</string>
             </dict>
-            <key>zombie_white0.png</key>
+            <key>russian_white0.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{2,53},{42,49}}</string>
@@ -43,7 +43,7 @@
                 <key>sourceSize</key>
                 <string>{42,49}</string>
             </dict>
-            <key>zombie_white1.png</key>
+            <key>russian_white1.png</key>
             <dict>
                 <key>frame</key>
                 <string>{{46,53},{42,49}}</string>
@@ -62,13 +62,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>zombieframes-hd.png</string>
+            <string>russianframes-hd.png</string>
             <key>size</key>
             <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:648f0f996639c6cf2bbe2fd6f87104e5:9f7bcc97be38f321139880f3ad8fa6b5:2ad5c83d254b1bbed18673292b04d94b$</string>
+            <string>$TexturePacker:SmartUpdate:f4da77c88c5a38d6f781061616226bd7:8910dad886df200db0cb6b60d3929efb:1957ff01e60a7df1540ae19d69df86cd$</string>
             <key>textureFileName</key>
-            <string>zombieframes-hd.png</string>
+            <string>russianframes-hd.png</string>
         </dict>
     </dict>
 </plist>

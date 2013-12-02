@@ -8,7 +8,7 @@
 
 #import "CCLayer.h"
 
-@interface GameLayer : CCLayer
+@interface GameLayer : CCLayerColor
 {
     @public
     CGRect touchArea;

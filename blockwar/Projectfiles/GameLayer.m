@@ -59,7 +59,7 @@ CGFloat resetTimer = 0.0f;
 
 -(id) init
 {
-    if ((self = [super init]))
+    if ((self = [super initWithColor:ccc4(255,255,255,255)]))
     {
         NSLog(@"Game initializing...");
         
@@ -76,8 +76,8 @@ CGFloat resetTimer = 0.0f;
         touchArea.origin = CGPointMake(0.0f, 0.0f);
         touchArea.size = CGSizeMake(screenWidth/7, playHeight);
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"marineframes.plist"];
-        CCSpriteBatchNode *marineSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"marineframes.png"];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"russianframes.plist"];
+        CCSpriteBatchNode *marineSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.png"];
         [self addChild:marineSpriteSheet];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
         CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.png"];
@@ -156,10 +156,6 @@ CGFloat resetTimer = 0.0f;
                         [model insertUnit:unit intoSortedArrayWithName:@"playerSuperUnits"];
                         [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
                         
-                        /*
-                        Blocker *blockerUnit = [[Blocker alloc] initWithPosition:pos];
-                        [model insertUnit:blockerUnit intoSortedArrayWithName:@"playerUnits"];
-                        */
                         [playerResources decreaseValueBy:SUPER_UNIT_MULTIPLIER*UNIT_COST];
                     }
                     else
@@ -198,9 +194,9 @@ CGFloat resetTimer = 0.0f;
                     }
                 }
             }
+            // if we make a vertical sweep, spawn blockers (slow moving units that don't get pushed back)
             else if (abs(xChange) < 30.0f && abs(yChange) > 40.0f)
             {
-                NSLog(@"Should be spawning blockers!");
                 // blockers have a 1.3 size modifier
                 int numUnits = yChange/(UNIT_PADDING*1.3);
                 if ([playerResources getCurrentValue] > numUnits*UNIT_COST*1.3)

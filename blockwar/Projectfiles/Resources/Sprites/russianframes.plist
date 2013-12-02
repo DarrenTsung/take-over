@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>russian0.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{0,0},{13,15}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{13,15}}</string>
+			<key>sourceSize</key>
+			<string>{13,15}</string>
+		</dict>
+		<key>russian1.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{0,15},{13,15}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{13,15}}</string>
+			<key>sourceSize</key>
+			<string>{13,15}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>russianframes.png</string>
+		<key>size</key>
+		<string>{16,32}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:e9e54caf51d1ff404ef5ff683116d1b1:1/1$</string>
+		<key>textureFileName</key>
+		<string>russianframes.png</string>
+	</dict>
+</dict>
+</plist>

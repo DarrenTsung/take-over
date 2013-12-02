@@ -14,7 +14,7 @@
 
 -(id)initWithPosition:(CGPoint)pos
 {
-    if ((self = [super initWithSpriteFrameName:@"marine0.png"]))
+    if ((self = [super init]))
     {
         origin = pos;
         // default player color
@@ -41,8 +41,9 @@
         buffed = false;
         
         owner = @"Player";
-        name = @"marine";
-        whiteSprite = [CCSprite spriteWithSpriteFrameName:@"marineWhite0.png"];
+        name = @"russian";
+        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+        whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         // make it 1.5x the size of the blocks so that they hit each other more often
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
@@ -61,8 +62,8 @@
             name = @"zombie";
             color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
             displayColor = color;
-            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombie0.png"]];
-            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombieWhite0.png"]];
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]]];
 
             // enemy units are weaker
             health = 3.0f;
@@ -85,8 +86,8 @@
         {
             owner = @"Opponent";
             name = @"zombie";
-            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombie0.png"]];
-            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"zombieWhite0.png"]];
+            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]]];
         }
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     }
@@ -140,7 +141,7 @@
         {
             currentFrame = (currentFrame + 1)%2;
             [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
-            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@White%d.png", name, currentFrame]]];
+            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]]];
             CGFloat velocityRatio = velocity/maxVelocity;
             if (velocityRatio > 0.0f)
             {
