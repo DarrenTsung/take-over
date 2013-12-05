@@ -59,6 +59,14 @@ CGFloat resetTimer = 0.0f;
 
 -(id) init
 {
+    if (self = [self initWithAI:@"level2AI"])
+    {
+    }
+    return self;
+}
+
+-(id) initWithAI:(NSString *)AIName
+{
     if ((self = [super initWithColor:ccc4(255,255,255,255)]))
     {
         NSLog(@"Game initializing...");
@@ -93,7 +101,7 @@ CGFloat resetTimer = 0.0f;
         particleArray = [[NSMutableArray alloc] init];
         
         // theEnemy.. oo ominous!
-        theEnemy = [[EnemyAI alloc] initAIType:@"randomAI" withReferenceToGameModel:model andViewController:self];
+        theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self];
         
         // Resource Bars
         enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
@@ -330,6 +338,8 @@ CGFloat resetTimer = 0.0f;
     [playerResources resetValueToMax];
     [model reset];
     [theEnemy reset];
+    
+    touchIndicatorRadius = 0.0f;
     
     isDone = false;
 }
