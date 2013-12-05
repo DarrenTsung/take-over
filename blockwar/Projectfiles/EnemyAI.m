@@ -59,7 +59,7 @@
         for(int i=0; i<rowSize; i++)
         {
             CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);
-            [model insertUnit:[[Unit alloc] initWithPosition:lesserPoint andIsOpponents: YES] intoSortedArrayWithName:@"enemyUnits"];
+            [model insertUnit:[[Unit alloc] initUnit:@"russian" withOwner:@"Opponent" AndPosition:lesserPoint] intoSortedArrayWithName:@"enemyUnits"];
             x++;
         }
         //NSLog(@"added a row! offset %d", counter%2);

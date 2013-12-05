@@ -24,8 +24,8 @@
         // default size is 15x15
         size = CGSizeMake(15.0f, 15.0f);
         // construct movement variables
-        velocity = 90.0f;
-        [self setMaxVelocity:90.0f];
+        velocity = 105.0f;
+        [self setMaxVelocity:105.0f];
         acceleration = 100.0f;
         pushBack = -maxVelocity;
         
@@ -40,8 +40,25 @@
         flashTimer = 0.0f;
         buffed = false;
         
+        // REMOVE LATER || SET UNIT SPRITE TO ZOMBIE
+        name = @"zombie";
         owner = @"Player";
-        name = @"russian";
+        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+        whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
+        // make the bounding rect here so we don't have to construct each time we're checking collisions
+        // make it 1.5x the size of the blocks so that they hit each other more often
+        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
+        
+    }
+    return self;
+}
+
+-(id) initUnit:(NSString *)UnitName withOwner:(NSString *)OwnerName AndPosition:(CGPoint)pos
+{
+    if ((self = [self initWithPosition:pos]))
+    {
+        owner = OwnerName;
+        name = UnitName;
         [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
         whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
         // make the bounding rect here so we don't have to construct each time we're checking collisions
@@ -51,29 +68,8 @@
     return self;
 }
 
-
--(id)initWithPosition:(CGPoint)pos andIsOpponents:(BOOL)isOpponents
-{
-    if ((self = [self initWithPosition:pos]))
-    {
-        if (isOpponents)
-        {
-            owner = @"Opponent";
-            name = @"zombie";
-            color = ccc4f(0.3f, 0.5f, 0.9f, 1.0f);
-            displayColor = color;
-            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
-            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]]];
-
-            // enemy units are weaker
-            health = 3.0f;
-            [self setDamage:0.7f];
-        }
-    }
-    return self;
-}
-
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat)theVelocity andAcceleration:(CGFloat)theAcceleration andIsOpponents:(BOOL)isOpponents
+/*
+-(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat)theVelocity andAcceleration:(CGFloat)theAcceleration
 {
     if ((self = [self initWithPosition:pos]))
     {
@@ -82,18 +78,11 @@
         size = theSize;
         velocity = theVelocity;
         acceleration = theAcceleration;
-        if(isOpponents)
-        {
-            owner = @"Opponent";
-            name = @"zombie";
-            [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
-            [whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]]];
-        }
         boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
-
+*/
 
 /*
 -(void) draw
@@ -181,9 +170,16 @@
 
 -(BOOL)isCollidingWith:(Unit *)otherUnit
 {
-    if(CGRectIntersectsRect(boundingRect, otherUnit->boundingRect))
+    if (!otherUnit->dead)
     {
-        return TRUE;
+        if(CGRectIntersectsRect(boundingRect, otherUnit->boundingRect))
+        {
+            return TRUE;
+        }
+        else
+        {
+            return FALSE;
+        }
     }
     else
     {
@@ -211,6 +207,16 @@
 {
     maxVelocity = theMaxVelocity;
     baseMaxVelocity = maxVelocity;
+}
+
+-(void) kill
+{
+    // flash white for 1.3 seconds
+    flashTimer = 1.3f;
+    // get pushedBack
+    velocity = pushBack;
+    // set death flag to be on
+    dead = true;
 }
 
 @end

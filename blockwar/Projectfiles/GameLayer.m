@@ -131,7 +131,7 @@ CGFloat resetTimer = 0.0f;
         bool inTouchArea = CGRectContainsPoint(touchArea, pos);
         if(input.anyTouchBeganThisFrame)
         {
-            if (inTouchArea)
+            if (true)
             {
                 touchStartPoint = pos;
                 touchIndicatorCenter = pos;
@@ -187,7 +187,7 @@ CGFloat resetTimer = 0.0f;
                         }
                         for (NSValue *position in positions_to_be_spawned)
                         {
-                            Unit *unit = [[Unit alloc] initWithPosition:[position CGPointValue]];
+                            Unit *unit = [[Unit alloc] initUnit:@"zombie" withOwner:@"Player" AndPosition:[position CGPointValue]];
                             [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
                         }
                         [playerResources decreaseValueBy:SPAWN_SIZE*UNIT_COST];

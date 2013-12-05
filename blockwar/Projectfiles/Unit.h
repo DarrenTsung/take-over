@@ -20,7 +20,7 @@
     CGFloat flashTimer;
     NSString *owner, *name;
     CGRect boundingRect;
-    bool buffed;
+    bool buffed, dead;
     
     int currentFrame, framesPerSecond;
     CGFloat frameTimer, frameDelay;
@@ -29,8 +29,9 @@
 }
 
 -(id)initWithPosition:(CGPoint)pos;
--(id)initWithPosition:(CGPoint)pos andIsOpponents:(BOOL) isOpponents;
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat) theVelocity andAcceleration:(CGFloat) theAcceleration andIsOpponents:(BOOL) isOpponents;
+-(id) initUnit:(NSString *)UnitName withOwner:(NSString *)OwnerName AndPosition:(CGPoint)pos;
+
+//-(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat) theVelocity andAcceleration:(CGFloat) theAcceleration andIsOpponents:(BOOL) isOpponents;
 //-(void)draw;
 -(void)update:(ccTime) delta;
 -(BOOL)isCollidingWith:(Unit *) otherUnit;
@@ -40,5 +41,7 @@
 
 -(void)setMaxVelocity:(CGFloat)theMaxVelocity;
 -(void)setDamage:(CGFloat)theDamage;
+
+-(void)kill;
 
 @end

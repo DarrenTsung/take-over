@@ -105,8 +105,34 @@
     // quick and dirty check for collisions
     for (Unit *unit in playerUnits)
     {
+        if (unit->dead)
+        {
+            // remove units after they stop their backwards velocity
+            if (unit->velocity >= 0.0f)
+            {
+                [playerDiscardedUnits addObject:unit];
+                [playerDiscardedUnits addObject:unit->whiteSprite];
+                if ([unit isKindOfClass:[SuperUnit class]])
+                {
+                   [playerDiscardedSuperUnits addObject:unit];
+                }
+            }
+            // dont do collision checking for dead units
+            continue;
+        }
         for (Unit *enemyUnit in enemyUnits)
         {
+            if (enemyUnit->dead)
+            {
+                // remove units after they stop their backwards velocity
+                if (enemyUnit->velocity >= 0.0f)
+                {
+                    [enemyDiscardedUnits addObject:enemyUnit];
+                    [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
+                }
+                // dont do collision checking for dead units
+                continue;
+            }
             counter++;
             if ([unit isCollidingWith: enemyUnit])
             {
@@ -116,12 +142,7 @@
                 
                 if (unit->health < 0.0f)
                 {
-                    [playerDiscardedUnits addObject:unit];
-                    [playerDiscardedUnits addObject:unit->whiteSprite];
-                    if ([unit isKindOfClass:[SuperUnit class]])
-                    {
-                        [playerDiscardedSuperUnits addObject:unit];
-                    }
+                    [unit kill];
                 }
                 else
                 {
@@ -131,8 +152,7 @@
                 
                 if (enemyUnit->health < 0.0f)
                 {
-                    [enemyDiscardedUnits addObject:enemyUnit];
-                    [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
+                    [enemyUnit kill];
                 }
                 else
                 {

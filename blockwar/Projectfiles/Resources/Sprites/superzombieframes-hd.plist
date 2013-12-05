@@ -4,57 +4,57 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>russian0.png</key>
+            <key>superzombie0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{42,49}}</string>
+                <string>{{2,2},{52,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{0,0},{52,59}}</string>
                 <key>sourceSize</key>
-                <string>{42,49}</string>
+                <string>{52,59}</string>
             </dict>
-            <key>russian1.png</key>
+            <key>superzombie1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,2},{42,49}}</string>
+                <string>{{56,2},{52,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{0,0},{52,59}}</string>
                 <key>sourceSize</key>
-                <string>{42,49}</string>
+                <string>{52,59}</string>
             </dict>
-            <key>russian_white0.png</key>
+            <key>superzombie_white0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,53},{42,49}}</string>
+                <string>{{2,63},{52,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{0,0},{52,59}}</string>
                 <key>sourceSize</key>
-                <string>{42,49}</string>
+                <string>{52,59}</string>
             </dict>
-            <key>russian_white1.png</key>
+            <key>superzombie_white1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,53},{42,49}}</string>
+                <string>{{56,63},{52,59}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{0,0},{52,59}}</string>
                 <key>sourceSize</key>
-                <string>{42,49}</string>
+                <string>{52,59}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -62,13 +62,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>russianframes-hd.png</string>
+            <string>superzombieframes-hd.png</string>
             <key>size</key>
             <string>{128,128}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:26130135cf7bacdb7a1dbf197225eba1:cd0d82bfa07712ae93dda5455fe56836:1957ff01e60a7df1540ae19d69df86cd$</string>
+            <string>$TexturePacker:SmartUpdate:581c565a70ec88857e17fc8fbe17d9bc:4c512375b5e45f7d194fb7d975651cb1:8d8248a9dc9804a54945c6ba22d28b30$</string>
             <key>textureFileName</key>
-            <string>russianframes-hd.png</string>
+            <string>superzombieframes-hd.png</string>
         </dict>
     </dict>
 </plist>
