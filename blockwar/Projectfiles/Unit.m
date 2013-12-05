@@ -194,12 +194,20 @@
 
 -(void)flashWhiteFor:(CGFloat)time
 {
-    flashTimer = time;
+    if (!dead)
+    {
+        flashTimer = time;
+    }
 }
 
 -(void)hitFor:(CGFloat)hitDamage
 {
     velocity = pushBack;
+}
+
+-(void)pushBack:(CGFloat)percentage
+{
+    velocity -= maxVelocity*percentage;
 }
 
 -(void) setDamage:(CGFloat)theDamage

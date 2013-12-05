@@ -44,12 +44,14 @@
     {
         array = playerSuperUnits;
     }
+    /*
     if([array count] == 0)
     {
         [array addObject:unit];
         return;
-    }
+    } */
     
+    /*
     CGFloat yCoord = unit->origin.y;
     int left = 0;
     int right = [array count] - 1;
@@ -87,9 +89,14 @@
     else
     {
         [array insertObject:unit atIndex:mid];
+    } */
+    
+    [array addObject:unit];
+    
+    if (![unit parent]) {
+        [viewController addChild:unit z:1];
+        [viewController addChild:unit->whiteSprite z:0];
     }
-    [viewController addChild:unit z:1];
-    [viewController addChild:unit->whiteSprite z:0];
 }
 
 // checks for collisions between playerUnits and enemyUnits and removes dead Germs (naive implementation)
@@ -132,6 +139,10 @@
                 }
                 // dont do collision checking for dead units
                 continue;
+            }
+            if (enemyUnit->health < 0.0f)
+            {
+                [enemyUnit kill];
             }
             counter++;
             if ([unit isCollidingWith: enemyUnit])
@@ -209,6 +220,22 @@
     for (Unit *unit in enemyUnits)
     {
         [unit update:delta];
+    }
+}
+
+-(void) dealDamage:(CGFloat)damage toUnitsInDistance:(CGFloat)distance ofPoint:(CGPoint)point
+{
+    for (Unit *enemyUnit in enemyUnits)
+    {
+        CGFloat xChange = enemyUnit->origin.x - point.x;
+        CGFloat yChange = enemyUnit->origin.y - point.y;
+        CGFloat unitDistance = sqrt((xChange*xChange) + (yChange*yChange));
+        if (unitDistance <= distance)
+        {
+            enemyUnit->health -= damage;
+            [enemyUnit flashWhiteFor:1.0f];
+            [enemyUnit pushBack:0.8f];
+        }
     }
 }
 

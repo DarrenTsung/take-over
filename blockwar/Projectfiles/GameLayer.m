@@ -24,9 +24,10 @@ NSMutableArray *particleArray;
 CGFloat touchIndicatorRadius;
 CGPoint touchIndicatorCenter;
 CGPoint touchStartPoint;
+ccColor4F touchIndicatorColor;
 #define SPAWN_SIZE 3
 #define UNIT_COST 12
-// super units cost 7 times what regular units cost
+// super units cost 6 times what regular units cost
 #define SUPER_UNIT_MULTIPLIER 6
 
 CGSize screenBounds;
@@ -46,6 +47,10 @@ CGFloat resetTimer = 0.0f;
 
 #define TOUCH_RADIUS_MAX 53.0f
 #define TOUCH_RADIUS_MIN 40.0f
+#define TOUCH_DAMAGE_RADIUS_MIN 56.0f
+#define TOUCH_DAMAGE_RADIUS_MAX 66.0f
+#define TOUCH_DAMAGE 2.0f
+
 
 @interface GameLayer()
 
@@ -121,11 +126,14 @@ CGFloat resetTimer = 0.0f;
     
     if (touchIndicatorRadius > 30.0f)
     {
+        ccDrawColor4F(touchIndicatorColor.r, touchIndicatorColor.g, touchIndicatorColor.b, touchIndicatorColor.a);
         ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, NO);
     }
  
     //[model drawUnits];
     
+    // draw white around the bars
+    ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0f);
     [playerHP draw];
     [enemyHP draw];
     [playerResources draw];
@@ -147,6 +155,14 @@ CGFloat resetTimer = 0.0f;
                 touchStartPoint = pos;
                 touchIndicatorCenter = pos;
                 touchIndicatorRadius = TOUCH_RADIUS_MIN;
+                touchIndicatorColor = ccc4f(1.0f, 1.0f, 1.0f, 1.0f);
+            }
+            else
+            {
+                touchStartPoint = pos;
+                touchIndicatorCenter = pos;
+                touchIndicatorRadius = TOUCH_DAMAGE_RADIUS_MIN;
+                touchIndicatorColor = ccc4f(1.0f, 0.4f, 0.6f, 1.0f);
             }
         }
         else if(input.anyTouchEndedThisFrame)
@@ -158,7 +174,7 @@ CGFloat resetTimer = 0.0f;
             NSLog(@"xChange, yChange = (%f, %f) :: distanceChange = %f!", xChange, yChange, distanceChange);
             // BLOCKERS DEPRECATED FOR DEMO \\
             //if (distanceChange < 30.0f)
-            if (true)
+            if (touchIndicatorRadius >= TOUCH_RADIUS_MIN && inTouchArea)
             {
                 if (touchIndicatorRadius > TOUCH_RADIUS_MIN && [playerResources getCurrentValue] > touchIndicatorRadius)
                 {
@@ -244,6 +260,16 @@ CGFloat resetTimer = 0.0f;
                     }
                 }
             } */
+            else
+            {
+                // MIN = 0.0f || MAX = 1.0f
+                CGFloat percentCharged = (touchIndicatorRadius - TOUCH_DAMAGE_RADIUS_MIN) / (TOUCH_DAMAGE_RADIUS_MAX - TOUCH_DAMAGE_RADIUS_MIN);
+                NSLog(@"percent charged %f", percentCharged);
+                // percentCharged = 0.0f -> damagePercentage = 0.8 || percentCharged = 1.0f -> damagePercentage = 1.2
+                CGFloat damagePercentage = (0.4f * percentCharged) + 0.8;
+                NSLog(@"damagePercentage %f || damageDone %f", damagePercentage, (damagePercentage * TOUCH_DAMAGE));
+                [model dealDamage:(damagePercentage * TOUCH_DAMAGE) toUnitsInDistance:touchIndicatorRadius ofPoint:touchIndicatorCenter];
+            }
             touchIndicatorRadius = 0.0f;
             touchStartPoint = CGPointMake(0.0f, 0.0f);
         }
@@ -251,28 +277,45 @@ CGFloat resetTimer = 0.0f;
         {
             if (pos.y < playHeight)
             {
-                CGFloat xChange = pos.x - touchStartPoint.x;
-                CGFloat yChange = pos.y - touchStartPoint.y;
-                CGFloat distanceChange = sqrt((xChange*xChange) + (yChange*yChange));
-                // BLOCKERS DEPRECATED FOR DEMO \\
-                //if (distanceChange < 30.f)
-                if (true)
+                if (touchIndicatorRadius < TOUCH_DAMAGE_RADIUS_MIN)
                 {
-                    if (inTouchArea)
+                    CGFloat xChange = pos.x - touchStartPoint.x;
+                    CGFloat yChange = pos.y - touchStartPoint.y;
+                    CGFloat distanceChange = sqrt((xChange*xChange) + (yChange*yChange));
+                    // BLOCKERS DEPRECATED FOR DEMO \\
+                    //if (distanceChange < 30.f)
+                    if (true)
                     {
-                        touchIndicatorCenter = pos;
+                        if (inTouchArea)
+                        {
+                            touchIndicatorCenter = pos;
+                        }
+                        else    // only update the up-down movement if pos is out of bounds
+                        {
+                            touchIndicatorCenter.y = pos.y;
+                        }
+                        if (touchIndicatorRadius < TOUCH_RADIUS_MAX)
+                        {
+                            touchIndicatorRadius += 0.33f;
+                        }
+                        else
+                        {
+                            touchIndicatorRadius = TOUCH_RADIUS_MAX + arc4random()%4;
+                        }
                     }
-                    else    // only update the up-down movement if pos is out of bounds
+                }
+                else
+                {
+                    touchIndicatorCenter = pos;
+                    if (touchIndicatorRadius < TOUCH_DAMAGE_RADIUS_MAX)
                     {
-                        touchIndicatorCenter.y = pos.y;
-                    }
-                    if (touchIndicatorRadius < TOUCH_RADIUS_MAX)
-                    {
-                        touchIndicatorRadius += 0.3f;
+                        touchIndicatorRadius += 0.33f;
                     }
                     else
                     {
-                        touchIndicatorRadius = arc4random()%5 + TOUCH_RADIUS_MAX;
+                        touchIndicatorRadius = TOUCH_DAMAGE_RADIUS_MAX + arc4random()%7;
+                        CGFloat randomBetweenOne = ((CGFloat)(arc4random()%5 + 1.0f) / 5.0f);
+                        touchIndicatorColor = ccc4f(1.0f, randomBetweenOne*0.4f + 0.1f, randomBetweenOne*0.5f + 0.15f, 1.0f);
                     }
                 }
             }

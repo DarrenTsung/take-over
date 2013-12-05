@@ -22,6 +22,7 @@
 -(void) insertUnit:(Unit *)unit intoSortedArrayWithName:(NSString *)arrayName;
 -(void) checkForCollisionsAndRemove;
 -(void) update:(ccTime)delta;
+-(void) dealDamage:(CGFloat)damage toUnitsInDistance:(CGFloat)distance ofPoint:(CGPoint)point;
 //-(void) drawUnits;
 -(void) reset;
 

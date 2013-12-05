@@ -37,6 +37,7 @@
 -(BOOL)isCollidingWith:(Unit *) otherUnit;
 -(void)flashWhiteFor:(CGFloat)time;
 -(void)hitFor:(CGFloat)hitDamage;
+-(void)pushBack:(CGFloat)percentage;
 -(void)checkBuffed;
 
 -(void)setMaxVelocity:(CGFloat)theMaxVelocity;
