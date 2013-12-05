@@ -25,4 +25,6 @@
 //-(void) drawUnits;
 -(void) reset;
 
+-(bool) doesSuperUnitExist;
+
 @end

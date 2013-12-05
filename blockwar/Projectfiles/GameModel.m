@@ -248,4 +248,13 @@
     
 }
 
+-(bool) doesSuperUnitExist
+{
+    for (Unit *unit in playerSuperUnits)
+    {
+        return true;
+    }
+    return false;
+}
+
 @end

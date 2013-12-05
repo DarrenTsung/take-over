@@ -82,6 +82,9 @@ CGFloat resetTimer = 0.0f;
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
         CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.png"];
         [self addChild:zombieSpriteSheet];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"superzombieframes.plist"];
+        CCSpriteBatchNode *superzombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"superzombieframes.png"];
+        [self addChild:superzombieSpriteSheet];
         
         // model controls and models all the germs
         model = [[GameModel alloc] initWithReferenceToViewController:self];
@@ -131,7 +134,7 @@ CGFloat resetTimer = 0.0f;
         bool inTouchArea = CGRectContainsPoint(touchArea, pos);
         if(input.anyTouchBeganThisFrame)
         {
-            if (true)
+            if (inTouchArea)
             {
                 touchStartPoint = pos;
                 touchIndicatorCenter = pos;
@@ -145,12 +148,14 @@ CGFloat resetTimer = 0.0f;
             CGFloat distanceChange = sqrt((xChange*xChange) + (yChange*yChange));
             // if distance between two points is less than 30.0f
             NSLog(@"xChange, yChange = (%f, %f) :: distanceChange = %f!", xChange, yChange, distanceChange);
-            if (distanceChange < 30.0f)
+            // BLOCKERS DEPRECATED FOR DEMO \\
+            //if (distanceChange < 30.0f)
+            if (true)
             {
                 if (touchIndicatorRadius > TOUCH_RADIUS_MIN && [playerResources getCurrentValue] > touchIndicatorRadius)
                 {
                     // spawn SuperGerm if radius is greater than max (and fluctuating)
-                    if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
+                    if (touchIndicatorRadius >= TOUCH_RADIUS_MAX && ![model doesSuperUnitExist])
                     {
                         SuperUnit *unit = [[SuperUnit alloc] initWithPosition:pos];
                         [model insertUnit:unit intoSortedArrayWithName:@"playerSuperUnits"];
@@ -194,7 +199,9 @@ CGFloat resetTimer = 0.0f;
                     }
                 }
             }
+            // BLOCKERS DEPRECATED FOR DEMO \\
             // if we make a vertical sweep, spawn blockers (slow moving units that don't get pushed back)
+            /*
             else if (abs(xChange) < 30.0f && abs(yChange) > 40.0f)
             {
                 // blockers have a 1.3 size modifier
@@ -228,7 +235,7 @@ CGFloat resetTimer = 0.0f;
                         [playerResources decreaseValueBy:abs(numUnits)*UNIT_COST*1.3];
                     }
                 }
-            }
+            } */
             touchIndicatorRadius = 0.0f;
             touchStartPoint = CGPointMake(0.0f, 0.0f);
         }
@@ -239,7 +246,9 @@ CGFloat resetTimer = 0.0f;
                 CGFloat xChange = pos.x - touchStartPoint.x;
                 CGFloat yChange = pos.y - touchStartPoint.y;
                 CGFloat distanceChange = sqrt((xChange*xChange) + (yChange*yChange));
-                if (distanceChange < 30.f)
+                // BLOCKERS DEPRECATED FOR DEMO \\
+                //if (distanceChange < 30.f)
+                if (true)
                 {
                     if (inTouchArea)
                     {

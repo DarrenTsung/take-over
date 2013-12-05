@@ -15,7 +15,7 @@
     if ((self = [super initWithPosition:pos]))
     {
         size = CGSizeMake(20.0f, 20.0f);
-        [self setMaxVelocity:maxVelocity*1.1];
+        [self setMaxVelocity:maxVelocity*0.8];
         velocity = maxVelocity;
         [self setDamage:damage*1.25];
         
@@ -23,6 +23,16 @@
         
         // default influenceRange is 50.0f
         influenceRange = 50.0f;
+        
+        framesPerSecond = 6;
+        frameDelay = (1.0/framesPerSecond);
+        frameTimer = frameDelay;
+        
+        name = @"superzombie";
+        owner = @"Player";
+        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+        whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
+
     }
     return self;
 }

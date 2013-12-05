@@ -24,8 +24,8 @@
         // default size is 15x15
         size = CGSizeMake(15.0f, 15.0f);
         // construct movement variables
-        velocity = 105.0f;
-        [self setMaxVelocity:105.0f];
+        velocity = 120.0f;
+        [self setMaxVelocity:120.0f];
         acceleration = 100.0f;
         pushBack = -maxVelocity;
         
@@ -58,6 +58,11 @@
     if ((self = [self initWithPosition:pos]))
     {
         owner = OwnerName;
+        if ([owner isEqualToString:@"Opponent"])
+        {
+            health = 4.0f;
+            [self setDamage:0.8f];
+        }
         name = UnitName;
         [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
         whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
