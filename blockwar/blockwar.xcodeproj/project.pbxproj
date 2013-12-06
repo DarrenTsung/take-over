@@ -13,8 +13,6 @@
 		6CA6C6BF185008180067BEBE /* superzombieframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BB185008180067BEBE /* superzombieframes-hd.png */; };
 		6CA6C6C0185008180067BEBE /* superzombieframes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BC185008180067BEBE /* superzombieframes.plist */; };
 		6CA6C6C1185008180067BEBE /* superzombieframes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BD185008180067BEBE /* superzombieframes.png */; };
-		6CA6C6C418500D1D0067BEBE /* AI level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6C218500D1D0067BEBE /* AI level1.plist */; };
-		6CA6C6C518500D1D0067BEBE /* AI level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6C318500D1D0067BEBE /* AI level2.plist */; };
 		6CAE6D98182B69C400602F39 /* Blocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CAE6D97182B69C400602F39 /* Blocker.m */; };
 		6CAE6D9A182C361A00602F39 /* randomAI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6D99182C361A00602F39 /* randomAI.plist */; };
 		6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */; };
@@ -32,6 +30,12 @@
 		6CD3616A182AD64C00A56D5C /* CircleExplosion.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD36169182AD64C00A56D5C /* CircleExplosion.m */; };
 		6CD489C91842E14B00515AD4 /* russianframes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CD489C81842E14B00515AD4 /* russianframes.png */; };
 		6CD489CB1842E15B00515AD4 /* russianframes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD489CA1842E15B00515AD4 /* russianframes.plist */; };
+		88734B191851CB970082B79A /* StartMenuLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 88734B181851CB970082B79A /* StartMenuLayer.m */; };
+		88734B1D1851CC200082B79A /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 88734B1A1851CC200082B79A /* background.png */; };
+		88734B1E1851CC200082B79A /* menubackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 88734B1B1851CC200082B79A /* menubackground.png */; };
+		88734B1F1851CC200082B79A /* startsign.png in Resources */ = {isa = PBXBuildFile; fileRef = 88734B1C1851CC200082B79A /* startsign.png */; };
+		88734B221851CDBA0082B79A /* level1AI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88734B201851CDBA0082B79A /* level1AI.plist */; };
+		88734B231851CDBA0082B79A /* level2AI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 88734B211851CDBA0082B79A /* level2AI.plist */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -80,8 +84,6 @@
 		6CA6C6BB185008180067BEBE /* superzombieframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "superzombieframes-hd.png"; path = "Sprites/superzombieframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BC185008180067BEBE /* superzombieframes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = superzombieframes.plist; path = Sprites/superzombieframes.plist; sourceTree = "<group>"; };
 		6CA6C6BD185008180067BEBE /* superzombieframes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = superzombieframes.png; path = Sprites/superzombieframes.png; sourceTree = "<group>"; };
-		6CA6C6C218500D1D0067BEBE /* AI level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AI level1.plist"; sourceTree = "<group>"; };
-		6CA6C6C318500D1D0067BEBE /* AI level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AI level2.plist"; sourceTree = "<group>"; };
 		6CAE6D96182B69C400602F39 /* Blocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Blocker.h; sourceTree = "<group>"; };
 		6CAE6D97182B69C400602F39 /* Blocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Blocker.m; sourceTree = "<group>"; };
 		6CAE6D99182C361A00602F39 /* randomAI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = randomAI.plist; sourceTree = "<group>"; };
@@ -109,6 +111,13 @@
 		6CD36169182AD64C00A56D5C /* CircleExplosion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleExplosion.m; sourceTree = "<group>"; };
 		6CD489C81842E14B00515AD4 /* russianframes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = russianframes.png; path = Sprites/russianframes.png; sourceTree = "<group>"; };
 		6CD489CA1842E15B00515AD4 /* russianframes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = russianframes.plist; path = Sprites/russianframes.plist; sourceTree = "<group>"; };
+		88734B171851CB970082B79A /* StartMenuLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartMenuLayer.h; sourceTree = "<group>"; };
+		88734B181851CB970082B79A /* StartMenuLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartMenuLayer.m; sourceTree = "<group>"; };
+		88734B1A1851CC200082B79A /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = Sprites/background.png; sourceTree = "<group>"; };
+		88734B1B1851CC200082B79A /* menubackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = menubackground.png; path = Sprites/menubackground.png; sourceTree = "<group>"; };
+		88734B1C1851CC200082B79A /* startsign.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = startsign.png; path = Sprites/startsign.png; sourceTree = "<group>"; };
+		88734B201851CDBA0082B79A /* level1AI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level1AI.plist; sourceTree = "<group>"; };
+		88734B211851CDBA0082B79A /* level2AI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = level2AI.plist; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -198,8 +207,8 @@
 		6CAE6D9B182C362D00602F39 /* Artifical Intelligence */ = {
 			isa = PBXGroup;
 			children = (
-				6CA6C6C218500D1D0067BEBE /* AI level1.plist */,
-				6CA6C6C318500D1D0067BEBE /* AI level2.plist */,
+				88734B201851CDBA0082B79A /* level1AI.plist */,
+				88734B211851CDBA0082B79A /* level2AI.plist */,
 				6CBF7EA518230F0A000395D0 /* EnemyAI.h */,
 				6CBF7EA618230F0A000395D0 /* EnemyAI.m */,
 				6CAE6D99182C361A00602F39 /* randomAI.plist */,
@@ -329,6 +338,8 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
+				88734B171851CB970082B79A /* StartMenuLayer.h */,
+				88734B181851CB970082B79A /* StartMenuLayer.m */,
 				6CBF7E9F1822EEC8000395D0 /* GameLayer.h */,
 				6CBF7EA01822EEC8000395D0 /* GameLayer.m */,
 				6CBA5BF518249AB200E52FC7 /* Resource Bars */,
@@ -348,6 +359,9 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				88734B1A1851CC200082B79A /* background.png */,
+				88734B1B1851CC200082B79A /* menubackground.png */,
+				88734B1C1851CC200082B79A /* startsign.png */,
 				6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */,
 				6CA6C6BB185008180067BEBE /* superzombieframes-hd.png */,
 				6CA6C6BC185008180067BEBE /* superzombieframes.plist */,
@@ -460,25 +474,28 @@
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
 				6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */,
-				6CA6C6C418500D1D0067BEBE /* AI level1.plist in Resources */,
+				88734B231851CDBA0082B79A /* level2AI.plist in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
 				6CAE6DB3182C5D8F00602F39 /* zombieframes.png in Resources */,
+				88734B1E1851CC200082B79A /* menubackground.png in Resources */,
 				6CA6C6BF185008180067BEBE /* superzombieframes-hd.png in Resources */,
 				6CAE6DB2182C5D8F00602F39 /* zombieframes.plist in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
+				88734B1D1851CC200082B79A /* background.png in Resources */,
 				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
+				88734B1F1851CC200082B79A /* startsign.png in Resources */,
+				88734B221851CDBA0082B79A /* level1AI.plist in Resources */,
 				6CA6C6C0185008180067BEBE /* superzombieframes.plist in Resources */,
 				6CAE6D9A182C361A00602F39 /* randomAI.plist in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
 				6CA6C6C1185008180067BEBE /* superzombieframes.png in Resources */,
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
 				6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */,
-				6CA6C6C518500D1D0067BEBE /* AI level2.plist in Resources */,
 				6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */,
 				6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
@@ -515,6 +532,7 @@
 				6CBA5BF418249AAB00E52FC7 /* RegeneratableBar.m in Sources */,
 				6CAE6D98182B69C400602F39 /* Blocker.m in Sources */,
 				6CBF7EA718230F0A000395D0 /* EnemyAI.m in Sources */,
+				88734B191851CB970082B79A /* StartMenuLayer.m in Sources */,
 				6CD361671826CF2E00A56D5C /* GameModel.m in Sources */,
 				6CD3616A182AD64C00A56D5C /* CircleExplosion.m in Sources */,
 				6CD3616318259DED00A56D5C /* SuperUnit.m in Sources */,
