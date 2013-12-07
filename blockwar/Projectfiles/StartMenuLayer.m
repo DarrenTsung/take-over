@@ -46,7 +46,7 @@ CCSprite *background;
 {
     //psst! you can create a wrapper around your init method to pass in parameters
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithLevel:1]]];
+     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithLevel:2]]];
 }
 
 

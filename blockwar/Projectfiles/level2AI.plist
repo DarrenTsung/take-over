@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>waveSize</key>
-	<integer>5</integer>
+	<integer>4</integer>
 	<key>rowSize</key>
-	<integer>3</integer>
+	<integer>2</integer>
 	<key>maxConsecutiveWaves</key>
 	<integer>4</integer>
 	<key>probabilityWaveDelay</key>

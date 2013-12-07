@@ -17,7 +17,7 @@
     if (self = [self initUnit:@"bossrussian" withOwner:@"Opponent" AndPosition:pos])
     {
         // holy shit hahaha
-        health = 500.0f;
+        health = 400.0f;
         // super fucking slow
         [self setMaxVelocity:15.0f];
         acceleration = 50.0f;
