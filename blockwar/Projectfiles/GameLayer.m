@@ -79,7 +79,7 @@ NSString *winState;
 
 -(id) initWithLevel:(int)level
 {
-    if ((self = [super initWithColor:ccc4(255,255,255,255)]))
+    if ((self = [super initWithColor:ccc4(1.0f,1.0f,1.0f,1.0f)]))
     {
         NSLog(@"Game initializing...");
         
@@ -157,9 +157,15 @@ NSString *winState;
     return self;
 }
 
+-(void) onEnter
+{
+    [super onEnter];
+    [self addChild:[CCLayerColor layerWithColor:ccc4(30, 30, 30, 255)] z:-1];
+}
+
 -(void) draw
 {
-    ccColor4F area_color = ccc4f(0.3f, 0.1f, 0.1f, 0.5f);
+    ccColor4F area_color = ccc4f(0.3f, 0.3f, 0.3f, 0.5f);
     ccDrawSolidRect(touchArea.origin, CGPointMake(touchArea.size.width + touchArea.origin.x, touchArea.size.height + touchArea.origin.y), area_color);
     
     if (touchIndicatorRadius > 30.0f)
@@ -354,7 +360,7 @@ NSString *winState;
                         }
                         else
                         {
-                            touchIndicatorRadius = TOUCH_RADIUS_MAX + arc4random()%4;
+                            touchIndicatorRadius = TOUCH_RADIUS_MAX + arc4random()%3;
                         }
                     }
                 }
