@@ -110,6 +110,7 @@
 // checks for collisions between playerUnits and enemyUnits and removes dead Germs (naive implementation)
 -(void) checkForCollisionsAndRemove
 {
+    bool endGame = false;
     NSMutableArray *playerDiscardedUnits = [[NSMutableArray alloc] init];
     NSMutableArray *playerDiscardedSuperUnits = [[NSMutableArray alloc] init];
     NSMutableArray *enemyDiscardedUnits = [[NSMutableArray alloc] init];
@@ -144,7 +145,7 @@
                 {
                     if ([enemyUnit->name isEqualToString:@"bossrussian"])
                     {
-                        [viewController endGameWithWinner:@"player"];
+                        endGame = true;
                     }
                     [enemyDiscardedUnits addObject:enemyUnit];
                     [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
@@ -188,6 +189,7 @@
             }
         }
     }
+    
     //NSLog(@"Compared %d times this iteration!", counter);
     for (Unit *unit in playerUnits)
     {
@@ -204,6 +206,25 @@
     }
     for (Unit *enemyUnit in enemyUnits)
     {
+        if (enemyUnit->dead)
+        {
+            // remove units after they stop their backwards velocity
+            if (enemyUnit->velocity >= 0.0f)
+            {
+                if ([enemyUnit->name isEqualToString:@"bossrussian"])
+                {
+                    endGame = true;
+                }
+                [enemyDiscardedUnits addObject:enemyUnit];
+                [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
+            }
+            // dont do collision checking for dead units
+            continue;
+        }
+        if (enemyUnit->health < 0.0f)
+        {
+            [enemyUnit kill];
+        }
         if (CGRectIntersectsRect(enemyUnit->boundingRect, viewController->touchArea))
         {
             if ([enemyUnit->name isEqualToString:@"bossrussian"])
@@ -221,6 +242,10 @@
     [playerSuperUnits removeObjectsInArray:playerDiscardedSuperUnits];
     [viewController removeChildrenInArray:playerDiscardedUnits cleanup:YES];
     [viewController removeChildrenInArray:enemyDiscardedUnits cleanup:YES];
+    if (endGame)
+    {
+        [viewController endGameWithWinner:@"player"];
+    }
 }
 
 -(void) update:(ccTime) delta
@@ -243,14 +268,17 @@
 {
     for (Unit *enemyUnit in enemyUnits)
     {
-        CGFloat xChange = enemyUnit->origin.x - point.x;
-        CGFloat yChange = enemyUnit->origin.y - point.y;
-        CGFloat unitDistance = sqrt((xChange*xChange) + (yChange*yChange));
-        if (unitDistance <= distance)
+        if (!enemyUnit->dead)
         {
-            enemyUnit->health -= damage;
-            [enemyUnit flashWhiteFor:1.0f];
-            [enemyUnit pushBack:0.8f];
+            CGFloat xChange = enemyUnit->origin.x - point.x;
+            CGFloat yChange = enemyUnit->origin.y - point.y;
+            CGFloat unitDistance = sqrt((xChange*xChange) + (yChange*yChange));
+            if (unitDistance <= distance)
+            {
+                enemyUnit->health -= damage;
+                [enemyUnit flashWhiteFor:1.0f];
+                [enemyUnit pushBack:0.8f];
+            }
         }
     }
 }

@@ -56,6 +56,8 @@ CGFloat resetTimer = 0.0f;
 #define TOUCH_DAMAGE_RADIUS_MAX 66.0f
 #define TOUCH_DAMAGE 2.0f
 
+NSString *winState;
+
 
 @interface GameLayer()
 
@@ -83,6 +85,7 @@ CGFloat resetTimer = 0.0f;
         
         NSString *AIName;
         currentLevel = level;
+        NSLog([NSString stringWithFormat:@"Current level is %d!", level]);
         switch (level)
         {
             case 1:
@@ -97,6 +100,11 @@ CGFloat resetTimer = 0.0f;
                 AIName = @"level3AI";
                 bossSpawnTimer = 1.3f;
                 boss = true;
+                break;
+                
+            case 4:
+                NSLog(@"Game is finished! A winner is YOU!");
+                AIName = @"randomAI";
                 break;
 
             default:
@@ -139,10 +147,7 @@ CGFloat resetTimer = 0.0f;
         theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self];
         
         // Resource Bars
-        if (!boss)
-        {
-            enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
-        }
+        enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
         playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(0.3f, 0.9f, 0.4f, 1.0f)];
         playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(0.0f, 0.45f, 0.8f, 1.0f)];
     }
@@ -168,7 +173,10 @@ CGFloat resetTimer = 0.0f;
     // draw white around the bars
     ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0f);
     [playerHP draw];
-    [enemyHP draw];
+    if (!boss)
+    {
+        [enemyHP draw];
+    }
     [playerResources draw];
 }
 
@@ -211,11 +219,13 @@ CGFloat resetTimer = 0.0f;
         }
         else if(input.anyTouchEndedThisFrame)
         {
+            /*
             CGFloat xChange = pos.x - touchStartPoint.x;
             CGFloat yChange = pos.y - touchStartPoint.y;
             CGFloat distanceChange = sqrt((xChange*xChange) + (yChange*yChange));
             // if distance between two points is less than 30.0f
-            NSLog(@"xChange, yChange = (%f, %f) :: distanceChange = %f!", xChange, yChange, distanceChange);
+             NSLog(@"xChange, yChange = (%f, %f) :: distanceChange = %f!", xChange, yChange, distanceChange);
+            */
             // BLOCKERS DEPRECATED FOR DEMO \\
             //if (distanceChange < 30.0f)
             if (touchIndicatorRadius >= TOUCH_RADIUS_MIN && inTouchArea)
@@ -308,10 +318,10 @@ CGFloat resetTimer = 0.0f;
             {
                 // MIN = 0.0f || MAX = 1.0f
                 CGFloat percentCharged = (touchIndicatorRadius - TOUCH_DAMAGE_RADIUS_MIN) / (TOUCH_DAMAGE_RADIUS_MAX - TOUCH_DAMAGE_RADIUS_MIN);
-                NSLog(@"percent charged %f", percentCharged);
+                // NSLog(@"percent charged %f", percentCharged);
                 // percentCharged = 0.0f -> damagePercentage = 0.8 || percentCharged = 1.0f -> damagePercentage = 1.2
                 CGFloat damagePercentage = (0.4f * percentCharged) + 0.8;
-                NSLog(@"damagePercentage %f || damageDone %f", damagePercentage, (damagePercentage * TOUCH_DAMAGE));
+                // NSLog(@"damagePercentage %f || damageDone %f", damagePercentage, (damagePercentage * TOUCH_DAMAGE));
                 [model dealDamage:(damagePercentage * TOUCH_DAMAGE) toUnitsInDistance:touchIndicatorRadius ofPoint:touchIndicatorCenter];
             }
             touchIndicatorRadius = 0.0f;
@@ -437,6 +447,12 @@ CGFloat resetTimer = 0.0f;
     touchIndicatorRadius = 0.0f;
     
     isDone = false;
+    
+    if ([winState isEqualToString:@"player"])
+    {
+        [[CCDirector sharedDirector] replaceScene:
+            [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithLevel:(currentLevel + 1)]]];
+    }
 }
 
 -(CGSize) returnScreenBounds
@@ -451,6 +467,7 @@ CGFloat resetTimer = 0.0f;
 
 -(void) endGameWithWinner:(NSString *)winner
 {
+    winState = winner;
     isDone = true;
     [playerHP stopShake];
     [enemyHP stopShake];
