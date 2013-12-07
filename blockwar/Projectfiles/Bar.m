@@ -89,5 +89,9 @@
     shakeTimer = time;
 }
 
+-(void) stopShake
+{
+    shakeTimer = 0.0f;
+}
 
 @end

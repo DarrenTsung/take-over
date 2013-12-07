@@ -26,5 +26,6 @@
 -(CGFloat) getCurrentValue;
 -(void) shakeForTime:(CGFloat)time;
 -(void) update:(ccTime)delta;
+-(void) stopShake;
 
 @end

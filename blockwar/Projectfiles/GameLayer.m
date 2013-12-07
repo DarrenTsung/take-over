@@ -36,6 +36,11 @@ EnemyAI *theEnemy;
 HealthBar *playerHP;
 HealthBar *enemyHP;
 
+CGFloat currentLevel;
+CGFloat bossSpawnTimer = 0.0f;
+bool bossExists = false;
+bool boss = false;
+
 RegeneratableBar *playerResources;
 
 bool isDone = FALSE;
@@ -64,18 +69,40 @@ CGFloat resetTimer = 0.0f;
 
 -(id) init
 {
-    if (self = [self initWithAI:@"level2AI"])
+    if (self = [self initWithLevel:1])
     {
     }
     return self;
 }
 
--(id) initWithAI:(NSString *)AIName
+-(id) initWithLevel:(int)level
 {
     if ((self = [super initWithColor:ccc4(255,255,255,255)]))
     {
         NSLog(@"Game initializing...");
         
+        NSString *AIName;
+        currentLevel = level;
+        switch (level)
+        {
+            case 1:
+                AIName = @"level1AI";
+                break;
+                
+            case 2:
+                AIName = @"level2AI";
+                break;
+                
+            case 3:
+                AIName = @"level3AI";
+                bossSpawnTimer = 1.3f;
+                boss = true;
+                break;
+
+            default:
+                AIName = @"randomAI";
+                break;
+        }
 
         // returns screenBounds flipped automatically (since we're in landscape mode)
         screenBounds = [self returnScreenBounds];
@@ -90,8 +117,11 @@ CGFloat resetTimer = 0.0f;
         touchArea.size = CGSizeMake(screenWidth/7, playHeight);
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"russianframes.plist"];
-        CCSpriteBatchNode *marineSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.png"];
-        [self addChild:marineSpriteSheet];
+        CCSpriteBatchNode *russianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.png"];
+        [self addChild:russianSpriteSheet];
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bossrussianframes.plist"];
+        CCSpriteBatchNode *bossrussianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bossrussianframes.png"];
+        [self addChild:bossrussianSpriteSheet];
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
         CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.png"];
         [self addChild:zombieSpriteSheet];
@@ -109,7 +139,10 @@ CGFloat resetTimer = 0.0f;
         theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self];
         
         // Resource Bars
-        enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
+        if (!boss)
+        {
+            enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
+        }
         playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(0.3f, 0.9f, 0.4f, 1.0f)];
         playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(0.0f, 0.45f, 0.8f, 1.0f)];
     }
@@ -147,6 +180,17 @@ CGFloat resetTimer = 0.0f;
     
     if (!isDone)
     {
+        if (boss)
+        {
+            bossSpawnTimer -= delta;
+            if (bossSpawnTimer <= 0.0f && !bossExists)
+            {
+                NSLog(@"SPAWNING BOSS!");
+                [theEnemy spawnBossWithPlayHeight:playHeight];
+                bossExists = true;
+            }
+        }
+        
         bool inTouchArea = CGRectContainsPoint(touchArea, pos);
         if(input.anyTouchBeganThisFrame)
         {
@@ -179,7 +223,7 @@ CGFloat resetTimer = 0.0f;
                 if (touchIndicatorRadius > TOUCH_RADIUS_MIN && [playerResources getCurrentValue] > touchIndicatorRadius)
                 {
                     // spawn SuperGerm if radius is greater than max (and fluctuating)
-                    if (touchIndicatorRadius >= TOUCH_RADIUS_MAX && ![model doesSuperUnitExist])
+                    if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
                     {
                         SuperUnit *unit = [[SuperUnit alloc] initWithPosition:pos];
                         [model insertUnit:unit intoSortedArrayWithName:@"playerSuperUnits"];
@@ -340,9 +384,17 @@ CGFloat resetTimer = 0.0f;
 
 -(void) nextFrame
 {
-    if (!isDone && ([playerHP getCurrentValue] <= 0.0f || [enemyHP getCurrentValue] <= 0.0f))
+    // ending the game if boss exists is done by a trigger in the boss class
+    if (!boss && !isDone)
     {
-        [self endGame];
+        if ([playerHP getCurrentValue] <= 0.0f)
+        {
+            [self endGameWithWinner:@"enemy"];
+        }
+        else if ([enemyHP getCurrentValue] <= 0.0f)
+        {
+            [self endGameWithWinner:@"player"];
+        }
     }
     if (!isDone)
     {
@@ -397,9 +449,12 @@ CGFloat resetTimer = 0.0f;
     return screenBounds;
 }
 
--(void) endGame
+-(void) endGameWithWinner:(NSString *)winner
 {
     isDone = true;
+    [playerHP stopShake];
+    [enemyHP stopShake];
+    
     resetTimer = RESET_TIME;
 }
 

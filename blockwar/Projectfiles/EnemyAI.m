@@ -10,6 +10,7 @@
 #import "Unit.h"
 #import "GameModel.h"
 #import "GameLayer.h"
+#import "BossUnit.h"
 
 #define PADDING 20.0f
 #define UNIT_SIZE_Y 15.0f
@@ -94,6 +95,11 @@
             waveConsecutiveCount = 0;
         }
     }
+}
+
+-(void) spawnBossWithPlayHeight:(CGFloat) playHeight
+{
+    [model insertUnit:[[BossUnit alloc] initBossWithPosition:CGPointMake(595, playHeight/2)] intoSortedArrayWithName:@"enemyUnits"];
 }
 
 -(void) reset

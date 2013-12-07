@@ -17,5 +17,7 @@
 
 -(CGSize) returnScreenBounds;
 -(void) handleMessage:(NSArray *)message;
+-(id) initWithLevel:(int)level;
+-(void) endGameWithWinner:(NSString *)winner;
 
 @end

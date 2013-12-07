@@ -94,8 +94,16 @@
     [array addObject:unit];
     
     if (![unit parent]) {
-        [viewController addChild:unit z:1];
-        [viewController addChild:unit->whiteSprite z:0];
+        if ([unit->name isEqualToString:@"bossrussian"])
+        {
+            [viewController addChild:unit z:3];
+            [viewController addChild:unit->whiteSprite z:2];
+        }
+        else
+        {
+            [viewController addChild:unit z:1];
+            [viewController addChild:unit->whiteSprite z:0];
+        }
     }
 }
 
@@ -134,6 +142,10 @@
                 // remove units after they stop their backwards velocity
                 if (enemyUnit->velocity >= 0.0f)
                 {
+                    if ([enemyUnit->name isEqualToString:@"bossrussian"])
+                    {
+                        [viewController endGameWithWinner:@"player"];
+                    }
                     [enemyDiscardedUnits addObject:enemyUnit];
                     [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
                 }
@@ -194,6 +206,10 @@
     {
         if (CGRectIntersectsRect(enemyUnit->boundingRect, viewController->touchArea))
         {
+            if ([enemyUnit->name isEqualToString:@"bossrussian"])
+            {
+                [viewController endGameWithWinner:@"enemy"];
+            }
             [enemyDiscardedUnits addObject:enemyUnit];
             [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
             [viewController handleMessage:@[@"playerHit", [NSNumber numberWithFloat:enemyUnit->damage]]];
