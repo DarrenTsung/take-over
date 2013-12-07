@@ -61,6 +61,10 @@ CGFloat resetTimer = 0.0f;
 NSString *winState;
 bool winFlag = false;
 
+bool bombAvaliable = true;
+#define BOMB_RECHARGE_RATE 3.0f
+CGFloat bombTimer = 3.0f;
+
 
 @interface GameLayer()
 
@@ -180,7 +184,12 @@ bool winFlag = false;
         ccDrawColor4F(touchIndicatorColor.r, touchIndicatorColor.g, touchIndicatorColor.b, touchIndicatorColor.a);
         ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, NO);
     }
- 
+    
+    if (bombAvaliable)
+    {
+        ccDrawSolidRect(CGPointMake(170.0f, screenBounds.height - 20.0f), CGPointMake(180.0f, screenBounds.height - 30.0f), ccc4f(0.7f, 0.7f, 0.7f, 1.0f));
+    }
+    
     //[model drawUnits];
     
     // draw white around the bars
@@ -201,6 +210,15 @@ bool winFlag = false;
     
     if (!isDone)
     {
+        if (!bombAvaliable)
+        {
+            bombTimer -= delta;
+            if (bombTimer <= 0.0f)
+            {
+                bombAvaliable = true;
+            }
+        }
+    
         if (boss)
         {
             bossSpawnTimer -= delta;
@@ -224,10 +242,15 @@ bool winFlag = false;
             }
             else
             {
-                touchStartPoint = pos;
-                touchIndicatorCenter = pos;
-                touchIndicatorRadius = TOUCH_DAMAGE_RADIUS_MIN;
-                touchIndicatorColor = ccc4f(1.0f, 0.4f, 0.6f, 1.0f);
+                if (bombAvaliable)
+                {
+                    touchStartPoint = pos;
+                    touchIndicatorCenter = pos;
+                    touchIndicatorRadius = TOUCH_DAMAGE_RADIUS_MIN;
+                    touchIndicatorColor = ccc4f(1.0f, 0.4f, 0.6f, 1.0f);
+                    bombTimer = BOMB_RECHARGE_RATE;
+                    bombAvaliable = false;
+                }
             }
             
             // DEMO CODE : RESTART (WIN SCREEN -> MENU LAYER) IF YOU PRESS TOP RIGHT OF SCREEN
