@@ -16,6 +16,7 @@
 #import "SuperUnit.h"
 #import "GameModel.h"
 #import "WinLayer.h"
+#import "LoseLayer.h"
 
 GameModel *model;
 
@@ -58,6 +59,7 @@ CGFloat resetTimer = 0.0f;
 #define TOUCH_DAMAGE 2.0f
 
 NSString *winState;
+bool winFlag = false;
 
 
 @interface GameLayer()
@@ -101,12 +103,13 @@ NSString *winState;
                 AIName = @"level3AI";
                 bossSpawnTimer = 1.3f;
                 boss = true;
+                bossExists = false;
                 break;
                 
             case 4:
                 NSLog(@"Game is finished! A winner is YOU!");
-                [[CCDirector sharedDirector] replaceScene:
-                    [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[WinLayer alloc] init]]];
+                winFlag = true;
+                break;
 
             default:
                 AIName = @"randomAI";
@@ -149,8 +152,8 @@ NSString *winState;
         
         // Resource Bars
         enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
-        playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(0.3f, 0.9f, 0.4f, 1.0f)];
-        playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(0.0f, 0.45f, 0.8f, 1.0f)];
+        playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f)];
+        playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f)];
     }
     
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
@@ -411,7 +414,6 @@ NSString *winState;
 
 -(void) nextFrame
 {
-    // ending the game if boss exists is done by a trigger in the boss class
     if (!boss && !isDone)
     {
         if ([playerHP getCurrentValue] <= 0.0f)
@@ -464,12 +466,38 @@ NSString *winState;
     touchIndicatorRadius = 0.0f;
     
     isDone = false;
+    winFlag = false;
+    boss = false;
+    
+    NSLog(@"resetting with winState: %@", winState);
     
     if ([winState isEqualToString:@"player"])
     {
         [[CCDirector sharedDirector] replaceScene:
             [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithLevel:(currentLevel + 1)]]];
     }
+    else if ([winState isEqualToString:@"enemy"])
+    {
+        [[CCDirector sharedDirector] replaceScene:
+            [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithLevel:currentLevel]]];
+    }
+    else if ([winState isEqualToString:@"win"])
+    {
+        [[CCDirector sharedDirector] replaceScene:
+            [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[WinLayer alloc] init]]];
+    }
+    else if ([winState isEqualToString:@"lose"])
+    {
+        [[CCDirector sharedDirector] replaceScene:
+            [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LoseLayer alloc] init]]];
+    }
+    winState = nil;
+}
+
+-(void) win
+{
+    winState = @"win";
+    [self reset];
 }
 
 -(CGSize) returnScreenBounds
@@ -484,6 +512,7 @@ NSString *winState;
 
 -(void) endGameWithWinner:(NSString *)winner
 {
+    NSLog(@"%@ just won! Congrats", winner);
     winState = winner;
     isDone = true;
     [playerHP stopShake];

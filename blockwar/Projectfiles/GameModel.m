@@ -244,7 +244,7 @@
     [viewController removeChildrenInArray:enemyDiscardedUnits cleanup:YES];
     if (endGame)
     {
-        [viewController endGameWithWinner:@"player"];
+        [viewController endGameWithWinner:@"win"];
     }
 }
 
