@@ -15,6 +15,7 @@
 #import "RegeneratableBar.h"
 #import "SuperUnit.h"
 #import "GameModel.h"
+#import "WinLayer.h"
 
 GameModel *model;
 
@@ -104,8 +105,8 @@ NSString *winState;
                 
             case 4:
                 NSLog(@"Game is finished! A winner is YOU!");
-                AIName = @"randomAI";
-                break;
+                [[CCDirector sharedDirector] replaceScene:
+                    [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[WinLayer alloc] init]]];
 
             default:
                 AIName = @"randomAI";
@@ -160,7 +161,10 @@ NSString *winState;
 -(void) onEnter
 {
     [super onEnter];
-    [self addChild:[CCLayerColor layerWithColor:ccc4(30, 30, 30, 255)] z:-1];
+    CCSprite *background = [CCSprite spriteWithFile: @"background.png"];
+    background.position = ccp( 280, 160 );
+        
+    [self addChild: background z:-1];
 }
 
 -(void) draw
@@ -221,6 +225,13 @@ NSString *winState;
                 touchIndicatorCenter = pos;
                 touchIndicatorRadius = TOUCH_DAMAGE_RADIUS_MIN;
                 touchIndicatorColor = ccc4f(1.0f, 0.4f, 0.6f, 1.0f);
+            }
+            
+            // DEMO CODE : RESTART (WIN SCREEN -> MENU LAYER) IF YOU PRESS TOP RIGHT OF SCREEN
+            if (pos.x > (6*screenBounds.width/7) && pos.y > (6*screenBounds.height/7))
+            {
+                [[CCDirector sharedDirector] replaceScene:
+                    [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[WinLayer alloc] init]]];
             }
         }
         else if(input.anyTouchEndedThisFrame)

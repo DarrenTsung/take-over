@@ -15,8 +15,8 @@ CCSprite *background;
 
 -(void) setupMenus
 {
-    CCMenuItemImage *startBtn = [CCMenuItemImage itemWithNormalImage:@"startsign.png"
-                                                       selectedImage: @"startsign.png"
+    CCMenuItemImage *startBtn = [CCMenuItemImage itemWithNormalImage:@"play.png"
+                                                       selectedImage: @"play.png"
                                                               target:self
                                                             selector:@selector(doTransition:)];
     
