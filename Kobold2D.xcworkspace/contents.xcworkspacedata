@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:blockwar/blockwar.xcodeproj">
+      location = "group:blockwar/takeover.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:__Kobold2D__/Kobold2D-Libraries.xcodeproj">

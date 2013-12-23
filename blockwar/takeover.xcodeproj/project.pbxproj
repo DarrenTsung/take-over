@@ -166,7 +166,7 @@
 		DC9C33E713B5024400931BF2 /* BuildSettings-Debug-Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Debug-Mac.xcconfig"; sourceTree = "<group>"; };
 		DC9C33E813B5024400931BF2 /* BuildSettings-Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Mac.xcconfig"; sourceTree = "<group>"; };
 		DC9C33E913B5024400931BF2 /* BuildSettings-Release-Mac.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "BuildSettings-Release-Mac.xcconfig"; sourceTree = "<group>"; };
-		DCC1A0E313A94ED5005BD75D /* blockwar-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "blockwar-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC1A0E313A94ED5005BD75D /* takeover-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "takeover-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC1A0F913A94ED5005BD75D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		DCC1A0FD13A94ED5005BD75D /* Icon-72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-72.png"; sourceTree = "<group>"; };
 		DCC1A0FF13A94ED5005BD75D /* Icon-Small-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-Small-50.png"; sourceTree = "<group>"; };
@@ -175,7 +175,7 @@
 		DCC1A10513A94ED5005BD75D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		DCC1A10713A94ED5005BD75D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		DCC1A10913A94ED5005BD75D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DCC1A25A13A94EE6005BD75D /* blockwar-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "blockwar-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DCC1A25A13A94EE6005BD75D /* takeover-Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "takeover-Mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCC1A26813A94EE6005BD75D /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = Resources/English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		DCC1A26B13A94EE6005BD75D /* English */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = English; path = Resources/English.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		DCC1A26F13A94EE6005BD75D /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = Resources/icon.icns; sourceTree = "<group>"; };
@@ -315,8 +315,8 @@
 		DCC1A0E413A94ED5005BD75D /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DCC1A0E313A94ED5005BD75D /* blockwar-iOS.app */,
-				DCC1A25A13A94EE6005BD75D /* blockwar-Mac.app */,
+				DCC1A0E313A94ED5005BD75D /* takeover-iOS.app */,
+				DCC1A25A13A94EE6005BD75D /* takeover-Mac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -449,9 +449,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		DCC1A0E213A94ED5005BD75D /* blockwar-iOS */ = {
+		DCC1A0E213A94ED5005BD75D /* takeover-iOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCC1A25313A94ED7005BD75D /* Build configuration list for PBXNativeTarget "blockwar-iOS" */;
+			buildConfigurationList = DCC1A25313A94ED7005BD75D /* Build configuration list for PBXNativeTarget "takeover-iOS" */;
 			buildPhases = (
 				DCC1A0DF13A94ED5005BD75D /* Sources */,
 				DCC1A0E013A94ED5005BD75D /* Frameworks */,
@@ -461,14 +461,14 @@
 			);
 			dependencies = (
 			);
-			name = "blockwar-iOS";
+			name = "takeover-iOS";
 			productName = "Hello-World-iOS";
-			productReference = DCC1A0E313A94ED5005BD75D /* blockwar-iOS.app */;
+			productReference = DCC1A0E313A94ED5005BD75D /* takeover-iOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DCC1A25913A94EE6005BD75D /* blockwar-Mac */ = {
+		DCC1A25913A94EE6005BD75D /* takeover-Mac */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = DCC1A38913A94EE7005BD75D /* Build configuration list for PBXNativeTarget "blockwar-Mac" */;
+			buildConfigurationList = DCC1A38913A94EE7005BD75D /* Build configuration list for PBXNativeTarget "takeover-Mac" */;
 			buildPhases = (
 				DCC1A25613A94EE6005BD75D /* Sources */,
 				DCC1A25713A94EE6005BD75D /* Frameworks */,
@@ -478,9 +478,9 @@
 			);
 			dependencies = (
 			);
-			name = "blockwar-Mac";
+			name = "takeover-Mac";
 			productName = "Hello-World-Mac";
-			productReference = DCC1A25A13A94EE6005BD75D /* blockwar-Mac.app */;
+			productReference = DCC1A25A13A94EE6005BD75D /* takeover-Mac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -491,7 +491,7 @@
 			attributes = {
 				LastUpgradeCheck = 0430;
 			};
-			buildConfigurationList = DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "blockwar" */;
+			buildConfigurationList = DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "takeover" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -504,8 +504,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				DCC1A0E213A94ED5005BD75D /* blockwar-iOS */,
-				DCC1A25913A94EE6005BD75D /* blockwar-Mac */,
+				DCC1A0E213A94ED5005BD75D /* takeover-iOS */,
+				DCC1A25913A94EE6005BD75D /* takeover-Mac */,
 			);
 		};
 /* End PBXProject section */
@@ -641,6 +641,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */;
 			buildSettings = {
+				PRODUCT_NAME = "takeover-iOS";
 			};
 			name = Debug;
 		};
@@ -648,6 +649,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */;
 			buildSettings = {
+				PRODUCT_NAME = "takeover-iOS";
 			};
 			name = Release;
 		};
@@ -655,6 +657,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9C33E713B5024400931BF2 /* BuildSettings-Debug-Mac.xcconfig */;
 			buildSettings = {
+				PRODUCT_NAME = "takeover-Mac";
 			};
 			name = Debug;
 		};
@@ -662,13 +665,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9C33E913B5024400931BF2 /* BuildSettings-Release-Mac.xcconfig */;
 			buildSettings = {
+				PRODUCT_NAME = "takeover-Mac";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "blockwar" */ = {
+		DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "takeover" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCC1A0DD13A94EC0005BD75D /* Debug */,
@@ -677,7 +681,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DCC1A25313A94ED7005BD75D /* Build configuration list for PBXNativeTarget "blockwar-iOS" */ = {
+		DCC1A25313A94ED7005BD75D /* Build configuration list for PBXNativeTarget "takeover-iOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCC1A25413A94ED7005BD75D /* Debug */,
@@ -686,7 +690,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		DCC1A38913A94EE7005BD75D /* Build configuration list for PBXNativeTarget "blockwar-Mac" */ = {
+		DCC1A38913A94EE7005BD75D /* Build configuration list for PBXNativeTarget "takeover-Mac" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				DCC1A38A13A94EE7005BD75D /* Debug */,
