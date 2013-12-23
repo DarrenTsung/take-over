@@ -39,6 +39,8 @@ HealthBar *playerHP;
 HealthBar *enemyHP;
 
 CGFloat currentLevel;
+CGFloat currentWorld;
+
 CGFloat bossSpawnTimer = 0.0f;
 bool bossExists = false;
 bool boss = false;
@@ -84,27 +86,28 @@ CGFloat bombTimer = 3.0f;
     return self;
 }
 
--(id) initWithLevel:(int)level
+-(id) initWithWorld:(int)world andLevel:(int)level
 {
     if ((self = [super initWithColor:ccc4(1.0f,1.0f,1.0f,1.0f)]))
     {
         NSLog(@"Game initializing...");
         
         NSString *AIName;
+        currentWorld = world;
         currentLevel = level;
         NSLog([NSString stringWithFormat:@"Current level is %d!", level]);
         switch (level)
         {
             case 1:
-                AIName = @"level1AI";
+                AIName = @"1_1AI";
                 break;
                 
             case 2:
-                AIName = @"level2AI";
+                AIName = @"1_2AI";
                 break;
                 
             case 3:
-                AIName = @"level3AI";
+                AIName = @"1_3AI";
                 bossSpawnTimer = 1.3f;
                 boss = true;
                 bossExists = false;
@@ -497,12 +500,12 @@ CGFloat bombTimer = 3.0f;
     if ([winState isEqualToString:@"player"])
     {
         [[CCDirector sharedDirector] replaceScene:
-            [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithLevel:(currentLevel + 1)]]];
+         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithWorld:currentWorld andLevel:(currentLevel + 1)]]];
     }
     else if ([winState isEqualToString:@"enemy"])
     {
         [[CCDirector sharedDirector] replaceScene:
-            [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithLevel:currentLevel]]];
+         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithWorld:currentWorld andLevel:currentLevel]]];
     }
     else if ([winState isEqualToString:@"win"])
     {

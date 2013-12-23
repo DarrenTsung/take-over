@@ -2,7 +2,7 @@
 //  StartMenuLayer.h
 //  blockwar
 //
-//  Created by Rick Ling on 12/3/13.
+//  Created by Darren Tsung on 12/3/13.
 //
 //
 
