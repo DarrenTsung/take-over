@@ -10,23 +10,21 @@
 
 @implementation RegeneratableBar
 
--(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor
+-(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor withLinkTo:(CGFloat *)linkedValue
 {
-    if ((self = [super initWithOrigin:theOrigin andOrientation:theOrientation andColor:theColor]))
+    if ((self = [super initWithOrigin:theOrigin andOrientation:theOrientation andColor:theColor withLinkTo:linkedValue]))
     {
         regenRate = 30.0f;
-        max = 120.0f;
-        current = max;
     }
     return self;
 }
 
 -(void) update:(ccTime) delta
 {
-    current += regenRate*delta;
-    if (current > max)
+    *currentPtr += regenRate*delta;
+    if (*currentPtr > max)
     {
-        current = max;
+        *currentPtr = max;
     }
 }
 

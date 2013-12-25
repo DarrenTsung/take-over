@@ -11,7 +11,7 @@
 @interface Bar : NSObject
 {
     @protected
-    CGFloat current, max, modifier;
+    CGFloat *currentPtr, current, max, modifier;
     CGSize size;
     CGPoint origin;
     NSString *orientation;
@@ -19,11 +19,10 @@
     CGFloat shakeTimer;
 }
 
--(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor;
+-(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor withLinkTo:(CGFloat *)linkedValue;
 -(void) draw;
--(void) decreaseValueBy:(CGFloat)value;
--(void) resetValueToMax;
 -(CGFloat) getCurrentValue;
+-(void) resetValueToMax;
 -(void) shakeForTime:(CGFloat)time;
 -(void) update:(ccTime)delta;
 -(void) stopShake;

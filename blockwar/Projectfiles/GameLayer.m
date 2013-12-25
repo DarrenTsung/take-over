@@ -32,8 +32,11 @@ ccColor4F touchIndicatorColor;
 // super units cost 6 times what regular units cost
 #define SUPER_UNIT_MULTIPLIER 6
 
+
 CGSize screenBounds;
 EnemyAI *theEnemy;
+
+#define BAR_PADDING 10.0f
 
 HealthBar *playerHP;
 HealthBar *enemyHP;
@@ -152,9 +155,9 @@ CGFloat bombTimer = 3.0f;
         theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self];
         
         // Resource Bars
-        enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - 10.0f, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f)];
-        playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f)];
-        playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(10.0f, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f)];
+        enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
+        playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&model->playerHP];
+        playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&model->playerResources];
     }
     
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
@@ -277,8 +280,6 @@ CGFloat bombTimer = 3.0f;
                     SuperUnit *unit = [[SuperUnit alloc] initWithPosition:pos];
                     [model insertUnit:unit intoSortedArrayWithName:@"playerSuperUnits"];
                     [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
-                    
-                    [playerResources decreaseValueBy:SUPER_UNIT_MULTIPLIER*UNIT_COST];
                 }
                 else if ([playerResources getCurrentValue] > SPAWN_SIZE*UNIT_COST)
                 {
@@ -312,7 +313,6 @@ CGFloat bombTimer = 3.0f;
                         Unit *unit = [[Unit alloc] initUnit:@"zombie" withOwner:@"Player" AndPosition:[position CGPointValue]];
                         [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
                     }
-                    [playerResources decreaseValueBy:SPAWN_SIZE*UNIT_COST];
                 }
             }
             // BLOCKERS DEPRECATED FOR DEMO \\
@@ -456,23 +456,6 @@ CGFloat bombTimer = 3.0f;
         
         // after units are done spawning / moving, check for collisions
         [model checkForCollisionsAndRemove];
-    }
-}
-
-// handles a message from outside the VC to interface with the UI
-// messages come in the format [ messageType, messageArguments .. ]
--(void) handleMessage:(NSArray *)message
-{
-    NSString *messageType = message[0];
-    if ([messageType isEqualToString:@"playerHit"])
-    {
-        [playerHP decreaseValueBy:[message[1] floatValue]];
-        [playerHP shakeForTime:0.5f];
-    }
-    else if ([messageType isEqualToString:@"enemyHit"])
-    {
-        [enemyHP decreaseValueBy:[message[1] floatValue]];
-        [enemyHP shakeForTime:0.5f];
     }
 }
 

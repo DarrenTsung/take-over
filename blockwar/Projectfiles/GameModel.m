@@ -12,6 +12,9 @@
 #import "SuperUnit.h"
 #import "GameLayer.h"
 
+#define UNIT_COST 12
+// super units cost 6 times what regular units cost
+#define SUPER_UNIT_MULTIPLIER 6
 
 @implementation GameModel
 
@@ -24,6 +27,10 @@
         enemyUnits = [[NSMutableArray alloc] init];
         playerSuperUnits = [[NSMutableArray alloc] init];
         particleArray = [[NSMutableArray alloc] init];
+        
+        playerHP = 50.0f;
+        playerResources = 120.0f;
+        enemyHP = 50.0f;
     }
     return self;
 }
@@ -35,6 +42,14 @@
     if ([arrayName isEqualToString:@"playerUnits"])
     {
         array = playerUnits;
+        if ([unit isKindOfClass:[SuperUnit class]])
+        {
+            playerResources -= SUPER_UNIT_MULTIPLIER*UNIT_COST;
+        }
+        else if ([unit isKindOfClass:[Unit class]])
+        {
+            playerResources -= UNIT_COST;
+        }
     }
     else if ([arrayName isEqualToString:@"enemyUnits"])
     {
@@ -193,6 +208,7 @@
     //NSLog(@"Compared %d times this iteration!", counter);
     for (Unit *unit in playerUnits)
     {
+        // if this unit has reached the right side completely
         if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
         {
             [playerDiscardedUnits addObject:unit];
@@ -201,7 +217,11 @@
             {
                 [playerDiscardedSuperUnits addObject:unit];
             }
-            [viewController handleMessage:@[@"enemyHit", [NSNumber numberWithFloat:unit->damage]]];
+            enemyHP -= unit->damage;
+            if (enemyHP <= 0.0f)
+            {
+                [viewController endGameWithWinner:@"player"];
+            }
         }
     }
     for (Unit *enemyUnit in enemyUnits)
@@ -233,7 +253,11 @@
             }
             [enemyDiscardedUnits addObject:enemyUnit];
             [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
-            [viewController handleMessage:@[@"playerHit", [NSNumber numberWithFloat:enemyUnit->damage]]];
+            playerHP -= enemyUnit->damage;
+            if (playerHP <= 0.0f)
+            {
+                [viewController endGameWithWinner:@"enemy"];
+            }
 
         }
     }

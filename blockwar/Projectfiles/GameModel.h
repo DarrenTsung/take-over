@@ -16,6 +16,8 @@
     @public
     NSMutableArray *playerUnits, *enemyUnits, *playerSuperUnits, *particleArray;
     GameLayer *viewController;
+    
+    CGFloat playerHP, playerResources, enemyHP;
 }
 
 -(id) initWithReferenceToViewController:(GameLayer *)theViewController;

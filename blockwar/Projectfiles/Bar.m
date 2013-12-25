@@ -10,15 +10,16 @@
 
 @implementation Bar
 
--(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor
+-(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor withLinkTo:(CGFloat *)linkedValue
 {
     if ((self = [super init]))
     {
         // default size is 150 pixels
         size = CGSizeMake(150.0f, 10.0f);
-        // default max is 120.0f
-        max = 50.0f;
-        current = 50.0f;
+        
+        max = *linkedValue;
+        currentPtr = linkedValue;
+        current = *currentPtr;
         
         origin = theOrigin;
         color = theColor;
@@ -43,16 +44,16 @@
 -(void) draw
 {
     CGPoint offset = CGPointMake(0.0f, 0.0f);
-    if (shakeTimer > 0.0f && current > 0.0f)
+    if (shakeTimer > 0.0f && *currentPtr > 0.0f)
     {
         offset = CGPointMake(arc4random()%17/5.0f, arc4random()%17/5.0f);
     }
 
     // opposite point to the origin of the health_bar
     CGPoint newOrigin = CGPointMake(origin.x + offset.x, origin.y + offset.y);
-    CGPoint otherPoint = CGPointMake(newOrigin.x + modifier*size.width*(current/max), newOrigin.y - size.height);
+    CGPoint otherPoint = CGPointMake(newOrigin.x + modifier*size.width*(*currentPtr/max), newOrigin.y - size.height);
     CGPoint maxPoint = CGPointMake(newOrigin.x + modifier*size.width, newOrigin.y - size.height);
-    if (current > 0.0f)
+    if (*currentPtr > 0.0f)
     {
         ccDrawSolidRect(newOrigin, otherPoint, color);
     }
@@ -65,23 +66,22 @@
     {
         shakeTimer -= delta;
     }
-}
-
--(void) decreaseValueBy:(CGFloat) value
-{
-    current -= value;
-}
-
--(void) resetValueToMax
-{
-    current = max;
-    // also disable any shake when resetting
-    shakeTimer = 0.0f;
+    if (current != *currentPtr)
+    {
+        [self shakeForTime:0.5f];
+        current = *currentPtr;
+    }
 }
 
 -(CGFloat) getCurrentValue
 {
-    return current;
+    return *currentPtr;
+}
+
+-(void) resetValueToMax
+{
+    // also disable any shake when resetting
+    shakeTimer = 0.0f;
 }
 
 -(void) shakeForTime:(CGFloat)time
