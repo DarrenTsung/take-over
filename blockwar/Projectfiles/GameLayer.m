@@ -257,7 +257,8 @@ CGFloat bombTimer = 3.0f;
                     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[WinLayer alloc] init]]];
             }
         }
-        else if(input.anyTouchEndedThisFrame)
+        // second part of the conditional fixes the bug where kkinput doesn't detect an end of the touch near the bottom
+        else if(input.anyTouchEndedThisFrame || (!input.touchesAvailable && touchIndicatorRadius >= TOUCH_RADIUS_MIN))
         {
             /*
             CGFloat xChange = pos.x - touchStartPoint.x;

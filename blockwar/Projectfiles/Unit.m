@@ -8,7 +8,7 @@
 
 #import "Unit.h"
 
-#define BOUNDING_RECT_MODIFIER 1.5f
+#define BOUNDING_RECT_MODIFIER 1.2f
 
 @implementation Unit
 
@@ -17,6 +17,7 @@
     if ((self = [super init]))
     {
         origin = pos;
+        
         // default player color
         color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
         displayColor = color;
@@ -40,8 +41,11 @@
         
         name = theName;
         owner = @"Player";
+        
         [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
         whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
+        self.position = origin;
+        whiteSprite.position = origin;
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         // make it 1.5x the size of the blocks so that they hit each other more often
         boundingRect = CGRectMake(origin.x - [self width]/2, origin.y - [self height]*BOUNDING_RECT_MODIFIER/2, [self width], [self height]*BOUNDING_RECT_MODIFIER);
@@ -70,7 +74,7 @@
     //ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), displayColor);
     
     // DEBUG: UNCOMMENT TO SEE BOUNDING RECTANGLES DRAWN IN WHITE
-    ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
+    //ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
 }
 
 
@@ -80,7 +84,7 @@
     if ([owner isEqualToString:@"Opponent"])
     {
         origin.x -= delta*velocity;
-        boundingRect.origin = origin;
+        boundingRect.origin.x -= delta*velocity;
     }
     else
     {
