@@ -80,7 +80,7 @@
 
 -(void) resetValueToMax
 {
-    // also disable any shake when resetting
+    // disable any shake when resetting
     shakeTimer = 0.0f;
 }
 

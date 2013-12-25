@@ -284,6 +284,7 @@ CGFloat bombTimer = 3.0f;
                 else if ([playerResources getCurrentValue] > SPAWN_SIZE*UNIT_COST)
                 {
                     NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
+                    // generate units
                     for (int i = 0; i < SPAWN_SIZE; i++)
                     {
                         CGPoint random_pos;
@@ -291,7 +292,7 @@ CGFloat bombTimer = 3.0f;
                         while (!not_near)
                         {
                             not_near = true;
-                            random_pos = CGPointMake(touchIndicatorCenter.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touchIndicatorCenter.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
+                            random_pos = CGPointMake(pos.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, pos.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
                             for (NSValue *o_pos in positions_to_be_spawned)
                             {
                                 CGPoint other_pos = [o_pos CGPointValue];
