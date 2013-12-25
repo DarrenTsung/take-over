@@ -12,7 +12,7 @@
 
 -(id) initWithPosition:(CGPoint)pos
 {
-    if ((self = [super initWithPosition:pos]))
+    if ((self = [super initWithPosition:pos andName:@"zombie"]))
     {
         // blockers are healthier, bigger and slower. they do less damage but also get pushed back less
         health *= 2.8f;

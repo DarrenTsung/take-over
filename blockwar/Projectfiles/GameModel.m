@@ -299,24 +299,19 @@
 
 -(void) reset
 {
-    [viewController removeChildrenInArray:playerUnits cleanup:YES];
-    [self removeWhiteSpritesFrom:playerUnits];
-    [viewController removeChildrenInArray:playerSuperUnits cleanup:YES];
-    [self removeWhiteSpritesFrom:playerSuperUnits];
-    [viewController removeChildrenInArray:enemyUnits cleanup:YES];
-    [self removeWhiteSpritesFrom:enemyUnits];
-    [playerUnits removeAllObjects];
-    [enemyUnits removeAllObjects];
-    [playerSuperUnits removeAllObjects];
+    [self removeUnitsFrom:playerUnits];
+    [self removeUnitsFrom:playerSuperUnits];
+    [self removeUnitsFrom:enemyUnits];
 }
 
--(void) removeWhiteSpritesFrom:(NSMutableArray *)array
+-(void) removeUnitsFrom:(NSMutableArray *)array
 {
+    [viewController removeChildrenInArray:array cleanup:YES];
     for (Unit *unit in array)
     {
         [viewController removeChild:unit->whiteSprite cleanup:YES];
     }
-    
+    [array removeAllObjects];
 }
 
 -(bool) doesSuperUnitExist

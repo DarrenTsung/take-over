@@ -12,7 +12,7 @@
 
 -(id) initWithPosition:(CGPoint)pos
 {
-    if ((self = [super initWithPosition:pos]))
+    if ((self = [super initWithPosition:pos andName:@"superzombie"]))
     {
         size = CGSizeMake(20.0f, 20.0f);
         [self setMaxVelocity:maxVelocity*0.8];
@@ -27,12 +27,6 @@
         framesPerSecond = 6;
         frameDelay = (1.0/framesPerSecond);
         frameTimer = frameDelay;
-        
-        name = @"superzombie";
-        owner = @"Player";
-        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
-        whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
-
     }
     return self;
 }

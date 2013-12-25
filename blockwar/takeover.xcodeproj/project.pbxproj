@@ -403,10 +403,10 @@
 			isa = PBXGroup;
 			children = (
 				6C021A1918681828000C11FC /* Layers */,
-				6CBA5BF518249AB200E52FC7 /* Resource Bars */,
-				6CAE6D9B182C362D00602F39 /* Artifical Intelligence */,
 				6CD361651826CF2E00A56D5C /* GameModel.h */,
 				6CD361661826CF2E00A56D5C /* GameModel.m */,
+				6CBA5BF518249AB200E52FC7 /* Resource Bars */,
+				6CAE6D9B182C362D00602F39 /* Artifical Intelligence */,
 				6CD3616B182AD65800A56D5C /* Effects */,
 				6CD3616418259DF500A56D5C /* Units */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
@@ -498,6 +498,11 @@
 			isa = PBXProject;
 			attributes = {
 				LastUpgradeCheck = 0430;
+				TargetAttributes = {
+					DCC1A0E213A94ED5005BD75D = {
+						DevelopmentTeam = SN2MPNRVQW;
+					};
+				};
 			};
 			buildConfigurationList = DCC1A0DB13A94EC0005BD75D /* Build configuration list for PBXProject "takeover" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -649,7 +654,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCFA90EF13B4F6F7009DD35A /* BuildSettings-Debug-iOS.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				PRODUCT_NAME = "takeover-iOS";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -657,7 +665,10 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCFA90F013B4F811009DD35A /* BuildSettings-Release-iOS.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				PRODUCT_NAME = "takeover-iOS";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

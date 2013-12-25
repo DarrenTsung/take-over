@@ -12,7 +12,7 @@
 
 @implementation Unit
 
--(id)initWithPosition:(CGPoint)pos
+-(id)initWithPosition:(CGPoint)pos andName:(NSString *)theName
 {
     if ((self = [super init]))
     {
@@ -21,8 +21,6 @@
         color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
         displayColor = color;
         
-        // default size is 15x15
-        size = CGSizeMake(15.0f, 15.0f);
         // construct movement variables
         velocity = 120.0f;
         [self setMaxVelocity:120.0f];
@@ -40,56 +38,31 @@
         flashTimer = 0.0f;
         buffed = false;
         
-        // REMOVE LATER || SET UNIT SPRITE TO ZOMBIE
-        name = @"zombie";
+        name = theName;
         owner = @"Player";
         [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
         whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         // make it 1.5x the size of the blocks so that they hit each other more often
-        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
-        
+        boundingRect = CGRectMake(origin.x - [self width]/2, origin.y - [self height]*BOUNDING_RECT_MODIFIER/2, [self width], [self height]*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
 
--(id) initUnit:(NSString *)UnitName withOwner:(NSString *)OwnerName AndPosition:(CGPoint)pos
+-(id) initUnit:(NSString *)theName withOwner:(NSString *)theOwner AndPosition:(CGPoint)pos
 {
-    if ((self = [self initWithPosition:pos]))
+    if ((self = [self initWithPosition:pos andName:theName]))
     {
-        owner = OwnerName;
+        owner = theOwner;
         if ([owner isEqualToString:@"Opponent"])
         {
             health = 4.0f;
             [self setDamage:0.8f];
         }
-        name = UnitName;
-        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
-        whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
-        // make the bounding rect here so we don't have to construct each time we're checking collisions
-        // make it 1.5x the size of the blocks so that they hit each other more often
-        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
 
-/*
--(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat)theVelocity andAcceleration:(CGFloat)theAcceleration
-{
-    if ((self = [self initWithPosition:pos]))
-    {
-        color = theColor;
-        displayColor = color;
-        size = theSize;
-        velocity = theVelocity;
-        acceleration = theAcceleration;
-        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
-    }
-    return self;
-}
-*/
-
-/*
 -(void) draw
 {
     [super draw];
@@ -97,9 +70,8 @@
     //ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), displayColor);
     
     // DEBUG: UNCOMMENT TO SEE BOUNDING RECTANGLES DRAWN IN WHITE
-    //ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
+    ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
 }
-*/
 
 
 -(void) update:(ccTime) delta
@@ -108,10 +80,12 @@
     if ([owner isEqualToString:@"Opponent"])
     {
         origin.x -= delta*velocity;
+        boundingRect.origin = origin;
     }
     else
     {
         origin.x += delta*velocity;
+        boundingRect.origin.x += delta*velocity;
     }
     [self checkBuffed];
     
@@ -121,7 +95,6 @@
     {
         velocity = maxVelocity;
     }
-    boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
     self.position = origin;
     whiteSprite.position = origin;
     
@@ -220,6 +193,16 @@
 {
     maxVelocity = theMaxVelocity;
     baseMaxVelocity = maxVelocity;
+}
+
+-(CGFloat) width
+{
+    return [self boundingBox].size.width;
+}
+
+-(CGFloat) height
+{
+    return [self boundingBox].size.height;
 }
 
 -(void) kill

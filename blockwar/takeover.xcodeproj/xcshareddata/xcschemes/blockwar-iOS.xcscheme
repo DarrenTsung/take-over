@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCC1A0E213A94ED5005BD75D"
-            BuildableName = "blockwar-iOS.app"
-            BlueprintName = "blockwar-iOS"
-            ReferencedContainer = "container:blockwar.xcodeproj">
+            BuildableName = "takeover-iOS.app"
+            BlueprintName = "takeover-iOS"
+            ReferencedContainer = "container:takeover.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -54,9 +54,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "DCC1A0E213A94ED5005BD75D"
-            BuildableName = "blockwar-iOS.app"
-            BlueprintName = "blockwar-iOS"
-            ReferencedContainer = "container:blockwar.xcodeproj">
+            BuildableName = "takeover-iOS.app"
+            BlueprintName = "takeover-iOS"
+            ReferencedContainer = "container:takeover.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>

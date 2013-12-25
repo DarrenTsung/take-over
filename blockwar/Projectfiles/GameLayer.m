@@ -80,7 +80,7 @@ CGFloat bombTimer = 3.0f;
 
 -(id) init
 {
-    if (self = [self initWithLevel:1])
+    if (self = [self initWithWorld:1 andLevel:1])
     {
     }
     return self;
@@ -125,15 +125,12 @@ CGFloat bombTimer = 3.0f;
 
         // returns screenBounds flipped automatically (since we're in landscape mode)
         screenBounds = [self returnScreenBounds];
-        
-        CGFloat screenWidth = screenBounds.width;
-        CGFloat screenHeight = screenBounds.height;
-        NSLog(@"The screen width and height are (%f, %f)", screenWidth, screenHeight);
-        playHeight = 10.2 * screenHeight/12.2;
+        NSLog(@"The screen width and height are (%f, %f)", screenBounds.width, screenBounds.height);
+        playHeight = 10.2 * screenBounds.height/12.2;
         
         // touch_area is the player's spawning area
         touchArea.origin = CGPointMake(0.0f, 0.0f);
-        touchArea.size = CGSizeMake(screenWidth/7, playHeight);
+        touchArea.size = CGSizeMake(screenBounds.width/7, playHeight);
         
         [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"russianframes.plist"];
         CCSpriteBatchNode *russianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.png"];
@@ -150,9 +147,6 @@ CGFloat bombTimer = 3.0f;
         
         // model controls and models all the germs
         model = [[GameModel alloc] initWithReferenceToViewController:self];
-        
-        // particleArray keeps track of all the particles
-        particleArray = [[NSMutableArray alloc] init];
         
         // theEnemy.. oo ominous!
         theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self];
@@ -274,53 +268,50 @@ CGFloat bombTimer = 3.0f;
             */
             // BLOCKERS DEPRECATED FOR DEMO \\
             //if (distanceChange < 30.0f)
-            if (touchIndicatorRadius >= TOUCH_RADIUS_MIN && inTouchArea)
+            if (inTouchArea && touchIndicatorRadius >= TOUCH_RADIUS_MIN)
             {
-                if (touchIndicatorRadius > TOUCH_RADIUS_MIN && [playerResources getCurrentValue] > touchIndicatorRadius)
+                // spawn SuperGerm if radius is greater than max (and fluctuating)
+                if (touchIndicatorRadius >= TOUCH_RADIUS_MAX && [playerResources getCurrentValue] > SUPER_UNIT_MULTIPLIER*UNIT_COST)
                 {
-                    // spawn SuperGerm if radius is greater than max (and fluctuating)
-                    if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
+                    SuperUnit *unit = [[SuperUnit alloc] initWithPosition:pos];
+                    [model insertUnit:unit intoSortedArrayWithName:@"playerSuperUnits"];
+                    [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
+                    
+                    [playerResources decreaseValueBy:SUPER_UNIT_MULTIPLIER*UNIT_COST];
+                }
+                else if ([playerResources getCurrentValue] > SPAWN_SIZE*UNIT_COST)
+                {
+                    NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
+                    for (int i = 0; i < SPAWN_SIZE; i++)
                     {
-                        SuperUnit *unit = [[SuperUnit alloc] initWithPosition:pos];
-                        [model insertUnit:unit intoSortedArrayWithName:@"playerSuperUnits"];
-                        [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
-                        
-                        [playerResources decreaseValueBy:SUPER_UNIT_MULTIPLIER*UNIT_COST];
-                    }
-                    else
-                    {
-                        NSMutableArray *positions_to_be_spawned = [[NSMutableArray alloc] init];
-                        for (int i = 0; i < SPAWN_SIZE; i++)
+                        CGPoint random_pos;
+                        bool not_near = false;
+                        while (!not_near)
                         {
-                            CGPoint random_pos;
-                            bool not_near = false;
-                            while (!not_near)
+                            not_near = true;
+                            random_pos = CGPointMake(touchIndicatorCenter.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touchIndicatorCenter.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
+                            for (NSValue *o_pos in positions_to_be_spawned)
                             {
-                                not_near = true;
-                                random_pos = CGPointMake(touchIndicatorCenter.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, touchIndicatorCenter.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
-                                for (NSValue *o_pos in positions_to_be_spawned)
+                                CGPoint other_pos = [o_pos CGPointValue];
+                                CGFloat xDist = other_pos.x - random_pos.x;
+                                CGFloat yDist = other_pos.y - random_pos.y;
+                                // if distance between two points is less than padding
+                                if (sqrt((xDist*xDist) + (yDist*yDist)) < UNIT_PADDING)
                                 {
-                                    CGPoint other_pos = [o_pos CGPointValue];
-                                    CGFloat xDist = other_pos.x - random_pos.x;
-                                    CGFloat yDist = other_pos.y - random_pos.y;
-                                    // if distance between two points is less than padding
-                                    if (sqrt((xDist*xDist) + (yDist*yDist)) < UNIT_PADDING)
-                                    {
-                                        // too close to another point, generate again
-                                        not_near = false;
-                                        break;
-                                    }
+                                    // too close to another point, generate again
+                                    not_near = false;
+                                    break;
                                 }
                             }
-                            [positions_to_be_spawned addObject:[NSValue valueWithCGPoint:random_pos]];
                         }
-                        for (NSValue *position in positions_to_be_spawned)
-                        {
-                            Unit *unit = [[Unit alloc] initUnit:@"zombie" withOwner:@"Player" AndPosition:[position CGPointValue]];
-                            [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
-                        }
-                        [playerResources decreaseValueBy:SPAWN_SIZE*UNIT_COST];
+                        [positions_to_be_spawned addObject:[NSValue valueWithCGPoint:random_pos]];
                     }
+                    for (NSValue *position in positions_to_be_spawned)
+                    {
+                        Unit *unit = [[Unit alloc] initUnit:@"zombie" withOwner:@"Player" AndPosition:[position CGPointValue]];
+                        [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
+                    }
+                    [playerResources decreaseValueBy:SPAWN_SIZE*UNIT_COST];
                 }
             }
             // BLOCKERS DEPRECATED FOR DEMO \\
@@ -425,7 +416,8 @@ CGFloat bombTimer = 3.0f;
             }
         }
     }
-    else        // update the reset timer and reset after 5 seconds
+    // runs if isDone is true (updates the reset timer and resets when finished)
+    else
     {
         if (resetTimer > 0.0f)
         {
@@ -466,6 +458,8 @@ CGFloat bombTimer = 3.0f;
     }
 }
 
+// handles a message from outside the VC to interface with the UI
+// messages come in the format [ messageType, messageArguments .. ]
 -(void) handleMessage:(NSArray *)message
 {
     NSString *messageType = message[0];
@@ -499,11 +493,13 @@ CGFloat bombTimer = 3.0f;
     
     if ([winState isEqualToString:@"player"])
     {
+        // go to the next level
         [[CCDirector sharedDirector] replaceScene:
          [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithWorld:currentWorld andLevel:(currentLevel + 1)]]];
     }
     else if ([winState isEqualToString:@"enemy"])
     {
+        // reset the level
         [[CCDirector sharedDirector] replaceScene:
          [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithWorld:currentWorld andLevel:currentLevel]]];
     }
@@ -520,12 +516,7 @@ CGFloat bombTimer = 3.0f;
     winState = nil;
 }
 
--(void) win
-{
-    winState = @"win";
-    [self reset];
-}
-
+// returns the screen bounds, flipped since we're working in landscape mode
 -(CGSize) returnScreenBounds
 {
     CGSize screenBounds = [[UIScreen mainScreen] bounds].size;

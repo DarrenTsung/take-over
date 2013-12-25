@@ -28,7 +28,7 @@
     CCSprite *whiteSprite;
 }
 
--(id)initWithPosition:(CGPoint)pos;
+-(id)initWithPosition:(CGPoint)pos andName:(NSString *)theName;
 -(id) initUnit:(NSString *)UnitName withOwner:(NSString *)OwnerName AndPosition:(CGPoint)pos;
 
 //-(id)initWithPosition:(CGPoint)pos andColor:(ccColor4F)theColor andSize:(CGSize)theSize andVelocity:(CGFloat) theVelocity andAcceleration:(CGFloat) theAcceleration andIsOpponents:(BOOL) isOpponents;
