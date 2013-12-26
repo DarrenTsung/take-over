@@ -7,7 +7,7 @@
 //
 
 #import "StartMenuLayer.h"
-#import "GameLayer.h"
+#import "LevelSelectLayer.h"
 
 @implementation StartMenuLayer
 
@@ -45,7 +45,7 @@ CCSprite *background;
 -(void) doTransition: (CCMenuItem  *) menuItem
 {
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithWorld:1 andLevel:2]]];
+     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
 }
 
 

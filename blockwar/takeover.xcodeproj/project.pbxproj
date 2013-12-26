@@ -24,6 +24,7 @@
 		6C021A49186B94ED000C11FC /* Bar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A44186B94ED000C11FC /* Bar.m */; };
 		6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A46186B94ED000C11FC /* HealthBar.m */; };
 		6C021A4B186B94ED000C11FC /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A48186B94ED000C11FC /* RegeneratableBar.m */; };
+		6C021A4F186B972C000C11FC /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A4E186B972C000C11FC /* LevelSelectLayer.m */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -118,6 +119,8 @@
 		6C021A46186B94ED000C11FC /* HealthBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HealthBar.m; path = Bars/HealthBar.m; sourceTree = "<group>"; };
 		6C021A47186B94ED000C11FC /* RegeneratableBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegeneratableBar.h; path = Bars/RegeneratableBar.h; sourceTree = "<group>"; };
 		6C021A48186B94ED000C11FC /* RegeneratableBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegeneratableBar.m; path = Bars/RegeneratableBar.m; sourceTree = "<group>"; };
+		6C021A4D186B972C000C11FC /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectLayer.h; path = Layers/LevelSelectLayer.h; sourceTree = "<group>"; };
+		6C021A4E186B972C000C11FC /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelectLayer.m; path = Layers/LevelSelectLayer.m; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -238,6 +241,8 @@
 				6C021A3C186B94D6000C11FC /* StartMenuLayer.m */,
 				6C021A3D186B94D6000C11FC /* WinLayer.h */,
 				6C021A3E186B94D6000C11FC /* WinLayer.m */,
+				6C021A4D186B972C000C11FC /* LevelSelectLayer.h */,
+				6C021A4E186B972C000C11FC /* LevelSelectLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -580,6 +585,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C021A4F186B972C000C11FC /* LevelSelectLayer.m in Sources */,
 				6C021A36186B94CA000C11FC /* Unit.m in Sources */,
 				6C021A49186B94ED000C11FC /* Bar.m in Sources */,
 				6C021A29186B94B8000C11FC /* EnemyAI.m in Sources */,
