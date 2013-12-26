@@ -18,6 +18,6 @@
 -(CGSize) returnScreenBounds;
 
 -(id) initWithWorld:(int)world andLevel:(int)level;
--(void) endGameWithWinner:(NSString *)winner;
+-(void) endGameWithWinState:(NSString *)theWinState;
 
 @end

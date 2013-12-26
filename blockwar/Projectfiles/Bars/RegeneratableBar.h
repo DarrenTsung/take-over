@@ -14,7 +14,7 @@
     CGFloat regenRate;
 }
 
--(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor;
+-(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor withLinkTo:(CGFloat *)linkedValue;
 -(void) update:(ccTime) delta;
 
 @end

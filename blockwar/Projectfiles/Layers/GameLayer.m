@@ -98,7 +98,6 @@ CGFloat bombTimer = 3.0f;
         NSString *AIName;
         currentWorld = world;
         currentLevel = level;
-        NSLog([NSString stringWithFormat:@"Current level is %d!", level]);
         switch (level)
         {
             case 1:
@@ -438,11 +437,11 @@ CGFloat bombTimer = 3.0f;
     {
         if ([playerHP getCurrentValue] <= 0.0f)
         {
-            [self endGameWithWinner:@"enemy"];
+            [self endGameWithWinState:@"enemy"];
         }
         else if ([enemyHP getCurrentValue] <= 0.0f)
         {
-            [self endGameWithWinner:@"player"];
+            [self endGameWithWinState:@"player"];
         }
     }
     if (!isDone)
@@ -512,10 +511,10 @@ CGFloat bombTimer = 3.0f;
     return screenBounds;
 }
 
--(void) endGameWithWinner:(NSString *)winner
+-(void) endGameWithWinState:(NSString *)theWinState
 {
-    NSLog(@"%@ just won! Congrats", winner);
-    winState = winner;
+    NSLog(@"Win state: %@!", theWinState);
+    winState = theWinState;
     isDone = true;
     [playerHP stopShake];
     [enemyHP stopShake];

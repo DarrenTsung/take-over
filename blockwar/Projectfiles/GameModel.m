@@ -220,7 +220,7 @@
             enemyHP -= unit->damage;
             if (enemyHP <= 0.0f)
             {
-                [viewController endGameWithWinner:@"player"];
+                [viewController endGameWithWinState:@"player"];
             }
         }
     }
@@ -249,14 +249,14 @@
         {
             if ([enemyUnit->name isEqualToString:@"bossrussian"])
             {
-                [viewController endGameWithWinner:@"enemy"];
+                [viewController endGameWithWinState:@"enemy"];
             }
             [enemyDiscardedUnits addObject:enemyUnit];
             [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
             playerHP -= enemyUnit->damage;
             if (playerHP <= 0.0f)
             {
-                [viewController endGameWithWinner:@"enemy"];
+                [viewController endGameWithWinState:@"enemy"];
             }
 
         }
@@ -268,7 +268,7 @@
     [viewController removeChildrenInArray:enemyDiscardedUnits cleanup:YES];
     if (endGame)
     {
-        [viewController endGameWithWinner:@"win"];
+        [viewController endGameWithWinState:@"win"];
     }
 }
 
