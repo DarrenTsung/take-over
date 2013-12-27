@@ -19,7 +19,8 @@ CGPoint currentPosition;
 {
     if ((self = [super init]))
 	{
-        [self setUpMenuWithWorld:1];
+        NSInteger worldUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"worldUnlocked"];
+        [self setUpMenuWithWorld:worldUnlocked];
         
         CGSize screenBounds = [[UIScreen mainScreen] bounds].size;
         // flip the height and width since we're in landscape mode
@@ -38,6 +39,8 @@ CGPoint currentPosition;
 
 -(void) setUpMenuWithWorld:(int) world
 {
+    NSInteger levelUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"];
+    
     CCMenu *menu = [CCMenu menuWithItems: nil];
     NSString *worldPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"world%d_levelselect", world] ofType:@"plist"];
     NSDictionary *worldProperties = [NSDictionary dictionaryWithContentsOfFile:worldPath];
@@ -46,12 +49,18 @@ CGPoint currentPosition;
     for (NSDictionary *level in levels)
     {
         int levelNum = [[level objectForKey:@"levelNumber"] integerValue];
-        CCMenuItemImage *item = [CCMenuItemImage itemWithNormalImage:[level objectForKey:@"icon"]
-                                                       selectedImage:[level objectForKey:@"icon"]
-                                                               block:^(id sender){
-                                                                   NSLog(@"Level %d loaded!", levelNum);
-                                                                   [self loadWorld:world withLevel:levelNum];
-                                                               }];
+        CCMenuItemImage *item;
+        item = [CCMenuItemImage itemWithNormalImage:[level objectForKey:@"icon"]
+                                      selectedImage:[level objectForKey:@"icon"]
+                                      disabledImage:[level objectForKey:@"lockedIcon"]
+                                              block:^(id sender){
+                                                        NSLog(@"Level %d loaded!", levelNum);
+                                                        [self loadWorld:world withLevel:levelNum];
+                                                    }];
+        if (levelNum > levelUnlocked)
+        {
+            item.isEnabled = false;
+        }
         [item setPosition:CGPointMake([[level objectForKey:@"x"] floatValue], [[level objectForKey:@"y"] floatValue])];
         [menu addChild:item];
     }

@@ -31,6 +31,16 @@ CCSprite *background;
 {
     if ((self = [super init]))
 	{
+        // make sure that the user's data is present, if not unlock the beginning level
+        NSInteger worldUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"worldUnlocked"];
+        NSInteger levelUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"];
+        NSLog(@"User has (world: %d, level %d) unlocked!", worldUnlocked, levelUnlocked);
+        if (worldUnlocked == 0 || levelUnlocked == 0)
+        {
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"worldUnlocked"];
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"levelUnlocked"];
+        }
+        
         background = [CCSprite spriteWithFile: @"menubackground.png"];
         background.position = ccp( 280, 160 );
         

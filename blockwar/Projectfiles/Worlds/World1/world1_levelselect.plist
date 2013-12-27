@@ -13,6 +13,8 @@
 			<integer>280</integer>
 			<key>icon</key>
 			<string>level1.png</string>
+			<key>lockedIcon</key>
+			<string>level1_locked.png</string>
 			<key>levelNumber</key>
 			<integer>1</integer>
 		</dict>
@@ -23,6 +25,8 @@
 			<integer>280</integer>
 			<key>icon</key>
 			<string>level2.png</string>
+			<key>lockedIcon</key>
+			<string>level2_locked.png</string>
 			<key>levelNumber</key>
 			<integer>2</integer>
 		</dict>
@@ -33,6 +37,8 @@
 			<integer>280</integer>
 			<key>icon</key>
 			<string>level3.png</string>
+			<key>lockedIcon</key>
+			<string>level3_locked.png</string>
 			<key>levelNumber</key>
 			<integer>3</integer>
 		</dict>
