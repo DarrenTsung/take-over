@@ -10,4 +10,7 @@
 
 @interface PlayerData : NSObject
 
+@property (nonatomic) int worldProgress;
+@property (nonatomic) int levelProgress;
+
 @end

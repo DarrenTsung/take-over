@@ -17,6 +17,7 @@
 #import "GameModel.h"
 #import "WinLayer.h"
 #import "LoseLayer.h"
+#import "StartMenuLayer.h"
 
 GameModel *model;
 
@@ -256,7 +257,7 @@ CGFloat bombTimer = 3.0f;
             if (pos.x > (6*screenBounds.width/7) && pos.y > (6*screenBounds.height/7))
             {
                 [[CCDirector sharedDirector] replaceScene:
-                    [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[WinLayer alloc] init]]];
+                    [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[StartMenuLayer alloc] init]]];
             }
         }
         // second part of the conditional fixes the bug where kkinput doesn't detect an end of the touch near the bottom

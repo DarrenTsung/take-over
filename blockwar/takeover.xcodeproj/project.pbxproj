@@ -25,6 +25,10 @@
 		6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A46186B94ED000C11FC /* HealthBar.m */; };
 		6C021A4B186B94ED000C11FC /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A48186B94ED000C11FC /* RegeneratableBar.m */; };
 		6C021A4F186B972C000C11FC /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A4E186B972C000C11FC /* LevelSelectLayer.m */; };
+		6C902086186E3732001D1183 /* level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C902084186E3732001D1183 /* level1.png */; };
+		6C902087186E3732001D1183 /* world1_levelselect.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C902085186E3732001D1183 /* world1_levelselect.plist */; };
+		6C90208A186E3CA1001D1183 /* level2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C902088186E3CA1001D1183 /* level2.png */; };
+		6C90208B186E3CA1001D1183 /* level3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C902089186E3CA1001D1183 /* level3.png */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -121,6 +125,10 @@
 		6C021A48186B94ED000C11FC /* RegeneratableBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegeneratableBar.m; path = Bars/RegeneratableBar.m; sourceTree = "<group>"; };
 		6C021A4D186B972C000C11FC /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectLayer.h; path = Layers/LevelSelectLayer.h; sourceTree = "<group>"; };
 		6C021A4E186B972C000C11FC /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelectLayer.m; path = Layers/LevelSelectLayer.m; sourceTree = "<group>"; };
+		6C902084186E3732001D1183 /* level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level1.png; path = Worlds/World1/level1.png; sourceTree = "<group>"; };
+		6C902085186E3732001D1183 /* world1_levelselect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = world1_levelselect.plist; path = Worlds/World1/world1_levelselect.plist; sourceTree = "<group>"; };
+		6C902088186E3CA1001D1183 /* level2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level2.png; path = Worlds/World1/level2.png; sourceTree = "<group>"; };
+		6C902089186E3CA1001D1183 /* level3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level3.png; path = Worlds/World1/level3.png; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -258,6 +266,25 @@
 				6C021A48186B94ED000C11FC /* RegeneratableBar.m */,
 			);
 			name = Bars;
+			sourceTree = "<group>";
+		};
+		6C902082186E368F001D1183 /* Worlds */ = {
+			isa = PBXGroup;
+			children = (
+				6C902083186E369F001D1183 /* World1 */,
+			);
+			name = Worlds;
+			sourceTree = "<group>";
+		};
+		6C902083186E369F001D1183 /* World1 */ = {
+			isa = PBXGroup;
+			children = (
+				6C902084186E3732001D1183 /* level1.png */,
+				6C902088186E3CA1001D1183 /* level2.png */,
+				6C902089186E3CA1001D1183 /* level3.png */,
+				6C902085186E3732001D1183 /* world1_levelselect.plist */,
+			);
+			name = World1;
 			sourceTree = "<group>";
 		};
 		6CAB076118529AD0008749D5 /* Sprites */ = {
@@ -398,6 +425,7 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
+				6C902082186E368F001D1183 /* Worlds */,
 				6C021A1D186B92CE000C11FC /* PlayerData.h */,
 				6C021A1E186B92CE000C11FC /* PlayerData.m */,
 				6C021A1918681828000C11FC /* Layers */,
@@ -533,6 +561,7 @@
 				6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */,
 				6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
+				6C90208B186E3CA1001D1183 /* level3.png in Resources */,
 				6CAB07781852D5F4008749D5 /* losescreen.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
@@ -543,6 +572,7 @@
 				6CAE6DB2182C5D8F00602F39 /* zombieframes.plist in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				6CAB076718529ADC008749D5 /* bossrussianframes-hd.png in Resources */,
+				6C902087186E3732001D1183 /* world1_levelselect.plist in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
@@ -550,6 +580,8 @@
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
 				6CAB07791852D5F4008749D5 /* play.png in Resources */,
 				6CA6C6C0185008180067BEBE /* superzombieframes.plist in Resources */,
+				6C90208A186E3CA1001D1183 /* level2.png in Resources */,
+				6C902086186E3732001D1183 /* level1.png in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
 				6CA6C6C1185008180067BEBE /* superzombieframes.png in Resources */,
 				6C021A2A186B94B8000C11FC /* randomAI.plist in Resources */,
