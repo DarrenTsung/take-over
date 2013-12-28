@@ -18,6 +18,7 @@
 #import "WinLayer.h"
 #import "LoseLayer.h"
 #import "StartMenuLayer.h"
+#import "LevelSelectLayer.h"
 
 GameModel *model;
 
@@ -95,6 +96,8 @@ CGFloat bombTimer = 3.0f;
     if ((self = [super initWithColor:ccc4(1.0f,1.0f,1.0f,1.0f)]))
     {
         NSLog(@"Game initializing...");
+        winState = nil;
+        isDone = false;
         
         NSString *AIName;
         currentWorld = world;
@@ -434,17 +437,6 @@ CGFloat bombTimer = 3.0f;
 
 -(void) nextFrame
 {
-    if (!boss && !isDone)
-    {
-        if ([playerHP getCurrentValue] <= 0.0f)
-        {
-            [self endGameWithWinState:@"enemy"];
-        }
-        else if ([enemyHP getCurrentValue] <= 0.0f)
-        {
-            [self endGameWithWinState:@"player"];
-        }
-    }
     if (!isDone)
     {
         [playerHP update:UPDATE_INTERVAL];
@@ -478,9 +470,12 @@ CGFloat bombTimer = 3.0f;
     
     if ([winState isEqualToString:@"player"])
     {
-        // go to the next level
+        // unlock the next level
+        NSInteger *nextLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"] + 1;
+        [[NSUserDefaults standardUserDefaults] setInteger:nextLevel forKey:@"levelUnlocked"];
+        // go back to the level select screen
         [[CCDirector sharedDirector] replaceScene:
-         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithWorld:currentWorld andLevel:(currentLevel + 1)]]];
+         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
     }
     else if ([winState isEqualToString:@"enemy"])
     {

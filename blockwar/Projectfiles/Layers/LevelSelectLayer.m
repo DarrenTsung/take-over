@@ -76,8 +76,19 @@ CGPoint currentPosition;
     
     if (input.anyTouchBeganThisFrame)
     {
-        isDragging = true;
-        lastPoint = currentPoint;
+        // touch bottom right corner to reset the unlocked progress and reload the level select layer
+        if (currentPoint.x > 280 && currentPoint.y < 40)
+        {
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"worldUnlocked"];
+            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"levelUnlocked"];
+            [[CCDirector sharedDirector] replaceScene:
+             [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
+        }
+        else
+        {
+            isDragging = true;
+            lastPoint = currentPoint;
+        }
     }
     else if (input.anyTouchEndedThisFrame)
     {
