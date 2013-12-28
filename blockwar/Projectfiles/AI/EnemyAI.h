@@ -7,24 +7,25 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "GameModel.h"
 #import "GameLayer.h"
+
+@class GameModel; // please don't make a fowarding error, I love you Xcode
 
 @interface EnemyAI : NSObject
 {
-    @private
+    @public
     GameModel *model;
     ccColor4F color;
     int waveSize, rowSize;
-    CGFloat spawnTimer, waveTimer, probabilityWaveDelay, waveDelay;
+    CGFloat spawnTimer, waveTimer, probabilityWaveDelay, waveDelay, playHeight;
     GameLayer *viewController;
     int waveConsecutiveCount, maxConsecutiveWaves;
 }
 
--(id) initAIType:(NSString *)theType withReferenceToGameModel:(GameModel *)modelMaster andViewController:(GameLayer *)theViewController;
--(void) spawnWaveWithPlayHeight:(CGFloat)playHeight;
+-(id) initAIType:(NSString *)theType withReferenceToGameModel:(GameModel *)modelMaster andViewController:(GameLayer *)theViewController andPlayHeight:(CGFloat)thePlayHeight;
+-(void) spawnWave;
 -(void) update:(ccTime)delta;
--(void) spawnBossWithPlayHeight:(CGFloat)playHeight;
+-(void) spawnBoss;
 -(void) reset;
 
 @end

@@ -19,11 +19,10 @@
 
 @implementation EnemyAI
 
--(id) initAIType:(NSString *)theType withReferenceToGameModel:(GameModel *)theModel andViewController:(GameLayer *)theViewController
+-(id) initAIType:(NSString *)theType withReferenceToGameModel:(GameModel *)theModel andViewController:(GameLayer *)theViewController andPlayHeight:(CGFloat)thePlayHeight
 {
     if((self = [super init]))
     {
-                
         NSString *AIpath = [[NSBundle mainBundle] pathForResource:theType ofType:@"plist"];
         NSDictionary *AIproperties = [NSDictionary dictionaryWithContentsOfFile:AIpath];
         
@@ -41,6 +40,8 @@
         probabilityWaveDelay = [[AIproperties objectForKey:@"probabilityWaveDelay"] floatValue];
         waveDelay = [[AIproperties objectForKey:@"waveDelay"] floatValue];
         
+        playHeight = thePlayHeight;
+        
         // add delay to initial wave
         spawnTimer = waveTimer + 0.9f;
         viewController = theViewController;
@@ -48,7 +49,7 @@
     return self;
 }
 
--(void) spawnWaveWithPlayHeight:(CGFloat)playHeight
+-(void) spawnWave
 {
     int x = 0;
     int counter = 0;
@@ -79,7 +80,7 @@
         if (waveConsecutiveCount < maxConsecutiveWaves)
         {
             // send enemy wave every 5 seconds
-            [self spawnWaveWithPlayHeight:viewController->playHeight];
+            [self spawnWave];
             spawnTimer = waveTimer;
             // p of the time, add 3 seconds to the next timer to space it out
             if ((arc4random_uniform(10)/10.0f) <= probabilityWaveDelay)
@@ -97,9 +98,11 @@
     }
 }
 
--(void) spawnBossWithPlayHeight:(CGFloat) playHeight
+-(void) spawnBoss
 {
-    [model insertUnit:[[BossUnit alloc] initBossWithPosition:CGPointMake(595, playHeight/2)] intoSortedArrayWithName:@"enemyUnits"];
+    BossUnit *theBoss = [[BossUnit alloc] initBossWithPosition:CGPointMake(595, playHeight/2)];
+    [model insertUnit:theBoss intoSortedArrayWithName:@"enemyUnits"];
+    [viewController->enemyHP changeLinkTo:&theBoss->health];
 }
 
 -(void) reset

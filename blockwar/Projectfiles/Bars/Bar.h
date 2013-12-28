@@ -20,6 +20,7 @@
 }
 
 -(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor withLinkTo:(CGFloat *)linkedValue;
+-(void) changeLinkTo:(CGFloat *)linkedValue;
 -(void) draw;
 -(CGFloat) getCurrentValue;
 -(void) resetValueToMax;

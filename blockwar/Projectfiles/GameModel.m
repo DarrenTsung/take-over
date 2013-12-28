@@ -1,5 +1,5 @@
 //
-//  GermFactory.m
+//  GameModel.m
 //  blockwar
 //
 //  Created by Darren Tsung on 11/3/13.
@@ -16,23 +16,32 @@
 // super units cost 6 times what regular units cost
 #define SUPER_UNIT_MULTIPLIER 6
 
+bool spawnBossAtEnd = false;
+CCTimer *bossSpawnTimer;
+
 @implementation GameModel
 
--(id) initWithReferenceToViewController:(GameLayer *)theViewController
+-(id) initWithReferenceToViewController:(GameLayer *)theViewController andReferenceToLevelProperties:(NSDictionary *)levelProperties
 {
     if ((self = [super init]))
     {
         viewController = theViewController;
         playerUnits = [[NSMutableArray alloc] init];
         enemyUnits = [[NSMutableArray alloc] init];
-        playerSuperUnits = [[NSMutableArray alloc] init];
         particleArray = [[NSMutableArray alloc] init];
+        
+        spawnBossAtEnd = [levelProperties objectForKey:@"bossExists"];
         
         playerHP = 50.0f;
         playerResources = 120.0f;
         enemyHP = 50.0f;
     }
     return self;
+}
+
+-(void) setReferenceToEnemyAI:(EnemyAI *)theEnemyReference
+{
+    theEnemy = theEnemyReference;
 }
 
 // uses binary search to insert the unit while keeping the array sorted by y-coordinates
@@ -54,10 +63,6 @@
     else if ([arrayName isEqualToString:@"enemyUnits"])
     {
         array = enemyUnits;
-    }
-    else if ([arrayName isEqualToString:@"playerSuperUnits"])
-    {
-        array = playerSuperUnits;
     }
     /*
     if([array count] == 0)
@@ -125,7 +130,8 @@
 // checks for collisions between playerUnits and enemyUnits and removes dead Germs (naive implementation)
 -(void) checkForCollisionsAndRemove
 {
-    bool endGame = false;
+    // if endState is anything but nil at the end, we know to end the game
+    NSString *endState = nil;
     NSMutableArray *playerDiscardedUnits = [[NSMutableArray alloc] init];
     NSMutableArray *playerDiscardedSuperUnits = [[NSMutableArray alloc] init];
     NSMutableArray *enemyDiscardedUnits = [[NSMutableArray alloc] init];
@@ -160,7 +166,7 @@
                 {
                     if ([enemyUnit->name isEqualToString:@"bossrussian"])
                     {
-                        endGame = true;
+                        endState = @"win";
                     }
                     [enemyDiscardedUnits addObject:enemyUnit];
                     [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
@@ -177,7 +183,6 @@
             {
                 unit->health -= enemyUnit->damage;
                 enemyUnit->health -= unit->damage;
-                //[particleArray addObject:[[CircleExplosion alloc] initWithPos:CGPointMake(unit->boundingRect.origin.x + unit->boundingRect.size.width, unit->boundingRect.origin.y + unit->boundingRect.size.height/2)]];
                 
                 if (unit->health < 0.0f)
                 {
@@ -220,7 +225,17 @@
             enemyHP -= unit->damage;
             if (enemyHP <= 0.0f)
             {
-                [viewController endGameWithWinState:@"player"];
+                if (spawnBossAtEnd)
+                {
+                    enemyHP = 99999;
+                    CGFloat zeroFloat = 0.0f;
+                    [viewController->enemyHP changeLinkTo:&zeroFloat];
+                    [self performSelector:@selector(spawnBoss) withObject:nil afterDelay:3.0];
+                }
+                else
+                {
+                    endState = @"player";
+                }
             }
         }
     }
@@ -233,12 +248,12 @@
             {
                 if ([enemyUnit->name isEqualToString:@"bossrussian"])
                 {
-                    endGame = true;
+                    endState = @"win";
                 }
                 [enemyDiscardedUnits addObject:enemyUnit];
                 [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
             }
-            // dont do collision checking for dead units
+            // we don't want to do anything else if it's going to be removed from the game
             continue;
         }
         if (enemyUnit->health < 0.0f)
@@ -249,38 +264,43 @@
         {
             if ([enemyUnit->name isEqualToString:@"bossrussian"])
             {
-                [viewController endGameWithWinState:@"enemy"];
+                endState = @"enemy";
             }
             [enemyDiscardedUnits addObject:enemyUnit];
             [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
             playerHP -= enemyUnit->damage;
             if (playerHP <= 0.0f)
             {
-                [viewController endGameWithWinState:@"enemy"];
+                endState = @"enemy";
             }
 
         }
     }
     [playerUnits removeObjectsInArray:playerDiscardedUnits];
     [enemyUnits removeObjectsInArray:enemyDiscardedUnits];
-    [playerSuperUnits removeObjectsInArray:playerDiscardedSuperUnits];
     [viewController removeChildrenInArray:playerDiscardedUnits cleanup:YES];
     [viewController removeChildrenInArray:enemyDiscardedUnits cleanup:YES];
-    if (endGame)
+    if (endState != nil)
     {
-        [viewController endGameWithWinState:@"win"];
+        NSLog(@"Ending game in GameModel.m with endState: %@", endState);
+        [viewController endGameWithWinState:endState];
     }
+}
+
+-(void) spawnBoss
+{
+    [theEnemy spawnBoss];
 }
 
 -(void) update:(ccTime) delta
 {
-    for (SuperUnit *unit in playerSuperUnits)
-    {
-        [unit influenceUnits:playerUnits];
-    }
     for (Unit *unit in playerUnits)
     {
         [unit update:delta];
+        if ([unit isKindOfClass:[SuperUnit class]])
+        {
+            [(SuperUnit *)unit influenceUnits:playerUnits];
+        }
     }
     for (Unit *unit in enemyUnits)
     {
@@ -324,7 +344,6 @@
 -(void) reset
 {
     [self removeUnitsFrom:playerUnits];
-    [self removeUnitsFrom:playerSuperUnits];
     [self removeUnitsFrom:enemyUnits];
 }
 
@@ -336,15 +355,6 @@
         [viewController removeChild:unit->whiteSprite cleanup:YES];
     }
     [array removeAllObjects];
-}
-
--(bool) doesSuperUnitExist
-{
-    for (Unit *unit in playerSuperUnits)
-    {
-        return true;
-    }
-    return false;
 }
 
 @end

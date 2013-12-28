@@ -7,12 +7,15 @@
 //
 
 #import "CCLayer.h"
+#import "HealthBar.h"
 
 @interface GameLayer : CCLayerColor
 {
     @public
     CGRect touchArea;
     CGFloat playHeight;
+    
+    HealthBar *playerHP, *enemyHP;
 }
 // returns the screen bounds, flipped since we're working in landscape mode
 -(CGSize) returnScreenBounds;

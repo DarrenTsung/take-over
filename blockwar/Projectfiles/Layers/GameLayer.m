@@ -40,9 +40,6 @@ EnemyAI *theEnemy;
 
 #define BAR_PADDING 10.0f
 
-HealthBar *playerHP;
-HealthBar *enemyHP;
-
 CGFloat currentLevel;
 CGFloat currentWorld;
 
@@ -99,35 +96,11 @@ CGFloat bombTimer = 3.0f;
         winState = nil;
         isDone = false;
         
-        NSString *AIName;
         currentWorld = world;
         currentLevel = level;
-        switch (level)
-        {
-            case 1:
-                AIName = @"1_1AI";
-                break;
-                
-            case 2:
-                AIName = @"1_2AI";
-                break;
-                
-            case 3:
-                AIName = @"1_3AI";
-                bossSpawnTimer = 1.3f;
-                boss = true;
-                bossExists = false;
-                break;
-                
-            case 4:
-                NSLog(@"Game is finished! A winner is YOU!");
-                winFlag = true;
-                break;
-
-            default:
-                AIName = @"randomAI";
-                break;
-        }
+        NSString *levelPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"World%d_Level%d", world, level] ofType:@"plist"];
+        NSDictionary *levelProperties = [NSDictionary dictionaryWithContentsOfFile:levelPath];
+        NSString *AIName = [levelProperties objectForKey:@"AIName"];
 
         // returns screenBounds flipped automatically (since we're in landscape mode)
         screenBounds = [self returnScreenBounds];
@@ -152,10 +125,12 @@ CGFloat bombTimer = 3.0f;
         [self addChild:superzombieSpriteSheet];
         
         // model controls and models all the germs
-        model = [[GameModel alloc] initWithReferenceToViewController:self];
+        model = [[GameModel alloc] initWithReferenceToViewController:self andReferenceToLevelProperties:levelProperties];
         
         // theEnemy.. oo ominous!
-        theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self];
+        theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self andPlayHeight:playHeight];
+        // now give model a pointer to theEnemy
+        [model setReferenceToEnemyAI:theEnemy];
         
         // Resource Bars
         enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
@@ -198,10 +173,7 @@ CGFloat bombTimer = 3.0f;
     // draw white around the bars
     ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0f);
     [playerHP draw];
-    if (!boss)
-    {
-        [enemyHP draw];
-    }
+    [enemyHP draw];
     [playerResources draw];
 }
 
@@ -219,17 +191,6 @@ CGFloat bombTimer = 3.0f;
             if (bombTimer <= 0.0f)
             {
                 bombAvaliable = true;
-            }
-        }
-    
-        if (boss)
-        {
-            bossSpawnTimer -= delta;
-            if (bossSpawnTimer <= 0.0f && !bossExists)
-            {
-                NSLog(@"SPAWNING BOSS!");
-                [theEnemy spawnBossWithPlayHeight:playHeight];
-                bossExists = true;
             }
         }
         
@@ -281,7 +242,6 @@ CGFloat bombTimer = 3.0f;
                 if (touchIndicatorRadius >= TOUCH_RADIUS_MAX && [playerResources getCurrentValue] > SUPER_UNIT_MULTIPLIER*UNIT_COST)
                 {
                     SuperUnit *unit = [[SuperUnit alloc] initWithPosition:pos];
-                    [model insertUnit:unit intoSortedArrayWithName:@"playerSuperUnits"];
                     [model insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
                 }
                 else if ([playerResources getCurrentValue] > SPAWN_SIZE*UNIT_COST)

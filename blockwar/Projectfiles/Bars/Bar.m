@@ -41,6 +41,14 @@
     return self;
 }
 
+// change the target of the bar
+-(void) changeLinkTo:(CGFloat *)linkedValue
+{
+    max = *linkedValue;
+    currentPtr = linkedValue;
+    current = *currentPtr;
+}
+
 -(void) draw
 {
     CGPoint offset = CGPointMake(0.0f, 0.0f);
