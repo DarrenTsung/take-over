@@ -30,7 +30,7 @@ CCTimer *bossSpawnTimer;
         enemyUnits = [[NSMutableArray alloc] init];
         particleArray = [[NSMutableArray alloc] init];
         
-        spawnBossAtEnd = [levelProperties objectForKey:@"bossExists"];
+        spawnBossAtEnd = [[levelProperties objectForKey:@"bossExists"] boolValue];
         
         playerHP = 50.0f;
         playerResources = 120.0f;

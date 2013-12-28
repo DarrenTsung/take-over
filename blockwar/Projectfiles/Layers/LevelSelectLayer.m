@@ -22,12 +22,6 @@ CGPoint currentPosition;
         NSInteger worldUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"worldUnlocked"];
         [self setUpMenuWithWorld:worldUnlocked];
         
-        CGSize screenBounds = [[UIScreen mainScreen] bounds].size;
-        // flip the height and width since we're in landscape mode
-        CGFloat temp = screenBounds.height;
-        screenBounds.height = screenBounds.width;
-        screenBounds.width = temp;
-        
         isDragging = false;
         lastPoint = CGPointZero;
         currentPosition = CGPointMake(0, 0);
