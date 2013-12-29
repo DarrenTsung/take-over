@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>backgroundName</key>
+	<string>upgradeBackground.png</string>
+	<key>unitDisplays</key>
+	<array>
+		<dict>
+			<key>name</key>
+			<string>Lil&apos; John</string>
+			<key>imageName</key>
+			<string>zombieDisplay.png</string>
+			<key>selectedImageName</key>
+			<string>selectedZombieDisplay.png</string>
+			<key>UpgradeCosts</key>
+			<array>
+				<string>0</string>
+				<string>0</string>
+				<string>10</string>
+				<string>30</string>
+				<string>50</string>
+				<string>150</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>

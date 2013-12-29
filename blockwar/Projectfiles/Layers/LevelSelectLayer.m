@@ -8,12 +8,15 @@
 
 #import "LevelSelectLayer.h"
 #import "GameLayer.h"
+#import "UpgradeLayer.h"
 
 @implementation LevelSelectLayer
 
+bool upgradeOnScreen;
 bool isDragging;
 CGPoint lastPoint;
 CGPoint currentPosition;
+UpgradeLayer *upgradeMenu;
 
 -(id) init
 {
@@ -23,6 +26,7 @@ CGPoint currentPosition;
         [self setUpMenuWithWorld:worldUnlocked];
         
         isDragging = false;
+        upgradeOnScreen = false;
         lastPoint = CGPointZero;
         currentPosition = CGPointMake(0, 0);
         [self setPosition:currentPosition];
@@ -58,6 +62,8 @@ CGPoint currentPosition;
         [item setPosition:CGPointMake([[level objectForKey:@"x"] floatValue], [[level objectForKey:@"y"] floatValue])];
         [menu addChild:item];
     }
+    
+    
     [menu setPosition:ccp(0, 0)];
     [self addChild:menu];
 }
@@ -68,37 +74,56 @@ CGPoint currentPosition;
     KKInput *input = [KKInput sharedInput];
     CGPoint currentPoint = [input locationOfAnyTouchInPhase:KKTouchPhaseAny];
     
-    if (input.anyTouchBeganThisFrame)
+    if (input.touchesAvailable)
     {
-        // touch bottom right corner to reset the unlocked progress and reload the level select layer
-        if (currentPoint.x > 280 && currentPoint.y < 40)
+        if (input.anyTouchBeganThisFrame)
         {
-            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"worldUnlocked"];
-            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"levelUnlocked"];
-            [[CCDirector sharedDirector] replaceScene:
-             [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
+            if (upgradeOnScreen)
+            {
+                if (!CGRectContainsPoint([upgradeMenu->backgroundImage boundingBox], currentPoint))
+                {
+                    [self removeChild:upgradeMenu];
+                    upgradeOnScreen = false;
+                }
+            }
+            // touch bottom right corner to reset the unlocked progress and reload the level select layer
+            else if (currentPoint.x > 280 && currentPoint.y < 40)
+            {
+                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"worldUnlocked"];
+                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"levelUnlocked"];
+                [[CCDirector sharedDirector] replaceScene:
+                 [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
+            }
+            // touch top right corner to open up upgrade menu
+            else if (currentPoint.x < 40 && currentPoint.y < 40)
+            {
+                NSLog(@"Upgrade screen point hit");
+                upgradeMenu = [UpgradeLayer node];
+                [self addChild:upgradeMenu z:10];
+                upgradeOnScreen = true;
+            }
+            else
+            {
+                isDragging = true;
+                lastPoint = currentPoint;
+            }
+        }
+        else if (input.anyTouchEndedThisFrame && isDragging)
+        {
+            isDragging = false;
+        }
+        else if (input.touchesAvailable && isDragging)
+        {
+            // we don't care about y changes only x changes
+            currentPosition.x += (currentPoint.x - lastPoint.x);
+            [self setPosition:currentPosition];
+            lastPoint = currentPoint;
         }
         else
         {
-            isDragging = true;
-            lastPoint = currentPoint;
+            // AFTER SEEING TIFFANY, ADD FRICTION ELEMENTS HERE (WHEN NO TOUCH IS OCCURING, PULL MENU BACK TO NEAREST PAGE)
+            
         }
-    }
-    else if (input.anyTouchEndedThisFrame)
-    {
-        isDragging = false;
-    }
-    else if (input.touchesAvailable)
-    {
-        // we don't care about y changes only x changes
-        currentPosition.x += (currentPoint.x - lastPoint.x);
-        [self setPosition:currentPosition];
-        lastPoint = currentPoint;
-    }
-    else
-    {
-        // AFTER SEEING TIFFANY, ADD FRICTION ELEMENTS HERE (WHEN NO TOUCH IS OCCURING, PULL MENU BACK TO NEAREST PAGE)
-        
     }
 }
 
