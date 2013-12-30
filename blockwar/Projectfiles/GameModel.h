@@ -12,7 +12,7 @@
 #import "GameLayer.h"
 #import "EnemyAI.h"
 
-@interface GameModel : NSObject
+@interface GameModel : CCNode
 {
     @public
     NSMutableArray *playerUnits, *enemyUnits, *particleArray;

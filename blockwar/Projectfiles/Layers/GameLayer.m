@@ -131,6 +131,7 @@ CGFloat bombTimer = 3.0f;
         theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self andPlayHeight:playHeight];
         // now give model a pointer to theEnemy
         [model setReferenceToEnemyAI:theEnemy];
+        [self addChild:model];
         
         // Resource Bars
         enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];

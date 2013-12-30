@@ -230,7 +230,7 @@ CCTimer *bossSpawnTimer;
                     enemyHP = 99999;
                     CGFloat zeroFloat = 0.0f;
                     [viewController->enemyHP changeLinkTo:&zeroFloat];
-                    [self performSelector:@selector(spawnBoss) withObject:nil afterDelay:3.0];
+                    [self scheduleOnce:@selector(spawnBoss) delay:2.0f];
                 }
                 else
                 {

@@ -65,7 +65,6 @@
 -(void) stopLoading
 {
     isLoading = false;
-    *currentPtr = max;
 }
 
 -(void) draw
