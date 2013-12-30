@@ -377,18 +377,7 @@ CGFloat bombTimer = 3.0f;
             }
         }
     }
-    // runs if isDone is true (updates the reset timer and resets when finished)
-    else
-    {
-        if (resetTimer > 0.0f)
-        {
-            resetTimer -= delta;
-        }
-        else
-        {
-            [self reset];
-        }
-    }
+ 
     if (!isDone)
     {
         [playerHP updateAnimation:delta];
@@ -477,7 +466,7 @@ CGFloat bombTimer = 3.0f;
     [playerHP stopShake];
     [enemyHP stopShake];
     
-    resetTimer = RESET_TIME;
+    [self scheduleOnce:@selector(reset) delay:3.0f];
 }
 
 

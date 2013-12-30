@@ -17,24 +17,19 @@ CGFloat timer;
 {
     if ((self = [super init]))
 	{
-        timer = 4.0f;
         CCSprite *background = [CCSprite spriteWithFile: @"losescreen.png"];
         background.position = ccp( 280, 160 );
         
         [self addChild: background z:-1];
+        [self scheduleOnce:@selector(goToStart) delay:3.0f];
     }
-    [self scheduleUpdate];
     return self;
 }
 
--(void) update:(ccTime)delta
+-(void) goToStart
 {
-    timer -= delta;
-    if (timer <= 0.0f)
-    {
-        [[CCDirector sharedDirector] replaceScene:
-            [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[StartMenuLayer alloc] init]]];
-    }
+    [[CCDirector sharedDirector] replaceScene:
+     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[StartMenuLayer alloc] init]]];
 }
 
 @end
