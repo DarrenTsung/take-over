@@ -18,12 +18,15 @@
     ccColor4F color;
     CGFloat shakeTimer;
     
+    int layerCount;
+    
     CCLayer *myParent;
     bool isLoading;
 }
 
 -(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor withLinkTo:(CGFloat *)linkedValue;
 -(void) changeLinkTo:(CGFloat *)linkedValue;
+-(void) changeLinkTo:(CGFloat *)linkedValue withLayers:(int)layers;
 -(void) draw;
 -(CGFloat) getCurrentValue;
 -(void) resetValueToMax;

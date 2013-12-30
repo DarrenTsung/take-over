@@ -24,6 +24,7 @@
         origin = theOrigin;
         color = theColor;
         orientation = theOrientation;
+        layerCount = 1;
         
         isLoading = false;
         loadRate = 0.0f;
@@ -54,6 +55,12 @@
     [self loadingToMaxAnimationWithTime:1.7f];
 }
 
+-(void) changeLinkTo:(CGFloat *)linkedValue withLayers:(int)layers
+{
+    [self changeLinkTo:linkedValue];
+    layerCount = layers;
+}
+
 -(void) loadingToMaxAnimationWithTime:(CGFloat)timeInSeconds
 {
     *currentPtr = 0;
@@ -75,17 +82,29 @@
         offset = CGPointMake(arc4random()%17/5.0f, arc4random()%17/5.0f);
     }
 
-    // opposite point to the origin of the health_bar
-    CGPoint newOrigin = CGPointMake(origin.x + offset.x, origin.y + offset.y);
-    CGPoint otherPoint = CGPointMake(newOrigin.x + modifier*size.width*(*currentPtr/max), newOrigin.y - size.height);
-    CGPoint maxPoint = CGPointMake(newOrigin.x + modifier*size.width, newOrigin.y - size.height);
-    if (*currentPtr > 0.0f)
+    CGFloat localMax = max / layerCount;
+    for (int i=0; i<layerCount; i++)
     {
-        ccDrawSolidRect(newOrigin, otherPoint, color);
+        // current value of the layer we're on
+        CGFloat localCurrent = *currentPtr - localMax*i;
+        if (localCurrent > localMax)
+        {
+            localCurrent = localMax;
+        }
+        ccColor4F localColor = ccc4f(color.r + i*(0.3/layerCount), color.g, color.b, color.a);
+        
+        // opposite point to the origin of the health_bar
+        CGPoint newOrigin = CGPointMake(origin.x + offset.x, origin.y + offset.y);
+        CGPoint otherPoint = CGPointMake(newOrigin.x + modifier*size.width*(localCurrent/localMax), newOrigin.y - size.height);
+        CGPoint maxPoint = CGPointMake(newOrigin.x + modifier*size.width, newOrigin.y - size.height);
+        if (localCurrent > 0.0f)
+        {
+            ccDrawSolidRect(newOrigin, otherPoint, localColor);
+        }
+        // draw white around the bars
+        ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0f);
+        ccDrawRect(newOrigin, maxPoint);
     }
-    // draw white around the bars
-    ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0f);
-    ccDrawRect(newOrigin, maxPoint);
 }
 
 -(void) update:(ccTime)delta

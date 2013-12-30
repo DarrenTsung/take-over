@@ -102,7 +102,7 @@
 {
     BossUnit *theBoss = [[BossUnit alloc] initBossWithPosition:CGPointMake(595, playHeight/2)];
     [model insertUnit:theBoss intoSortedArrayWithName:@"enemyUnits"];
-    [viewController->enemyHP changeLinkTo:&theBoss->health];
+    [viewController->enemyHP changeLinkTo:&theBoss->health withLayers:2];
 }
 
 -(void) reset
