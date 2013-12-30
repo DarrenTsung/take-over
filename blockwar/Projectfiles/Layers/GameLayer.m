@@ -421,12 +421,11 @@ CGFloat bombTimer = 3.0f;
     
     if ([winState isEqualToString:@"player"])
     {
-        // unlock the next level
-        NSInteger *nextLevel = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"] + 1;
-        [[NSUserDefaults standardUserDefaults] setInteger:nextLevel forKey:@"levelUnlocked"];
         // go back to the level select screen
+        LevelSelectLayer *levelSelect = [[LevelSelectLayer alloc] init];
+        [levelSelect scheduleOnce:@selector(unlockNextLevel) delay:0.5f];
         [[CCDirector sharedDirector] replaceScene:
-         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
+         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)levelSelect]];
     }
     else if ([winState isEqualToString:@"enemy"])
     {

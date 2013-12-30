@@ -14,6 +14,7 @@
 {
     if ((self = [super initWithOrigin:theOrigin andOrientation:theOrientation andColor:theColor withLinkTo:linkedValue]))
     {
+        //30
         regenRate = 30.0f;
     }
     return self;

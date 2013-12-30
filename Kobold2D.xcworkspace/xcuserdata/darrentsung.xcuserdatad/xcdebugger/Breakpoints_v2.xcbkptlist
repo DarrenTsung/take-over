@@ -129,44 +129,14 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "blockwar/Projectfiles/Layers/GameLayer.m"
-            timestampString = "410119995.022393"
+            filePath = "blockwar/Projectfiles/Layers/LevelSelectLayer.m"
+            timestampString = "410134721.528017"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "447"
-            endingLineNumber = "447"
-            landmarkName = "-reset"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
+            landmarkName = "-enableNextLevel"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GameLayer reset]"
-                  moduleName = "takeover-iOS"
-                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/Layers/GameLayer.m"
-                  timestampString = "410119995.045241"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "447"
-                  endingLineNumber = "447"
-                  offsetFromSymbolStart = "2058">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GameLayer reset]"
-                  moduleName = "takeover-iOS"
-                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/Layers/GameLayer.m"
-                  timestampString = "410119998.418384"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "447"
-                  endingLineNumber = "447"
-                  offsetFromSymbolStart = "2050">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

@@ -264,8 +264,6 @@
 		6C021A1918681828000C11FC /* Layers */ = {
 			isa = PBXGroup;
 			children = (
-				6C021A37186B94D6000C11FC /* GameLayer.h */,
-				6C021A38186B94D6000C11FC /* GameLayer.m */,
 				6C021A39186B94D6000C11FC /* LoseLayer.h */,
 				6C021A3A186B94D6000C11FC /* LoseLayer.m */,
 				6C021A3B186B94D6000C11FC /* StartMenuLayer.h */,
@@ -338,6 +336,17 @@
 			name = Levels;
 			sourceTree = "<group>";
 		};
+		6C9BB8671872024300E14BAA /* AI Types */ = {
+			isa = PBXGroup;
+			children = (
+				6C021A20186B94B8000C11FC /* 1_1AI.plist */,
+				6C021A21186B94B8000C11FC /* 1_2AI.plist */,
+				6C021A22186B94B8000C11FC /* 1_3AI.plist */,
+				6C021A25186B94B8000C11FC /* randomAI.plist */,
+			);
+			name = "AI Types";
+			sourceTree = "<group>";
+		};
 		6CAB076118529AD0008749D5 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,12 +373,9 @@
 		6CAE6D9B182C362D00602F39 /* Artifical Intelligence */ = {
 			isa = PBXGroup;
 			children = (
-				6C021A20186B94B8000C11FC /* 1_1AI.plist */,
-				6C021A21186B94B8000C11FC /* 1_2AI.plist */,
-				6C021A22186B94B8000C11FC /* 1_3AI.plist */,
 				6C021A23186B94B8000C11FC /* EnemyAI.h */,
 				6C021A24186B94B8000C11FC /* EnemyAI.m */,
-				6C021A25186B94B8000C11FC /* randomAI.plist */,
+				6C9BB8671872024300E14BAA /* AI Types */,
 			);
 			name = "Artifical Intelligence";
 			sourceTree = "<group>";
@@ -480,10 +486,12 @@
 				6C021A1D186B92CE000C11FC /* PlayerData.h */,
 				6C021A1E186B92CE000C11FC /* PlayerData.m */,
 				6C021A1918681828000C11FC /* Layers */,
+				6C021A37186B94D6000C11FC /* GameLayer.h */,
+				6C021A38186B94D6000C11FC /* GameLayer.m */,
 				6CD361651826CF2E00A56D5C /* GameModel.h */,
 				6CD361661826CF2E00A56D5C /* GameModel.m */,
-				6C021A4C186B94F1000C11FC /* Bars */,
 				6CAE6D9B182C362D00602F39 /* Artifical Intelligence */,
+				6C021A4C186B94F1000C11FC /* Bars */,
 				6CD3616418259DF500A56D5C /* Units */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,

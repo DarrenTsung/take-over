@@ -9,5 +9,11 @@
 #import "CCLayer.h"
 
 @interface LevelSelectLayer : CCLayer
+{
+    @public
+    NSMutableDictionary *levelPointers;
+}
+-(void) unlockNextLevel;
+
 
 @end

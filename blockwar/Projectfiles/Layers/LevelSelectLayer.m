@@ -18,6 +18,7 @@ CGPoint lastPoint;
 CGPoint currentPosition;
 UpgradeLayer *upgradeMenu;
 
+
 -(id) init
 {
     if ((self = [super init]))
@@ -30,6 +31,7 @@ UpgradeLayer *upgradeMenu;
         lastPoint = CGPointZero;
         currentPosition = CGPointMake(0, 0);
         [self setPosition:currentPosition];
+        levelPointers = [[NSMutableDictionary alloc] init];
     }
     [self scheduleUpdate];
     return self;
@@ -57,15 +59,14 @@ UpgradeLayer *upgradeMenu;
                                                     }];
         if (levelNum > levelUnlocked)
         {
-            item.isEnabled = false;
+            [item setIsEnabled:NO];
         }
         [item setPosition:CGPointMake([[level objectForKey:@"x"] floatValue], [[level objectForKey:@"y"] floatValue])];
-        [menu addChild:item];
+        [menu addChild:item z:1 tag:levelNum];
     }
     
-    
     [menu setPosition:ccp(0, 0)];
-    [self addChild:menu];
+    [self addChild:menu z:0 tag:0];
 }
 
 -(void) update:(ccTime)delta
@@ -122,9 +123,40 @@ UpgradeLayer *upgradeMenu;
         else
         {
             // AFTER SEEING TIFFANY, ADD FRICTION ELEMENTS HERE (WHEN NO TOUCH IS OCCURING, PULL MENU BACK TO NEAREST PAGE)
-            
         }
     }
+}
+
+-(void)unlockNextLevel
+{
+    NSLog(@"unlock next level called!");
+    int levelNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"] + 1;
+    [[NSUserDefaults standardUserDefaults] setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"] + 1 forKey:@"levelUnlocked"];
+    
+    // grab the reference the menuItem
+    CCNode *item = [[self getChildByTag:0] getChildByTag:levelNum];
+    // create a unlocked image sprite over it with 0 opacity
+    CCSprite *selectedSprite = [[CCSprite alloc] initWithFile:[NSString stringWithFormat:@"level%d.png", levelNum]];
+    [selectedSprite setPosition:item.position];
+    [selectedSprite setOpacity:0];
+    
+    [self addChild:selectedSprite];
+    // and fade it out over 2 seconds
+    [selectedSprite runAction:[CCFadeTo actionWithDuration:2.0f opacity:255]];
+    
+    // set the item to enabled when animation is finished
+    [self scheduleOnce:@selector(enableNextLevel) delay:2.0f];
+}
+
+-(void)enableNextLevel
+{
+    NSLog(@"just enabled the next level!");
+    int levelNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"];
+    
+    // grab the reference the menuItem
+    CCMenu *menu = (CCMenu *)[self getChildByTag:0];
+    CCMenuItemImage *item = (CCMenuItemImage *)[menu getChildByTag:levelNum];
+    [item setIsEnabled:YES];
 }
 
 -(void) loadWorld:(int) world withLevel:(int) level

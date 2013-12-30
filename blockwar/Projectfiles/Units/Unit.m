@@ -34,7 +34,7 @@
         frameTimer = frameDelay;
         
         health = 5.0f;
-        [self setDamage:3.0f];
+        [self setDamage:1.0f];
         
         flashTimer = 0.0f;
         buffed = false;
