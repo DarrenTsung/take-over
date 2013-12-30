@@ -46,7 +46,6 @@ CCSprite *background;
         
         [self addChild: background z:-1];
         [self setupMenus];
-        [[CCDirector sharedDirector] setDisplayStats:NO];
     }
     return self;
 }

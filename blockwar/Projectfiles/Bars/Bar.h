@@ -8,15 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Bar : NSObject
+@interface Bar : CCNode
 {
     @protected
-    CGFloat *currentPtr, current, max, modifier;
+    CGFloat *currentPtr, current, max, modifier, loadRate;
     CGSize size;
     CGPoint origin;
     NSString *orientation;
     ccColor4F color;
     CGFloat shakeTimer;
+    
+    CCLayer *myParent;
+    bool isLoading;
 }
 
 -(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor withLinkTo:(CGFloat *)linkedValue;
@@ -26,6 +29,7 @@
 -(void) resetValueToMax;
 -(void) shakeForTime:(CGFloat)time;
 -(void) update:(ccTime)delta;
+-(void) updateAnimation:(ccTime)delta;
 -(void) stopShake;
 
 @end

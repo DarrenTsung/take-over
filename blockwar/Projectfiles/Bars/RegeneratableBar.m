@@ -21,10 +21,13 @@
 
 -(void) update:(ccTime) delta
 {
-    *currentPtr += regenRate*delta;
-    if (*currentPtr > max)
+    if (!isLoading)
     {
-        *currentPtr = max;
+        *currentPtr += regenRate*delta;
+        if (*currentPtr > max)
+        {
+            *currentPtr = max;
+        }
     }
 }
 

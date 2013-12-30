@@ -133,9 +133,12 @@ CGFloat bombTimer = 3.0f;
         [model setReferenceToEnemyAI:theEnemy];
         
         // Resource Bars
-        enemyHP = [[HealthBar alloc] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
-        playerHP = [[HealthBar alloc] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&model->playerHP];
-        playerResources = [[RegeneratableBar alloc] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&model->playerResources];
+        enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
+        playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&model->playerHP];
+        playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&model->playerResources];
+        [self addChild:enemyHP];
+        [self addChild:playerHP];
+        [self addChild:playerResources];
     }
     
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
@@ -167,14 +170,6 @@ CGFloat bombTimer = 3.0f;
     {
         ccDrawSolidRect(CGPointMake(170.0f, screenBounds.height - 20.0f), CGPointMake(180.0f, screenBounds.height - 30.0f), ccc4f(0.7f, 0.7f, 0.7f, 1.0f));
     }
-    
-    //[model drawUnits];
-    
-    // draw white around the bars
-    ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0f);
-    [playerHP draw];
-    [enemyHP draw];
-    [playerResources draw];
 }
 
 -(void) update:(ccTime)delta
@@ -392,6 +387,12 @@ CGFloat bombTimer = 3.0f;
         {
             [self reset];
         }
+    }
+    if (!isDone)
+    {
+        [playerHP updateAnimation:delta];
+        [enemyHP updateAnimation:delta];
+        [playerResources updateAnimation:delta];
     }
 }
 

@@ -25,6 +25,9 @@
         color = theColor;
         orientation = theOrientation;
         
+        isLoading = false;
+        loadRate = 0.0f;
+        
         shakeTimer = 0.0f;
         
         // default modifier is 1.0
@@ -37,6 +40,7 @@
         {
             modifier *= 1.0;
         }
+        [self loadingToMaxAnimationWithTime:1.7f];
     }
     return self;
 }
@@ -47,6 +51,21 @@
     max = *linkedValue;
     currentPtr = linkedValue;
     current = *currentPtr;
+    [self loadingToMaxAnimationWithTime:1.7f];
+}
+
+-(void) loadingToMaxAnimationWithTime:(CGFloat)timeInSeconds
+{
+    *currentPtr = 0;
+    loadRate = max / timeInSeconds;
+    isLoading = true;
+    [self scheduleOnce:@selector(stopLoading) delay:timeInSeconds];
+}
+
+-(void) stopLoading
+{
+    isLoading = false;
+    *currentPtr = max;
 }
 
 -(void) draw
@@ -65,19 +84,38 @@
     {
         ccDrawSolidRect(newOrigin, otherPoint, color);
     }
+    // draw white around the bars
+    ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0f);
     ccDrawRect(newOrigin, maxPoint);
 }
 
 -(void) update:(ccTime)delta
 {
-    if (shakeTimer > 0.0f)
+    if (!isLoading)
     {
-        shakeTimer -= delta;
+        if (shakeTimer > 0.0f)
+        {
+            shakeTimer -= delta;
+        }
+        else if (current != *currentPtr)
+        {
+            [self shakeForTime:0.5f];
+            current = *currentPtr;
+        }
     }
-    if (current != *currentPtr)
+}
+
+-(void) updateAnimation:(ccTime)delta
+{
+    // for animation purposes
+    if (isLoading)
     {
-        [self shakeForTime:0.5f];
-        current = *currentPtr;
+        *currentPtr += loadRate*delta;
+        // if somehow we miscalculated, make sure currentPtr doesn't go over max
+        if (*currentPtr > max)
+        {
+            *currentPtr = max;
+        }
     }
 }
 
