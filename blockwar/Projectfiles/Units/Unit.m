@@ -34,7 +34,7 @@
         frameTimer = frameDelay;
         
         health = 5.0f;
-        [self setDamage:1.0f];
+        [self setDamage:3.0f];
         
         flashTimer = 0.0f;
         buffed = false;
@@ -67,7 +67,7 @@
     return self;
 }
 
--(void) draw
+-(void)draw
 {
     [super draw];
     // draw germ around origin (origin is center of germ)
@@ -77,8 +77,19 @@
     //ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
 }
 
+-(void)setInvincibleForTime:(ccTime)time
+{
+    isInvincible = true;
+    [self scheduleOnce:@selector(setNotInvincible) delay:time];
+}
 
--(void) update:(ccTime) delta
+-(void)setNotInvincible
+{
+    isInvincible = false;
+}
+
+
+-(void)update:(ccTime) delta
 {
     // compute position
     if ([owner isEqualToString:@"Opponent"])
@@ -179,6 +190,10 @@
 
 -(void)hitFor:(CGFloat)hitDamage
 {
+    if (!isInvincible)
+    {
+        health -= hitDamage;
+    }
     velocity = pushBack;
 }
 
@@ -213,8 +228,6 @@
 {
     // flash white for 1.3 seconds
     flashTimer = 1.3f;
-    // get pushedBack
-    velocity = pushBack;
     // set death flag to be on
     dead = true;
 }

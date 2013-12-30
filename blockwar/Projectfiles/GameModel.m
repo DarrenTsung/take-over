@@ -133,7 +133,6 @@ CCTimer *bossSpawnTimer;
     // if endState is anything but nil at the end, we know to end the game
     NSString *endState = nil;
     NSMutableArray *playerDiscardedUnits = [[NSMutableArray alloc] init];
-    NSMutableArray *playerDiscardedSuperUnits = [[NSMutableArray alloc] init];
     NSMutableArray *enemyDiscardedUnits = [[NSMutableArray alloc] init];
     
     CGSize screen_bounds = [viewController returnScreenBounds];
@@ -149,10 +148,6 @@ CCTimer *bossSpawnTimer;
             {
                 [playerDiscardedUnits addObject:unit];
                 [playerDiscardedUnits addObject:unit->whiteSprite];
-                if ([unit isKindOfClass:[SuperUnit class]])
-                {
-                   [playerDiscardedSuperUnits addObject:unit];
-                }
             }
             // dont do collision checking for dead units
             continue;
@@ -177,31 +172,25 @@ CCTimer *bossSpawnTimer;
             if (enemyUnit->health < 0.0f)
             {
                 [enemyUnit kill];
+                continue;
             }
             counter++;
             if ([unit isCollidingWith: enemyUnit])
             {
-                unit->health -= enemyUnit->damage;
-                enemyUnit->health -= unit->damage;
+                [unit flashWhiteFor:0.6f];
+                [unit hitFor:enemyUnit->damage];
+                
+                [enemyUnit flashWhiteFor:0.6f];
+                [enemyUnit hitFor:unit->damage];
                 
                 if (unit->health < 0.0f)
                 {
                     [unit kill];
                 }
-                else
-                {
-                    [unit flashWhiteFor:0.6f];
-                    [unit hitFor:enemyUnit->damage];
-                }
                 
                 if (enemyUnit->health < 0.0f)
                 {
                     [enemyUnit kill];
-                }
-                else
-                {
-                    [enemyUnit flashWhiteFor:0.6f];
-                    [enemyUnit hitFor:unit->damage];
                 }
                 
                 // breaks out of checking the current player unit with any more enemy_units
@@ -218,10 +207,6 @@ CCTimer *bossSpawnTimer;
         {
             [playerDiscardedUnits addObject:unit];
             [playerDiscardedUnits addObject:unit->whiteSprite];
-            if ([unit isKindOfClass:[SuperUnit class]])
-            {
-                [playerDiscardedSuperUnits addObject:unit];
-            }
             enemyHP -= unit->damage;
             if (enemyHP <= 0.0f)
             {
@@ -273,7 +258,6 @@ CCTimer *bossSpawnTimer;
             {
                 endState = @"enemy";
             }
-
         }
     }
     [playerUnits removeObjectsInArray:playerDiscardedUnits];

@@ -20,7 +20,7 @@
     CGFloat flashTimer;
     NSString *owner, *name;
     CGRect boundingRect;
-    bool buffed, dead;
+    bool buffed, dead, isInvincible;
     
     int currentFrame, framesPerSecond;
     CGFloat frameTimer, frameDelay;
@@ -35,6 +35,7 @@
 //-(void)draw;
 -(void)update:(ccTime) delta;
 -(BOOL)isCollidingWith:(Unit *) otherUnit;
+-(void)setInvincibleForTime:(ccTime)time;
 -(void)flashWhiteFor:(CGFloat)time;
 -(void)hitFor:(CGFloat)hitDamage;
 -(void)pushBack:(CGFloat)percentage;

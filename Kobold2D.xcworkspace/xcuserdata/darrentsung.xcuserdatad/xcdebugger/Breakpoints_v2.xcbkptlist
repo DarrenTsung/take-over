@@ -98,11 +98,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/GameModel.m"
-            timestampString = "409911621.89908"
+            timestampString = "410119151.242583"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "233"
-            endingLineNumber = "233"
+            startingLineNumber = "218"
+            endingLineNumber = "218"
             landmarkName = "-checkForCollisionsAndRemove"
             landmarkType = "5">
          </BreakpointContent>

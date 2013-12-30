@@ -377,14 +377,14 @@
 		6CD3616418259DF500A56D5C /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				6C021A31186B94CA000C11FC /* Unit.h */,
+				6C021A32186B94CA000C11FC /* Unit.m */,
+				6C021A2F186B94CA000C11FC /* SuperUnit.h */,
+				6C021A30186B94CA000C11FC /* SuperUnit.m */,
 				6C021A2B186B94CA000C11FC /* Blocker.h */,
 				6C021A2C186B94CA000C11FC /* Blocker.m */,
 				6C021A2D186B94CA000C11FC /* BossUnit.h */,
 				6C021A2E186B94CA000C11FC /* BossUnit.m */,
-				6C021A2F186B94CA000C11FC /* SuperUnit.h */,
-				6C021A30186B94CA000C11FC /* SuperUnit.m */,
-				6C021A31186B94CA000C11FC /* Unit.h */,
-				6C021A32186B94CA000C11FC /* Unit.m */,
 			);
 			name = Units;
 			sourceTree = "<group>";
