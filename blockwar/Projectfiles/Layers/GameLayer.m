@@ -29,7 +29,7 @@ CGFloat touchIndicatorRadius;
 CGPoint touchIndicatorCenter;
 CGPoint touchStartPoint;
 ccColor4F touchIndicatorColor;
-#define SPAWN_SIZE 3
+#define SPAWN_SIZE 2
 #define UNIT_COST 12
 // super units cost 6 times what regular units cost
 #define SUPER_UNIT_MULTIPLIER 6

@@ -32,9 +32,9 @@ CCTimer *bossSpawnTimer;
         
         spawnBossAtEnd = [[levelProperties objectForKey:@"bossExists"] boolValue];
         
-        playerHP = 50.0f;
-        playerResources = 120.0f;
-        enemyHP = 50.0f;
+        playerHP = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerHP"];
+        playerResources = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerResources"];
+        enemyHP = [[levelProperties objectForKey:@"enemyHP"] floatValue];;
     }
     return self;
 }

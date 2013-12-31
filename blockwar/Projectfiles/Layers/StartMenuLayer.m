@@ -41,6 +41,17 @@ CCSprite *background;
             [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"levelUnlocked"];
         }
         
+        CGFloat playerHP = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerHP"];
+        CGFloat playerResources = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerResources"];
+        CGFloat playerRegenRate = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerRegenRate"];
+        if (playerHP == 0 || playerResources == 0 || playerRegenRate == 0)
+        {
+            NSLog(@"HP / Resources / RegenRate not found, reset all to defaults");
+            [[NSUserDefaults standardUserDefaults] setFloat:20.0f forKey:@"playerHP"];
+            [[NSUserDefaults standardUserDefaults] setFloat:30.0f forKey:@"playerResources"];
+            [[NSUserDefaults standardUserDefaults] setFloat:5.0f forKey:@"playerRegenRate"];
+        }
+        
         background = [CCSprite spriteWithFile: @"menubackground.png"];
         background.position = ccp( 280, 160 );
         
