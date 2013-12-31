@@ -40,10 +40,14 @@
 		6C902090186E480C001D1183 /* level2_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C90208D186E480C001D1183 /* level2_locked.png */; };
 		6C902091186E480C001D1183 /* level3_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C90208E186E480C001D1183 /* level3_locked.png */; };
 		6C902097186EAC4E001D1183 /* World1_Level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C902096186EAC4E001D1183 /* World1_Level1.plist */; };
-		6C9BB86A1872467000E14BAA /* win_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8681872467000E14BAA /* win_overlay_frames.plist */; };
-		6C9BB86B1872467000E14BAA /* win_overlay_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8691872467000E14BAA /* win_overlay_frames.png */; };
-		6C9BB86E18724C8900E14BAA /* win_overlay_frames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB86C18724C8900E14BAA /* win_overlay_frames-hd.plist */; };
-		6C9BB86F18724C8900E14BAA /* win_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB86D18724C8900E14BAA /* win_overlay_frames-hd.png */; };
+		6C9BB8781872821900E14BAA /* lose_overlay_frames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */; };
+		6C9BB8791872821900E14BAA /* lose_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */; };
+		6C9BB87A1872821900E14BAA /* lose_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */; };
+		6C9BB87B1872821900E14BAA /* lose_overlay_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8731872821900E14BAA /* lose_overlay_frames.png */; };
+		6C9BB87C1872821900E14BAA /* win_overlay_frames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8741872821900E14BAA /* win_overlay_frames-hd.plist */; };
+		6C9BB87D1872821900E14BAA /* win_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8751872821900E14BAA /* win_overlay_frames-hd.png */; };
+		6C9BB87E1872821900E14BAA /* win_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8761872821900E14BAA /* win_overlay_frames.plist */; };
+		6C9BB87F1872821900E14BAA /* win_overlay_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8771872821900E14BAA /* win_overlay_frames.png */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -156,10 +160,14 @@
 		6C90208D186E480C001D1183 /* level2_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level2_locked.png; path = Worlds/World1/level2_locked.png; sourceTree = "<group>"; };
 		6C90208E186E480C001D1183 /* level3_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level3_locked.png; path = Worlds/World1/level3_locked.png; sourceTree = "<group>"; };
 		6C902096186EAC4E001D1183 /* World1_Level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = World1_Level1.plist; path = Worlds/World1/Levels/World1_Level1.plist; sourceTree = "<group>"; };
-		6C9BB8681872467000E14BAA /* win_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = win_overlay_frames.plist; sourceTree = "<group>"; };
-		6C9BB8691872467000E14BAA /* win_overlay_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = win_overlay_frames.png; sourceTree = "<group>"; };
-		6C9BB86C18724C8900E14BAA /* win_overlay_frames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "win_overlay_frames-hd.plist"; sourceTree = "<group>"; };
-		6C9BB86D18724C8900E14BAA /* win_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "win_overlay_frames-hd.png"; sourceTree = "<group>"; };
+		6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lose_overlay_frames-hd.plist"; path = "Overlays/lose_overlay_frames-hd.plist"; sourceTree = "<group>"; };
+		6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lose_overlay_frames-hd.png"; path = "Overlays/lose_overlay_frames-hd.png"; sourceTree = "<group>"; };
+		6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lose_overlay_frames.plist; path = Overlays/lose_overlay_frames.plist; sourceTree = "<group>"; };
+		6C9BB8731872821900E14BAA /* lose_overlay_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lose_overlay_frames.png; path = Overlays/lose_overlay_frames.png; sourceTree = "<group>"; };
+		6C9BB8741872821900E14BAA /* win_overlay_frames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "win_overlay_frames-hd.plist"; path = "Overlays/win_overlay_frames-hd.plist"; sourceTree = "<group>"; };
+		6C9BB8751872821900E14BAA /* win_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "win_overlay_frames-hd.png"; path = "Overlays/win_overlay_frames-hd.png"; sourceTree = "<group>"; };
+		6C9BB8761872821900E14BAA /* win_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = win_overlay_frames.plist; path = Overlays/win_overlay_frames.plist; sourceTree = "<group>"; };
+		6C9BB8771872821900E14BAA /* win_overlay_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = win_overlay_frames.png; path = Overlays/win_overlay_frames.png; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -355,11 +363,24 @@
 			name = "AI Types";
 			sourceTree = "<group>";
 		};
+		6C9BB8801872822000E14BAA /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */,
+				6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */,
+				6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */,
+				6C9BB8731872821900E14BAA /* lose_overlay_frames.png */,
+				6C9BB8741872821900E14BAA /* win_overlay_frames-hd.plist */,
+				6C9BB8751872821900E14BAA /* win_overlay_frames-hd.png */,
+				6C9BB8761872821900E14BAA /* win_overlay_frames.plist */,
+				6C9BB8771872821900E14BAA /* win_overlay_frames.png */,
+			);
+			name = Overlays;
+			sourceTree = "<group>";
+		};
 		6CAB076118529AD0008749D5 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				6C9BB86C18724C8900E14BAA /* win_overlay_frames-hd.plist */,
-				6C9BB86D18724C8900E14BAA /* win_overlay_frames-hd.png */,
 				6CAB076218529ADC008749D5 /* bossrussianframes-hd.plist */,
 				6CAB076318529ADC008749D5 /* bossrussianframes-hd.png */,
 				6CAB076418529ADC008749D5 /* bossrussianframes.plist */,
@@ -514,8 +535,7 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6C9BB8681872467000E14BAA /* win_overlay_frames.plist */,
-				6C9BB8691872467000E14BAA /* win_overlay_frames.png */,
+				6C9BB8801872822000E14BAA /* Overlays */,
 				6CAB07751852D5F4008749D5 /* losescreen.png */,
 				6CAB07761852D5F4008749D5 /* play.png */,
 				6CAB07771852D5F4008749D5 /* winscreen.png */,
@@ -625,35 +645,36 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C83A79D186EBEA6002EB16B /* World1_Level3.plist in Resources */,
+				6C9BB87F1872821900E14BAA /* win_overlay_frames.png in Resources */,
+				6C9BB87B1872821900E14BAA /* lose_overlay_frames.png in Resources */,
 				6CAB076818529ADC008749D5 /* bossrussianframes.plist in Resources */,
 				6CAB076618529ADC008749D5 /* bossrussianframes-hd.plist in Resources */,
 				6CAB076918529ADC008749D5 /* bossrussianframes.png in Resources */,
 				6C902090186E480C001D1183 /* level2_locked.png in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
-				6C9BB86A1872467000E14BAA /* win_overlay_frames.plist in Resources */,
+				6C9BB8791872821900E14BAA /* lose_overlay_frames-hd.png in Resources */,
 				6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */,
 				6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
-				6C9BB86B1872467000E14BAA /* win_overlay_frames.png in Resources */,
 				6C90208B186E3CA1001D1183 /* level3.png in Resources */,
+				6C9BB87D1872821900E14BAA /* win_overlay_frames-hd.png in Resources */,
 				6CAB07781852D5F4008749D5 /* losescreen.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
 				6C902097186EAC4E001D1183 /* World1_Level1.plist in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
-				6C9BB86F18724C8900E14BAA /* win_overlay_frames-hd.png in Resources */,
 				6C83A7A6186F6637002EB16B /* upgradeConfig.plist in Resources */,
 				6CAB076E18529AE7008749D5 /* menubackground.png in Resources */,
 				6CAE6DB3182C5D8F00602F39 /* zombieframes.png in Resources */,
 				6C021A26186B94B8000C11FC /* 1_1AI.plist in Resources */,
 				6CA6C6BF185008180067BEBE /* superzombieframes-hd.png in Resources */,
 				6C90208F186E480C001D1183 /* level1_locked.png in Resources */,
+				6C9BB87A1872821900E14BAA /* lose_overlay_frames.plist in Resources */,
 				6CAE6DB2182C5D8F00602F39 /* zombieframes.plist in Resources */,
 				6C83A7A5186F6637002EB16B /* upgradeBackground.png in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				6CAB076718529ADC008749D5 /* bossrussianframes-hd.png in Resources */,
 				6C902087186E3732001D1183 /* world1_levelselect.plist in Resources */,
-				6C9BB86E18724C8900E14BAA /* win_overlay_frames-hd.plist in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
@@ -662,6 +683,7 @@
 				6C902091186E480C001D1183 /* level3_locked.png in Resources */,
 				6CAB07791852D5F4008749D5 /* play.png in Resources */,
 				6CA6C6C0185008180067BEBE /* superzombieframes.plist in Resources */,
+				6C9BB87C1872821900E14BAA /* win_overlay_frames-hd.plist in Resources */,
 				6C83A79C186EBEA6002EB16B /* World1_Level2.plist in Resources */,
 				6C90208A186E3CA1001D1183 /* level2.png in Resources */,
 				6C83A7AB186F699C002EB16B /* zombieDisplay.png in Resources */,
@@ -673,10 +695,12 @@
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
 				6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */,
 				6C021A28186B94B8000C11FC /* 1_3AI.plist in Resources */,
+				6C9BB87E1872821900E14BAA /* win_overlay_frames.plist in Resources */,
 				6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */,
 				6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
+				6C9BB8781872821900E14BAA /* lose_overlay_frames-hd.plist in Resources */,
 				6CD489C91842E14B00515AD4 /* russianframes.png in Resources */,
 				6CAB076D18529AE7008749D5 /* background.png in Resources */,
 				6CD489CB1842E15B00515AD4 /* russianframes.plist in Resources */,

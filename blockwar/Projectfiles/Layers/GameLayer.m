@@ -111,22 +111,7 @@ CGFloat bombTimer = 3.0f;
         touchArea.origin = CGPointMake(0.0f, 0.0f);
         touchArea.size = CGSizeMake(screenBounds.width/7, playHeight);
         
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"russianframes.plist"];
-        CCSpriteBatchNode *russianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.png"];
-        [self addChild:russianSpriteSheet];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bossrussianframes.plist"];
-        CCSpriteBatchNode *bossrussianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bossrussianframes.png"];
-        [self addChild:bossrussianSpriteSheet];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
-        CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.png"];
-        [self addChild:zombieSpriteSheet];
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"superzombieframes.plist"];
-        CCSpriteBatchNode *superzombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"superzombieframes.png"];
-        [self addChild:superzombieSpriteSheet];
-        
-        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"win_overlay_frames.plist"];
-        CCSpriteBatchNode *winOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"win_overlay_frames.png"];
-        [self addChild:winOverlaySpriteSheet];
+        [self loadSpriteSheets];
         
         // model controls and models all the germs
         model = [[GameModel alloc] initWithReferenceToViewController:self andReferenceToLevelProperties:levelProperties];
@@ -149,6 +134,31 @@ CGFloat bombTimer = 3.0f;
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
     return self;
+}
+
+-(void) loadSpriteSheets
+{
+    // unit sprite sheets
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"russianframes.plist"];
+    CCSpriteBatchNode *russianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.png"];
+    [self addChild:russianSpriteSheet];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bossrussianframes.plist"];
+    CCSpriteBatchNode *bossrussianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bossrussianframes.png"];
+    [self addChild:bossrussianSpriteSheet];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
+    CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.png"];
+    [self addChild:zombieSpriteSheet];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"superzombieframes.plist"];
+    CCSpriteBatchNode *superzombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"superzombieframes.png"];
+    [self addChild:superzombieSpriteSheet];
+    
+    // overlay sprite sheets
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"win_overlay_frames.plist"];
+    CCSpriteBatchNode *winOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"win_overlay_frames.png"];
+    [self addChild:winOverlaySpriteSheet];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"lose_overlay_frames.plist"];
+    CCSpriteBatchNode *loseOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"lose_overlay_frames.png"];
+    [self addChild:loseOverlaySpriteSheet];
 }
 
 -(void) onEnter
@@ -478,19 +488,14 @@ CGFloat bombTimer = 3.0f;
 {
     NSLog(@"Win state: %@!", theWinState);
     
-    NSMutableArray *winOverlayFrames = [NSMutableArray array];
-    for (int i=1; i<=14; i++)
+    if ([theWinState isEqualToString:@"player"] || [theWinState isEqualToString:@"win"])
     {
-        [winOverlayFrames addObject:
-         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"win_overlay_%d.png", i]]];
+        [self playOverlay:@"win"];
     }
-    CCAnimation *winOverlay = [CCAnimation animationWithSpriteFrames:winOverlayFrames delay:1/20.0f];
-    CCAction *playWinOverlay = [CCRepeat actionWithAction:[CCAnimate actionWithAnimation:winOverlay] times:1];
-    
-    CCSprite *winOverlaySprite = [[CCSprite alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"win_overlay_1.png"]];
-    [winOverlaySprite setPosition:ccp(284, 160)];
-    [self addChild:winOverlaySprite z:10];
-    [winOverlaySprite runAction:playWinOverlay];
+    else if ([theWinState isEqualToString:@"enemy"] || [theWinState isEqualToString:@"lose"])
+    {
+        [self playOverlay:@"lose"];
+    }
     
     winState = theWinState;
     isDone = true;
@@ -500,6 +505,32 @@ CGFloat bombTimer = 3.0f;
     [self scheduleOnce:@selector(reset) delay:3.0f];
 }
 
+-(void) playOverlay:(NSString *)overlayType
+{
+    NSMutableArray *overlayFrames = [NSMutableArray array];
+    NSString *prefix;
+    if ([overlayType isEqualToString:@"win"])
+    {
+        prefix = @"win_overlay_";
+    }
+    else if ([overlayType isEqualToString:@"lose"])
+    {
+        prefix = @"lose_overlay_";
+    }
+    
+    for (int i=1; i<=14; i++)
+    {
+        [overlayFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"%@%d.png", prefix, i]]];
+    }
+    CCAnimation *overlayAnimation = [CCAnimation animationWithSpriteFrames:overlayFrames delay:1/20.0f];
+    CCAction *playOverlay = [CCRepeat actionWithAction:[CCAnimate actionWithAnimation:overlayAnimation] times:1];
+    
+    CCSprite *overlaySprite = [[CCSprite alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"win_overlay_1.png"]];
+    [overlaySprite setPosition:ccp(284, 160)];
+    [self addChild:overlaySprite z:10];
+    [overlaySprite runAction:playOverlay];
+}
 
 
 @end
