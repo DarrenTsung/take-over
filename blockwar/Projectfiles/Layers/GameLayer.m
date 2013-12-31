@@ -252,10 +252,23 @@ CGFloat bombTimer = 3.0f;
                     {
                         CGPoint random_pos;
                         bool not_near = false;
+                        NSLog(@"POS:(%f, %f)", pos.x, pos.y);
                         while (!not_near)
                         {
                             not_near = true;
                             random_pos = CGPointMake(pos.x + arc4random()%(int)TOUCH_RADIUS_MAX - 25, pos.y + arc4random() % (int)TOUCH_RADIUS_MAX - 25);
+                            // if y is outside the playArea, regenerate
+                            NSLog(@"Random position:(%f, %f) with playHeight of %f", random_pos.x, random_pos.y, playHeight);
+                            if (random_pos.y < 10.0f)
+                            {
+                                random_pos.y = 10.0f + arc4random_uniform(touchIndicatorRadius - pos.y);
+                                break;
+                            }
+                            else if (random_pos.y > playHeight)
+                            {
+                                NSLog(@"Regenerating point!");
+                                not_near = false;
+                            }
                             for (NSValue *o_pos in positions_to_be_spawned)
                             {
                                 CGPoint other_pos = [o_pos CGPointValue];
