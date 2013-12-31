@@ -450,7 +450,10 @@ CGFloat bombTimer = 3.0f;
     {
         // go back to the level select screen
         LevelSelectLayer *levelSelect = [[LevelSelectLayer alloc] init];
-        [levelSelect scheduleOnce:@selector(unlockNextLevel) delay:0.5f];
+        if (currentLevel == [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"])
+        {
+            [levelSelect scheduleOnce:@selector(unlockNextLevel) delay:0.5f];
+        }
         [[CCDirector sharedDirector] replaceScene:
          [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)levelSelect]];
     }
