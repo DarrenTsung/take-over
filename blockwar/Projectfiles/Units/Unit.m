@@ -60,8 +60,7 @@
         owner = theOwner;
         if ([owner isEqualToString:@"Opponent"])
         {
-            health = 4.0f;
-            [self setDamage:0.8f];
+            health = 3.0f;
         }
     }
     return self;

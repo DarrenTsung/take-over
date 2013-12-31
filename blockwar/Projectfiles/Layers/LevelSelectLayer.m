@@ -142,10 +142,10 @@ UpgradeLayer *upgradeMenu;
     
     [self addChild:selectedSprite];
     // and fade it out over 2 seconds
-    [selectedSprite runAction:[CCFadeTo actionWithDuration:2.0f opacity:255]];
+    [selectedSprite runAction:[CCFadeTo actionWithDuration:1.2f opacity:255]];
     
     // set the item to enabled when animation is finished
-    [self scheduleOnce:@selector(enableNextLevel) delay:2.0f];
+    [self scheduleOnce:@selector(enableNextLevel) delay:1.2f];
 }
 
 -(void)enableNextLevel
