@@ -124,6 +124,10 @@ CGFloat bombTimer = 3.0f;
         CCSpriteBatchNode *superzombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"superzombieframes.png"];
         [self addChild:superzombieSpriteSheet];
         
+        [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"win_overlay_frames.plist"];
+        CCSpriteBatchNode *winOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"win_overlay_frames.png"];
+        [self addChild:winOverlaySpriteSheet];
+        
         // model controls and models all the germs
         model = [[GameModel alloc] initWithReferenceToViewController:self andReferenceToLevelProperties:levelProperties];
         
@@ -460,6 +464,21 @@ CGFloat bombTimer = 3.0f;
 -(void) endGameWithWinState:(NSString *)theWinState
 {
     NSLog(@"Win state: %@!", theWinState);
+    
+    NSMutableArray *winOverlayFrames = [NSMutableArray array];
+    for (int i=1; i<=14; i++)
+    {
+        [winOverlayFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"win_overlay_%d.png", i]]];
+    }
+    CCAnimation *winOverlay = [CCAnimation animationWithSpriteFrames:winOverlayFrames delay:1/20.0f];
+    CCAction *playWinOverlay = [CCRepeat actionWithAction:[CCAnimate actionWithAnimation:winOverlay] times:1];
+    
+    CCSprite *winOverlaySprite = [[CCSprite alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"win_overlay_1.png"]];
+    [winOverlaySprite setPosition:ccp(284, 160)];
+    [self addChild:winOverlaySprite z:10];
+    [winOverlaySprite runAction:playWinOverlay];
+    
     winState = theWinState;
     isDone = true;
     [playerHP stopShake];
