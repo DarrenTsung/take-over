@@ -28,7 +28,7 @@
         acceleration = 100.0f;
         pushBack = -maxVelocity;
         
-        currentFrame = 0;
+        currentFrame = arc4random_uniform(2);
         framesPerSecond = 10;
         frameDelay = (1.0/framesPerSecond);
         frameTimer = frameDelay;
