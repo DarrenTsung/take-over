@@ -11,10 +11,12 @@
 #import "Unit.h"
 #import "SuperUnit.h"
 #import "GameLayer.h"
+#import "BossUnit.h"
 
 #define UNIT_COST 12
 // super units cost 6 times what regular units cost
 #define SUPER_UNIT_MULTIPLIER 6
+#define SHAKE_TIME 0.7f
 
 bool spawnBossAtEnd = false;
 CCTimer *bossSpawnTimer;
@@ -158,7 +160,7 @@ CCTimer *bossSpawnTimer;
                 // remove units after they stop their backwards velocity
                 if (enemyUnit->velocity >= 0.0f)
                 {
-                    if ([enemyUnit->name isEqualToString:@"bossrussian"])
+                    if ([enemyUnit isKindOfClass:[BossUnit class]])
                     {
                         endState = @"win";
                     }
@@ -176,6 +178,10 @@ CCTimer *bossSpawnTimer;
             counter++;
             if ([unit isCollidingWith: enemyUnit])
             {
+                if ([enemyUnit isKindOfClass:[BossUnit class]])
+                {
+                    [viewController->shaker shakeWithShakeValue:3 forTime:SHAKE_TIME];
+                }
                 [unit flashWhiteFor:0.6f];
                 [unit hitFor:enemyUnit->damage];
                 
@@ -207,6 +213,7 @@ CCTimer *bossSpawnTimer;
             [playerDiscardedUnits addObject:unit];
             [playerDiscardedUnits addObject:unit->whiteSprite];
             enemyHP -= unit->damage;
+            [viewController->shaker shakeWithShakeValue:3 forTime:SHAKE_TIME];
             if (enemyHP <= 0.0f)
             {
                 if (spawnBossAtEnd)
@@ -229,7 +236,7 @@ CCTimer *bossSpawnTimer;
             // remove units after they stop their backwards velocity
             if (enemyUnit->velocity >= 0.0f)
             {
-                if ([enemyUnit->name isEqualToString:@"bossrussian"])
+                if ([enemyUnit isKindOfClass:[BossUnit class]])
                 {
                     endState = @"win";
                 }
@@ -252,6 +259,7 @@ CCTimer *bossSpawnTimer;
             [enemyDiscardedUnits addObject:enemyUnit];
             [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
             playerHP -= enemyUnit->damage;
+            [viewController->shaker shakeWithShakeValue:3 forTime:SHAKE_TIME];
             if (playerHP <= 0.0f)
             {
                 endState = @"enemy";

@@ -48,6 +48,7 @@
 		6C9BB87D1872821900E14BAA /* win_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8751872821900E14BAA /* win_overlay_frames-hd.png */; };
 		6C9BB87E1872821900E14BAA /* win_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8761872821900E14BAA /* win_overlay_frames.plist */; };
 		6C9BB87F1872821900E14BAA /* win_overlay_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8771872821900E14BAA /* win_overlay_frames.png */; };
+		6C9BB8831875EE3A00E14BAA /* NodeShaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8821875EE3A00E14BAA /* NodeShaker.m */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -168,6 +169,8 @@
 		6C9BB8751872821900E14BAA /* win_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "win_overlay_frames-hd.png"; path = "Overlays/win_overlay_frames-hd.png"; sourceTree = "<group>"; };
 		6C9BB8761872821900E14BAA /* win_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = win_overlay_frames.plist; path = Overlays/win_overlay_frames.plist; sourceTree = "<group>"; };
 		6C9BB8771872821900E14BAA /* win_overlay_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = win_overlay_frames.png; path = Overlays/win_overlay_frames.png; sourceTree = "<group>"; };
+		6C9BB8811875EE3A00E14BAA /* NodeShaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeShaker.h; sourceTree = "<group>"; };
+		6C9BB8821875EE3A00E14BAA /* NodeShaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeShaker.m; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6C9BB8811875EE3A00E14BAA /* NodeShaker.h */,
+				6C9BB8821875EE3A00E14BAA /* NodeShaker.m */,
 				6C9BB8801872822000E14BAA /* Overlays */,
 				6CAB07751852D5F4008749D5 /* losescreen.png */,
 				6CAB07761852D5F4008749D5 /* play.png */,
@@ -744,6 +749,7 @@
 				6C021A3F186B94D6000C11FC /* GameLayer.m in Sources */,
 				6C83A7A0186F437B002EB16B /* UpgradeLayer.m in Sources */,
 				6C021A40186B94D6000C11FC /* LoseLayer.m in Sources */,
+				6C9BB8831875EE3A00E14BAA /* NodeShaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

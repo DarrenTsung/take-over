@@ -19,6 +19,7 @@
 #import "LoseLayer.h"
 #import "StartMenuLayer.h"
 #import "LevelSelectLayer.h"
+#import "NodeShaker.h"
 
 GameModel *model;
 
@@ -129,6 +130,10 @@ CGFloat bombTimer = 3.0f;
         [self addChild:enemyHP];
         [self addChild:playerHP];
         [self addChild:playerResources];
+        
+        // my shaker
+        shaker = [[NodeShaker alloc] initWithReferenceToNode:self];
+        [self addChild:shaker];
     }
     
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)

@@ -98,11 +98,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/GameModel.m"
-            timestampString = "410334313.464042"
+            timestampString = "410383469.429188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
             landmarkName = "-checkForCollisionsAndRemove"
             landmarkType = "5">
             <Locations>
@@ -144,11 +144,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/GameModel.m"
-            timestampString = "410326599.996436"
+            timestampString = "410383469.429188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
             landmarkName = "-initWithReferenceToViewController:andReferenceToLevelProperties:"
             landmarkType = "5">
          </BreakpointContent>

@@ -8,12 +8,14 @@
 
 #import "CCLayer.h"
 #import "HealthBar.h"
+#import "NodeShaker.h"
 
 @interface GameLayer : CCLayerColor
 {
     @public
     CGRect touchArea;
     CGFloat playHeight;
+    NodeShaker *shaker;
     
     HealthBar *playerHP, *enemyHP;
 }
