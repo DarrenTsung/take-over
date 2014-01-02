@@ -79,16 +79,8 @@ UpgradeLayer *upgradeMenu;
     {
         if (input.anyTouchBeganThisFrame)
         {
-            if (upgradeOnScreen)
-            {
-                if (!CGRectContainsPoint([upgradeMenu->backgroundImage boundingBox], currentPoint))
-                {
-                    [self removeChild:upgradeMenu];
-                    upgradeOnScreen = false;
-                }
-            }
             // touch bottom right corner to reset the unlocked progress and reload the level select layer
-            else if (currentPoint.x > 280 && currentPoint.y < 40)
+            if (currentPoint.x > 280 && currentPoint.y < 40)
             {
                 [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"worldUnlocked"];
                 [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"levelUnlocked"];
@@ -98,10 +90,8 @@ UpgradeLayer *upgradeMenu;
             // touch top right corner to open up upgrade menu
             else if (currentPoint.x < 40 && currentPoint.y < 40)
             {
-                NSLog(@"Upgrade screen point hit");
-                upgradeMenu = [UpgradeLayer node];
-                [self addChild:upgradeMenu z:10];
-                upgradeOnScreen = true;
+                [[CCDirector sharedDirector] pushScene:
+                 [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[UpgradeLayer alloc] init]]];
             }
             else
             {
