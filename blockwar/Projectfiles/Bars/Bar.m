@@ -20,6 +20,10 @@
         max = *linkedValue;
         currentPtr = linkedValue;
         current = *currentPtr;
+        lightCurrent = *currentPtr;
+        lighterBarFallRate = 0.0f;
+        lighterBarUnlocked = false;
+        boutToUnlock = false;
         
         origin = theOrigin;
         color = theColor;
@@ -46,6 +50,11 @@
     return self;
 }
 
+-(ccColor4F) lightenColor:(ccColor4F)theColor
+{
+    return ccc4f(theColor.r + 0.3, theColor.g + 0.3, theColor.b + 0.3, theColor.a);
+}
+
 // change the target of the bar
 -(void) changeLinkTo:(CGFloat *)linkedValue
 {
@@ -64,6 +73,8 @@
 -(void) loadingToMaxAnimationWithTime:(CGFloat)timeInSeconds
 {
     *currentPtr = 0;
+    current = 0;
+    lightCurrent = max;
     loadRate = max / timeInSeconds;
     isLoading = true;
     [self scheduleOnce:@selector(stopLoading) delay:timeInSeconds];
@@ -87,16 +98,26 @@
     {
         // current value of the layer we're on
         CGFloat localCurrent = *currentPtr - localMax*i;
-        if (localCurrent > localMax)
+        CGFloat localLightCurrent = lightCurrent - localMax*i;
+        if (localCurrent >= localMax)
         {
             localCurrent = localMax;
+        }
+        if (localLightCurrent >= localMax)
+        {
+            localLightCurrent = localMax;
         }
         ccColor4F localColor = ccc4f(color.r + i*(0.3/layerCount), color.g, color.b, color.a);
         
         // opposite point to the origin of the health_bar
         CGPoint newOrigin = CGPointMake(origin.x + offset.x, origin.y + offset.y);
         CGPoint otherPoint = CGPointMake(newOrigin.x + modifier*size.width*(localCurrent/localMax), newOrigin.y - size.height);
+        CGPoint otherLightPoint = CGPointMake(newOrigin.x + modifier*size.width*(localLightCurrent/localMax), newOrigin.y - size.height);
         CGPoint maxPoint = CGPointMake(newOrigin.x + modifier*size.width, newOrigin.y - size.height);
+        if (localLightCurrent > 0.0f)
+        {
+            ccDrawSolidRect(newOrigin, otherLightPoint, [self lightenColor:localColor]);
+        }
         if (localCurrent > 0.0f)
         {
             ccDrawSolidRect(newOrigin, otherPoint, localColor);
@@ -111,6 +132,12 @@
 {
     if (!isLoading)
     {
+        // push the light value up to current value
+        if (current > lightCurrent)
+        {
+            lightCurrent = current;
+        }
+        
         if (shakeTimer > 0.0f)
         {
             shakeTimer -= delta;
@@ -118,9 +145,20 @@
         else if (current != *currentPtr)
         {
             [self shakeForTime:0.5f];
+            if (!boutToUnlock)
+            {
+                [self scheduleOnce:@selector(updateLighterBar) delay:1.0f];
+                boutToUnlock = true;
+            }
             current = *currentPtr;
         }
     }
+}
+
+-(void) updateLighterBar
+{
+    lighterBarUnlocked = true;
+    lighterBarFallRate = (lightCurrent - current) / 0.3f;
 }
 
 -(void) updateAnimation:(ccTime)delta
@@ -133,6 +171,30 @@
         if (*currentPtr > max)
         {
             *currentPtr = max;
+        }
+        current = *currentPtr;
+    }
+    if (!isLoading)
+    {
+        if (*currentPtr <= 0.0f)
+        {
+            current = 0.0f;
+            if (!boutToUnlock)
+            {
+                [self scheduleOnce:@selector(updateLighterBar) delay:1.0f];
+                boutToUnlock = true;
+            }
+        }
+        
+        if (lighterBarUnlocked)
+        {
+            lightCurrent -= lighterBarFallRate*delta;
+            if (lightCurrent < current)
+            {
+                lightCurrent = current;
+                lighterBarUnlocked = false;
+                boutToUnlock = false;
+            }
         }
     }
 }

@@ -18,6 +18,9 @@
     ccColor4F color;
     CGFloat shakeTimer;
     
+    CGFloat lightCurrent, lighterBarFallRate;
+    bool lighterBarUnlocked, boutToUnlock;
+    
     int layerCount;
     
     CCLayer *myParent;

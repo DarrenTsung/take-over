@@ -28,7 +28,29 @@
         {
             *currentPtr = max;
         }
+        
+        // push the light value up to current value
+        if (current > lightCurrent)
+        {
+            lightCurrent = current;
+        }
+        
+        else if (current != *currentPtr)
+        {
+            if (!boutToUnlock)
+            {
+                [self scheduleOnce:@selector(updateLighterBar) delay:0.4f];
+                boutToUnlock = true;
+            }
+            current = *currentPtr;
+        }
     }
+}
+
+-(void) updateLighterBar
+{
+    lighterBarUnlocked = true;
+    lighterBarFallRate = (lightCurrent - current) / 0.5f;
 }
 
 @end

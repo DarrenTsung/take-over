@@ -404,13 +404,11 @@ CGFloat bombTimer = 3.0f;
             }
         }
     }
- 
-    if (!isDone)
-    {
-        [playerHP updateAnimation:delta];
-        [enemyHP updateAnimation:delta];
-        [playerResources updateAnimation:delta];
-    }
+    
+    [playerHP updateAnimation:delta];
+    [enemyHP updateAnimation:delta];
+    [playerResources updateAnimation:delta];
+
 }
 
 -(void) nextFrame
@@ -505,7 +503,7 @@ CGFloat bombTimer = 3.0f;
     [playerHP stopShake];
     [enemyHP stopShake];
     
-    [self scheduleOnce:@selector(reset) delay:3.0f];
+    [self scheduleOnce:@selector(reset) delay:4.0f];
 }
 
 -(void) playOverlay:(NSString *)overlayType
