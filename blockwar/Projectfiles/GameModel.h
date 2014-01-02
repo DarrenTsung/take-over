@@ -16,6 +16,7 @@
 {
     @public
     NSMutableArray *playerUnits, *enemyUnits, *particleArray;
+    NSDictionary *bossProperties;
     GameLayer *viewController;
     EnemyAI *theEnemy;
     

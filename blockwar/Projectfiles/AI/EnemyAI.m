@@ -98,12 +98,19 @@
     }
 }
 
--(void) spawnBoss
+-(void) spawnBosswithProperties:(NSDictionary *)bossProperties
 {
-    BossUnit *theBoss = [[BossUnit alloc] initBossWithPosition:CGPointMake(595, playHeight/2)];
+    Unit *theBoss;
+    if ([[bossProperties objectForKey:@"name"] isEqualToString:@"russian"])
+    {
+        theBoss = [[BossUnit alloc] initBossWithPosition:CGPointMake(595, playHeight/2)];
+    }
     [model insertUnit:theBoss intoSortedArrayWithName:@"enemyUnits"];
     [theBoss setInvincibleForTime:0.4f];
-    [viewController->enemyHP changeLinkTo:&theBoss->health withLayers:2];
+    NSArray *layerColors = [bossProperties objectForKey:@"layerProperties"];
+    NSInteger layerCount = [layerColors count];
+    [viewController->enemyHP changeLinkTo:&theBoss->health with:layerCount layersWithColors:layerColors];
+    [viewController->enemyHP loadingToMaxAnimationWithTime:1.7f];
 }
 
 -(void) reset

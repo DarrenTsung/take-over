@@ -26,7 +26,8 @@
         boutToUnlock = false;
         
         origin = theOrigin;
-        color = theColor;
+        colors = [[NSMutableArray alloc] init];
+        [colors addObject:[NSValue valueWithBytes:&theColor objCType:@encode(ccColor4F)]];
         orientation = theOrientation;
         layerCount = 1;
         
@@ -55,19 +56,37 @@
     return ccc4f(theColor.r + 0.3, theColor.g + 0.3, theColor.b + 0.3, theColor.a);
 }
 
+-(void) zeroOutCurrentButKeepAnimation
+{
+    float zeroPointer = 0;
+    currentPtr = &zeroPointer;
+    current = 0;
+}
+
 // change the target of the bar
 -(void) changeLinkTo:(CGFloat *)linkedValue
 {
+    lighterBarFallRate = 0.0f;
+    lighterBarUnlocked = false;
+    boutToUnlock = false;
     max = *linkedValue;
     currentPtr = linkedValue;
     current = *currentPtr;
-    [self loadingToMaxAnimationWithTime:1.7f];
+    lightCurrent = current;
 }
 
--(void) changeLinkTo:(CGFloat *)linkedValue withLayers:(int)layers
+-(void) changeLinkTo:(CGFloat *)linkedValue with:(int)theLayerCount layersWithColors:(NSArray *)layerColors
 {
+    [colors removeAllObjects];
+    for (int i=0; i<(int)[layerColors count]; i++)
+    {
+        NSArray *colorArray = [layerColors objectAtIndex:i];
+        ccColor4F thisColor = ccc4f([[colorArray objectAtIndex:0] floatValue], [[colorArray objectAtIndex:1] floatValue], [[colorArray objectAtIndex:2] floatValue], [[colorArray objectAtIndex:3] floatValue]);
+        [colors addObject:[NSValue valueWithBytes:&thisColor objCType:@encode(ccColor4F)]];
+    }
+    assert((int)[layerColors count] == theLayerCount);
     [self changeLinkTo:linkedValue];
-    layerCount = layers;
+    layerCount = theLayerCount;
 }
 
 -(void) loadingToMaxAnimationWithTime:(CGFloat)timeInSeconds
@@ -107,7 +126,8 @@
         {
             localLightCurrent = localMax;
         }
-        ccColor4F localColor = ccc4f(color.r + i*(0.3/layerCount), color.g, color.b, color.a);
+        ccColor4F localColor;
+        [[colors objectAtIndex:i] getValue:&localColor];
         
         // opposite point to the origin of the health_bar
         CGPoint newOrigin = CGPointMake(origin.x + offset.x, origin.y + offset.y);
@@ -142,7 +162,7 @@
         {
             shakeTimer -= delta;
         }
-        else if (current != *currentPtr)
+        if (current != *currentPtr)
         {
             [self shakeForTime:0.5f];
             if (!boutToUnlock)

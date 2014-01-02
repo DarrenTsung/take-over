@@ -25,7 +25,7 @@
 -(id) initAIType:(NSString *)theType withReferenceToGameModel:(GameModel *)modelMaster andViewController:(GameLayer *)theViewController andPlayHeight:(CGFloat)thePlayHeight;
 -(void) spawnWave;
 -(void) update:(ccTime)delta;
--(void) spawnBoss;
+-(void) spawnBosswithProperties:(NSDictionary *)bossProperties;
 -(void) reset;
 
 @end

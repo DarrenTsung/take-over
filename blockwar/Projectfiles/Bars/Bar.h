@@ -15,7 +15,7 @@
     CGSize size;
     CGPoint origin;
     NSString *orientation;
-    ccColor4F color;
+    NSMutableArray *colors;
     CGFloat shakeTimer;
     
     CGFloat lightCurrent, lighterBarFallRate;
@@ -29,7 +29,7 @@
 
 -(id) initWithOrigin:(CGPoint)theOrigin andOrientation:(NSString *)theOrientation andColor:(ccColor4F)theColor withLinkTo:(CGFloat *)linkedValue;
 -(void) changeLinkTo:(CGFloat *)linkedValue;
--(void) changeLinkTo:(CGFloat *)linkedValue withLayers:(int)layers;
+-(void) changeLinkTo:(CGFloat *)linkedValue with:(int)layerCount layersWithColors:(NSArray *)layerColors;
 -(void) draw;
 -(CGFloat) getCurrentValue;
 -(void) resetValueToMax;
@@ -37,5 +37,8 @@
 -(void) update:(ccTime)delta;
 -(void) updateAnimation:(ccTime)delta;
 -(void) stopShake;
+
+-(void) zeroOutCurrentButKeepAnimation;
+-(void) loadingToMaxAnimationWithTime:(CGFloat)timeInSeconds;
 
 @end

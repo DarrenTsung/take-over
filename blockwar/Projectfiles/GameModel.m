@@ -31,6 +31,10 @@ CCTimer *bossSpawnTimer;
         particleArray = [[NSMutableArray alloc] init];
         
         spawnBossAtEnd = [[levelProperties objectForKey:@"bossExists"] boolValue];
+        if (spawnBossAtEnd)
+        {
+            bossProperties = [levelProperties objectForKey:@"Boss"];
+        }
         
         playerHP = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerHP"];
         playerResources = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerResources"];
@@ -208,8 +212,7 @@ CCTimer *bossSpawnTimer;
                 if (spawnBossAtEnd)
                 {
                     enemyHP = 99999;
-                    CGFloat zeroFloat = 0.0f;
-                    [viewController->enemyHP changeLinkTo:&zeroFloat];
+                    [viewController->enemyHP zeroOutCurrentButKeepAnimation];
                     [self scheduleOnce:@selector(spawnBoss) delay:2.0f];
                 }
                 else
@@ -268,7 +271,7 @@ CCTimer *bossSpawnTimer;
 
 -(void) spawnBoss
 {
-    [theEnemy spawnBoss];
+    [theEnemy spawnBosswithProperties:bossProperties];
 }
 
 -(void) update:(ccTime) delta

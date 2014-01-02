@@ -98,13 +98,43 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/GameModel.m"
-            timestampString = "410316289.031963"
+            timestampString = "410334313.464042"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "216"
+            endingLineNumber = "216"
             landmarkName = "-checkForCollisionsAndRemove"
             landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GameModel checkForCollisionsAndRemove]"
+                  moduleName = "takeover-iOS"
+                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/GameModel.m"
+                  timestampString = "410334044.087421"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "2302">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[GameModel checkForCollisionsAndRemove]"
+                  moduleName = "takeover-iOS"
+                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/GameModel.m"
+                  timestampString = "410334047.238544"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "217"
+                  endingLineNumber = "217"
+                  offsetFromSymbolStart = "2306">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -114,11 +144,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/GameModel.m"
-            timestampString = "409943320.986684"
+            timestampString = "410326599.996436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "-initWithReferenceToViewController:andReferenceToLevelProperties:"
             landmarkType = "5">
          </BreakpointContent>
@@ -130,11 +160,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/Layers/LevelSelectLayer.m"
-            timestampString = "410142931.951074"
+            timestampString = "410326599.996436"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "-enableNextLevel"
             landmarkType = "5">
          </BreakpointContent>
