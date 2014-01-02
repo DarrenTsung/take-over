@@ -531,7 +531,7 @@ CGFloat bombTimer = 3.0f;
     
     CCSprite *overlaySprite = [[CCSprite alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"win_overlay_1.png"]];
     [overlaySprite setPosition:ccp(284, 160)];
-    [self addChild:overlaySprite z:10];
+    [self addChild:overlaySprite z:587];
     [overlaySprite runAction:playOverlay];
 }
 

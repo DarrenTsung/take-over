@@ -114,16 +114,11 @@ CCTimer *bossSpawnTimer;
     [array addObject:unit];
     
     if (![unit parent]) {
-        if ([unit->name isEqualToString:@"bossrussian"])
-        {
-            [viewController addChild:unit z:3];
-            [viewController addChild:unit->whiteSprite z:2];
-        }
-        else
-        {
-            [viewController addChild:unit z:1];
-            [viewController addChild:unit->whiteSprite z:0];
-        }
+        // the closer to the front (y = 0) the unit is, the higher z value it should have.
+        // therefore we subtract the max y value (568) with the unit's bottom edge y value (origin.y - half the unit height (since origin is the middle))
+        NSInteger calculatedZ = 568 - (unit->origin.y - (unit->boundingRect.size.height / 2));
+        [viewController addChild:unit->whiteSprite z:calculatedZ];
+        [viewController addChild:unit z:calculatedZ];
     }
 }
 
