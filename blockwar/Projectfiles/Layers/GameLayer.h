@@ -9,15 +9,20 @@
 #import "CCLayer.h"
 #import "HealthBar.h"
 #import "NodeShaker.h"
+@class TouchHandler; // please don't make a fowarding error, I love you Xcode
 
 @interface GameLayer : CCLayerColor
 {
     @public
-    CGRect touchArea;
+    CGRect spawnArea, battleArea;
     CGFloat playHeight;
     NodeShaker *shaker;
     
     HealthBar *playerHP, *enemyHP;
+    
+    TouchHandler *myTouchHandler;
+    
+    bool isDone;
 }
 // returns the screen bounds, flipped since we're working in landscape mode
 -(CGSize) returnScreenBounds;

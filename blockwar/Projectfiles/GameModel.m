@@ -59,10 +59,18 @@ CCTimer *bossSpawnTimer;
         array = playerUnits;
         if ([unit isKindOfClass:[SuperUnit class]])
         {
+            if (playerResources < SUPER_UNIT_MULTIPLIER*UNIT_COST)
+            {
+                return;
+            }
             playerResources -= SUPER_UNIT_MULTIPLIER*UNIT_COST;
         }
         else if ([unit isKindOfClass:[Unit class]])
         {
+            if (playerResources < UNIT_COST)
+            {
+                return;
+            }
             playerResources -= UNIT_COST;
         }
     }
@@ -125,6 +133,33 @@ CCTimer *bossSpawnTimer;
         NSInteger calculatedZ = 568 - (unit->origin.y - (unit->boundingRect.size.height / 2));
         [viewController addChild:unit->whiteSprite z:calculatedZ];
         [viewController addChild:unit z:calculatedZ];
+    }
+}
+
+-(void) insertUnits:(CCArray *)unitArray intoSortedArrayWithName:(NSString *)arrayName
+{
+    CGFloat totalCost = 0.0f;
+    for (Unit *unit in unitArray)
+    {
+        if ([unit isKindOfClass:[SuperUnit class]])
+        {
+            totalCost += SUPER_UNIT_MULTIPLIER*UNIT_COST;
+        }
+        else if ([unit isKindOfClass:[Unit class]])
+        {
+            totalCost += UNIT_COST;
+        }
+    }
+    if (playerResources < totalCost)
+    {
+        return;
+    }
+    else
+    {
+        for (Unit *unit in unitArray)
+        {
+            [self insertUnit:unit intoSortedArrayWithName:arrayName];
+        }
     }
 }
 
@@ -250,7 +285,7 @@ CCTimer *bossSpawnTimer;
         {
             [enemyUnit kill];
         }
-        if (CGRectIntersectsRect(enemyUnit->boundingRect, viewController->touchArea))
+        if (CGRectIntersectsRect(enemyUnit->boundingRect, viewController->spawnArea))
         {
             if ([enemyUnit->name isEqualToString:@"bossrussian"])
             {

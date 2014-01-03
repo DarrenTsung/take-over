@@ -98,11 +98,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/GameModel.m"
-            timestampString = "410383469.429188"
+            timestampString = "410418486.258333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "223"
-            endingLineNumber = "223"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
             landmarkName = "-checkForCollisionsAndRemove"
             landmarkType = "5">
             <Locations>
@@ -167,6 +167,68 @@
             endingLineNumber = "148"
             landmarkName = "-enableNextLevel"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "blockwar/Projectfiles/TouchHandling/TouchFunctions/TapAndCharge.m"
+            timestampString = "410417880.945895"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "54"
+            endingLineNumber = "54"
+            landmarkName = "-update:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "blockwar/Projectfiles/TouchHandling/TouchFunctions/TapAndCharge.m"
+            timestampString = "410418486.258333"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
+            landmarkName = "-update:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TapAndCharge update:]"
+                  moduleName = "takeover-iOS"
+                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/TouchHandling/TouchFunctions/TapAndCharge.m"
+                  timestampString = "410416380.654621"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "2396">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[TapAndCharge update:]"
+                  moduleName = "takeover-iOS"
+                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/TouchHandling/TouchFunctions/TapAndCharge.m"
+                  timestampString = "410416383.773444"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "123"
+                  endingLineNumber = "123"
+                  offsetFromSymbolStart = "2406">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
