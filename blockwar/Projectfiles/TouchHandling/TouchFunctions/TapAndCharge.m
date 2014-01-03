@@ -59,7 +59,7 @@
         touchIndicatorRadius = TOUCH_RADIUS_MIN;
     }
     // if phase ends spawn units at touchIndicatorCenter
-    else if(currentPhase == KKTouchPhaseEnded)
+    else if(currentPhase == KKTouchPhaseEnded || currentPhase == KKTouchPhaseLifted || currentPhase == KKTouchPhaseCancelled)
     {
         NSLog(@"current phase is end");
         // spawn SuperGerm if radius is greater than max (and fluctuating)
@@ -86,7 +86,7 @@
                     // NSLog(@"Random position:(%f, %f) with playHeight of %f", random_pos.x, random_pos.y, area.size.height);
                     if (random_pos.y < 10.0f)
                     {
-                        random_pos.y = 10.0f + arc4random_uniform(touchIndicatorRadius - pos.y);
+                        random_pos.y = 10.0f + arc4random_uniform(touchIndicatorRadius - touchIndicatorCenter.y);
                         break;
                     }
                     else if (random_pos.y > area.size.height)

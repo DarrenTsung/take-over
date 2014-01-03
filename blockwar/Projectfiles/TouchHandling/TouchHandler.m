@@ -31,7 +31,7 @@
                 primarySummon = [[SummonGiantFoot alloc] initWithReferenceToArea:viewController->spawnArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
                 break;
             case 0:
-                primarySummon = [[TapAndCharge alloc] initWithReferenceToArea:viewController->spawnArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
+                primarySummon = [[HoldDown alloc] initWithReferenceToArea:viewController->spawnArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
                 break;
             default:
                 [NSException raise:NSInternalInconsistencyException format:@"Where's my primary equip bitch? All I got was %d.", primaryEquip];
@@ -44,7 +44,7 @@
                 secondarySummon = [[SummonGiantFoot alloc] initWithReferenceToArea:viewController->spawnArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
                 break;
             case 0:
-                secondarySummon = [[TapAndCharge alloc] initWithReferenceToArea:viewController->spawnArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
+                secondarySummon = [[HoldDown alloc] initWithReferenceToArea:viewController->spawnArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
                 break;
             default:
                 [NSException raise:NSInternalInconsistencyException format:@"Where's my primary equip bitch? All I got was %d.", primaryEquip];

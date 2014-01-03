@@ -11,6 +11,7 @@
 #import "TouchFunction.h"
 #import "TapAndCharge.h"
 #import "SummonGiantFoot.h"
+#import "HoldDown.h"
 
 @interface TouchHandler : CCNode
 {

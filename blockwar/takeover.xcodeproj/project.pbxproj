@@ -52,6 +52,7 @@
 		6C9BB8901876371800E14BAA /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB88F1876371800E14BAA /* TouchHandler.m */; };
 		6C9BB8931876613500E14BAA /* TapAndCharge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8921876613500E14BAA /* TapAndCharge.m */; };
 		6C9BB897187666B800E14BAA /* SummonGiantFoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB896187666B800E14BAA /* SummonGiantFoot.m */; };
+		6C9BB89A187752C000E14BAA /* HoldDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB899187752C000E14BAA /* HoldDown.m */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -180,6 +181,8 @@
 		6C9BB8921876613500E14BAA /* TapAndCharge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TapAndCharge.m; path = TouchHandling/TouchFunctions/TapAndCharge.m; sourceTree = "<group>"; };
 		6C9BB895187666B800E14BAA /* SummonGiantFoot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SummonGiantFoot.h; path = TouchHandling/TouchFunctions/SummonGiantFoot.h; sourceTree = "<group>"; };
 		6C9BB896187666B800E14BAA /* SummonGiantFoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummonGiantFoot.m; path = TouchHandling/TouchFunctions/SummonGiantFoot.m; sourceTree = "<group>"; };
+		6C9BB898187752C000E14BAA /* HoldDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoldDown.h; path = TouchHandling/TouchFunctions/HoldDown.h; sourceTree = "<group>"; };
+		6C9BB899187752C000E14BAA /* HoldDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoldDown.m; path = TouchHandling/TouchFunctions/HoldDown.m; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -409,6 +412,8 @@
 				6C9BB8921876613500E14BAA /* TapAndCharge.m */,
 				6C9BB895187666B800E14BAA /* SummonGiantFoot.h */,
 				6C9BB896187666B800E14BAA /* SummonGiantFoot.m */,
+				6C9BB898187752C000E14BAA /* HoldDown.h */,
+				6C9BB899187752C000E14BAA /* HoldDown.m */,
 			);
 			name = "Touch Functions";
 			sourceTree = "<group>";
@@ -776,6 +781,7 @@
 				6C021A33186B94CA000C11FC /* Blocker.m in Sources */,
 				6C9BB8901876371800E14BAA /* TouchHandler.m in Sources */,
 				6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */,
+				6C9BB89A187752C000E14BAA /* HoldDown.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				6CD361671826CF2E00A56D5C /* GameModel.m in Sources */,
 				6C021A34186B94CA000C11FC /* BossUnit.m in Sources */,

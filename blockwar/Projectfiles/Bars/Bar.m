@@ -178,7 +178,7 @@
 -(void) updateLighterBar
 {
     lighterBarUnlocked = true;
-    lighterBarFallRate = (lightCurrent - current) / 0.3f;
+    [self updateLighterBarRate];
 }
 
 -(void) updateAnimation:(ccTime)delta
@@ -217,6 +217,11 @@
             }
         }
     }
+}
+
+-(void) updateLighterBarRate
+{
+    lighterBarFallRate = (lightCurrent - current) / 0.5f;
 }
 
 -(CGFloat) getCurrentValue

@@ -50,7 +50,6 @@
 -(void) updateLighterBar
 {
     lighterBarUnlocked = true;
-    lighterBarFallRate = (lightCurrent - current) / 0.5f;
 }
 
 @end
