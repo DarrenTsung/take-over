@@ -20,6 +20,8 @@
     GameModel *gameModel;
     TouchFunction *primarySummon, *secondarySummon, *commanderPower;
     int equipped;
+    
+    CCMenuItemImage *equip1, *equip2;
 }
 
 -(id) initWithReferenceToViewController:(GameLayer *)theReference andReferenceToGameModel:(GameModel *)theGameModel;

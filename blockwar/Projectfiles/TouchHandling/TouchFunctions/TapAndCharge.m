@@ -51,17 +51,14 @@
     }
     KKTouchPhase currentPhase = [currentTouch phase];
     CGPoint pos = [currentTouch location];
-    NSLog(@"Position is: (%f, %f)", pos.x, pos.y);
     if(currentPhase == KKTouchPhaseBegan)
     {
-        NSLog(@"current phase is began");
         touchIndicatorCenter = pos;
         touchIndicatorRadius = TOUCH_RADIUS_MIN;
     }
     // if phase ends spawn units at touchIndicatorCenter
     else if(currentPhase == KKTouchPhaseEnded || currentPhase == KKTouchPhaseLifted || currentPhase == KKTouchPhaseCancelled)
     {
-        NSLog(@"current phase is end");
         // spawn SuperGerm if radius is greater than max (and fluctuating)
         if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
         {
@@ -124,7 +121,6 @@
     }
     else
     {
-        NSLog(@"current phase is else");
         if (pos.y <= area.size.height)
         {
             // if touch x went out of area, only update the y value

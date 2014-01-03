@@ -48,6 +48,7 @@
         }
         [self loadingToMaxAnimationWithTime:1.7f];
     }
+    [self schedule:@selector(updateLighterBarRate) interval:1.0f];
     return self;
 }
 

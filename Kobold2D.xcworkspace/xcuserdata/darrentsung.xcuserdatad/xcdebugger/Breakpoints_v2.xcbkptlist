@@ -176,27 +176,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/TouchHandling/TouchFunctions/TapAndCharge.m"
-            timestampString = "410417880.945895"
+            timestampString = "410483149.573933"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
-            landmarkName = "-update:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "blockwar/Projectfiles/TouchHandling/TouchFunctions/TapAndCharge.m"
-            timestampString = "410418486.258333"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "129"
+            endingLineNumber = "129"
             landmarkName = "-update:"
             landmarkType = "5">
             <Locations>
@@ -238,11 +222,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/Bars/Bar.m"
-            timestampString = "410476129.346691"
+            timestampString = "410481899.003347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "211"
-            endingLineNumber = "211"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "-updateAnimation:"
             landmarkType = "5">
             <Locations>

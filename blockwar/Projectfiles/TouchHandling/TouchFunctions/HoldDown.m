@@ -45,13 +45,10 @@
     {
         return;
     }
-    NSLog(@"CurrentTouch is %@", currentTouch);
     KKTouchPhase currentPhase = [currentTouch phase];
     CGPoint pos = [currentTouch location];
-    NSLog(@"Position is: (%f, %f)", pos.x, pos.y);
     if(currentPhase == KKTouchPhaseBegan)
     {
-        NSLog(@"current phase is began");
         touchIndicatorCenter = pos;
         touchIndicatorRadius = TOUCH_RADIUS;
         [self schedule:@selector(spawnRandomUnitAtTouchIndicatorCenter) interval:spawnRate];
@@ -59,7 +56,6 @@
     // if phase ends spawn units at touchIndicatorCenter
     else if(currentPhase == KKTouchPhaseEnded || currentPhase == KKTouchPhaseLifted || currentPhase == KKTouchPhaseCancelled)
     {
-        NSLog(@"current phase is end");
         [self unschedule:@selector(spawnRandomUnitAtTouchIndicatorCenter)];
         
         // IMPORTANT: WHEN TOUCH IS IN ENDING PHASE, UNSCHEDULE AND REMOVE TAPANDCHARGE OBJECT FROM VIEWCONTROLLER
@@ -67,7 +63,6 @@
     }
     else
     {
-        NSLog(@"current phase is else");
         if (pos.y <= area.size.height)
         {
             // if touch x went out of area, only update the y value
