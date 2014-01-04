@@ -53,8 +53,8 @@
 		6C9BB8931876613500E14BAA /* TapAndCharge.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8921876613500E14BAA /* TapAndCharge.m */; };
 		6C9BB897187666B800E14BAA /* SummonGiantFoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB896187666B800E14BAA /* SummonGiantFoot.m */; };
 		6C9BB89A187752C000E14BAA /* HoldDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB899187752C000E14BAA /* HoldDown.m */; };
-		6C9BB89C1877776F00E14BAA /* backgroundEquip1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB89B1877776F00E14BAA /* backgroundEquip1.png */; };
-		6C9BB89E1877798B00E14BAA /* backgroundEquip2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB89D1877798B00E14BAA /* backgroundEquip2.png */; };
+		6C9BB8A11877869B00E14BAA /* equipToggleP.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB89F1877869B00E14BAA /* equipToggleP.png */; };
+		6C9BB8A21877869B00E14BAA /* equipToggleS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A01877869B00E14BAA /* equipToggleS.png */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -185,8 +185,8 @@
 		6C9BB896187666B800E14BAA /* SummonGiantFoot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SummonGiantFoot.m; path = TouchHandling/TouchFunctions/SummonGiantFoot.m; sourceTree = "<group>"; };
 		6C9BB898187752C000E14BAA /* HoldDown.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HoldDown.h; path = TouchHandling/TouchFunctions/HoldDown.h; sourceTree = "<group>"; };
 		6C9BB899187752C000E14BAA /* HoldDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoldDown.m; path = TouchHandling/TouchFunctions/HoldDown.m; sourceTree = "<group>"; };
-		6C9BB89B1877776F00E14BAA /* backgroundEquip1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundEquip1.png; path = TouchHandling/backgroundEquip1.png; sourceTree = "<group>"; };
-		6C9BB89D1877798B00E14BAA /* backgroundEquip2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = backgroundEquip2.png; path = TouchHandling/backgroundEquip2.png; sourceTree = "<group>"; };
+		6C9BB89F1877869B00E14BAA /* equipToggleP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = equipToggleP.png; path = TouchHandling/equipToggleP.png; sourceTree = "<group>"; };
+		6C9BB8A01877869B00E14BAA /* equipToggleS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = equipToggleS.png; path = TouchHandling/equipToggleS.png; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -400,8 +400,8 @@
 		6C9BB88D1876261000E14BAA /* Touch Handling */ = {
 			isa = PBXGroup;
 			children = (
-				6C9BB89D1877798B00E14BAA /* backgroundEquip2.png */,
-				6C9BB89B1877776F00E14BAA /* backgroundEquip1.png */,
+				6C9BB89F1877869B00E14BAA /* equipToggleP.png */,
+				6C9BB8A01877869B00E14BAA /* equipToggleS.png */,
 				6C9BB88E1876371800E14BAA /* TouchHandler.h */,
 				6C9BB88F1876371800E14BAA /* TouchHandler.m */,
 				6C9BB887187625EB00E14BAA /* TouchFunction.h */,
@@ -716,13 +716,12 @@
 				6C021A26186B94B8000C11FC /* 1_1AI.plist in Resources */,
 				6CA6C6BF185008180067BEBE /* superzombieframes-hd.png in Resources */,
 				6C90208F186E480C001D1183 /* level1_locked.png in Resources */,
-				6C9BB89C1877776F00E14BAA /* backgroundEquip1.png in Resources */,
 				6C9BB87A1872821900E14BAA /* lose_overlay_frames.plist in Resources */,
+				6C9BB8A11877869B00E14BAA /* equipToggleP.png in Resources */,
 				6CAE6DB2182C5D8F00602F39 /* zombieframes.plist in Resources */,
 				6C83A7A5186F6637002EB16B /* upgradeBackground.png in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				6CAB076718529ADC008749D5 /* bossrussianframes-hd.png in Resources */,
-				6C9BB89E1877798B00E14BAA /* backgroundEquip2.png in Resources */,
 				6C902087186E3732001D1183 /* world1_levelselect.plist in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
@@ -750,6 +749,7 @@
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
 				6C9BB8781872821900E14BAA /* lose_overlay_frames-hd.plist in Resources */,
+				6C9BB8A21877869B00E14BAA /* equipToggleS.png in Resources */,
 				6CD489C91842E14B00515AD4 /* russianframes.png in Resources */,
 				6CAB076D18529AE7008749D5 /* background.png in Resources */,
 				6CD489CB1842E15B00515AD4 /* russianframes.plist in Resources */,

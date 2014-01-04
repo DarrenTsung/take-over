@@ -13,7 +13,7 @@
 #import "GameLayer.h"
 #import "BossUnit.h"
 
-#define UNIT_COST 12
+#define UNIT_COST 2
 // super units cost 6 times what regular units cost
 #define SUPER_UNIT_MULTIPLIER 6
 #define SHAKE_TIME 0.7f
@@ -129,8 +129,8 @@ CCTimer *bossSpawnTimer;
     
     if (![unit parent]) {
         // the closer to the front (y = 0) the unit is, the higher z value it should have.
-        // therefore we subtract the max y value (568) with the unit's bottom edge y value (origin.y - half the unit height (since origin is the middle))
-        NSInteger calculatedZ = 568 - (unit->origin.y - (unit->boundingRect.size.height / 2));
+        // therefore we subtract the max y value (320) with the unit's bottom edge y value (origin.y - half the unit height (since origin is the middle))
+        NSInteger calculatedZ = 320 - (unit->origin.y - (unit->boundingRect.size.height / 2));
         [viewController addChild:unit->whiteSprite z:calculatedZ];
         [viewController addChild:unit z:calculatedZ];
     }

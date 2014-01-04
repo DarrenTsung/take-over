@@ -31,6 +31,9 @@ CCSprite *background;
 {
     if ((self = [super init]))
 	{
+        // enable multi-touch
+        [KKInput sharedInput].multipleTouchEnabled = YES;
+        
         // make sure that the user's data is present, if not unlock the beginning level
         NSInteger worldUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"worldUnlocked"];
         NSInteger levelUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"];

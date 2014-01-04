@@ -33,7 +33,8 @@
 
 -(void) handleTouch:(KKTouch *)touch
 {
-    if (!isActive)
+    // if i'm not handling any touches and the touch just started
+    if (!isActive && [touch phase] == KKTouchPhaseBegan)
     {
         // if touch starts in my area, then it is mine and capture it.
         if (CGRectContainsPoint(area, [touch location]))

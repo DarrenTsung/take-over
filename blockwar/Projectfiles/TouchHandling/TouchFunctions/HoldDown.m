@@ -23,7 +23,7 @@
         spawnRate = [[holdDownProperties objectForKey:@"spawnRate"] floatValue];
         if (spawnRate == 0)
         {
-            spawnRate = 1/3;
+            spawnRate = 0.66;
         }
     }
     return self;
@@ -51,6 +51,7 @@
     {
         touchIndicatorCenter = pos;
         touchIndicatorRadius = TOUCH_RADIUS;
+        [self spawnRandomUnitAtTouchIndicatorCenter];
         [self schedule:@selector(spawnRandomUnitAtTouchIndicatorCenter) interval:spawnRate];
     }
     // if phase ends spawn units at touchIndicatorCenter
@@ -106,6 +107,7 @@
 -(void) reset
 {
     [super reset];
+    [self unschedule:@selector(spawnRandomUnitAtTouchIndicatorCenter)];
     touchIndicatorRadius = 0.0f;
 }
 

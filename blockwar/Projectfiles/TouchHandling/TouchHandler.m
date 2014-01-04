@@ -22,19 +22,16 @@
         viewController = theReference;
         gameModel = theGameModel;
         
-        equip1 = [[CCMenuItemImage alloc] initWithNormalImage:@"backgroundEquip1.png" selectedImage:@"backgroundEquip1.png" disabledImage:@"backgroundEquip1.png" target:self selector:@selector(equipPrimary)];
-        [equip1 setOpacity:OPACITY_HIGH];
-        equip2 = [[CCMenuItemImage alloc] initWithNormalImage:@"backgroundEquip2.png" selectedImage:@"backgroundEquip2.png" disabledImage:@"backgroundEquip2.png" target:self selector:@selector(equipSecondary)];
-        [equip2 setOpacity:OPACITY_LOW];
-        CCMenu *equipMenu = [CCMenu menuWithItems:equip1, equip2, nil];
+        equip = [[CCMenuItemImage alloc] initWithNormalImage:@"equipToggleP.png" selectedImage:@"equipToggleP.png" disabledImage:@"equipToggleS.png" target:self selector:@selector(equipToggle)];
+        [equip setOpacity:OPACITY_LOW];
+        CCMenu *equipMenu = [CCMenu menuWithItems:equip, nil];
         [equipMenu alignItemsHorizontally];
-        equipMenu.position = ccp(280, [equip1 boundingBox].size.height/2);
-        [self addChild:equipMenu];
+        // put menu at bottom right corner
+        equipMenu.position = ccp(568 - [equip boundingBox].size.width/2 - 15.0f, [equip boundingBox].size.height/2 + 15.0f);
+        [self addChild:equipMenu z:321];
         
-        // equipped == 0 : use primaryEquip
-        // equipped == 1 : use secondaryEquip
         // start out with primaryEquip
-        equipped = 0;
+        equipped = equippedPrimary;
         
         NSInteger primaryEquip = [[NSUserDefaults standardUserDefaults] integerForKey:@"primaryEquip"];
         NSInteger secondaryEquip = [[NSUserDefaults standardUserDefaults] integerForKey:@"secondaryEquip"];
@@ -73,20 +70,47 @@
     return self;
 }
 
--(void) equipPrimary
+-(void) equipToggle
 {
-    equipped = 0;
-    [secondarySummon reset];
-    [equip1 setOpacity:OPACITY_HIGH];
-    [equip2 setOpacity:OPACITY_LOW];
-}
-
--(void) equipSecondary
-{
-    equipped = 1;
-    [primarySummon reset];
-    [equip1 setOpacity:OPACITY_LOW];
-    [equip2 setOpacity:OPACITY_HIGH];
+    if (equipped == equippedPrimary)
+    {
+        equipped = equippedSecondary;
+        [equip setNormalImage:[CCSprite spriteWithFile:@"equipToggleS.png"]];
+        
+        // if primary was handling a touch
+        if (primarySummon->currentTouch != nil)
+        {
+            // reset the touch primarySummon was handling
+            [primarySummon->currentTouch setTouchPhase:KKTouchPhaseBegan];
+            // pass to secondarySummon the touch primarySummon was handling
+            [secondarySummon handleTouch:primarySummon->currentTouch];
+        }
+        
+        // remove and stop whatever primarySummon was doing
+        [primarySummon reset];
+    }
+    else if (equipped == equippedSecondary)
+    {
+        equipped = equippedPrimary;
+        [equip setNormalImage:[CCSprite spriteWithFile:@"equipToggleP.png"]];
+        
+        // if secondary was handling a touch
+        if (secondarySummon->currentTouch != nil)
+        {
+            // reset the touch secondaryTouch was handling
+            [secondarySummon->currentTouch setTouchPhase:KKTouchPhaseBegan];
+            // pass to primarySummon the touch secondarySummon was handling
+            [primarySummon handleTouch:secondarySummon->currentTouch];
+        }
+        
+        // remove and stop whatever secondarySummon was doing
+        [secondarySummon reset];
+    }
+    else
+    {
+        NSLog(@"ERROR: Equipped is some unknown number.");
+    }
+    [equip setOpacity:OPACITY_LOW];
 }
 
 -(void) update:(ccTime)delta
@@ -98,11 +122,11 @@
         
         for (KKTouch *touch in touches)
         {
-            if (equipped == 0)
+            if (equipped == equippedPrimary)
             {
                 [primarySummon handleTouch:touch];
             }
-            else
+            else if (equipped == equippedSecondary)
             {
                 [secondarySummon handleTouch:touch];
             }

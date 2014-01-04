@@ -13,15 +13,23 @@
 #import "SummonGiantFoot.h"
 #import "HoldDown.h"
 
+typedef enum
+{
+    equippedPrimary,
+    equippedSecondary
+} equippedMode;
+
 @interface TouchHandler : CCNode
 {
     @public
     GameLayer *viewController;
     GameModel *gameModel;
     TouchFunction *primarySummon, *secondarySummon, *commanderPower;
-    int equipped;
+    equippedMode equipped;
     
-    CCMenuItemImage *equip1, *equip2;
+    
+    
+    CCMenuItemImage *equip;
 }
 
 -(id) initWithReferenceToViewController:(GameLayer *)theReference andReferenceToGameModel:(GameModel *)theGameModel;
