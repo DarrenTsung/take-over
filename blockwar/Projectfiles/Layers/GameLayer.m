@@ -117,24 +117,61 @@ TouchHandler *myTouchHandler;
         [model setReferenceToEnemyAI:theEnemy];
         [self addChild:model];
         
-        // Resource Bars
-        enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
-        playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&model->playerHP];
-        playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&model->playerResources];
-        [self addChild:enemyHP];
-        [self addChild:playerHP];
-        [self addChild:playerResources];
+        [self setUpResourceBars];
         
         myTouchHandler = [[TouchHandler alloc] initWithReferenceToViewController:self andReferenceToGameModel:model];
         
         // my shaker
         shaker = [[NodeShaker alloc] initWithReferenceToNode:self];
         [self addChild:shaker];
+        
+        // see if we need to play the tapAnimation
+        NSArray *levelTapAnimationProperties = [levelProperties objectForKey:@"tapAnimationProperties"];
+        if (levelTapAnimationProperties)
+        {
+            CGFloat animationX = [[levelTapAnimationProperties objectAtIndex:0] floatValue];
+            CGFloat animationY = [[levelTapAnimationProperties objectAtIndex:1] floatValue];
+            CGFloat timeToPlay = [[levelTapAnimationProperties objectAtIndex:2] floatValue];
+            [self setUpTapAnimationAtPosition:ccp(animationX, animationY) inTime:timeToPlay];
+        }
     }
     
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
     return self;
+}
+
+-(void) setUpTapAnimationAtPosition:(CGPoint)pos inTime:(ccTime)time
+{
+    NSMutableArray *tapIndicatorFrames = [NSMutableArray array];
+    NSString *prefix = @"tap_indicator_";
+    for (int i=1; i<=17; i++)
+    {
+        [tapIndicatorFrames addObject:
+         [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"%@%d.png", prefix, i]]];
+    }
+    CCAnimation *tapAnimation = [CCAnimation animationWithSpriteFrames:tapIndicatorFrames delay:1/20.0f];
+    CCAction *playTapIndicator = [CCRepeat actionWithAction:[CCAnimate actionWithAnimation:tapAnimation] times:1];
+    
+    tapIndicatorSprite = [[IndicatorSprite alloc] initWithSpriteFrame:@"tap_indicator_1.png" andPosition:pos andAction:playTapIndicator andTarget:spawnArea];
+    [self scheduleOnce:@selector(addTapIndicatorToSelf) delay:time];
+}
+
+-(void) addTapIndicatorToSelf
+{
+    [self addChild:tapIndicatorSprite z:321];
+    isDone = true;
+}
+
+-(void) setUpResourceBars
+{
+    // Resource Bars
+    enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
+    playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&model->playerHP];
+    playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&model->playerResources];
+    [self addChild:enemyHP];
+    [self addChild:playerHP];
+    [self addChild:playerResources];
 }
 
 -(void) loadSpriteSheets
@@ -160,6 +197,10 @@ TouchHandler *myTouchHandler;
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"lose_overlay_frames.plist"];
     CCSpriteBatchNode *loseOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"lose_overlay_frames.png"];
     [self addChild:loseOverlaySpriteSheet];
+    
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"tap_indicator_frames.plist"];
+    CCSpriteBatchNode *tapIndicatorSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"tap_indicator_frames.png"];
+    [self addChild:tapIndicatorSpriteSheet];
 }
 
 -(void) onEnter

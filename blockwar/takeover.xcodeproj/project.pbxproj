@@ -55,6 +55,9 @@
 		6C9BB89A187752C000E14BAA /* HoldDown.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB899187752C000E14BAA /* HoldDown.m */; };
 		6C9BB8A11877869B00E14BAA /* equipToggleP.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB89F1877869B00E14BAA /* equipToggleP.png */; };
 		6C9BB8A21877869B00E14BAA /* equipToggleS.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A01877869B00E14BAA /* equipToggleS.png */; };
+		6C9BB8A51878AFBF00E14BAA /* tap_indicator_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A31878AFBF00E14BAA /* tap_indicator_frames.plist */; };
+		6C9BB8A61878AFBF00E14BAA /* tap_indicator_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A41878AFBF00E14BAA /* tap_indicator_frames.png */; };
+		6C9BB8AA1878E31A00E14BAA /* IndicatorSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A91878E31A00E14BAA /* IndicatorSprite.m */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -187,6 +190,10 @@
 		6C9BB899187752C000E14BAA /* HoldDown.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HoldDown.m; path = TouchHandling/TouchFunctions/HoldDown.m; sourceTree = "<group>"; };
 		6C9BB89F1877869B00E14BAA /* equipToggleP.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = equipToggleP.png; path = TouchHandling/equipToggleP.png; sourceTree = "<group>"; };
 		6C9BB8A01877869B00E14BAA /* equipToggleS.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = equipToggleS.png; path = TouchHandling/equipToggleS.png; sourceTree = "<group>"; };
+		6C9BB8A31878AFBF00E14BAA /* tap_indicator_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = tap_indicator_frames.plist; path = Indicators/tap_indicator_frames.plist; sourceTree = "<group>"; };
+		6C9BB8A41878AFBF00E14BAA /* tap_indicator_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tap_indicator_frames.png; path = Indicators/tap_indicator_frames.png; sourceTree = "<group>"; };
+		6C9BB8A81878E31A00E14BAA /* IndicatorSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndicatorSprite.h; path = TouchHandling/IndicatorSprite.h; sourceTree = "<group>"; };
+		6C9BB8A91878E31A00E14BAA /* IndicatorSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndicatorSprite.m; path = TouchHandling/IndicatorSprite.m; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -400,6 +407,8 @@
 		6C9BB88D1876261000E14BAA /* Touch Handling */ = {
 			isa = PBXGroup;
 			children = (
+				6C9BB8A81878E31A00E14BAA /* IndicatorSprite.h */,
+				6C9BB8A91878E31A00E14BAA /* IndicatorSprite.m */,
 				6C9BB89F1877869B00E14BAA /* equipToggleP.png */,
 				6C9BB8A01877869B00E14BAA /* equipToggleS.png */,
 				6C9BB88E1876371800E14BAA /* TouchHandler.h */,
@@ -422,6 +431,15 @@
 				6C9BB899187752C000E14BAA /* HoldDown.m */,
 			);
 			name = "Touch Functions";
+			sourceTree = "<group>";
+		};
+		6C9BB8A71878AFC200E14BAA /* Indicators */ = {
+			isa = PBXGroup;
+			children = (
+				6C9BB8A31878AFBF00E14BAA /* tap_indicator_frames.plist */,
+				6C9BB8A41878AFBF00E14BAA /* tap_indicator_frames.png */,
+			);
+			name = Indicators;
 			sourceTree = "<group>";
 		};
 		6CAB076118529AD0008749D5 /* Sprites */ = {
@@ -582,6 +600,7 @@
 			children = (
 				6C9BB8811875EE3A00E14BAA /* NodeShaker.h */,
 				6C9BB8821875EE3A00E14BAA /* NodeShaker.m */,
+				6C9BB8A71878AFC200E14BAA /* Indicators */,
 				6C9BB8801872822000E14BAA /* Overlays */,
 				6CAB07751852D5F4008749D5 /* losescreen.png */,
 				6CAB07761852D5F4008749D5 /* play.png */,
@@ -700,6 +719,7 @@
 				6C902090186E480C001D1183 /* level2_locked.png in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
+				6C9BB8A61878AFBF00E14BAA /* tap_indicator_frames.png in Resources */,
 				6C9BB8791872821900E14BAA /* lose_overlay_frames-hd.png in Resources */,
 				6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */,
 				6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */,
@@ -709,6 +729,7 @@
 				6CAB07781852D5F4008749D5 /* losescreen.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
 				6C902097186EAC4E001D1183 /* World1_Level1.plist in Resources */,
+				6C9BB8A51878AFBF00E14BAA /* tap_indicator_frames.plist in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
 				6C83A7A6186F6637002EB16B /* upgradeConfig.plist in Resources */,
 				6CAB076E18529AE7008749D5 /* menubackground.png in Resources */,
@@ -791,6 +812,7 @@
 				6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */,
 				6C9BB89A187752C000E14BAA /* HoldDown.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
+				6C9BB8AA1878E31A00E14BAA /* IndicatorSprite.m in Sources */,
 				6CD361671826CF2E00A56D5C /* GameModel.m in Sources */,
 				6C021A34186B94CA000C11FC /* BossUnit.m in Sources */,
 				6C9BB889187625EB00E14BAA /* TouchFunction.m in Sources */,

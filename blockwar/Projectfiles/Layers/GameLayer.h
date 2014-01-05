@@ -9,6 +9,7 @@
 #import "CCLayer.h"
 #import "HealthBar.h"
 #import "NodeShaker.h"
+#import "IndicatorSprite.h"
 @class TouchHandler; // please don't make a fowarding error, I love you Xcode
 
 @interface GameLayer : CCLayerColor
@@ -17,6 +18,7 @@
     CGRect spawnArea, battleArea;
     CGFloat playHeight;
     NodeShaker *shaker;
+    IndicatorSprite *tapIndicatorSprite;
     
     HealthBar *playerHP, *enemyHP;
     

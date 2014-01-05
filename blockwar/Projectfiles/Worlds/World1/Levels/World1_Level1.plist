@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>tapAnimationProperties</key>
+	<array>
+		<integer>32</integer>
+		<integer>80</integer>
+		<real>1.5</real>
+	</array>
 	<key>enemyHP</key>
 	<integer>10</integer>
 	<key>bossExists</key>
