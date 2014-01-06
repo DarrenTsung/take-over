@@ -12,7 +12,6 @@
 		6C021A28186B94B8000C11FC /* 1_3AI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C021A22186B94B8000C11FC /* 1_3AI.plist */; };
 		6C021A29186B94B8000C11FC /* EnemyAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A24186B94B8000C11FC /* EnemyAI.m */; };
 		6C021A2A186B94B8000C11FC /* randomAI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C021A25186B94B8000C11FC /* randomAI.plist */; };
-		6C021A33186B94CA000C11FC /* Blocker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A2C186B94CA000C11FC /* Blocker.m */; };
 		6C021A34186B94CA000C11FC /* BossUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A2E186B94CA000C11FC /* BossUnit.m */; };
 		6C021A35186B94CA000C11FC /* SuperUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A30186B94CA000C11FC /* SuperUnit.m */; };
 		6C021A36186B94CA000C11FC /* Unit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A32186B94CA000C11FC /* Unit.m */; };
@@ -128,8 +127,6 @@
 		6C021A23186B94B8000C11FC /* EnemyAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnemyAI.h; path = AI/EnemyAI.h; sourceTree = "<group>"; };
 		6C021A24186B94B8000C11FC /* EnemyAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnemyAI.m; path = AI/EnemyAI.m; sourceTree = "<group>"; };
 		6C021A25186B94B8000C11FC /* randomAI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = randomAI.plist; path = AI/randomAI.plist; sourceTree = "<group>"; };
-		6C021A2B186B94CA000C11FC /* Blocker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Blocker.h; path = Units/Blocker.h; sourceTree = "<group>"; };
-		6C021A2C186B94CA000C11FC /* Blocker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Blocker.m; path = Units/Blocker.m; sourceTree = "<group>"; };
 		6C021A2D186B94CA000C11FC /* BossUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BossUnit.h; path = Units/BossUnit.h; sourceTree = "<group>"; };
 		6C021A2E186B94CA000C11FC /* BossUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BossUnit.m; path = Units/BossUnit.m; sourceTree = "<group>"; };
 		6C021A2F186B94CA000C11FC /* SuperUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SuperUnit.h; path = Units/SuperUnit.h; sourceTree = "<group>"; };
@@ -482,8 +479,6 @@
 				6C021A32186B94CA000C11FC /* Unit.m */,
 				6C021A2F186B94CA000C11FC /* SuperUnit.h */,
 				6C021A30186B94CA000C11FC /* SuperUnit.m */,
-				6C021A2B186B94CA000C11FC /* Blocker.h */,
-				6C021A2C186B94CA000C11FC /* Blocker.m */,
 				6C021A2D186B94CA000C11FC /* BossUnit.h */,
 				6C021A2E186B94CA000C11FC /* BossUnit.m */,
 			);
@@ -807,7 +802,6 @@
 				6C021A41186B94D6000C11FC /* StartMenuLayer.m in Sources */,
 				6C021A42186B94D6000C11FC /* WinLayer.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
-				6C021A33186B94CA000C11FC /* Blocker.m in Sources */,
 				6C9BB8901876371800E14BAA /* TouchHandler.m in Sources */,
 				6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */,
 				6C9BB89A187752C000E14BAA /* HoldDown.m in Sources */,

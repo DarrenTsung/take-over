@@ -79,19 +79,7 @@
     
     [self computeFrame:delta];
     
-    // update displayColor if flashing white
-    if (flashTimer > 0.0f)
-    {
-        CGFloat displayOpacity = 1.0f - flashTimer;
-        if (displayOpacity < 0.0f)
-        {
-            displayOpacity = 0.0f;
-        }
-        [self setOpacity:255*displayOpacity];
-        flashTimer -= delta;
-    }
-    
-    // if dead and forward velocity stops then remove 
+    // if dead and backwards velocity stops then remove
     if (dead && velocity > 0.0f)
     {
         [whiteSprite removeFromParentAndCleanup:YES];
@@ -170,7 +158,8 @@
 {
     if (!dead)
     {
-        flashTimer = time;
+        [self setOpacity:0];
+        [self runAction:[CCFadeTo actionWithDuration:time opacity:255]];
     }
 }
 

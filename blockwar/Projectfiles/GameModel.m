@@ -285,10 +285,6 @@ CCTimer *bossSpawnTimer;
     for (Unit *unit in playerUnits)
     {
         [unit update:delta];
-        if ([unit isKindOfClass:[SuperUnit class]])
-        {
-            [(SuperUnit *)unit influenceUnits:playerUnits];
-        }
     }
     for (Unit *unit in enemyUnits)
     {
