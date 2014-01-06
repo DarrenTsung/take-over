@@ -14,7 +14,6 @@
 {
     if ((self = [super initWithPosition:pos andName:@"superzombie"]))
     {
-        size = CGSizeMake(20.0f, 20.0f);
         [self setMaxVelocity:maxVelocity*0.8];
         velocity = maxVelocity;
         [self setDamage:damage*1.25];

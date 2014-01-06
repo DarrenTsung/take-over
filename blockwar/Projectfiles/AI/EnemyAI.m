@@ -27,8 +27,6 @@
         NSDictionary *AIproperties = [NSDictionary dictionaryWithContentsOfFile:AIpath];
         
         model = theModel;
-        NSArray *colorArray = [AIproperties objectForKey:@"color"];
-        color = ccc4f([[colorArray objectAtIndex:0] floatValue], [[colorArray objectAtIndex:1] floatValue], [[colorArray objectAtIndex:2] floatValue], [[colorArray objectAtIndex:3] floatValue]);
         waveSize = [[AIproperties objectForKey:@"waveSize"] floatValue];
         rowSize = [[AIproperties objectForKey:@"rowSize"] floatValue];
         

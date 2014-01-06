@@ -182,7 +182,7 @@ CCTimer *bossSpawnTimer;
             continue;
         }
         // if this unit has reached the right side completely
-        if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
+        if (unit->origin.x - [unit width]/2 > screen_bounds.width)
         {
             [playerDiscardedUnits addObject:unit];
             [playerDiscardedUnits addObject:unit->whiteSprite];

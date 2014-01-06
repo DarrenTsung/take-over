@@ -82,9 +82,14 @@
     // if dead and backwards velocity stops then remove
     if (dead && velocity > 0.0f)
     {
-        [whiteSprite removeFromParentAndCleanup:YES];
-        [self removeFromParentAndCleanup:YES];
+        [self removeAndCleanup];
     }
+}
+
+-(void) removeAndCleanup
+{
+    [whiteSprite removeFromParentAndCleanup:YES];
+    [self removeFromParentAndCleanup:YES];
 }
 
 -(void) computePosition:(ccTime)delta

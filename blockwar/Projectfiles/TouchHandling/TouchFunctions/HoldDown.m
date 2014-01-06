@@ -23,7 +23,7 @@
         spawnRate = [[holdDownProperties objectForKey:@"spawnRate"] floatValue];
         if (spawnRate == 0)
         {
-            spawnRate = 0.66;
+            spawnRate = 0.3;
         }
     }
     return self;

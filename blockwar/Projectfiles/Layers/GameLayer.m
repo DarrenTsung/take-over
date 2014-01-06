@@ -9,7 +9,6 @@
 
 #import "GameLayer.h"
 #import "Unit.h"
-#import "Blocker.h"
 #import "EnemyAI.h"
 #import "HealthBar.h"
 #import "RegeneratableBar.h"
@@ -26,12 +25,6 @@ GameModel *model;
 
 NSMutableArray *unitsToBeDeleted;
 NSMutableArray *particleArray;
-
-
-#define SPAWN_SIZE 2
-#define UNIT_COST 12
-// super units cost 6 times what regular units cost
-#define SUPER_UNIT_MULTIPLIER 6
 
 
 CGSize screenBounds;
@@ -81,7 +74,7 @@ TouchHandler *myTouchHandler;
 
 -(id) initWithWorld:(int)world andLevel:(int)level
 {
-    if ((self = [super initWithColor:ccc4(1.0f,1.0f,1.0f,1.0f)]))
+    if ((self = [super initWithColor:ccc4(0.85f,0.8f,0.7f,1.0f)]))
     {
         NSLog(@"Game initializing...");
         winState = nil;

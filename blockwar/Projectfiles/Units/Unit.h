@@ -12,7 +12,6 @@
 {
     @public
     CGPoint origin;
-    CGSize size;
     CGFloat velocity, acceleration, maxVelocity;
     CGFloat baseMaxVelocity, baseDamage, baseHealth;
     CGFloat damage, health, pushBack;
@@ -39,6 +38,10 @@
 
 -(void)setMaxVelocity:(CGFloat)theMaxVelocity;
 -(void)setDamage:(CGFloat)theDamage;
+
+-(void)removeAndCleanup;
+-(CGFloat)width;
+-(CGFloat)height;
 
 -(void)kill;
 

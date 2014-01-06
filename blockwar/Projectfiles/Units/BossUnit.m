@@ -7,6 +7,7 @@
 //
 
 #import "BossUnit.h"
+#import "GameLayer.h"
 
 #define BOUNDING_RECT_MODIFIER 1.5f
 
@@ -28,11 +29,9 @@
         frameDelay = (1.0/framesPerSecond);
         frameTimer = frameDelay;
         
-        // boss size is 4x regular size
-        size = CGSizeMake(60.0f, 60.0f);
         // make the bounding rect here so we don't have to construct each time we're checking collisions
         // make it 1.5x the size of the blocks so that they hit each other more often
-        boundingRect = CGRectMake(origin.x - size.width/2, origin.y - size.height*BOUNDING_RECT_MODIFIER/2, size.width, size.height*BOUNDING_RECT_MODIFIER);
+        boundingRect = CGRectMake(origin.x - [self width]/2, origin.y - [self height]*BOUNDING_RECT_MODIFIER/2, [self width], [self height]*BOUNDING_RECT_MODIFIER);
         
         // hitting the boss will only stop him, not push him back HAHAHAHAHA
         pushBack = 0.0f;
@@ -40,5 +39,11 @@
     return self;
 }
 
+-(void) removeAndCleanup
+{
+    [((GameLayer *)[self parent]) endGameWithWinState:@"player"];
+    [super removeAndCleanup];
+    
+}
 
 @end
