@@ -24,29 +24,12 @@
         // default influenceRange is 50.0f
         influenceRange = 50.0f;
         
-        framesPerSecond = 6;
+        int framesPerSecond = 6;
         frameDelay = (1.0/framesPerSecond);
         frameTimer = frameDelay;
     }
     return self;
 }
 
--(void) influenceUnits:(NSMutableArray *)unitArray
-{
-    for (Unit *unit in unitArray)
-    {
-        CGFloat xDist = unit->origin.x - origin.x;
-        CGFloat yDist = unit->origin.y - origin.y;
-        CGFloat distance = sqrt((xDist*xDist) + (yDist*yDist));
-        if (distance < influenceRange)
-        {
-            unit->buffed = true;
-        }
-        else
-        {
-            unit->buffed = false;
-        }
-    }
-}
 
 @end

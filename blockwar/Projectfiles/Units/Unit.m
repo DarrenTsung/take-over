@@ -18,10 +18,6 @@
     {
         origin = pos;
         
-        // default player color
-        color = ccc4f(0.9f, 0.4f, 0.4f, 1.0f);
-        displayColor = color;
-        
         // construct movement variables
         velocity = 120.0f;
         [self setMaxVelocity:120.0f];
@@ -29,15 +25,13 @@
         pushBack = -maxVelocity;
         
         currentFrame = arc4random_uniform(2);
-        framesPerSecond = 10;
+        int framesPerSecond = 10;
         frameDelay = (1.0/framesPerSecond);
-        frameTimer = frameDelay;
         
         health = 5.0f;
         [self setDamage:3.0f];
         
         flashTimer = 0.0f;
-        buffed = false;
         
         name = theName;
         owner = @"Player";
@@ -67,16 +61,6 @@
     return self;
 }
 
--(void)draw
-{
-    [super draw];
-    // draw germ around origin (origin is center of germ)
-    //ccDrawSolidRect(CGPointMake(origin.x - size.width/2, origin.y - size.height/2), CGPointMake(origin.x + size.width/2, origin.y + size.height/2), displayColor);
-    
-    // DEBUG: UNCOMMENT TO SEE BOUNDING RECTANGLES DRAWN IN WHITE
-    //ccDrawRect(boundingRect.origin, CGPointMake(boundingRect.origin.x + boundingRect.size.width, boundingRect.origin.y + boundingRect.size.height));
-}
-
 -(void)setInvincibleForTime:(ccTime)time
 {
     isInvincible = true;
@@ -91,6 +75,32 @@
 
 -(void)update:(ccTime) delta
 {
+    [self computePosition:delta];
+    
+    [self computeFrame:delta];
+    
+    // update displayColor if flashing white
+    if (flashTimer > 0.0f)
+    {
+        CGFloat displayOpacity = 1.0f - flashTimer;
+        if (displayOpacity < 0.0f)
+        {
+            displayOpacity = 0.0f;
+        }
+        [self setOpacity:255*displayOpacity];
+        flashTimer -= delta;
+    }
+    
+    // if dead and forward velocity stops then remove 
+    if (dead && velocity > 0.0f)
+    {
+        [whiteSprite removeFromParentAndCleanup:YES];
+        [self removeFromParentAndCleanup:YES];
+    }
+}
+
+-(void) computePosition:(ccTime)delta
+{
     // compute position
     if ([owner isEqualToString:@"Opponent"])
     {
@@ -102,7 +112,6 @@
         origin.x += delta*velocity;
         boundingRect.origin.x += delta*velocity;
     }
-    [self checkBuffed];
     
     // update velocity
     velocity += delta*acceleration;
@@ -112,7 +121,10 @@
     }
     self.position = origin;
     whiteSprite.position = origin;
-    
+}
+
+-(void) computeFrame:(ccTime)delta
+{
     if (frameTimer > 0.0f)
     {
         frameTimer -= delta;
@@ -132,32 +144,6 @@
             }
             frameTimer = velocityRatio*frameDelay;
         }
-    }
-    
-    // update displayColor if flashing white
-    if (flashTimer > 0.0f)
-    {
-        CGFloat displayOpacity = 1.0f - flashTimer;
-        if (displayOpacity < 0.0f)
-        {
-            displayOpacity = 0.0f;
-        }
-        [self setOpacity:255*displayOpacity];
-        flashTimer -= delta;
-    }
-}
-
--(void)checkBuffed
-{
-    if (buffed)
-    {
-        maxVelocity = baseMaxVelocity*1.1f;
-        damage = baseDamage*1.2f;
-    }
-    else
-    {
-        maxVelocity = baseMaxVelocity;
-        damage = baseDamage;
     }
 }
 
@@ -188,13 +174,23 @@
     }
 }
 
--(void)hitFor:(CGFloat)hitDamage
+//DEPRECATED
+-(void) hitFor:(CGFloat)hitDamage
 {
     if (!isInvincible)
     {
         health -= hitDamage;
     }
     velocity = pushBack;
+}
+
+-(void)hitFor:(CGFloat)hitDamage andSetNegativeVelocity:(CGFloat)theHitVelocity
+{
+    if (!isInvincible)
+    {
+        health -= hitDamage;
+    }
+    velocity = theHitVelocity;
 }
 
 -(void)pushBack:(CGFloat)percentage
@@ -227,7 +223,7 @@
 -(void) kill
 {
     // flash white for 1.3 seconds
-    flashTimer = 1.3f;
+    [self flashWhiteFor:1.3f];
     // set death flag to be on
     dead = true;
 }

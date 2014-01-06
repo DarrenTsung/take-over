@@ -173,49 +173,47 @@ CCTimer *bossSpawnTimer;
     
     CGSize screen_bounds = [viewController returnScreenBounds];
     
-    int counter = 0;
     // quick and dirty check for collisions
     for (Unit *unit in playerUnits)
     {
         if (unit->dead)
         {
-            // remove units after they stop their backwards velocity
-            if (unit->velocity >= 0.0f)
-            {
-                [playerDiscardedUnits addObject:unit];
-                [playerDiscardedUnits addObject:unit->whiteSprite];
-            }
             // dont do collision checking for dead units
             continue;
+        }
+        // if this unit has reached the right side completely
+        if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
+        {
+            [playerDiscardedUnits addObject:unit];
+            [playerDiscardedUnits addObject:unit->whiteSprite];
+            enemyHP -= unit->damage;
+            [viewController->shaker shakeWithShakeValue:5 forTime:SHAKE_TIME];
+            if (enemyHP <= 0.0f)
+            {
+                if (spawnBossAtEnd)
+                {
+                    enemyHP = 99999;
+                    [viewController->enemyHP zeroOutCurrentButKeepAnimation];
+                    [self scheduleOnce:@selector(spawnBoss) delay:2.0f];
+                }
+                else
+                {
+                    endState = @"player";
+                }
+            }
         }
         for (Unit *enemyUnit in enemyUnits)
         {
             if (enemyUnit->dead)
             {
-                // remove units after they stop their backwards velocity
-                if (enemyUnit->velocity >= 0.0f)
-                {
-                    if ([enemyUnit isKindOfClass:[BossUnit class]])
-                    {
-                        endState = @"win";
-                    }
-                    [enemyDiscardedUnits addObject:enemyUnit];
-                    [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
-                }
                 // dont do collision checking for dead units
                 continue;
             }
-            if (enemyUnit->health < 0.0f)
-            {
-                [enemyUnit kill];
-                continue;
-            }
-            counter++;
             if ([unit isCollidingWith: enemyUnit])
             {
                 if ([enemyUnit isKindOfClass:[BossUnit class]])
                 {
-                    [viewController->shaker shakeWithShakeValue:3 forTime:SHAKE_TIME];
+                    [viewController->shaker shakeWithShakeValue:5 forTime:SHAKE_TIME];
                 }
                 [unit flashWhiteFor:0.6f];
                 [unit hitFor:enemyUnit->damage];
@@ -239,45 +237,10 @@ CCTimer *bossSpawnTimer;
         }
     }
     
-    //NSLog(@"Compared %d times this iteration!", counter);
-    for (Unit *unit in playerUnits)
-    {
-        // if this unit has reached the right side completely
-        if (unit->origin.x - unit->size.width/2 > screen_bounds.width)
-        {
-            [playerDiscardedUnits addObject:unit];
-            [playerDiscardedUnits addObject:unit->whiteSprite];
-            enemyHP -= unit->damage;
-            [viewController->shaker shakeWithShakeValue:3 forTime:SHAKE_TIME];
-            if (enemyHP <= 0.0f)
-            {
-                if (spawnBossAtEnd)
-                {
-                    enemyHP = 99999;
-                    [viewController->enemyHP zeroOutCurrentButKeepAnimation];
-                    [self scheduleOnce:@selector(spawnBoss) delay:2.0f];
-                }
-                else
-                {
-                    endState = @"player";
-                }
-            }
-        }
-    }
     for (Unit *enemyUnit in enemyUnits)
     {
         if (enemyUnit->dead)
         {
-            // remove units after they stop their backwards velocity
-            if (enemyUnit->velocity >= 0.0f)
-            {
-                if ([enemyUnit isKindOfClass:[BossUnit class]])
-                {
-                    endState = @"win";
-                }
-                [enemyDiscardedUnits addObject:enemyUnit];
-                [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
-            }
             // we don't want to do anything else if it's going to be removed from the game
             continue;
         }
@@ -287,14 +250,14 @@ CCTimer *bossSpawnTimer;
         }
         if (CGRectIntersectsRect(enemyUnit->boundingRect, viewController->spawnArea))
         {
-            if ([enemyUnit->name isEqualToString:@"bossrussian"])
+            if ([enemyUnit isKindOfClass:[BossUnit class]])
             {
                 endState = @"enemy";
             }
             [enemyDiscardedUnits addObject:enemyUnit];
             [enemyDiscardedUnits addObject:enemyUnit->whiteSprite];
             playerHP -= enemyUnit->damage;
-            [viewController->shaker shakeWithShakeValue:3 forTime:SHAKE_TIME];
+            [viewController->shaker shakeWithShakeValue:5 forTime:SHAKE_TIME];
             if (playerHP <= 0.0f)
             {
                 endState = @"enemy";

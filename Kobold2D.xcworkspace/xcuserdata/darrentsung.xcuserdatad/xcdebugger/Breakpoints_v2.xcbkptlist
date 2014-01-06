@@ -98,52 +98,6 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "blockwar/Projectfiles/GameModel.m"
-            timestampString = "410418486.258333"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
-            landmarkName = "-checkForCollisionsAndRemove"
-            landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GameModel checkForCollisionsAndRemove]"
-                  moduleName = "takeover-iOS"
-                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/GameModel.m"
-                  timestampString = "410334044.087421"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "217"
-                  endingLineNumber = "217"
-                  offsetFromSymbolStart = "2302">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "-[GameModel checkForCollisionsAndRemove]"
-                  moduleName = "takeover-iOS"
-                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/GameModel.m"
-                  timestampString = "410334047.238544"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "217"
-                  endingLineNumber = "217"
-                  offsetFromSymbolStart = "2306">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "blockwar/Projectfiles/GameModel.m"
             timestampString = "410383469.429188"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
@@ -339,6 +293,52 @@
             endingLineNumber = "17"
             landmarkName = "-initWithSpriteFrame:andPosition:andAction:andTarget:"
             landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "blockwar/Projectfiles/Resources/NodeShaker.m"
+            timestampString = "410662998.11473"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "-update:"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NodeShaker update:]"
+                  moduleName = "takeover-iOS"
+                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/Resources/NodeShaker.m"
+                  timestampString = "410663016.680179"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "354">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "-[NodeShaker update:]"
+                  moduleName = "takeover-iOS"
+                  urlString = "file:///Users/darrentsung/Desktop/take-over/blockwar/Projectfiles/Resources/NodeShaker.m"
+                  timestampString = "410663018.56357"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "33"
+                  endingLineNumber = "33"
+                  offsetFromSymbolStart = "358">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

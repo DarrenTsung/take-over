@@ -20,23 +20,9 @@
         [self setMaxVelocity:maxVelocity*0.5];
         pushBack *= 0.3f;
         size = CGSizeMake(size.width*1.3f, size.height*1.3);
-        color = ccc4f(0.8f, 0.2f, 0.3f, 1.0f);
-        displayColor = color;
     }
     return self;
 }
 
--(void)checkBuffed
-{
-    if (buffed)
-    {
-        maxVelocity = baseMaxVelocity*1.1f;
-    }
-    else
-    {
-        maxVelocity = baseMaxVelocity;
-        damage = baseDamage;
-    }
-}
 
 @end

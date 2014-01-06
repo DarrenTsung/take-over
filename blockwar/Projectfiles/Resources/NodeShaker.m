@@ -27,8 +27,8 @@
 {
     if (isShaking)
     {
-        CGFloat randX = (arc4random_uniform(shakeValue) + 1) - shakeValue/2;
-        CGFloat randY = (arc4random_uniform(shakeValue) + 1) - shakeValue/2;
+        CGFloat randX = ((CGFloat)arc4random_uniform(shakeValue)) - shakeValue/2;
+        CGFloat randY = ((CGFloat)arc4random_uniform(shakeValue)) - shakeValue/2;
         CGPoint randomPoint = ccp(origin.x + randX, origin.y + randY);
         [reference setPosition:randomPoint];
     }

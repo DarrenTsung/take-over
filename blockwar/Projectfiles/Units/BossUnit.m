@@ -24,7 +24,7 @@
         
         [self setDamage:0.8f];
         
-        framesPerSecond = 2;
+        int framesPerSecond = 2;
         frameDelay = (1.0/framesPerSecond);
         frameTimer = frameDelay;
         
