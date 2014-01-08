@@ -59,6 +59,9 @@
 		6C9BB8AA1878E31A00E14BAA /* IndicatorSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A91878E31A00E14BAA /* IndicatorSprite.m */; };
 		6C9BB8AD187C63ED00E14BAA /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8AC187C63ED00E14BAA /* Entity.m */; };
 		6C9BB8B0187C69B800E14BAA /* RectTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8AF187C69B800E14BAA /* RectTarget.m */; };
+		6C9BB8B6187DCF0E00E14BAA /* Zombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8B5187DCF0E00E14BAA /* Zombie.m */; };
+		6C9BB8BE187DD65B00E14BAA /* RussianMelee.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */; };
+		6C9BB8C1187DDC7200E14BAA /* RussianBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -197,6 +200,12 @@
 		6C9BB8AC187C63ED00E14BAA /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Entity.m; path = Units/Entity.m; sourceTree = "<group>"; };
 		6C9BB8AE187C69B800E14BAA /* RectTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RectTarget.h; path = Units/RectTarget.h; sourceTree = "<group>"; };
 		6C9BB8AF187C69B800E14BAA /* RectTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RectTarget.m; path = Units/RectTarget.m; sourceTree = "<group>"; };
+		6C9BB8B4187DCF0E00E14BAA /* Zombie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Zombie.h; path = Units/Units/Zombie.h; sourceTree = "<group>"; };
+		6C9BB8B5187DCF0E00E14BAA /* Zombie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Zombie.m; path = Units/Units/Zombie.m; sourceTree = "<group>"; };
+		6C9BB8BC187DD65B00E14BAA /* RussianMelee.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianMelee.h; path = Units/Units/RussianMelee.h; sourceTree = "<group>"; };
+		6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianMelee.m; path = Units/Units/RussianMelee.m; sourceTree = "<group>"; };
+		6C9BB8BF187DDC7200E14BAA /* RussianBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianBoss.h; path = Units/Units/RussianBoss.h; sourceTree = "<group>"; };
+		6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianBoss.m; path = Units/Units/RussianBoss.m; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -459,12 +468,26 @@
 			children = (
 				6C021A31186B94CA000C11FC /* Unit.h */,
 				6C021A32186B94CA000C11FC /* Unit.m */,
+				6C9BB8B7187DCF1700E14BAA /* Subunits */,
 				6C021A2F186B94CA000C11FC /* SuperUnit.h */,
 				6C021A30186B94CA000C11FC /* SuperUnit.m */,
 				6C021A2D186B94CA000C11FC /* BossUnit.h */,
 				6C021A2E186B94CA000C11FC /* BossUnit.m */,
 			);
 			name = Units;
+			sourceTree = "<group>";
+		};
+		6C9BB8B7187DCF1700E14BAA /* Subunits */ = {
+			isa = PBXGroup;
+			children = (
+				6C9BB8BC187DD65B00E14BAA /* RussianMelee.h */,
+				6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */,
+				6C9BB8B4187DCF0E00E14BAA /* Zombie.h */,
+				6C9BB8B5187DCF0E00E14BAA /* Zombie.m */,
+				6C9BB8BF187DDC7200E14BAA /* RussianBoss.h */,
+				6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */,
+			);
+			name = Subunits;
 			sourceTree = "<group>";
 		};
 		6CAB076118529AD0008749D5 /* Sprites */ = {
@@ -823,6 +846,7 @@
 				6C021A49186B94ED000C11FC /* Bar.m in Sources */,
 				6C9BB8931876613500E14BAA /* TapAndCharge.m in Sources */,
 				6C021A29186B94B8000C11FC /* EnemyAI.m in Sources */,
+				6C9BB8BE187DD65B00E14BAA /* RussianMelee.m in Sources */,
 				6C021A4B186B94ED000C11FC /* RegeneratableBar.m in Sources */,
 				6C9BB897187666B800E14BAA /* SummonGiantFoot.m in Sources */,
 				6C021A35186B94CA000C11FC /* SuperUnit.m in Sources */,
@@ -830,7 +854,9 @@
 				6C021A42186B94D6000C11FC /* WinLayer.m in Sources */,
 				6C9BB8B0187C69B800E14BAA /* RectTarget.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
+				6C9BB8B6187DCF0E00E14BAA /* Zombie.m in Sources */,
 				6C9BB8901876371800E14BAA /* TouchHandler.m in Sources */,
+				6C9BB8C1187DDC7200E14BAA /* RussianBoss.m in Sources */,
 				6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */,
 				6C9BB89A187752C000E14BAA /* HoldDown.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,

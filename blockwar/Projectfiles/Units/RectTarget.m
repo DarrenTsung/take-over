@@ -33,8 +33,7 @@
     }
     else
     {
-        [NSException raise:NSInternalInconsistencyException
-                    format:@"What the.. targets aren't supposed to interact with anything other than units."];
+        
     }
 }
 @end

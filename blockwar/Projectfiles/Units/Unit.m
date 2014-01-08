@@ -10,57 +10,35 @@
 #import "GameModel.h"
 #import "RectTarget.h"
 
-#define BOUNDING_RECT_MODIFIER 1.2f
+#define BOUNDING_RECT_MODIFIER 1.1f
 
 @implementation Unit
 
--(id)initWithPosition:(CGPoint)pos andName:(NSString *)theName
+-(id)initWithPosition:(CGPoint)pos
 {
     if ((self = [super init]))
     {
         origin = pos;
         
-        // construct movement variables
-        velocity = 120.0f;
-        [self setMaxVelocity:120.0f];
-        acceleration = 100.0f;
-        pushBack = -maxVelocity;
-        
         currentFrame = arc4random_uniform(2);
-        int framesPerSecond = 10;
-        frameDelay = (1.0/framesPerSecond);
-        
-        health = 5.0f;
-        [self setDamage:3.0f];
-        
-        flashTimer = 0.0f;
-        
-        name = theName;
-        owner = @"Player";
-        
-        [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
-        whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
-        self.position = origin;
-        whiteSprite.position = origin;
-        // make the bounding rect here so we don't have to construct each time we're checking collisions
-        // make it 1.5x the size of the blocks so that they hit each other more often
-        boundingRect = CGRectMake(origin.x - [self width]/2, origin.y - [self height]*BOUNDING_RECT_MODIFIER/2, [self width], [self height]*BOUNDING_RECT_MODIFIER);
     }
     return self;
 }
 
--(id) initUnit:(NSString *)theName withOwner:(NSString *)theOwner AndPosition:(CGPoint)pos
+-(void) setFPS:(CGFloat)framesPerSecond
 {
-    if ((self = [self initWithPosition:pos andName:theName]))
-    {
-        owner = theOwner;
-        if ([owner isEqualToString:@"Opponent"])
-        {
-            health = 3.0f;
-            [self setDamage:1.0f];
-        }
-    }
-    return self;
+    frameDelay = (1.0/framesPerSecond);
+}
+
+-(void) finishInit
+{
+    [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@%d.png", name, currentFrame]]];
+    whiteSprite = [CCSprite spriteWithSpriteFrameName:[NSString stringWithFormat:@"%@_white%d.png", name, currentFrame]];
+    self.position = origin;
+    whiteSprite.position = origin;
+    // make the bounding rect here so we don't have to construct each time we're checking collisions
+    // make it 1.5x the size of the blocks so that they hit each other more often
+    boundingRect = CGRectMake(origin.x - [self width]/2, origin.y - [self height]*BOUNDING_RECT_MODIFIER/2, [self width], [self height]*BOUNDING_RECT_MODIFIER);
 }
 
 -(void)setInvincibleForTime:(ccTime)time
@@ -73,7 +51,6 @@
 {
     isInvincible = false;
 }
-
 
 -(void)update:(ccTime) delta
 {
@@ -96,7 +73,7 @@
 -(void) computePosition:(ccTime)delta
 {
     // compute position
-    if ([owner isEqualToString:@"Opponent"])
+    if ([owner isEqualToString:@"opponent"])
     {
         origin.x -= delta*velocity;
         boundingRect.origin.x -= delta*velocity;
@@ -175,7 +152,7 @@
     {
         health -= hitDamage;
     }
-    velocity = theHitVelocity;
+    velocity = pushBack;
 }
 
 -(void)pushBack:(CGFloat)percentage

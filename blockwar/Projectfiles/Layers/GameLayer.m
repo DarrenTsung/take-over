@@ -119,8 +119,8 @@ TouchHandler *myTouchHandler;
         battleArea.origin = CGPointMake(screenBounds.width/7, 0);
         battleArea.size = CGSizeMake(6*screenBounds.width/7, playHeight);
         
-        CGRect rightSideRect = CGRectMake(568, 320, 60, 320);
-        RectTarget *enemyTarget = [[RectTarget alloc] initWithRectLink:&rightSideRect andLink:&model->enemyHP];
+        rightSide = CGRectMake(568, 0, 60, 320);
+        RectTarget *enemyTarget = [[RectTarget alloc] initWithRectLink:&rightSide andLink:&model->enemyHP];
         [model insertEntity:enemyTarget intoSortedArrayWithName:@"enemy"];
         
         // see if we need to play the tapAnimation

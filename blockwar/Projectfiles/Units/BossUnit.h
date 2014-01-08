@@ -10,6 +10,5 @@
 
 @interface BossUnit : Unit
 
--(id) initBossWithPosition:(CGPoint)pos;
 
 @end

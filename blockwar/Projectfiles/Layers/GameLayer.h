@@ -15,7 +15,7 @@
 @interface GameLayer : CCLayerColor
 {
     @public
-    CGRect spawnArea, battleArea;
+    CGRect spawnArea, battleArea, rightSide;
     CGFloat playHeight;
     NodeShaker *shaker;
     IndicatorSprite *tapIndicatorSprite;

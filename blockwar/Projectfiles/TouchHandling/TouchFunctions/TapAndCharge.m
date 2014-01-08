@@ -110,10 +110,10 @@
             CCArray *unitArray = [[CCArray alloc] init];
             for (NSValue *position in positions_to_be_spawned)
             {
-                Unit *unit = [[Unit alloc] initUnit:@"zombie" withOwner:@"Player" AndPosition:[position CGPointValue]];
+                Unit *unit = [[Zombie alloc] initWithPosition:[position CGPointValue]];
                 [unitArray addObject:unit];
             }
-            [gameModel insertUnits:unitArray intoSortedArrayWithName:@"playerUnits"];
+            [gameModel insertUnits:unitArray intoSortedArrayWithName:@"player"];
         }
         
         // IMPORTANT: WHEN TOUCH IS IN ENDING PHASE, UNSCHEDULE AND REMOVE TAPANDCHARGE OBJECT FROM VIEWCONTROLLER

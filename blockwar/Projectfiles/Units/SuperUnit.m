@@ -12,8 +12,10 @@
 
 -(id) initWithPosition:(CGPoint)pos
 {
-    if ((self = [super initWithPosition:pos andName:@"superzombie"]))
+    if ((self = [super initWithPosition:pos]))
     {
+        name = @"superzombie";
+        
         [self setMaxVelocity:maxVelocity*0.8];
         velocity = maxVelocity;
         [self setDamage:damage*1.25];

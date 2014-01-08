@@ -8,6 +8,7 @@
 
 #import "TouchFunction.h"
 #import "SuperUnit.h"
+#import "Zombie.h"
 
 @interface TapAndCharge : TouchFunction
 {

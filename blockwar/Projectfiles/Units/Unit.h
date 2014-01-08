@@ -26,12 +26,15 @@
     CCSprite *whiteSprite;
 }
 
--(id) initWithPosition:(CGPoint)pos andName:(NSString *)theName;
--(id) initUnit:(NSString *)UnitName withOwner:(NSString *)OwnerName AndPosition:(CGPoint)pos;
-
+-(id) initWithPosition:(CGPoint)pos;
 -(void) update:(ccTime) delta;
-// overridden
+
+-(void) setFPS:(CGFloat)framesPerSecond;
+-(void) finishInit;
+
+// overriddes Entity super class method
 -(bool) isCollidingWith:(Entity *)otherEntity;
+
 -(void) setInvincibleForTime:(ccTime)time;
 -(void) flashWhiteFor:(CGFloat)time;
 -(void) hitFor:(CGFloat)hitDamage;

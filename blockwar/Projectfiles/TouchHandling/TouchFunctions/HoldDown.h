@@ -7,6 +7,7 @@
 //
 
 #import "TouchFunction.h"
+#import "Zombie.h"
 
 @interface HoldDown : TouchFunction
 {

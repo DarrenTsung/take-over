@@ -10,7 +10,8 @@
 #import "Unit.h"
 #import "GameModel.h"
 #import "GameLayer.h"
-#import "BossUnit.h"
+#import "RussianMelee.h"
+#import "RussianBoss.h"
 
 #define PADDING 20.0f
 #define UNIT_SIZE_Y 15.0f
@@ -59,7 +60,7 @@
         for(int i=0; i<rowSize; i++)
         {
             CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);
-            [model insertEntity:[[Unit alloc] initUnit:@"russian" withOwner:@"Opponent" AndPosition:lesserPoint] intoSortedArrayWithName:@"enemy"];
+            [model insertEntity:[[RussianMelee alloc] initWithPosition:lesserPoint] intoSortedArrayWithName:@"enemy"];
             x++;
         }
         //NSLog(@"added a row! offset %d", counter%2);
@@ -99,9 +100,10 @@
 -(void) spawnBosswithProperties:(NSDictionary *)bossProperties
 {
     Unit *theBoss;
+    CGFloat randomPos = arc4random_uniform(playHeight/3) + playHeight/3;
     if ([[bossProperties objectForKey:@"name"] isEqualToString:@"russian"])
     {
-        theBoss = [[BossUnit alloc] initBossWithPosition:CGPointMake(595, playHeight/2)];
+        theBoss = [[RussianBoss alloc] initWithPosition:CGPointMake(595, randomPos)];
     }
     [model insertEntity:theBoss intoSortedArrayWithName:@"enemy"];
     [theBoss setInvincibleForTime:0.4f];
