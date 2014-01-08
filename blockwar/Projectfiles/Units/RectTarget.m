@@ -10,7 +10,7 @@
 
 @implementation RectTarget
 
--(id) initWithRect:(CGRect)rect andLink:(CGFloat *)theLink
+-(id) initWithRectLink:(CGRect *)rect andLink:(CGFloat *)theLink
 {
     if (self = [super init])
     {
@@ -22,7 +22,7 @@
 
 -(CGRect) boundingBox
 {
-    return target;
+    return *target;
 }
 
 -(void) actOnEntity:(Entity *)otherEntity

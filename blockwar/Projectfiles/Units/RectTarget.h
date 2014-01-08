@@ -12,9 +12,9 @@
 @interface RectTarget : Entity
 {
     @public
-    CGRect target;
+    CGRect *target;
     CGFloat *targetHealth;
 }
--(id) initWithRect:(CGRect)rect andLink:(CGFloat *)theLink;
+-(id) initWithRectLink:(CGRect *)rect andLink:(CGFloat *)theLink;
 
 @end

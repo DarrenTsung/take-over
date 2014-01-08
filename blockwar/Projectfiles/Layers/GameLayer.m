@@ -105,8 +105,6 @@ TouchHandler *myTouchHandler;
         
         [self setUpResourceBars];
         
-        myTouchHandler = [[TouchHandler alloc] initWithReferenceToViewController:self andReferenceToGameModel:model];
-        
         // my shaker
         shaker = [[NodeShaker alloc] initWithReferenceToNode:self];
         [self addChild:shaker];
@@ -114,12 +112,16 @@ TouchHandler *myTouchHandler;
         // spawnArea is the player's spawning area
         spawnArea.origin = CGPointZero;
         spawnArea.size = CGSizeMake(screenBounds.width/7, playHeight);
-        RectTarget *playerTarget = [[RectTarget alloc] initWithRect:spawnArea andLink:&model->playerHP];
+        RectTarget *playerTarget = [[RectTarget alloc] initWithRectLink:&spawnArea andLink:&model->playerHP];
         [model insertEntity:playerTarget intoSortedArrayWithName:@"player"];
         
         // battleArea is the area of the battle
         battleArea.origin = CGPointMake(screenBounds.width/7, 0);
         battleArea.size = CGSizeMake(6*screenBounds.width/7, playHeight);
+        
+        CGRect rightSideRect = CGRectMake(568, 320, 60, 320);
+        RectTarget *enemyTarget = [[RectTarget alloc] initWithRectLink:&rightSideRect andLink:&model->enemyHP];
+        [model insertEntity:enemyTarget intoSortedArrayWithName:@"enemy"];
         
         // see if we need to play the tapAnimation
         NSArray *levelTapAnimationProperties = [levelProperties objectForKey:@"tapAnimationProperties"];
@@ -130,6 +132,8 @@ TouchHandler *myTouchHandler;
             CGFloat timeToPlay = [[levelTapAnimationProperties objectAtIndex:2] floatValue];
             [self setUpTapAnimationAtPosition:ccp(animationX, animationY) inTime:timeToPlay];
         }
+        
+        myTouchHandler = [[TouchHandler alloc] initWithReferenceToViewController:self andReferenceToGameModel:model];
     }
     
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
