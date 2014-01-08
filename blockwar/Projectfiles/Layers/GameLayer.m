@@ -134,11 +134,24 @@ TouchHandler *myTouchHandler;
         }
         
         myTouchHandler = [[TouchHandler alloc] initWithReferenceToViewController:self andReferenceToGameModel:model];
+        
     }
+    [self scheduleOnce:@selector(startGame) delay:0.5f];
     
+    return self;
+}
+
+-(void) startGame
+{
+    [playerHP changeLinkTo:&model->playerHP];
+    [playerHP loadingToMaxAnimationWithTime:1.5f];
+    [playerResources changeLinkTo:&model->playerResources];
+    [playerResources loadingToMaxAnimationWithTime:1.5f];
+    [enemyHP changeLinkTo:&model->enemyHP];
+    [enemyHP loadingToMaxAnimationWithTime:1.5f];
+    [self scheduleOnce:@selector(playStartOverlay) delay:0.5];
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
-    return self;
 }
 
 -(void) setUpTapAnimationAtPosition:(CGPoint)pos inTime:(ccTime)time
@@ -165,10 +178,11 @@ TouchHandler *myTouchHandler;
 
 -(void) setUpResourceBars
 {
+    CGFloat zero = 0.0f;
     // Resource Bars
-    enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
-    playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&model->playerHP];
-    playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&model->playerResources];
+    enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&zero];
+    playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&zero];
+    playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&zero];
     [self addChild:enemyHP];
     [self addChild:playerHP];
     [self addChild:playerResources];
@@ -197,6 +211,9 @@ TouchHandler *myTouchHandler;
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"lose_overlay_frames.plist"];
     CCSpriteBatchNode *loseOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"lose_overlay_frames.png"];
     [self addChild:loseOverlaySpriteSheet];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"start_overlay_frames.plist"];
+    CCSpriteBatchNode *startOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"start_overlay_frames.png"];
+    [self addChild:startOverlaySpriteSheet];
     
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"tap_indicator_frames.plist"];
     CCSpriteBatchNode *tapIndicatorSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"tap_indicator_frames.png"];
@@ -312,11 +329,11 @@ TouchHandler *myTouchHandler;
     
     if ([theWinState isEqualToString:@"player"] || [theWinState isEqualToString:@"win"])
     {
-        [self playOverlay:@"win"];
+        [self playOverlay:@"win" withDelay:5.0f];
     }
     else if ([theWinState isEqualToString:@"enemy"] || [theWinState isEqualToString:@"lose"])
     {
-        [self playOverlay:@"lose"];
+        [self playOverlay:@"lose" withDelay:5.0f];
     }
     
     winState = theWinState;
@@ -327,7 +344,7 @@ TouchHandler *myTouchHandler;
     [self scheduleOnce:@selector(reset) delay:4.0f];
 }
 
--(void) playOverlay:(NSString *)overlayType
+-(void) playOverlay:(NSString *)overlayType withDelay:(ccTime)delay
 {
     NSMutableArray *overlayFrames = [NSMutableArray array];
     NSString *prefix;
@@ -339,6 +356,10 @@ TouchHandler *myTouchHandler;
     {
         prefix = @"lose_overlay_";
     }
+    else if ([overlayType isEqualToString:@"start"])
+    {
+        prefix = @"start_overlay_";
+    }
     
     for (int i=1; i<=14; i++)
     {
@@ -346,13 +367,26 @@ TouchHandler *myTouchHandler;
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"%@%d.png", prefix, i]]];
     }
     CCAnimation *overlayAnimation = [CCAnimation animationWithSpriteFrames:overlayFrames delay:1/20.0f];
-    CCAction *playOverlay = [CCRepeat actionWithAction:[CCAnimate actionWithAnimation:overlayAnimation] times:1];
-    
     CCSprite *overlaySprite = [[CCSprite alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"win_overlay_1.png"]];
+    
+    CCFiniteTimeAction *playOverlay = [CCAnimate actionWithAnimation:overlayAnimation];
+    CCCallFuncND *cleanUpAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpSprite:) data:(__bridge void *)(overlaySprite)];
+    CCSequence *playAndRemove = [CCSequence actions:playOverlay, [CCDelayTime actionWithDuration:delay], cleanUpAction, nil];
+    
     [overlaySprite setPosition:ccp(284, 160)];
     [self addChild:overlaySprite z:587];
-    [overlaySprite runAction:playOverlay];
+    
+    [overlaySprite runAction:playAndRemove];
 }
 
+-(void) cleanUpSprite:(CCSprite *)sprite
+{
+    [self removeChild:sprite cleanup:YES];
+}
+
+-(void) playStartOverlay
+{
+    [self playOverlay:@"start" withDelay:1.0f];
+}
 
 @end

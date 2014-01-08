@@ -24,7 +24,7 @@
         pushBack = -maxVelocity;
         
         health = 5.0f;
-        [self setDamage:1.0f];
+        [self setDamage:3.0f];
         
         [self setFPS:10.0f];
         

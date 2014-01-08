@@ -62,6 +62,10 @@
 		6C9BB8B6187DCF0E00E14BAA /* Zombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8B5187DCF0E00E14BAA /* Zombie.m */; };
 		6C9BB8BE187DD65B00E14BAA /* RussianMelee.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */; };
 		6C9BB8C1187DDC7200E14BAA /* RussianBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */; };
+		6C9BB8CE187DE41600E14BAA /* start_overlay_frames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8CA187DE41600E14BAA /* start_overlay_frames-hd.plist */; };
+		6C9BB8CF187DE41600E14BAA /* start_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8CB187DE41600E14BAA /* start_overlay_frames-hd.png */; };
+		6C9BB8D0187DE41600E14BAA /* start_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8CC187DE41600E14BAA /* start_overlay_frames.plist */; };
+		6C9BB8D1187DE41600E14BAA /* start_overlay_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8CD187DE41600E14BAA /* start_overlay_frames.png */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -206,6 +210,10 @@
 		6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianMelee.m; path = Units/Units/RussianMelee.m; sourceTree = "<group>"; };
 		6C9BB8BF187DDC7200E14BAA /* RussianBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianBoss.h; path = Units/Units/RussianBoss.h; sourceTree = "<group>"; };
 		6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianBoss.m; path = Units/Units/RussianBoss.m; sourceTree = "<group>"; };
+		6C9BB8CA187DE41600E14BAA /* start_overlay_frames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "start_overlay_frames-hd.plist"; path = "Overlays/start_overlay_frames-hd.plist"; sourceTree = "<group>"; };
+		6C9BB8CB187DE41600E14BAA /* start_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "start_overlay_frames-hd.png"; path = "Overlays/start_overlay_frames-hd.png"; sourceTree = "<group>"; };
+		6C9BB8CC187DE41600E14BAA /* start_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = start_overlay_frames.plist; path = Overlays/start_overlay_frames.plist; sourceTree = "<group>"; };
+		6C9BB8CD187DE41600E14BAA /* start_overlay_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = start_overlay_frames.png; path = Overlays/start_overlay_frames.png; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -404,6 +412,10 @@
 		6C9BB8801872822000E14BAA /* Overlays */ = {
 			isa = PBXGroup;
 			children = (
+				6C9BB8CA187DE41600E14BAA /* start_overlay_frames-hd.plist */,
+				6C9BB8CB187DE41600E14BAA /* start_overlay_frames-hd.png */,
+				6C9BB8CC187DE41600E14BAA /* start_overlay_frames.plist */,
+				6C9BB8CD187DE41600E14BAA /* start_overlay_frames.png */,
 				6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */,
 				6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */,
 				6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */,
@@ -765,8 +777,10 @@
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
 				6C9BB8A61878AFBF00E14BAA /* tap_indicator_frames.png in Resources */,
 				6C9BB8791872821900E14BAA /* lose_overlay_frames-hd.png in Resources */,
+				6C9BB8D1187DE41600E14BAA /* start_overlay_frames.png in Resources */,
 				6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */,
 				6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */,
+				6C9BB8D0187DE41600E14BAA /* start_overlay_frames.plist in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
 				6C90208B186E3CA1001D1183 /* level3.png in Resources */,
 				6C9BB87D1872821900E14BAA /* win_overlay_frames-hd.png in Resources */,
@@ -791,6 +805,7 @@
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
+				6C9BB8CE187DE41600E14BAA /* start_overlay_frames-hd.plist in Resources */,
 				6C021A27186B94B8000C11FC /* 1_2AI.plist in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
 				6C902091186E480C001D1183 /* level3_locked.png in Resources */,
@@ -810,6 +825,7 @@
 				6C021A28186B94B8000C11FC /* 1_3AI.plist in Resources */,
 				6C9BB87E1872821900E14BAA /* win_overlay_frames.plist in Resources */,
 				6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */,
+				6C9BB8CF187DE41600E14BAA /* start_overlay_frames-hd.png in Resources */,
 				6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,

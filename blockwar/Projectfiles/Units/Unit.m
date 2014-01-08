@@ -9,6 +9,7 @@
 #import "Unit.h"
 #import "GameModel.h"
 #import "RectTarget.h"
+#import "BossUnit.h"
 
 #define BOUNDING_RECT_MODIFIER 1.1f
 
@@ -190,6 +191,11 @@
         if (enemyUnit->health <= 0.0f)
         {
             [enemyUnit kill];
+        }
+        
+        if ([otherEntity isKindOfClass:[BossUnit class]])
+        {
+            [((GameLayer *)[self parent])->shaker shakeWithShakeValue:5 forTime:0.7f];
         }
     }
     else if ([otherEntity isKindOfClass:[RectTarget class]])
