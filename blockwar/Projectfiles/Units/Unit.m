@@ -7,6 +7,8 @@
 //
 
 #import "Unit.h"
+#import "GameModel.h"
+#import "RectTarget.h"
 
 #define BOUNDING_RECT_MODIFIER 1.2f
 
@@ -79,15 +81,14 @@
     
     [self computeFrame:delta];
     
-    // if dead and backwards velocity stops then remove
-    if (dead && velocity > 0.0f)
-    {
-        [self removeAndCleanup];
-    }
 }
 
 -(void) removeAndCleanup
 {
+    if (otherParent)
+    {
+        [otherParent removeEntityFromArrays:self];
+    }
     [whiteSprite removeFromParentAndCleanup:YES];
     [self removeFromParentAndCleanup:YES];
 }
@@ -140,23 +141,13 @@
     }
 }
 
--(BOOL)isCollidingWith:(Unit *)otherUnit
+-(bool) isCollidingWith:(Entity *)otherEntity
 {
-    if (!otherUnit->dead)
+    if (!dead)
     {
-        if(CGRectIntersectsRect(boundingRect, otherUnit->boundingRect))
-        {
-            return TRUE;
-        }
-        else
-        {
-            return FALSE;
-        }
+        return [super isCollidingWith:otherEntity];
     }
-    else
-    {
-        return FALSE;
-    }
+    return NO;
 }
 
 -(void)flashWhiteFor:(CGFloat)time
@@ -204,22 +195,45 @@
     baseMaxVelocity = maxVelocity;
 }
 
--(CGFloat) width
-{
-    return [self boundingBox].size.width;
-}
-
--(CGFloat) height
-{
-    return [self boundingBox].size.height;
-}
-
 -(void) kill
 {
     // flash white for 1.3 seconds
     [self flashWhiteFor:1.3f];
     // set death flag to be on
     dead = true;
+}
+
+-(void) actOnEntity:(Entity *)otherEntity
+{
+    if ([otherEntity isKindOfClass:[Unit class]])
+    {
+        Unit *enemyUnit = (Unit *)otherEntity;
+        [enemyUnit hitFor:damage andSetNegativeVelocity:-velocity];
+        [enemyUnit flashWhiteFor:0.6f];
+        if (enemyUnit->health <= 0.0f)
+        {
+            [enemyUnit kill];
+        }
+    }
+    else if ([otherEntity isKindOfClass:[RectTarget class]])
+    {
+        RectTarget *enemyRect = (RectTarget *)otherEntity;
+        *enemyRect->targetHealth -= damage;
+        [((GameLayer *)[self parent])->shaker shakeWithShakeValue:5 forTime:0.7f];
+    }
+}
+
+-(CGRect) boundingBox
+{
+    return boundingRect;
+}
+-(CGFloat) width
+{
+    return [super boundingBox].size.width;
+}
+-(CGFloat) height
+{
+    return [super boundingBox].size.height;
 }
 
 @end

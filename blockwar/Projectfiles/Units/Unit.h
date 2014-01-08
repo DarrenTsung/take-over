@@ -6,9 +6,9 @@
 //
 //
 
-#import <Foundation/Foundation.h>
+#import "Entity.h"
 
-@interface Unit : CCSprite
+@interface Unit : Entity
 {
     @public
     CGPoint origin;
@@ -26,22 +26,21 @@
     CCSprite *whiteSprite;
 }
 
--(id)initWithPosition:(CGPoint)pos andName:(NSString *)theName;
+-(id) initWithPosition:(CGPoint)pos andName:(NSString *)theName;
 -(id) initUnit:(NSString *)UnitName withOwner:(NSString *)OwnerName AndPosition:(CGPoint)pos;
 
--(void)update:(ccTime) delta;
--(BOOL)isCollidingWith:(Unit *) otherUnit;
--(void)setInvincibleForTime:(ccTime)time;
--(void)flashWhiteFor:(CGFloat)time;
--(void)hitFor:(CGFloat)hitDamage;
--(void)pushBack:(CGFloat)percentage;
+-(void) update:(ccTime) delta;
+// overridden
+-(bool) isCollidingWith:(Entity *)otherEntity;
+-(void) setInvincibleForTime:(ccTime)time;
+-(void) flashWhiteFor:(CGFloat)time;
+-(void) hitFor:(CGFloat)hitDamage;
+-(void) pushBack:(CGFloat)percentage;
 
--(void)setMaxVelocity:(CGFloat)theMaxVelocity;
--(void)setDamage:(CGFloat)theDamage;
+-(void) setMaxVelocity:(CGFloat)theMaxVelocity;
+-(void) setDamage:(CGFloat)theDamage;
 
--(void)removeAndCleanup;
--(CGFloat)width;
--(CGFloat)height;
+
 
 -(void)kill;
 

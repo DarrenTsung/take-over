@@ -30,7 +30,6 @@ CCTimer *bossSpawnTimer;
         viewController = theViewController;
         playerUnits = [[NSMutableArray alloc] init];
         enemyUnits = [[NSMutableArray alloc] init];
-        particleArray = [[NSMutableArray alloc] init];
         
         spawnBossAtEnd = [[levelProperties objectForKey:@"bossExists"] boolValue];
         if (spawnBossAtEnd)
@@ -51,13 +50,13 @@ CCTimer *bossSpawnTimer;
 }
 
 // uses binary search to insert the unit while keeping the array sorted by y-coordinates
--(void) insertUnit:(Unit *)unit intoSortedArrayWithName:(NSString *)arrayName
+-(void) insertEntity:(Entity *)entity intoSortedArrayWithName:(NSString *)arrayName
 {
     NSMutableArray *array;
-    if ([arrayName isEqualToString:@"playerUnits"])
+    if ([arrayName isEqualToString:@"player"])
     {
         array = playerUnits;
-        if ([unit isKindOfClass:[SuperUnit class]])
+        if ([entity isKindOfClass:[SuperUnit class]])
         {
             if (playerResources < SUPER_UNIT_MULTIPLIER*UNIT_COST)
             {
@@ -65,7 +64,7 @@ CCTimer *bossSpawnTimer;
             }
             playerResources -= SUPER_UNIT_MULTIPLIER*UNIT_COST;
         }
-        else if ([unit isKindOfClass:[Unit class]])
+        else if ([entity isKindOfClass:[Unit class]])
         {
             if (playerResources < UNIT_COST)
             {
@@ -74,7 +73,7 @@ CCTimer *bossSpawnTimer;
             playerResources -= UNIT_COST;
         }
     }
-    else if ([arrayName isEqualToString:@"enemyUnits"])
+    else if ([arrayName isEqualToString:@"enemy"])
     {
         array = enemyUnits;
     }
@@ -125,14 +124,21 @@ CCTimer *bossSpawnTimer;
         [array insertObject:unit atIndex:mid];
     } */
     
-    [array addObject:unit];
+    [array addObject:entity];
+    entity->otherParent = self;
     
-    if (![unit parent]) {
+    if ([entity isKindOfClass:[Unit class]] && ![entity parent]) {
+        Unit *unit = (Unit *)entity;
         // the closer to the front (y = 0) the unit is, the higher z value it should have.
         // therefore we subtract the max y value (320) with the unit's bottom edge y value (origin.y - half the unit height (since origin is the middle))
         NSInteger calculatedZ = 320 - (unit->origin.y - (unit->boundingRect.size.height / 2));
         [viewController addChild:unit->whiteSprite z:calculatedZ];
-        [viewController addChild:unit z:calculatedZ];
+        [viewController addChild:entity z:calculatedZ];
+    }
+    // otherwise it's a target and doesn't need to be on top of things
+    else if (![entity parent])
+    {
+        [viewController addChild:entity z:0];
     }
 }
 
@@ -158,29 +164,27 @@ CCTimer *bossSpawnTimer;
     {
         for (Unit *unit in unitArray)
         {
-            [self insertUnit:unit intoSortedArrayWithName:arrayName];
+            [self insertEntity:unit intoSortedArrayWithName:arrayName];
         }
     }
 }
 
 // checks for collisions between playerUnits and enemyUnits and removes dead Germs (naive implementation)
--(void) checkForCollisionsAndRemove
+-(void) checkForCollisions
 {
-    // if endState is anything but nil at the end, we know to end the game
-    NSString *endState = nil;
+    
     NSMutableArray *playerDiscardedUnits = [[NSMutableArray alloc] init];
     NSMutableArray *enemyDiscardedUnits = [[NSMutableArray alloc] init];
     
-    CGSize screen_bounds = [viewController returnScreenBounds];
-    
     // quick and dirty check for collisions
-    for (Unit *unit in playerUnits)
+    for (Entity *entity in playerUnits)
     {
-        if (unit->dead)
+        if ([entity isKindOfClass:[Unit class]] && ((Unit *)entity)->dead)
         {
             // dont do collision checking for dead units
             continue;
         }
+        /*
         // if this unit has reached the right side completely
         if (unit->origin.x - [unit width]/2 > screen_bounds.width)
         {
@@ -202,35 +206,18 @@ CCTimer *bossSpawnTimer;
                 }
             }
         }
-        for (Unit *enemyUnit in enemyUnits)
+         */
+        for (Entity *enemyEntity in enemyUnits)
         {
-            if (enemyUnit->dead)
+            if ([enemyEntity isKindOfClass:[Unit class]] && ((Unit*)enemyEntity)->dead)
             {
                 // dont do collision checking for dead units
                 continue;
             }
-            if ([unit isCollidingWith: enemyUnit])
+            if ([entity isCollidingWith:enemyEntity])
             {
-                if ([enemyUnit isKindOfClass:[BossUnit class]])
-                {
-                    [viewController->shaker shakeWithShakeValue:5 forTime:SHAKE_TIME];
-                }
-                [unit flashWhiteFor:0.6f];
-                [unit hitFor:enemyUnit->damage];
-                
-                [enemyUnit flashWhiteFor:0.6f];
-                [enemyUnit hitFor:unit->damage];
-                
-                if (unit->health < 0.0f)
-                {
-                    [unit kill];
-                }
-                
-                if (enemyUnit->health < 0.0f)
-                {
-                    [enemyUnit kill];
-                }
-                
+                [entity actOnEntity:enemyEntity];
+                [enemyEntity actOnEntity:entity];
                 // breaks out of checking the current player unit with any more enemy_units
                 break;
             }
@@ -248,6 +235,7 @@ CCTimer *bossSpawnTimer;
         {
             [enemyUnit kill];
         }
+        /*
         if (CGRectIntersectsRect(enemyUnit->boundingRect, viewController->spawnArea))
         {
             if ([enemyUnit isKindOfClass:[BossUnit class]])
@@ -263,7 +251,67 @@ CCTimer *bossSpawnTimer;
                 endState = @"enemy";
             }
         }
+        */
     }
+    [playerUnits removeObjectsInArray:playerDiscardedUnits];
+    [enemyUnits removeObjectsInArray:enemyDiscardedUnits];
+    [viewController removeChildrenInArray:playerDiscardedUnits cleanup:YES];
+    [viewController removeChildrenInArray:enemyDiscardedUnits cleanup:YES];
+
+}
+
+-(void) removeDeadUnitsAndCheckWinState
+{
+    // if endState is anything but nil at the end, we know to end the game
+    NSString *endState = nil;
+    NSMutableArray *playerDiscardedUnits = [[NSMutableArray alloc] init];
+    NSMutableArray *enemyDiscardedUnits = [[NSMutableArray alloc] init];
+    
+    // schedule for dead units to be removed
+    for (Entity *entity in playerUnits)
+    {
+        if ([entity isKindOfClass:[Unit class]])
+        {
+            Unit *unit = (Unit *)entity;
+            if (unit->dead && unit->velocity >= 0.0f)
+            {
+                [playerDiscardedUnits addObject:unit];
+                [playerDiscardedUnits addObject:unit->whiteSprite];
+            }
+        }
+    }
+    for (Entity *entity in enemyUnits)
+    {
+        if ([entity isKindOfClass:[Unit class]])
+        {
+            Unit *unit = (Unit *)entity;
+            if (unit->dead && unit->velocity >= 0.0f)
+            {
+                [enemyDiscardedUnits addObject:unit];
+                [enemyDiscardedUnits addObject:unit->whiteSprite];
+            }
+        }
+    }
+    
+    // check if game is OVER (very last thing done in the frame)
+    if (playerHP <= 0.0f)
+    {
+        endState = @"enemy";
+    }
+    if (enemyHP <= 0.0f)
+    {
+        if (spawnBossAtEnd)
+        {
+            enemyHP = 99999;
+            [viewController->enemyHP zeroOutCurrentButKeepAnimation];
+            [self scheduleOnce:@selector(spawnBoss) delay:2.0f];
+        }
+        else
+        {
+            endState = @"player";
+        }
+    }
+    
     [playerUnits removeObjectsInArray:playerDiscardedUnits];
     [enemyUnits removeObjectsInArray:enemyDiscardedUnits];
     [viewController removeChildrenInArray:playerDiscardedUnits cleanup:YES];
@@ -290,6 +338,12 @@ CCTimer *bossSpawnTimer;
     {
         [unit update:delta];
     }
+}
+
+-(void) removeEntityFromArrays:(Entity *)entity
+{
+    [playerUnits removeObject:entity];
+    [enemyUnits removeObject:entity];
 }
 
 -(void) dealDamage:(CGFloat)damage toUnitsInDistance:(CGFloat)distance ofPoint:(CGPoint)point

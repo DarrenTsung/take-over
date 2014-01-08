@@ -63,7 +63,7 @@
         if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
         {
             SuperUnit *unit = [[SuperUnit alloc] initWithPosition:touchIndicatorCenter];
-            [gameModel insertUnit:unit intoSortedArrayWithName:@"playerUnits"];
+            [gameModel insertEntity:unit intoSortedArrayWithName:@"player"];
         }
         else if (touchIndicatorRadius >= TOUCH_RADIUS_MIN)
         {

@@ -20,6 +20,7 @@
 #import "LevelSelectLayer.h"
 #import "NodeShaker.h"
 #import "TouchHandler.h"
+#import "RectTarget.h"
 
 GameModel *model;
 
@@ -91,14 +92,6 @@ TouchHandler *myTouchHandler;
         NSLog(@"The screen width and height are (%f, %f)", screenBounds.width, screenBounds.height);
         playHeight = 10.2 * screenBounds.height/12.2;
         
-        // spawnArea is the player's spawning area
-        spawnArea.origin = CGPointZero;
-        spawnArea.size = CGSizeMake(screenBounds.width/7, playHeight);
-        
-        // battleArea is the area of the battle
-        battleArea.origin = CGPointMake(screenBounds.width/7, 0);
-        battleArea.size = CGSizeMake(6*screenBounds.width/7, playHeight);
-        
         [self loadSpriteSheets];
         
         // model controls and models all the germs
@@ -117,6 +110,16 @@ TouchHandler *myTouchHandler;
         // my shaker
         shaker = [[NodeShaker alloc] initWithReferenceToNode:self];
         [self addChild:shaker];
+        
+        // spawnArea is the player's spawning area
+        spawnArea.origin = CGPointZero;
+        spawnArea.size = CGSizeMake(screenBounds.width/7, playHeight);
+        RectTarget *playerTarget = [[RectTarget alloc] initWithRect:spawnArea andLink:&model->playerHP];
+        [model insertEntity:playerTarget intoSortedArrayWithName:@"player"];
+        
+        // battleArea is the area of the battle
+        battleArea.origin = CGPointMake(screenBounds.width/7, 0);
+        battleArea.size = CGSizeMake(6*screenBounds.width/7, playHeight);
         
         // see if we need to play the tapAnimation
         NSArray *levelTapAnimationProperties = [levelProperties objectForKey:@"tapAnimationProperties"];
@@ -237,7 +240,9 @@ TouchHandler *myTouchHandler;
         [theEnemy update:UPDATE_INTERVAL];
         
         // after units are done spawning / moving, check for collisions
-        [model checkForCollisionsAndRemove];
+        [model checkForCollisions];
+        
+        [model removeDeadUnitsAndCheckWinState];
     }
 }
 

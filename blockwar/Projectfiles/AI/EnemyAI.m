@@ -59,7 +59,7 @@
         for(int i=0; i<rowSize; i++)
         {
             CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);
-            [model insertUnit:[[Unit alloc] initUnit:@"russian" withOwner:@"Opponent" AndPosition:lesserPoint] intoSortedArrayWithName:@"enemyUnits"];
+            [model insertEntity:[[Unit alloc] initUnit:@"russian" withOwner:@"Opponent" AndPosition:lesserPoint] intoSortedArrayWithName:@"enemy"];
             x++;
         }
         //NSLog(@"added a row! offset %d", counter%2);
@@ -103,7 +103,7 @@
     {
         theBoss = [[BossUnit alloc] initBossWithPosition:CGPointMake(595, playHeight/2)];
     }
-    [model insertUnit:theBoss intoSortedArrayWithName:@"enemyUnits"];
+    [model insertEntity:theBoss intoSortedArrayWithName:@"enemy"];
     [theBoss setInvincibleForTime:0.4f];
     NSArray *layerColors = [bossProperties objectForKey:@"layerProperties"];
     NSInteger layerCount = [layerColors count];

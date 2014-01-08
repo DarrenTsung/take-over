@@ -57,6 +57,8 @@
 		6C9BB8A51878AFBF00E14BAA /* tap_indicator_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A31878AFBF00E14BAA /* tap_indicator_frames.plist */; };
 		6C9BB8A61878AFBF00E14BAA /* tap_indicator_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A41878AFBF00E14BAA /* tap_indicator_frames.png */; };
 		6C9BB8AA1878E31A00E14BAA /* IndicatorSprite.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8A91878E31A00E14BAA /* IndicatorSprite.m */; };
+		6C9BB8AD187C63ED00E14BAA /* Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8AC187C63ED00E14BAA /* Entity.m */; };
+		6C9BB8B0187C69B800E14BAA /* RectTarget.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8AF187C69B800E14BAA /* RectTarget.m */; };
 		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
 		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
 		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
@@ -191,6 +193,10 @@
 		6C9BB8A41878AFBF00E14BAA /* tap_indicator_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = tap_indicator_frames.png; path = Indicators/tap_indicator_frames.png; sourceTree = "<group>"; };
 		6C9BB8A81878E31A00E14BAA /* IndicatorSprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IndicatorSprite.h; path = TouchHandling/IndicatorSprite.h; sourceTree = "<group>"; };
 		6C9BB8A91878E31A00E14BAA /* IndicatorSprite.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IndicatorSprite.m; path = TouchHandling/IndicatorSprite.m; sourceTree = "<group>"; };
+		6C9BB8AB187C63ED00E14BAA /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = Units/Entity.h; sourceTree = "<group>"; };
+		6C9BB8AC187C63ED00E14BAA /* Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Entity.m; path = Units/Entity.m; sourceTree = "<group>"; };
+		6C9BB8AE187C69B800E14BAA /* RectTarget.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RectTarget.h; path = Units/RectTarget.h; sourceTree = "<group>"; };
+		6C9BB8AF187C69B800E14BAA /* RectTarget.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RectTarget.m; path = Units/RectTarget.m; sourceTree = "<group>"; };
 		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
 		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
 		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
@@ -439,6 +445,28 @@
 			name = Indicators;
 			sourceTree = "<group>";
 		};
+		6C9BB8B2187C838300E14BAA /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				6C9BB8AE187C69B800E14BAA /* RectTarget.h */,
+				6C9BB8AF187C69B800E14BAA /* RectTarget.m */,
+			);
+			name = Targets;
+			sourceTree = "<group>";
+		};
+		6C9BB8B3187C838900E14BAA /* Units */ = {
+			isa = PBXGroup;
+			children = (
+				6C021A31186B94CA000C11FC /* Unit.h */,
+				6C021A32186B94CA000C11FC /* Unit.m */,
+				6C021A2F186B94CA000C11FC /* SuperUnit.h */,
+				6C021A30186B94CA000C11FC /* SuperUnit.m */,
+				6C021A2D186B94CA000C11FC /* BossUnit.h */,
+				6C021A2E186B94CA000C11FC /* BossUnit.m */,
+			);
+			name = Units;
+			sourceTree = "<group>";
+		};
 		6CAB076118529AD0008749D5 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
@@ -472,17 +500,15 @@
 			name = "Artifical Intelligence";
 			sourceTree = "<group>";
 		};
-		6CD3616418259DF500A56D5C /* Units */ = {
+		6CD3616418259DF500A56D5C /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				6C021A31186B94CA000C11FC /* Unit.h */,
-				6C021A32186B94CA000C11FC /* Unit.m */,
-				6C021A2F186B94CA000C11FC /* SuperUnit.h */,
-				6C021A30186B94CA000C11FC /* SuperUnit.m */,
-				6C021A2D186B94CA000C11FC /* BossUnit.h */,
-				6C021A2E186B94CA000C11FC /* BossUnit.m */,
+				6C9BB8AB187C63ED00E14BAA /* Entity.h */,
+				6C9BB8AC187C63ED00E14BAA /* Entity.m */,
+				6C9BB8B2187C838300E14BAA /* Targets */,
+				6C9BB8B3187C838900E14BAA /* Units */,
 			);
-			name = Units;
+			name = Entities;
 			sourceTree = "<group>";
 		};
 		DCC1A0D613A94EC0005BD75D = {
@@ -581,7 +607,7 @@
 				6CD361661826CF2E00A56D5C /* GameModel.m */,
 				6CAE6D9B182C362D00602F39 /* Artifical Intelligence */,
 				6C021A4C186B94F1000C11FC /* Bars */,
-				6CD3616418259DF500A56D5C /* Units */,
+				6CD3616418259DF500A56D5C /* Entities */,
 				DCC1A38D13A94F1A005BD75D /* AppDelegate.h */,
 				DCC1A38E13A94F1A005BD75D /* AppDelegate.m */,
 				DCC1A39413A94F1A005BD75D /* Resources */,
@@ -791,6 +817,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C9BB8AD187C63ED00E14BAA /* Entity.m in Sources */,
 				6C021A4F186B972C000C11FC /* LevelSelectLayer.m in Sources */,
 				6C021A36186B94CA000C11FC /* Unit.m in Sources */,
 				6C021A49186B94ED000C11FC /* Bar.m in Sources */,
@@ -801,6 +828,7 @@
 				6C021A35186B94CA000C11FC /* SuperUnit.m in Sources */,
 				6C021A41186B94D6000C11FC /* StartMenuLayer.m in Sources */,
 				6C021A42186B94D6000C11FC /* WinLayer.m in Sources */,
+				6C9BB8B0187C69B800E14BAA /* RectTarget.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				6C9BB8901876371800E14BAA /* TouchHandler.m in Sources */,
 				6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */,

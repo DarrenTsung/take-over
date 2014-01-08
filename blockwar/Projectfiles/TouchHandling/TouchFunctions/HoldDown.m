@@ -101,7 +101,7 @@
     {
         random_pos.y = touchIndicatorCenter.y - 10.0f - arc4random_uniform(area.size.height - touchIndicatorCenter.y);
     }
-    [gameModel insertUnit:[[Unit alloc] initWithPosition:random_pos andName:@"zombie"] intoSortedArrayWithName:@"playerUnits"];
+    [gameModel insertEntity:[[Unit alloc] initWithPosition:random_pos andName:@"zombie"] intoSortedArrayWithName:@"player"];
 }
 
 -(void) reset

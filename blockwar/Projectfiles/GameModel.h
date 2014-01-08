@@ -25,9 +25,11 @@
 
 -(id) initWithReferenceToViewController:(GameLayer *)theViewController andReferenceToLevelProperties:(NSDictionary *)levelProperties;
 -(void) setReferenceToEnemyAI:(EnemyAI *)theEnemyReference;
--(void) insertUnit:(Unit *)unit intoSortedArrayWithName:(NSString *)arrayName;
+-(void) insertEntity:(Entity *)entity intoSortedArrayWithName:(NSString *)arrayName;
 -(void) insertUnits:(CCArray *)unitArray intoSortedArrayWithName:(NSString *)arrayName;
--(void) checkForCollisionsAndRemove;
+-(void) removeEntityFromArrays:(Entity *)entity;
+-(void) checkForCollisions;
+-(void) removeDeadUnitsAndCheckWinState;
 -(void) update:(ccTime)delta;
 -(void) dealDamage:(CGFloat)damage toUnitsInDistance:(CGFloat)distance ofPoint:(CGPoint)point;
 //-(void) drawUnits;
