@@ -8,6 +8,7 @@
 
 #import "StartMenuLayer.h"
 #import "LevelSelectLayer.h"
+#import "LevelSelectLayer.h"
 
 @implementation StartMenuLayer
 
@@ -27,6 +28,13 @@ CCSprite *background;
     
 }
 
+-(void) preloadOverlays
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"win_overlay_frames.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"lose_overlay_frames.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"start_overlay_frames.plist"];
+}
+
 -(id) init
 {
     if ((self = [super init]))
@@ -34,14 +42,18 @@ CCSprite *background;
         // enable multi-touch
         [KKInput sharedInput].multipleTouchEnabled = YES;
         
-        // make sure that the user's data is present, if not unlock the beginning level
-        NSInteger worldUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"worldUnlocked"];
-        NSInteger levelUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"];
-        NSLog(@"User has (world: %d, level %d) unlocked!", worldUnlocked, levelUnlocked);
-        if (worldUnlocked == 0 || levelUnlocked == 0)
+        [self preloadOverlays];
+        
+        for (int i=0; i<4; i++)
         {
-            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"worldUnlocked"];
-            [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"levelUnlocked"];
+            // make sure that the user's data is present, if not unlock the beginning level
+            NSString *key = [NSString stringWithFormat:@"region%d_levelUnlocked", i];
+            NSInteger levelUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:key];
+            NSLog(@"User has (Region: %d, level %d) unlocked!", i, levelUnlocked);
+            if (levelUnlocked == 0)
+            {
+                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:key];
+            }
         }
         
         CGFloat playerHP = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerHP"];

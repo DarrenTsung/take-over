@@ -115,7 +115,7 @@
 
 -(void) update:(ccTime)delta
 {
-    if (!viewController->isDone)
+    if (!viewController->paused)
     {
         KKInput *input = [KKInput sharedInput];
         CCArray *touches = [input touches];

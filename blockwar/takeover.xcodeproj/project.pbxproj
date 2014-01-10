@@ -23,21 +23,21 @@
 		6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A46186B94ED000C11FC /* HealthBar.m */; };
 		6C021A4B186B94ED000C11FC /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A48186B94ED000C11FC /* RegeneratableBar.m */; };
 		6C021A4F186B972C000C11FC /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A4E186B972C000C11FC /* LevelSelectLayer.m */; };
-		6C83A79C186EBEA6002EB16B /* World1_Level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79A186EBEA6002EB16B /* World1_Level2.plist */; };
-		6C83A79D186EBEA6002EB16B /* World1_Level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79B186EBEA6002EB16B /* World1_Level3.plist */; };
+		6C83A79C186EBEA6002EB16B /* Russia_Level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */; };
+		6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */; };
 		6C83A7A0186F437B002EB16B /* UpgradeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C83A79F186F437B002EB16B /* UpgradeLayer.m */; };
 		6C83A7A5186F6637002EB16B /* upgradeBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A7A3186F6637002EB16B /* upgradeBackground.png */; };
 		6C83A7A6186F6637002EB16B /* upgradeConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A7A4186F6637002EB16B /* upgradeConfig.plist */; };
 		6C83A7AA186F699C002EB16B /* selectedZombieDisplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A7A8186F699C002EB16B /* selectedZombieDisplay.png */; };
 		6C83A7AB186F699C002EB16B /* zombieDisplay.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A7A9186F699C002EB16B /* zombieDisplay.png */; };
 		6C902086186E3732001D1183 /* level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C902084186E3732001D1183 /* level1.png */; };
-		6C902087186E3732001D1183 /* world1_levelselect.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C902085186E3732001D1183 /* world1_levelselect.plist */; };
+		6C902087186E3732001D1183 /* Russia_levelselect.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C902085186E3732001D1183 /* Russia_levelselect.plist */; };
 		6C90208A186E3CA1001D1183 /* level2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C902088186E3CA1001D1183 /* level2.png */; };
 		6C90208B186E3CA1001D1183 /* level3.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C902089186E3CA1001D1183 /* level3.png */; };
 		6C90208F186E480C001D1183 /* level1_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C90208C186E480C001D1183 /* level1_locked.png */; };
 		6C902090186E480C001D1183 /* level2_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C90208D186E480C001D1183 /* level2_locked.png */; };
 		6C902091186E480C001D1183 /* level3_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C90208E186E480C001D1183 /* level3_locked.png */; };
-		6C902097186EAC4E001D1183 /* World1_Level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C902096186EAC4E001D1183 /* World1_Level1.plist */; };
+		6C902097186EAC4E001D1183 /* Russia_Level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C902096186EAC4E001D1183 /* Russia_Level1.plist */; };
 		6C9BB8781872821900E14BAA /* lose_overlay_frames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */; };
 		6C9BB8791872821900E14BAA /* lose_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */; };
 		6C9BB87A1872821900E14BAA /* lose_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */; };
@@ -158,8 +158,8 @@
 		6C021A48186B94ED000C11FC /* RegeneratableBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegeneratableBar.m; path = Bars/RegeneratableBar.m; sourceTree = "<group>"; };
 		6C021A4D186B972C000C11FC /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectLayer.h; path = Layers/LevelSelectLayer.h; sourceTree = "<group>"; };
 		6C021A4E186B972C000C11FC /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelectLayer.m; path = Layers/LevelSelectLayer.m; sourceTree = "<group>"; };
-		6C83A79A186EBEA6002EB16B /* World1_Level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = World1_Level2.plist; path = Worlds/World1/Levels/World1_Level2.plist; sourceTree = "<group>"; };
-		6C83A79B186EBEA6002EB16B /* World1_Level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = World1_Level3.plist; path = Worlds/World1/Levels/World1_Level3.plist; sourceTree = "<group>"; };
+		6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level2.plist; path = Worlds/World1/Levels/Russia_Level2.plist; sourceTree = "<group>"; };
+		6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level3.plist; path = Worlds/World1/Levels/Russia_Level3.plist; sourceTree = "<group>"; };
 		6C83A79E186F437B002EB16B /* UpgradeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgradeLayer.h; path = Layers/UpgradeLayer.h; sourceTree = "<group>"; };
 		6C83A79F186F437B002EB16B /* UpgradeLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UpgradeLayer.m; path = Layers/UpgradeLayer.m; sourceTree = "<group>"; };
 		6C83A7A3186F6637002EB16B /* upgradeBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = upgradeBackground.png; path = Layers/UpgradeResources/upgradeBackground.png; sourceTree = "<group>"; };
@@ -167,13 +167,13 @@
 		6C83A7A8186F699C002EB16B /* selectedZombieDisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = selectedZombieDisplay.png; path = Layers/UpgradeResources/selectedZombieDisplay.png; sourceTree = "<group>"; };
 		6C83A7A9186F699C002EB16B /* zombieDisplay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zombieDisplay.png; path = Layers/UpgradeResources/zombieDisplay.png; sourceTree = "<group>"; };
 		6C902084186E3732001D1183 /* level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level1.png; path = Worlds/World1/level1.png; sourceTree = "<group>"; };
-		6C902085186E3732001D1183 /* world1_levelselect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = world1_levelselect.plist; path = Worlds/World1/world1_levelselect.plist; sourceTree = "<group>"; };
+		6C902085186E3732001D1183 /* Russia_levelselect.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_levelselect.plist; path = Worlds/World1/Russia_levelselect.plist; sourceTree = "<group>"; };
 		6C902088186E3CA1001D1183 /* level2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level2.png; path = Worlds/World1/level2.png; sourceTree = "<group>"; };
 		6C902089186E3CA1001D1183 /* level3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level3.png; path = Worlds/World1/level3.png; sourceTree = "<group>"; };
 		6C90208C186E480C001D1183 /* level1_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level1_locked.png; path = Worlds/World1/level1_locked.png; sourceTree = "<group>"; };
 		6C90208D186E480C001D1183 /* level2_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level2_locked.png; path = Worlds/World1/level2_locked.png; sourceTree = "<group>"; };
 		6C90208E186E480C001D1183 /* level3_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level3_locked.png; path = Worlds/World1/level3_locked.png; sourceTree = "<group>"; };
-		6C902096186EAC4E001D1183 /* World1_Level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = World1_Level1.plist; path = Worlds/World1/Levels/World1_Level1.plist; sourceTree = "<group>"; };
+		6C902096186EAC4E001D1183 /* Russia_Level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level1.plist; path = Worlds/World1/Levels/Russia_Level1.plist; sourceTree = "<group>"; };
 		6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lose_overlay_frames-hd.plist"; path = "Overlays/lose_overlay_frames-hd.plist"; sourceTree = "<group>"; };
 		6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lose_overlay_frames-hd.png"; path = "Overlays/lose_overlay_frames-hd.png"; sourceTree = "<group>"; };
 		6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lose_overlay_frames.plist; path = Overlays/lose_overlay_frames.plist; sourceTree = "<group>"; };
@@ -382,7 +382,7 @@
 				6C902084186E3732001D1183 /* level1.png */,
 				6C902088186E3CA1001D1183 /* level2.png */,
 				6C902089186E3CA1001D1183 /* level3.png */,
-				6C902085186E3732001D1183 /* world1_levelselect.plist */,
+				6C902085186E3732001D1183 /* Russia_levelselect.plist */,
 				6C902098186EAC52001D1183 /* Levels */,
 			);
 			name = World1;
@@ -391,9 +391,9 @@
 		6C902098186EAC52001D1183 /* Levels */ = {
 			isa = PBXGroup;
 			children = (
-				6C902096186EAC4E001D1183 /* World1_Level1.plist */,
-				6C83A79A186EBEA6002EB16B /* World1_Level2.plist */,
-				6C83A79B186EBEA6002EB16B /* World1_Level3.plist */,
+				6C902096186EAC4E001D1183 /* Russia_Level1.plist */,
+				6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */,
+				6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -766,7 +766,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6C83A79D186EBEA6002EB16B /* World1_Level3.plist in Resources */,
+				6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */,
 				6C9BB87F1872821900E14BAA /* win_overlay_frames.png in Resources */,
 				6C9BB87B1872821900E14BAA /* lose_overlay_frames.png in Resources */,
 				6CAB076818529ADC008749D5 /* bossrussianframes.plist in Resources */,
@@ -786,7 +786,7 @@
 				6C9BB87D1872821900E14BAA /* win_overlay_frames-hd.png in Resources */,
 				6CAB07781852D5F4008749D5 /* losescreen.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
-				6C902097186EAC4E001D1183 /* World1_Level1.plist in Resources */,
+				6C902097186EAC4E001D1183 /* Russia_Level1.plist in Resources */,
 				6C9BB8A51878AFBF00E14BAA /* tap_indicator_frames.plist in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
 				6C83A7A6186F6637002EB16B /* upgradeConfig.plist in Resources */,
@@ -801,7 +801,7 @@
 				6C83A7A5186F6637002EB16B /* upgradeBackground.png in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				6CAB076718529ADC008749D5 /* bossrussianframes-hd.png in Resources */,
-				6C902087186E3732001D1183 /* world1_levelselect.plist in Resources */,
+				6C902087186E3732001D1183 /* Russia_levelselect.plist in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
@@ -812,7 +812,7 @@
 				6CAB07791852D5F4008749D5 /* play.png in Resources */,
 				6CA6C6C0185008180067BEBE /* superzombieframes.plist in Resources */,
 				6C9BB87C1872821900E14BAA /* win_overlay_frames-hd.plist in Resources */,
-				6C83A79C186EBEA6002EB16B /* World1_Level2.plist in Resources */,
+				6C83A79C186EBEA6002EB16B /* Russia_Level2.plist in Resources */,
 				6C90208A186E3CA1001D1183 /* level2.png in Resources */,
 				6C83A7AB186F699C002EB16B /* zombieDisplay.png in Resources */,
 				6C902086186E3732001D1183 /* level1.png in Resources */,

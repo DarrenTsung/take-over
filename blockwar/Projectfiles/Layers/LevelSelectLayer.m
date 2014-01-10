@@ -7,8 +7,8 @@
 //
 
 #import "LevelSelectLayer.h"
-#import "GameLayer.h"
 #import "UpgradeLayer.h"
+#import "GameLayer.h"
 
 @implementation LevelSelectLayer
 
@@ -21,10 +21,18 @@ UpgradeLayer *upgradeMenu;
 
 -(id) init
 {
+    if (self = [self initWithRegion:RUSSIA])
+    {
+        
+    }
+    return self;
+}
+
+-(id) initWithRegion:(RegionType)region
+{
     if ((self = [super init]))
 	{
-        NSInteger worldUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"worldUnlocked"];
-        [self setUpMenuWithWorld:worldUnlocked];
+        [self setUpMenuWithRegion:region];
         
         isDragging = false;
         upgradeOnScreen = false;
@@ -37,12 +45,30 @@ UpgradeLayer *upgradeMenu;
     return self;
 }
 
--(void) setUpMenuWithWorld:(int) world
+-(void) setUpMenuWithRegion:(RegionType) region
 {
-    NSInteger levelUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"];
+    NSInteger levelUnlocked = [[NSUserDefaults standardUserDefaults] integerForKey:[NSString stringWithFormat:@"region%d_levelUnlocked", region]];
     
     CCMenu *menu = [CCMenu menuWithItems: nil];
-    NSString *worldPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"world%d_levelselect", world] ofType:@"plist"];
+    NSString *prefix;
+    if (region == AFRICA)
+    {
+        prefix = @"Africa";
+    }
+    else if (region == ASIA)
+    {
+        prefix = @"Asia";
+    }
+    else if (region == RUSSIA)
+    {
+        prefix = @"Russia";
+    }
+    else if (region == AMERICA)
+    {
+        prefix = @"America";
+    }
+    NSLog(@"Prefix: %@", prefix);
+    NSString *worldPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@_levelselect", prefix] ofType:@"plist"];
     NSDictionary *worldProperties = [NSDictionary dictionaryWithContentsOfFile:worldPath];
     
     NSArray *levels = [worldProperties objectForKey:@"levels"];
@@ -55,14 +81,14 @@ UpgradeLayer *upgradeMenu;
                                       disabledImage:[level objectForKey:@"lockedIcon"]
                                               block:^(id sender){
                                                         NSLog(@"Level %d loaded!", levelNum);
-                                                        [self loadWorld:world withLevel:levelNum];
+                                                        [self loadRegion:region withLevel:levelNum];
                                                     }];
         if (levelNum > levelUnlocked)
         {
             [item setIsEnabled:NO];
         }
         [item setPosition:CGPointMake([[level objectForKey:@"x"] floatValue], [[level objectForKey:@"y"] floatValue])];
-        [menu addChild:item z:1 tag:levelNum];
+        [menu addChild:item z:1 tag:(10*region) + levelNum];
     }
     
     [menu setPosition:ccp(0, 0)];
@@ -82,8 +108,10 @@ UpgradeLayer *upgradeMenu;
             // touch bottom right corner to reset the unlocked progress and reload the level select layer
             if (currentPoint.x > 280 && currentPoint.y < 40)
             {
-                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"worldUnlocked"];
-                [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:@"levelUnlocked"];
+                for (int i=0; i<4; i++)
+                {
+                    [[NSUserDefaults standardUserDefaults] setInteger:1 forKey:[NSString stringWithFormat:@"region%d_levelUnlocked", i]];
+                }
                 [[CCDirector sharedDirector] replaceScene:
                  [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
             }
@@ -117,22 +145,30 @@ UpgradeLayer *upgradeMenu;
     }
 }
 
--(void)unlockNextLevel
+-(void)unlockLevel:(int)levelNum ofRegion:(RegionType)region
 {
-    NSLog(@"unlock next level called!");
-    int levelNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"] + 1;
-    [[NSUserDefaults standardUserDefaults] setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"] + 1 forKey:@"levelUnlocked"];
+    NSLog(@"unlock Level called!");
+    NSString *key = [NSString stringWithFormat:@"region%d_levelUnlocked", region];
+    int unlockedLevelTag = (10 * region) + [[NSUserDefaults standardUserDefaults] integerForKey:key] + 1;
+    [[NSUserDefaults standardUserDefaults] setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:key] + 1 forKey:key];
+    
+    // [self switchToRegion:region];
     
     // grab the reference the menuItem
-    CCNode *item = [[self getChildByTag:0] getChildByTag:levelNum];
+    unlockItem = [[self getChildByTag:0] getChildByTag:unlockedLevelTag];
     // create a unlocked image sprite over it with 0 opacity
-    CCSprite *selectedSprite = [[CCSprite alloc] initWithFile:[NSString stringWithFormat:@"level%d.png", levelNum]];
-    [selectedSprite setPosition:item.position];
-    [selectedSprite setOpacity:0];
+    unlockSelectedSprite = [[CCSprite alloc] initWithFile:[NSString stringWithFormat:@"level%d.png", levelNum]];
+    [self scheduleOnce:@selector(unlockNextLevel) delay:0.5f];
+}
+
+-(void)unlockNextLevel
+{
+    [unlockSelectedSprite setPosition:unlockItem.position];
+    [unlockSelectedSprite setOpacity:0];
     
-    [self addChild:selectedSprite];
+    [self addChild:unlockSelectedSprite];
     // and fade it out over 2 seconds
-    [selectedSprite runAction:[CCFadeTo actionWithDuration:1.2f opacity:255]];
+    [unlockSelectedSprite runAction:[CCFadeTo actionWithDuration:1.2f opacity:255]];
     
     // set the item to enabled when animation is finished
     [self scheduleOnce:@selector(enableNextLevel) delay:1.2f];
@@ -140,19 +176,13 @@ UpgradeLayer *upgradeMenu;
 
 -(void)enableNextLevel
 {
-    NSLog(@"just enabled the next level!");
-    int levelNum = [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"];
-    
-    // grab the reference the menuItem
-    CCMenu *menu = (CCMenu *)[self getChildByTag:0];
-    CCMenuItemImage *item = (CCMenuItemImage *)[menu getChildByTag:levelNum];
+    CCMenuItemImage *item = (CCMenuItemImage *)unlockItem;
     [item setIsEnabled:YES];
 }
 
--(void) loadWorld:(int) world withLevel:(int) level
+-(void) loadRegion:(RegionType)region withLevel:(int) level
 {
-    [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithWorld:world andLevel:level]]];
+    [[CCDirector sharedDirector] replaceScene:(CCScene *)[[GameLayer alloc] initWithRegion:region andLevel:level]];
 }
 
 @end

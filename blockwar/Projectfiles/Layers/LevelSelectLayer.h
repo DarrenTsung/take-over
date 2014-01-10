@@ -8,12 +8,24 @@
 
 #import "CCLayer.h"
 
+typedef enum
+{
+    RUSSIA,
+    ASIA,
+    AFRICA,
+    AMERICA
+} RegionType;
+
 @interface LevelSelectLayer : CCLayer
 {
     @public
     NSMutableDictionary *levelPointers;
+    
+    CCNode *unlockItem;
+    CCSprite *unlockSelectedSprite;
 }
--(void) unlockNextLevel;
+-(void)unlockLevel:(int)levelNum ofRegion:(RegionType)region;
+-(id) initWithRegion:(RegionType)region;
 
 
 @end

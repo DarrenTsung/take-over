@@ -33,8 +33,8 @@ EnemyAI *theEnemy;
 
 #define BAR_PADDING 10.0f
 
-CGFloat currentLevel;
-CGFloat currentWorld;
+int currentLevel;
+RegionType currentRegion;
 
 CGFloat bossSpawnTimer = 0.0f;
 bool bossExists = false;
@@ -67,23 +67,40 @@ TouchHandler *myTouchHandler;
 
 -(id) init
 {
-    if (self = [self initWithWorld:1 andLevel:1])
+    if (self = [self initWithRegion:AFRICA andLevel:1])
     {
     }
     return self;
 }
 
--(id) initWithWorld:(int)world andLevel:(int)level
+-(id) initWithRegion:(RegionType)region andLevel:(int)level
 {
     if ((self = [super initWithColor:ccc4(0.85f,0.8f,0.7f,1.0f)]))
     {
         NSLog(@"Game initializing...");
         winState = nil;
-        isDone = false;
         
-        currentWorld = world;
+        currentRegion = region;
         currentLevel = level;
-        NSString *levelPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"World%d_Level%d", world, level] ofType:@"plist"];
+        
+        NSString *prefix;
+        if (region == AFRICA)
+        {
+            prefix = @"Africa";
+        }
+        else if (region == ASIA)
+        {
+            prefix = @"Asia";
+        }
+        else if (region == RUSSIA)
+        {
+            prefix = @"Russia";
+        }
+        else if (region == AMERICA)
+        {
+            prefix = @"America";
+        }
+        NSString *levelPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@_Level%d", prefix, level] ofType:@"plist"];
         NSDictionary *levelProperties = [NSDictionary dictionaryWithContentsOfFile:levelPath];
         NSString *AIName = [levelProperties objectForKey:@"AIName"];
 
@@ -134,25 +151,14 @@ TouchHandler *myTouchHandler;
         }
         
         myTouchHandler = [[TouchHandler alloc] initWithReferenceToViewController:self andReferenceToGameModel:model];
-        
+        paused = true;
     }
-    [self scheduleOnce:@selector(startGame) delay:0.5f];
-    
-    return self;
-}
-
--(void) startGame
-{
-    [playerHP changeLinkTo:&model->playerHP];
-    [playerHP loadingToMaxAnimationWithTime:1.5f];
-    [playerResources changeLinkTo:&model->playerResources];
-    [playerResources loadingToMaxAnimationWithTime:1.5f];
-    [enemyHP changeLinkTo:&model->enemyHP];
-    [enemyHP loadingToMaxAnimationWithTime:1.5f];
     [self scheduleOnce:@selector(playStartOverlay) delay:0.5];
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
+    return self;
 }
+
 
 -(void) setUpTapAnimationAtPosition:(CGPoint)pos inTime:(ccTime)time
 {
@@ -173,19 +179,21 @@ TouchHandler *myTouchHandler;
 -(void) addTapIndicatorToSelf
 {
     [self addChild:tapIndicatorSprite z:321];
-    isDone = true;
+    paused = true;
 }
 
 -(void) setUpResourceBars
 {
-    CGFloat zero = 0.0f;
     // Resource Bars
-    enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&zero];
-    playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&zero];
-    playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&zero];
+    enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
+    playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&model->playerHP];
+    playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&model->playerResources];
     [self addChild:enemyHP];
     [self addChild:playerHP];
     [self addChild:playerResources];
+    [enemyHP loadingToMaxAnimationWithTime:1.5f];
+    [playerHP loadingToMaxAnimationWithTime:1.5f];
+    [playerResources loadingToMaxAnimationWithTime:1.5f];
 }
 
 -(void) loadSpriteSheets
@@ -204,17 +212,15 @@ TouchHandler *myTouchHandler;
     CCSpriteBatchNode *superzombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"superzombieframes.png"];
     [self addChild:superzombieSpriteSheet];
     
-    // overlay sprite sheets
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"win_overlay_frames.plist"];
+    
     CCSpriteBatchNode *winOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"win_overlay_frames.png"];
     [self addChild:winOverlaySpriteSheet];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"lose_overlay_frames.plist"];
     CCSpriteBatchNode *loseOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"lose_overlay_frames.png"];
     [self addChild:loseOverlaySpriteSheet];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"start_overlay_frames.plist"];
     CCSpriteBatchNode *startOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"start_overlay_frames.png"];
     [self addChild:startOverlaySpriteSheet];
     
+    // tap indicator
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"tap_indicator_frames.plist"];
     CCSpriteBatchNode *tapIndicatorSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"tap_indicator_frames.png"];
     [self addChild:tapIndicatorSpriteSheet];
@@ -250,7 +256,7 @@ TouchHandler *myTouchHandler;
 
 -(void) nextFrame
 {
-    if (!isDone)
+    if (!paused)
     {
         [playerHP update:UPDATE_INTERVAL];
         [enemyHP update:UPDATE_INTERVAL];
@@ -276,7 +282,7 @@ TouchHandler *myTouchHandler;
     [theEnemy reset];
     [myTouchHandler reset];
     
-    isDone = false;
+    paused = false;
     winFlag = false;
     boss = false;
     
@@ -285,19 +291,20 @@ TouchHandler *myTouchHandler;
     if ([winState isEqualToString:@"player"])
     {
         // go back to the level select screen
-        LevelSelectLayer *levelSelect = [[LevelSelectLayer alloc] init];
-        if (currentLevel == [[NSUserDefaults standardUserDefaults] integerForKey:@"levelUnlocked"])
+        LevelSelectLayer *levelSelect = [[LevelSelectLayer alloc] initWithRegion:currentRegion];
+        int currentUnlockedLevel = [[NSUserDefaults standardUserDefaults] integerForKey:[NSString stringWithFormat:@"region%d_levelUnlocked", currentRegion]];
+        NSLog(@"CurrentLevel: %d || LatestUnlockedLevel: %d", currentLevel, currentUnlockedLevel);
+        if (currentLevel == currentUnlockedLevel)
         {
-            [levelSelect scheduleOnce:@selector(unlockNextLevel) delay:0.5f];
+            [levelSelect unlockLevel:currentLevel + 1 ofRegion:currentRegion];
         }
         [[CCDirector sharedDirector] replaceScene:
          [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)levelSelect]];
     }
     else if ([winState isEqualToString:@"enemy"])
     {
-        // reset the level
         [[CCDirector sharedDirector] replaceScene:
-         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithWorld:currentWorld andLevel:currentLevel]]];
+         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
     }
     else if ([winState isEqualToString:@"win"])
     {
@@ -310,6 +317,7 @@ TouchHandler *myTouchHandler;
             [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LoseLayer alloc] init]]];
     }
     winState = nil;
+    [self unloadGameLayerWithRegion:currentRegion];
 }
 
 // returns the screen bounds, flipped since we're working in landscape mode
@@ -329,22 +337,59 @@ TouchHandler *myTouchHandler;
     
     if ([theWinState isEqualToString:@"player"] || [theWinState isEqualToString:@"win"])
     {
-        [self playOverlay:@"win" withDelay:5.0f];
+        [self playOverlay:@"win" withDelay:3.0f cleanup:NO];
     }
     else if ([theWinState isEqualToString:@"enemy"] || [theWinState isEqualToString:@"lose"])
     {
-        [self playOverlay:@"lose" withDelay:5.0f];
+        [self playOverlay:@"lose" withDelay:3.0f cleanup:NO];
     }
     
     winState = theWinState;
-    isDone = true;
+    paused = true;
     [playerHP stopShake];
     [enemyHP stopShake];
     
-    [self scheduleOnce:@selector(reset) delay:4.0f];
+    [self scheduleOnce:@selector(reset) delay:3.0f];
 }
 
--(void) playOverlay:(NSString *)overlayType withDelay:(ccTime)delay
+-(void) unloadGameLayerWithRegion:(RegionType)region
+{
+    if (region == AFRICA)
+    {
+        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"african_frames.plist"];
+    }
+    else if (region == RUSSIA)
+    {
+        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"russian_frames.plist"];
+    }
+    else if (region == AMERICA)
+    {
+        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"american_frames.plist"];
+    }
+    else if (region == ASIA)
+    {
+        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"asian_frames.plist"];
+    }
+    
+    //[self unloadOverlays];
+    [self unloadIndicators];
+}
+
+-(void) unloadOverlays
+{
+    // overlay sprite sheets
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"win_overlay_frames.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"lose_overlay_frames.plist"];
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"start_overlay_frames.plist"];
+}
+
+-(void) unloadIndicators
+{
+    // tap indicator
+    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"tap_indicator_frames.plist"];
+}
+
+-(void) playOverlay:(NSString *)overlayType withDelay:(ccTime)delay cleanup:(BOOL)cleanup
 {
     NSMutableArray *overlayFrames = [NSMutableArray array];
     NSString *prefix;
@@ -376,7 +421,14 @@ TouchHandler *myTouchHandler;
     [overlaySprite setPosition:ccp(284, 160)];
     [self addChild:overlaySprite z:587];
     
-    [overlaySprite runAction:playAndRemove];
+    if (cleanup)
+    {
+        [overlaySprite runAction:playAndRemove];
+    }
+    else
+    {
+        [overlaySprite runAction:playOverlay];
+    }
 }
 
 -(void) cleanUpSprite:(CCSprite *)sprite
@@ -386,7 +438,13 @@ TouchHandler *myTouchHandler;
 
 -(void) playStartOverlay
 {
-    [self playOverlay:@"start" withDelay:1.0f];
+    [self playOverlay:@"start" withDelay:0.7f cleanup:YES];
+    [self scheduleOnce:@selector(unpause) delay:0.7f];
+}
+
+-(void) unpause
+{
+    paused = false;
 }
 
 @end

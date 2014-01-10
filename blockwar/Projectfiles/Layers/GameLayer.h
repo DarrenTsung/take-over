@@ -10,6 +10,7 @@
 #import "HealthBar.h"
 #import "NodeShaker.h"
 #import "IndicatorSprite.h"
+#import "LevelSelectLayer.h"
 @class TouchHandler; // please don't make a fowarding error, I love you Xcode
 
 @interface GameLayer : CCLayerColor
@@ -24,12 +25,12 @@
     
     TouchHandler *myTouchHandler;
     
-    bool isDone;
+    bool paused;
 }
 // returns the screen bounds, flipped since we're working in landscape mode
 -(CGSize) returnScreenBounds;
 
--(id) initWithWorld:(int)world andLevel:(int)level;
+-(id) initWithRegion:(RegionType)world andLevel:(int)level;
 -(void) endGameWithWinState:(NSString *)theWinState;
 
 @end

@@ -41,7 +41,7 @@
         {
             [self unscheduleAllSelectors];
             GameLayer *myParent = (GameLayer *)[self parent];
-            myParent->isDone = NO;
+            myParent->paused = NO;
             [myParent->myTouchHandler update:0.0f];
             [myParent removeChild:self];
         }
