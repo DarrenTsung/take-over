@@ -4,10 +4,218 @@
     <dict>
         <key>frames</key>
         <dict>
-            <key>russian0.png</key>
+            <key>boss_russian0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{42,49}}</string>
+                <string>{{180,2},{176,196}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{176,196}}</string>
+                <key>sourceSize</key>
+                <string>{176,196}</string>
+            </dict>
+            <key>boss_russian1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{530,2},{170,192}}</string>
+                <key>offset</key>
+                <string>{-3,-2}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,4},{170,192}}</string>
+                <key>sourceSize</key>
+                <string>{176,196}</string>
+            </dict>
+            <key>boss_russian_white0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{176,196}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{176,196}}</string>
+                <key>sourceSize</key>
+                <string>{176,196}</string>
+            </dict>
+            <key>boss_russian_white1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{358,2},{170,192}}</string>
+                <key>offset</key>
+                <string>{-3,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,4},{170,192}}</string>
+                <key>sourceSize</key>
+                <string>{176,196}</string>
+            </dict>
+            <key>russian_beserker0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{437,196},{41,54}}</string>
+                <key>offset</key>
+                <string>{-2,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{41,54}}</string>
+                <key>sourceSize</key>
+                <string>{45,56}</string>
+            </dict>
+            <key>russian_beserker1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{49,200},{45,52}}</string>
+                <key>offset</key>
+                <string>{0,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,4},{45,52}}</string>
+                <key>sourceSize</key>
+                <string>{45,56}</string>
+            </dict>
+            <key>russian_beserker_white0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{394,196},{41,54}}</string>
+                <key>offset</key>
+                <string>{-2,-1}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,2},{41,54}}</string>
+                <key>sourceSize</key>
+                <string>{45,56}</string>
+            </dict>
+            <key>russian_beserker_white1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,200},{45,52}}</string>
+                <key>offset</key>
+                <string>{0,-2}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,4},{45,52}}</string>
+                <key>sourceSize</key>
+                <string>{45,56}</string>
+            </dict>
+            <key>russian_gunman0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{480,196},{40,49}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_gunman1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{352,200},{40,49}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_gunman_shoot0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{670,174},{28,49}}</string>
+                <key>offset</key>
+                <string>{-7,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{28,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_gunman_shoot1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{662,225},{28,49}}</string>
+                <key>offset</key>
+                <string>{-6,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{28,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_gunman_shoot_white0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{611,225},{28,49}}</string>
+                <key>offset</key>
+                <string>{-7,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{28,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_gunman_shoot_white1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{560,225},{28,49}}</string>
+                <key>offset</key>
+                <string>{-6,0}</string>
+                <key>rotated</key>
+                <true/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{28,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_gunman_white0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{310,200},{40,49}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_gunman_white1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{268,200},{40,49}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_melee0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{140,200},{42,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -17,10 +225,23 @@
                 <key>sourceSize</key>
                 <string>{42,49}</string>
             </dict>
-            <key>russian1.png</key>
+            <key>russian_melee1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,2},{42,49}}</string>
+                <string>{{226,200},{40,49}}</string>
+                <key>offset</key>
+                <string>{-1,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{40,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_melee_white0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{96,200},{42,49}}</string>
                 <key>offset</key>
                 <string>{0,0}</string>
                 <key>rotated</key>
@@ -30,29 +251,68 @@
                 <key>sourceSize</key>
                 <string>{42,49}</string>
             </dict>
-            <key>russian_white0.png</key>
+            <key>russian_melee_white1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,53},{42,49}}</string>
+                <string>{{184,200},{40,49}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-1,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{0,0},{40,49}}</string>
                 <key>sourceSize</key>
                 <string>{42,49}</string>
             </dict>
-            <key>russian_white1.png</key>
+            <key>russian_villager0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,53},{42,49}}</string>
+                <string>{{634,174},{34,49}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{-3,0}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{1,0},{34,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_villager1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{560,174},{36,49}}</string>
+                <key>offset</key>
+                <string>{-3,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{36,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_villager_white0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{598,174},{34,49}}</string>
+                <key>offset</key>
+                <string>{-3,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{1,0},{34,49}}</string>
+                <key>sourceSize</key>
+                <string>{42,49}</string>
+            </dict>
+            <key>russian_villager_white1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{522,196},{36,49}}</string>
+                <key>offset</key>
+                <string>{-3,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{36,49}}</string>
                 <key>sourceSize</key>
                 <string>{42,49}</string>
             </dict>
@@ -62,13 +322,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>russianframes-hd.png</string>
+            <string>russianframes-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{128,128}</string>
+            <string>{724,255}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:26130135cf7bacdb7a1dbf197225eba1:cd0d82bfa07712ae93dda5455fe56836:1957ff01e60a7df1540ae19d69df86cd$</string>
+            <string>$TexturePacker:SmartUpdate:224b883c00aada2279624f4fe51bd23f:063104115e1e984b35b1152d1a6b8f9e:14b8a52e635efadc15475fe516230b12$</string>
             <key>textureFileName</key>
-            <string>russianframes-hd.png</string>
+            <string>russianframes-hd.pvr.ccz</string>
         </dict>
     </dict>
 </plist>

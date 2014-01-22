@@ -1,30 +1,30 @@
 //
-//  Zombie.m
+//  RussianVillager.m
 //  takeover
 //
-//  Created by Darren Tsung on 1/8/14.
+//  Created by Darren Tsung on 1/21/14.
 //
 //
 
-#import "Zombie.h"
+#import "RussianVillager.h"
 
-@implementation Zombie
+@implementation RussianVillager
 
 -(id) initWithPosition:(CGPoint)pos
 {
     if (self = [super initWithPosition:pos])
     {
-        name = @"zombie";
-        owner = @"player";
+        name = @"russian_villager";
+        owner = @"opponent";
         
         [self setMaxVelocity:120.0f];
         velocity = 120.0f;
         acceleration = 100.0f;
         
-        pushBack = -50.0f;
+        pushBack = -80.0f;
         
-        health = 5.0f;
-        [self setDamage:3.0f];
+        health = 2.0f;
+        [self setDamage:0.6f];
         
         [self setFPS:10.0f];
         

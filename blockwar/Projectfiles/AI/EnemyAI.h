@@ -11,11 +11,19 @@
 
 @class GameModel; // please don't make a fowarding error, I love you Xcode
 
+typedef enum
+{
+    VILLAGER,
+    MELEE,
+    SPECIAL,
+    GUNMAN,
+    BOSS
+} UnitType;
+
 @interface EnemyAI : NSObject
 {
     @public
     GameModel *model;
-    ccColor4F color;
     int waveSize, rowSize;
     CGFloat spawnTimer, waveTimer, probabilityWaveDelay, waveDelay, playHeight;
     GameLayer *viewController;

@@ -23,6 +23,12 @@
 		6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A46186B94ED000C11FC /* HealthBar.m */; };
 		6C021A4B186B94ED000C11FC /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A48186B94ED000C11FC /* RegeneratableBar.m */; };
 		6C021A4F186B972C000C11FC /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A4E186B972C000C11FC /* LevelSelectLayer.m */; };
+		6C1F2C85188F348000F6BC3C /* overlayframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C1F2C83188F348000F6BC3C /* overlayframes-hd.plist */; };
+		6C1F2C86188F348000F6BC3C /* overlayframes-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6C1F2C84188F348000F6BC3C /* overlayframes-hd.pvr.ccz */; };
+		6C1F2C89188F349400F6BC3C /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C1F2C87188F349400F6BC3C /* russianframes-hd.plist */; };
+		6C1F2C8A188F349400F6BC3C /* russianframes-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6C1F2C88188F349400F6BC3C /* russianframes-hd.pvr.ccz */; };
+		6C1F2C8D188F429800F6BC3C /* RussianVillager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C8C188F429800F6BC3C /* RussianVillager.m */; };
+		6C1F2C90188F46F900F6BC3C /* RussianAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C8F188F46F900F6BC3C /* RussianAI.m */; };
 		6C83A79C186EBEA6002EB16B /* Russia_Level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */; };
 		6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */; };
 		6C83A7A0186F437B002EB16B /* UpgradeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C83A79F186F437B002EB16B /* UpgradeLayer.m */; };
@@ -38,14 +44,6 @@
 		6C902090186E480C001D1183 /* level2_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C90208D186E480C001D1183 /* level2_locked.png */; };
 		6C902091186E480C001D1183 /* level3_locked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C90208E186E480C001D1183 /* level3_locked.png */; };
 		6C902097186EAC4E001D1183 /* Russia_Level1.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C902096186EAC4E001D1183 /* Russia_Level1.plist */; };
-		6C9BB8781872821900E14BAA /* lose_overlay_frames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */; };
-		6C9BB8791872821900E14BAA /* lose_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */; };
-		6C9BB87A1872821900E14BAA /* lose_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */; };
-		6C9BB87B1872821900E14BAA /* lose_overlay_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8731872821900E14BAA /* lose_overlay_frames.png */; };
-		6C9BB87C1872821900E14BAA /* win_overlay_frames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8741872821900E14BAA /* win_overlay_frames-hd.plist */; };
-		6C9BB87D1872821900E14BAA /* win_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8751872821900E14BAA /* win_overlay_frames-hd.png */; };
-		6C9BB87E1872821900E14BAA /* win_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8761872821900E14BAA /* win_overlay_frames.plist */; };
-		6C9BB87F1872821900E14BAA /* win_overlay_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8771872821900E14BAA /* win_overlay_frames.png */; };
 		6C9BB8831875EE3A00E14BAA /* NodeShaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8821875EE3A00E14BAA /* NodeShaker.m */; };
 		6C9BB889187625EB00E14BAA /* TouchFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB888187625EB00E14BAA /* TouchFunction.m */; };
 		6C9BB8901876371800E14BAA /* TouchHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB88F1876371800E14BAA /* TouchHandler.m */; };
@@ -62,20 +60,6 @@
 		6C9BB8B6187DCF0E00E14BAA /* Zombie.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8B5187DCF0E00E14BAA /* Zombie.m */; };
 		6C9BB8BE187DD65B00E14BAA /* RussianMelee.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */; };
 		6C9BB8C1187DDC7200E14BAA /* RussianBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */; };
-		6C9BB8CE187DE41600E14BAA /* start_overlay_frames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8CA187DE41600E14BAA /* start_overlay_frames-hd.plist */; };
-		6C9BB8CF187DE41600E14BAA /* start_overlay_frames-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8CB187DE41600E14BAA /* start_overlay_frames-hd.png */; };
-		6C9BB8D0187DE41600E14BAA /* start_overlay_frames.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8CC187DE41600E14BAA /* start_overlay_frames.plist */; };
-		6C9BB8D1187DE41600E14BAA /* start_overlay_frames.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C9BB8CD187DE41600E14BAA /* start_overlay_frames.png */; };
-		6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */; };
-		6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA527011842DFA200E0E2C6 /* russianframes-hd.png */; };
-		6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */; };
-		6CA6C6BF185008180067BEBE /* superzombieframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BB185008180067BEBE /* superzombieframes-hd.png */; };
-		6CA6C6C0185008180067BEBE /* superzombieframes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BC185008180067BEBE /* superzombieframes.plist */; };
-		6CA6C6C1185008180067BEBE /* superzombieframes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CA6C6BD185008180067BEBE /* superzombieframes.png */; };
-		6CAB076618529ADC008749D5 /* bossrussianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB076218529ADC008749D5 /* bossrussianframes-hd.plist */; };
-		6CAB076718529ADC008749D5 /* bossrussianframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB076318529ADC008749D5 /* bossrussianframes-hd.png */; };
-		6CAB076818529ADC008749D5 /* bossrussianframes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB076418529ADC008749D5 /* bossrussianframes.plist */; };
-		6CAB076918529ADC008749D5 /* bossrussianframes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB076518529ADC008749D5 /* bossrussianframes.png */; };
 		6CAB076D18529AE7008749D5 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB076A18529AE7008749D5 /* background.png */; };
 		6CAB076E18529AE7008749D5 /* menubackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB076B18529AE7008749D5 /* menubackground.png */; };
 		6CAB07781852D5F4008749D5 /* losescreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB07751852D5F4008749D5 /* losescreen.png */; };
@@ -83,11 +67,7 @@
 		6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB07771852D5F4008749D5 /* winscreen.png */; };
 		6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */; };
 		6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */; };
-		6CAE6DB2182C5D8F00602F39 /* zombieframes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DAA182C5D8F00602F39 /* zombieframes.plist */; };
-		6CAE6DB3182C5D8F00602F39 /* zombieframes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DAB182C5D8F00602F39 /* zombieframes.png */; };
 		6CD361671826CF2E00A56D5C /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD361661826CF2E00A56D5C /* GameModel.m */; };
-		6CD489C91842E14B00515AD4 /* russianframes.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CD489C81842E14B00515AD4 /* russianframes.png */; };
-		6CD489CB1842E15B00515AD4 /* russianframes.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CD489CA1842E15B00515AD4 /* russianframes.plist */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -158,6 +138,14 @@
 		6C021A48186B94ED000C11FC /* RegeneratableBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegeneratableBar.m; path = Bars/RegeneratableBar.m; sourceTree = "<group>"; };
 		6C021A4D186B972C000C11FC /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectLayer.h; path = Layers/LevelSelectLayer.h; sourceTree = "<group>"; };
 		6C021A4E186B972C000C11FC /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelectLayer.m; path = Layers/LevelSelectLayer.m; sourceTree = "<group>"; };
+		6C1F2C83188F348000F6BC3C /* overlayframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "overlayframes-hd.plist"; path = "Overlays/overlayframes-hd.plist"; sourceTree = "<group>"; };
+		6C1F2C84188F348000F6BC3C /* overlayframes-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "overlayframes-hd.pvr.ccz"; path = "Overlays/overlayframes-hd.pvr.ccz"; sourceTree = "<group>"; };
+		6C1F2C87188F349400F6BC3C /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
+		6C1F2C88188F349400F6BC3C /* russianframes-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "russianframes-hd.pvr.ccz"; path = "Sprites/russianframes-hd.pvr.ccz"; sourceTree = "<group>"; };
+		6C1F2C8B188F429800F6BC3C /* RussianVillager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianVillager.h; path = Units/Units/RussianVillager.h; sourceTree = "<group>"; };
+		6C1F2C8C188F429800F6BC3C /* RussianVillager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianVillager.m; path = Units/Units/RussianVillager.m; sourceTree = "<group>"; };
+		6C1F2C8E188F46F900F6BC3C /* RussianAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianAI.h; path = AI/RussianAI.h; sourceTree = "<group>"; };
+		6C1F2C8F188F46F900F6BC3C /* RussianAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianAI.m; path = AI/RussianAI.m; sourceTree = "<group>"; };
 		6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level2.plist; path = Worlds/World1/Levels/Russia_Level2.plist; sourceTree = "<group>"; };
 		6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level3.plist; path = Worlds/World1/Levels/Russia_Level3.plist; sourceTree = "<group>"; };
 		6C83A79E186F437B002EB16B /* UpgradeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgradeLayer.h; path = Layers/UpgradeLayer.h; sourceTree = "<group>"; };
@@ -174,14 +162,6 @@
 		6C90208D186E480C001D1183 /* level2_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level2_locked.png; path = Worlds/World1/level2_locked.png; sourceTree = "<group>"; };
 		6C90208E186E480C001D1183 /* level3_locked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level3_locked.png; path = Worlds/World1/level3_locked.png; sourceTree = "<group>"; };
 		6C902096186EAC4E001D1183 /* Russia_Level1.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level1.plist; path = Worlds/World1/Levels/Russia_Level1.plist; sourceTree = "<group>"; };
-		6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "lose_overlay_frames-hd.plist"; path = "Overlays/lose_overlay_frames-hd.plist"; sourceTree = "<group>"; };
-		6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lose_overlay_frames-hd.png"; path = "Overlays/lose_overlay_frames-hd.png"; sourceTree = "<group>"; };
-		6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = lose_overlay_frames.plist; path = Overlays/lose_overlay_frames.plist; sourceTree = "<group>"; };
-		6C9BB8731872821900E14BAA /* lose_overlay_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lose_overlay_frames.png; path = Overlays/lose_overlay_frames.png; sourceTree = "<group>"; };
-		6C9BB8741872821900E14BAA /* win_overlay_frames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "win_overlay_frames-hd.plist"; path = "Overlays/win_overlay_frames-hd.plist"; sourceTree = "<group>"; };
-		6C9BB8751872821900E14BAA /* win_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "win_overlay_frames-hd.png"; path = "Overlays/win_overlay_frames-hd.png"; sourceTree = "<group>"; };
-		6C9BB8761872821900E14BAA /* win_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = win_overlay_frames.plist; path = Overlays/win_overlay_frames.plist; sourceTree = "<group>"; };
-		6C9BB8771872821900E14BAA /* win_overlay_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = win_overlay_frames.png; path = Overlays/win_overlay_frames.png; sourceTree = "<group>"; };
 		6C9BB8811875EE3A00E14BAA /* NodeShaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NodeShaker.h; sourceTree = "<group>"; };
 		6C9BB8821875EE3A00E14BAA /* NodeShaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NodeShaker.m; sourceTree = "<group>"; };
 		6C9BB887187625EB00E14BAA /* TouchFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TouchFunction.h; path = TouchHandling/TouchFunction.h; sourceTree = "<group>"; };
@@ -210,20 +190,6 @@
 		6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianMelee.m; path = Units/Units/RussianMelee.m; sourceTree = "<group>"; };
 		6C9BB8BF187DDC7200E14BAA /* RussianBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianBoss.h; path = Units/Units/RussianBoss.h; sourceTree = "<group>"; };
 		6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianBoss.m; path = Units/Units/RussianBoss.m; sourceTree = "<group>"; };
-		6C9BB8CA187DE41600E14BAA /* start_overlay_frames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "start_overlay_frames-hd.plist"; path = "Overlays/start_overlay_frames-hd.plist"; sourceTree = "<group>"; };
-		6C9BB8CB187DE41600E14BAA /* start_overlay_frames-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "start_overlay_frames-hd.png"; path = "Overlays/start_overlay_frames-hd.png"; sourceTree = "<group>"; };
-		6C9BB8CC187DE41600E14BAA /* start_overlay_frames.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = start_overlay_frames.plist; path = Overlays/start_overlay_frames.plist; sourceTree = "<group>"; };
-		6C9BB8CD187DE41600E14BAA /* start_overlay_frames.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = start_overlay_frames.png; path = Overlays/start_overlay_frames.png; sourceTree = "<group>"; };
-		6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
-		6CA527011842DFA200E0E2C6 /* russianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianframes-hd.png"; path = "Sprites/russianframes-hd.png"; sourceTree = "<group>"; };
-		6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "superzombieframes-hd.plist"; path = "Sprites/superzombieframes-hd.plist"; sourceTree = "<group>"; };
-		6CA6C6BB185008180067BEBE /* superzombieframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "superzombieframes-hd.png"; path = "Sprites/superzombieframes-hd.png"; sourceTree = "<group>"; };
-		6CA6C6BC185008180067BEBE /* superzombieframes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = superzombieframes.plist; path = Sprites/superzombieframes.plist; sourceTree = "<group>"; };
-		6CA6C6BD185008180067BEBE /* superzombieframes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = superzombieframes.png; path = Sprites/superzombieframes.png; sourceTree = "<group>"; };
-		6CAB076218529ADC008749D5 /* bossrussianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "bossrussianframes-hd.plist"; path = "Sprites/bossrussianframes-hd.plist"; sourceTree = "<group>"; };
-		6CAB076318529ADC008749D5 /* bossrussianframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "bossrussianframes-hd.png"; path = "Sprites/bossrussianframes-hd.png"; sourceTree = "<group>"; };
-		6CAB076418529ADC008749D5 /* bossrussianframes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = bossrussianframes.plist; path = Sprites/bossrussianframes.plist; sourceTree = "<group>"; };
-		6CAB076518529ADC008749D5 /* bossrussianframes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bossrussianframes.png; path = Sprites/bossrussianframes.png; sourceTree = "<group>"; };
 		6CAB076A18529AE7008749D5 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
 		6CAB076B18529AE7008749D5 /* menubackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menubackground.png; sourceTree = "<group>"; };
 		6CAB07751852D5F4008749D5 /* losescreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = losescreen.png; sourceTree = "<group>"; };
@@ -231,12 +197,8 @@
 		6CAB07771852D5F4008749D5 /* winscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = winscreen.png; sourceTree = "<group>"; };
 		6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "zombieframes-hd.plist"; path = "Sprites/zombieframes-hd.plist"; sourceTree = "<group>"; };
 		6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zombieframes-hd.png"; path = "Sprites/zombieframes-hd.png"; sourceTree = "<group>"; };
-		6CAE6DAA182C5D8F00602F39 /* zombieframes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = zombieframes.plist; path = Sprites/zombieframes.plist; sourceTree = "<group>"; };
-		6CAE6DAB182C5D8F00602F39 /* zombieframes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = zombieframes.png; path = Sprites/zombieframes.png; sourceTree = "<group>"; };
 		6CD361651826CF2E00A56D5C /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
 		6CD361661826CF2E00A56D5C /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
-		6CD489C81842E14B00515AD4 /* russianframes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = russianframes.png; path = Sprites/russianframes.png; sourceTree = "<group>"; };
-		6CD489CA1842E15B00515AD4 /* russianframes.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = russianframes.plist; path = Sprites/russianframes.plist; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -412,18 +374,8 @@
 		6C9BB8801872822000E14BAA /* Overlays */ = {
 			isa = PBXGroup;
 			children = (
-				6C9BB8CA187DE41600E14BAA /* start_overlay_frames-hd.plist */,
-				6C9BB8CB187DE41600E14BAA /* start_overlay_frames-hd.png */,
-				6C9BB8CC187DE41600E14BAA /* start_overlay_frames.plist */,
-				6C9BB8CD187DE41600E14BAA /* start_overlay_frames.png */,
-				6C9BB8701872821900E14BAA /* lose_overlay_frames-hd.plist */,
-				6C9BB8711872821900E14BAA /* lose_overlay_frames-hd.png */,
-				6C9BB8721872821900E14BAA /* lose_overlay_frames.plist */,
-				6C9BB8731872821900E14BAA /* lose_overlay_frames.png */,
-				6C9BB8741872821900E14BAA /* win_overlay_frames-hd.plist */,
-				6C9BB8751872821900E14BAA /* win_overlay_frames-hd.png */,
-				6C9BB8761872821900E14BAA /* win_overlay_frames.plist */,
-				6C9BB8771872821900E14BAA /* win_overlay_frames.png */,
+				6C1F2C83188F348000F6BC3C /* overlayframes-hd.plist */,
+				6C1F2C84188F348000F6BC3C /* overlayframes-hd.pvr.ccz */,
 			);
 			name = Overlays;
 			sourceTree = "<group>";
@@ -492,6 +444,8 @@
 		6C9BB8B7187DCF1700E14BAA /* Subunits */ = {
 			isa = PBXGroup;
 			children = (
+				6C1F2C8B188F429800F6BC3C /* RussianVillager.h */,
+				6C1F2C8C188F429800F6BC3C /* RussianVillager.m */,
 				6C9BB8BC187DD65B00E14BAA /* RussianMelee.h */,
 				6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */,
 				6C9BB8B4187DCF0E00E14BAA /* Zombie.h */,
@@ -505,22 +459,10 @@
 		6CAB076118529AD0008749D5 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
-				6CAB076218529ADC008749D5 /* bossrussianframes-hd.plist */,
-				6CAB076318529ADC008749D5 /* bossrussianframes-hd.png */,
-				6CAB076418529ADC008749D5 /* bossrussianframes.plist */,
-				6CAB076518529ADC008749D5 /* bossrussianframes.png */,
-				6CA6C6BA185008180067BEBE /* superzombieframes-hd.plist */,
-				6CA6C6BB185008180067BEBE /* superzombieframes-hd.png */,
-				6CA6C6BC185008180067BEBE /* superzombieframes.plist */,
-				6CA6C6BD185008180067BEBE /* superzombieframes.png */,
-				6CD489CA1842E15B00515AD4 /* russianframes.plist */,
-				6CD489C81842E14B00515AD4 /* russianframes.png */,
-				6CA527001842DFA200E0E2C6 /* russianframes-hd.plist */,
-				6CA527011842DFA200E0E2C6 /* russianframes-hd.png */,
+				6C1F2C87188F349400F6BC3C /* russianframes-hd.plist */,
+				6C1F2C88188F349400F6BC3C /* russianframes-hd.pvr.ccz */,
 				6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */,
 				6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */,
-				6CAE6DAA182C5D8F00602F39 /* zombieframes.plist */,
-				6CAE6DAB182C5D8F00602F39 /* zombieframes.png */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -530,6 +472,8 @@
 			children = (
 				6C021A23186B94B8000C11FC /* EnemyAI.h */,
 				6C021A24186B94B8000C11FC /* EnemyAI.m */,
+				6C1F2C8E188F46F900F6BC3C /* RussianAI.h */,
+				6C1F2C8F188F46F900F6BC3C /* RussianAI.m */,
 				6C9BB8671872024300E14BAA /* AI Types */,
 			);
 			name = "Artifical Intelligence";
@@ -767,73 +711,51 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */,
-				6C9BB87F1872821900E14BAA /* win_overlay_frames.png in Resources */,
-				6C9BB87B1872821900E14BAA /* lose_overlay_frames.png in Resources */,
-				6CAB076818529ADC008749D5 /* bossrussianframes.plist in Resources */,
-				6CAB076618529ADC008749D5 /* bossrussianframes-hd.plist in Resources */,
-				6CAB076918529ADC008749D5 /* bossrussianframes.png in Resources */,
 				6C902090186E480C001D1183 /* level2_locked.png in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
 				6C9BB8A61878AFBF00E14BAA /* tap_indicator_frames.png in Resources */,
-				6C9BB8791872821900E14BAA /* lose_overlay_frames-hd.png in Resources */,
-				6C9BB8D1187DE41600E14BAA /* start_overlay_frames.png in Resources */,
-				6CA6C6BE185008180067BEBE /* superzombieframes-hd.plist in Resources */,
 				6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */,
-				6C9BB8D0187DE41600E14BAA /* start_overlay_frames.plist in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
 				6C90208B186E3CA1001D1183 /* level3.png in Resources */,
-				6C9BB87D1872821900E14BAA /* win_overlay_frames-hd.png in Resources */,
 				6CAB07781852D5F4008749D5 /* losescreen.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
+				6C1F2C89188F349400F6BC3C /* russianframes-hd.plist in Resources */,
 				6C902097186EAC4E001D1183 /* Russia_Level1.plist in Resources */,
+				6C1F2C8A188F349400F6BC3C /* russianframes-hd.pvr.ccz in Resources */,
 				6C9BB8A51878AFBF00E14BAA /* tap_indicator_frames.plist in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
 				6C83A7A6186F6637002EB16B /* upgradeConfig.plist in Resources */,
 				6CAB076E18529AE7008749D5 /* menubackground.png in Resources */,
-				6CAE6DB3182C5D8F00602F39 /* zombieframes.png in Resources */,
 				6C021A26186B94B8000C11FC /* 1_1AI.plist in Resources */,
-				6CA6C6BF185008180067BEBE /* superzombieframes-hd.png in Resources */,
 				6C90208F186E480C001D1183 /* level1_locked.png in Resources */,
-				6C9BB87A1872821900E14BAA /* lose_overlay_frames.plist in Resources */,
 				6C9BB8A11877869B00E14BAA /* equipToggleP.png in Resources */,
-				6CAE6DB2182C5D8F00602F39 /* zombieframes.plist in Resources */,
 				6C83A7A5186F6637002EB16B /* upgradeBackground.png in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
-				6CAB076718529ADC008749D5 /* bossrussianframes-hd.png in Resources */,
 				6C902087186E3732001D1183 /* Russia_levelselect.plist in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
-				6C9BB8CE187DE41600E14BAA /* start_overlay_frames-hd.plist in Resources */,
 				6C021A27186B94B8000C11FC /* 1_2AI.plist in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
 				6C902091186E480C001D1183 /* level3_locked.png in Resources */,
+				6C1F2C86188F348000F6BC3C /* overlayframes-hd.pvr.ccz in Resources */,
 				6CAB07791852D5F4008749D5 /* play.png in Resources */,
-				6CA6C6C0185008180067BEBE /* superzombieframes.plist in Resources */,
-				6C9BB87C1872821900E14BAA /* win_overlay_frames-hd.plist in Resources */,
 				6C83A79C186EBEA6002EB16B /* Russia_Level2.plist in Resources */,
 				6C90208A186E3CA1001D1183 /* level2.png in Resources */,
 				6C83A7AB186F699C002EB16B /* zombieDisplay.png in Resources */,
 				6C902086186E3732001D1183 /* level1.png in Resources */,
 				DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */,
-				6CA6C6C1185008180067BEBE /* superzombieframes.png in Resources */,
 				6C021A2A186B94B8000C11FC /* randomAI.plist in Resources */,
 				6C83A7AA186F699C002EB16B /* selectedZombieDisplay.png in Resources */,
 				DC21B88D1511078F00FD4891 /* fps_images.png in Resources */,
-				6CA527031842DFA200E0E2C6 /* russianframes-hd.png in Resources */,
 				6C021A28186B94B8000C11FC /* 1_3AI.plist in Resources */,
-				6C9BB87E1872821900E14BAA /* win_overlay_frames.plist in Resources */,
 				6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */,
-				6C9BB8CF187DE41600E14BAA /* start_overlay_frames-hd.png in Resources */,
-				6CA527021842DFA200E0E2C6 /* russianframes-hd.plist in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
-				6C9BB8781872821900E14BAA /* lose_overlay_frames-hd.plist in Resources */,
 				6C9BB8A21877869B00E14BAA /* equipToggleS.png in Resources */,
-				6CD489C91842E14B00515AD4 /* russianframes.png in Resources */,
 				6CAB076D18529AE7008749D5 /* background.png in Resources */,
-				6CD489CB1842E15B00515AD4 /* russianframes.plist in Resources */,
+				6C1F2C85188F348000F6BC3C /* overlayframes-hd.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -863,6 +785,7 @@
 				6C9BB8931876613500E14BAA /* TapAndCharge.m in Sources */,
 				6C021A29186B94B8000C11FC /* EnemyAI.m in Sources */,
 				6C9BB8BE187DD65B00E14BAA /* RussianMelee.m in Sources */,
+				6C1F2C8D188F429800F6BC3C /* RussianVillager.m in Sources */,
 				6C021A4B186B94ED000C11FC /* RegeneratableBar.m in Sources */,
 				6C9BB897187666B800E14BAA /* SummonGiantFoot.m in Sources */,
 				6C021A35186B94CA000C11FC /* SuperUnit.m in Sources */,
@@ -876,6 +799,7 @@
 				6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */,
 				6C9BB89A187752C000E14BAA /* HoldDown.m in Sources */,
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
+				6C1F2C90188F46F900F6BC3C /* RussianAI.m in Sources */,
 				6C9BB8AA1878E31A00E14BAA /* IndicatorSprite.m in Sources */,
 				6CD361671826CF2E00A56D5C /* GameModel.m in Sources */,
 				6C021A34186B94CA000C11FC /* BossUnit.m in Sources */,

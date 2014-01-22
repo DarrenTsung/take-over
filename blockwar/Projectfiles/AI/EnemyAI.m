@@ -10,6 +10,7 @@
 #import "Unit.h"
 #import "GameModel.h"
 #import "GameLayer.h"
+#import "RussianVillager.h"
 #import "RussianMelee.h"
 #import "RussianBoss.h"
 
@@ -60,12 +61,31 @@
         for(int i=0; i<rowSize; i++)
         {
             CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);
-            [model insertEntity:[[RussianMelee alloc] initWithPosition:lesserPoint] intoSortedArrayWithName:@"enemy"];
+            [self createUnit:VILLAGER atPoint:lesserPoint];
             x++;
         }
         //NSLog(@"added a row! offset %d", counter%2);
         counter++;
     }
+}
+
+// override this for each AI type
+-(void) createUnit:(UnitType)unitType atPoint:(CGPoint)thePoint
+{
+    Unit *unit;
+    switch (unitType) {
+        case VILLAGER:
+            unit = [[RussianVillager alloc] initWithPosition:thePoint];
+            break;
+            
+        case MELEE:
+            unit = [[RussianMelee alloc] initWithPosition:thePoint];
+            break;
+        
+        default:
+            break;
+    }
+    [model insertEntity:unit intoSortedArrayWithName:@"enemy"];
 }
 
 -(void) update:(ccTime)delta

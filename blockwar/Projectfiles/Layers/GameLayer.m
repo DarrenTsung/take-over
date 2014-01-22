@@ -200,11 +200,8 @@ TouchHandler *myTouchHandler;
 {
     // unit sprite sheets
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"russianframes.plist"];
-    CCSpriteBatchNode *russianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.png"];
+    CCSpriteBatchNode *russianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.pvr.ccz"];
     [self addChild:russianSpriteSheet];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"bossrussianframes.plist"];
-    CCSpriteBatchNode *bossrussianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"bossrussianframes.png"];
-    [self addChild:bossrussianSpriteSheet];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
     CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.png"];
     [self addChild:zombieSpriteSheet];
@@ -212,13 +209,8 @@ TouchHandler *myTouchHandler;
     CCSpriteBatchNode *superzombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"superzombieframes.png"];
     [self addChild:superzombieSpriteSheet];
     
-    
-    CCSpriteBatchNode *winOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"win_overlay_frames.png"];
-    [self addChild:winOverlaySpriteSheet];
-    CCSpriteBatchNode *loseOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"lose_overlay_frames.png"];
-    [self addChild:loseOverlaySpriteSheet];
-    CCSpriteBatchNode *startOverlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"start_overlay_frames.png"];
-    [self addChild:startOverlaySpriteSheet];
+    CCSpriteBatchNode *overlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"overlayframes.pvr.ccz"];
+    [self addChild:overlaySpriteSheet];
     
     // tap indicator
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"tap_indicator_frames.plist"];
@@ -373,14 +365,6 @@ TouchHandler *myTouchHandler;
     
     //[self unloadOverlays];
     [self unloadIndicators];
-}
-
--(void) unloadOverlays
-{
-    // overlay sprite sheets
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"win_overlay_frames.plist"];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"lose_overlay_frames.plist"];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"start_overlay_frames.plist"];
 }
 
 -(void) unloadIndicators
