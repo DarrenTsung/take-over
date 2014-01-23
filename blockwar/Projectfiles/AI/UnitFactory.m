@@ -10,7 +10,7 @@
 #import "EnemyAI.h"
 #import "GameModel.h"
 
-#define PADDING 20.0f
+#define PADDING 10.0f
 
 #define PROBABILITY_LENGTH 20
 
@@ -40,7 +40,7 @@
         model = theModel;
         
         // add delay to initial wave
-        spawnTimer = waveTimer + 0.4f + ((arc4random()%5)/10.0f);
+        spawnTimer = waveDelay + 0.4f + ((arc4random()%5)/10.0f);
     }
     return self;
 }
@@ -67,7 +67,6 @@
 
 -(void) update:(ccTime)delta
 {
-    NSLog(@"Hello?");
     if (spawnTimer > 0.0f)
     {
         spawnTimer -= delta;

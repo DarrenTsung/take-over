@@ -142,8 +142,8 @@
         {
             ccDrawSolidRect(newOrigin, otherPoint, localColor);
         }
-        // draw white around the bars
-        ccDrawColor4F(1.0f, 1.0f, 1.0f, 1.0f);
+        // draw black around the bars
+        ccDrawColor4F(0.0f, 0.0f, 0.0f, 1.0f);
         ccDrawRect(newOrigin, maxPoint);
     }
 }

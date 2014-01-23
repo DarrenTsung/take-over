@@ -30,6 +30,8 @@
 		6C1F2C8D188F429800F6BC3C /* RussianVillager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C8C188F429800F6BC3C /* RussianVillager.m */; };
 		6C1F2C90188F46F900F6BC3C /* RussianAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C8F188F46F900F6BC3C /* RussianAI.m */; };
 		6C1F2C941890806100F6BC3C /* UnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C931890806100F6BC3C /* UnitFactory.m */; };
+		6C1F2C9818918D0500F6BC3C /* GunUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C9718918D0500F6BC3C /* GunUnit.m */; };
+		6C1F2C9B1891AD6F00F6BC3C /* RussianGunman.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C9A1891AD6F00F6BC3C /* RussianGunman.m */; };
 		6C83A79C186EBEA6002EB16B /* Russia_Level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */; };
 		6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */; };
 		6C83A7A0186F437B002EB16B /* UpgradeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C83A79F186F437B002EB16B /* UpgradeLayer.m */; };
@@ -149,6 +151,10 @@
 		6C1F2C8F188F46F900F6BC3C /* RussianAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianAI.m; path = AI/RussianAI.m; sourceTree = "<group>"; };
 		6C1F2C921890806100F6BC3C /* UnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitFactory.h; path = AI/UnitFactory.h; sourceTree = "<group>"; };
 		6C1F2C931890806100F6BC3C /* UnitFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnitFactory.m; path = AI/UnitFactory.m; sourceTree = "<group>"; };
+		6C1F2C9618918D0500F6BC3C /* GunUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GunUnit.h; path = Units/GunUnit.h; sourceTree = "<group>"; };
+		6C1F2C9718918D0500F6BC3C /* GunUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GunUnit.m; path = Units/GunUnit.m; sourceTree = "<group>"; };
+		6C1F2C991891AD6F00F6BC3C /* RussianGunman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianGunman.h; path = Units/Units/RussianGunman.h; sourceTree = "<group>"; };
+		6C1F2C9A1891AD6F00F6BC3C /* RussianGunman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianGunman.m; path = Units/Units/RussianGunman.m; sourceTree = "<group>"; };
 		6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level2.plist; path = Worlds/World1/Levels/Russia_Level2.plist; sourceTree = "<group>"; };
 		6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level3.plist; path = Worlds/World1/Levels/Russia_Level3.plist; sourceTree = "<group>"; };
 		6C83A79E186F437B002EB16B /* UpgradeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgradeLayer.h; path = Layers/UpgradeLayer.h; sourceTree = "<group>"; };
@@ -337,6 +343,8 @@
 				6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */,
 				6C9BB8BF187DDC7200E14BAA /* RussianBoss.h */,
 				6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */,
+				6C1F2C991891AD6F00F6BC3C /* RussianGunman.h */,
+				6C1F2C9A1891AD6F00F6BC3C /* RussianGunman.m */,
 			);
 			name = Russian;
 			sourceTree = "<group>";
@@ -457,6 +465,8 @@
 			children = (
 				6C021A31186B94CA000C11FC /* Unit.h */,
 				6C021A32186B94CA000C11FC /* Unit.m */,
+				6C1F2C9618918D0500F6BC3C /* GunUnit.h */,
+				6C1F2C9718918D0500F6BC3C /* GunUnit.m */,
 				6C9BB8B7187DCF1700E14BAA /* Subunits */,
 				6C021A2F186B94CA000C11FC /* SuperUnit.h */,
 				6C021A30186B94CA000C11FC /* SuperUnit.m */,
@@ -813,6 +823,7 @@
 				6C021A35186B94CA000C11FC /* SuperUnit.m in Sources */,
 				6C021A41186B94D6000C11FC /* StartMenuLayer.m in Sources */,
 				6C021A42186B94D6000C11FC /* WinLayer.m in Sources */,
+				6C1F2C9818918D0500F6BC3C /* GunUnit.m in Sources */,
 				6C9BB8B0187C69B800E14BAA /* RectTarget.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
 				6C9BB8B6187DCF0E00E14BAA /* Zombie.m in Sources */,
@@ -823,6 +834,7 @@
 				DCC1A3AD13A94F1A005BD75D /* main.m in Sources */,
 				6C1F2C90188F46F900F6BC3C /* RussianAI.m in Sources */,
 				6C9BB8AA1878E31A00E14BAA /* IndicatorSprite.m in Sources */,
+				6C1F2C9B1891AD6F00F6BC3C /* RussianGunman.m in Sources */,
 				6CD361671826CF2E00A56D5C /* GameModel.m in Sources */,
 				6C021A34186B94CA000C11FC /* BossUnit.m in Sources */,
 				6C9BB889187625EB00E14BAA /* TouchFunction.m in Sources */,

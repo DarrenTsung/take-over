@@ -67,14 +67,13 @@
     [self computePosition:delta];
     
     [self computeFrame:delta];
-    
 }
 
 -(void) removeAndCleanup
 {
-    if (otherParent)
+    if (gameModel)
     {
-        [otherParent removeEntityFromArrays:self];
+        [gameModel removeEntityFromArrays:self];
     }
     [whiteSprite removeFromParentAndCleanup:YES];
     [self removeFromParentAndCleanup:YES];
@@ -146,12 +145,11 @@
     }
 }
 
-//DEPRECATED
 -(void) hitFor:(CGFloat)hitDamage
 {
     if (!isInvincible)
     {
-        health -= hitDamage;
+        [self damageHealth:hitDamage];
     }
     velocity = pushBack;
 }
@@ -160,14 +158,9 @@
 {
     if (!isInvincible)
     {
-        health -= hitDamage;
+        [self damageHealth:hitDamage];
     }
-    velocity = pushBack;
-}
-
--(void)pushBack:(CGFloat)percentage
-{
-    velocity -= maxVelocity*percentage;
+    velocity = theHitVelocity;
 }
 
 -(void) setDamage:(CGFloat)theDamage
@@ -195,12 +188,9 @@
     if ([otherEntity isKindOfClass:[Unit class]])
     {
         Unit *enemyUnit = (Unit *)otherEntity;
-        [enemyUnit hitFor:damage andSetNegativeVelocity:-velocity];
+        [enemyUnit hitFor:damage];
         [enemyUnit flashWhiteFor:0.6f];
-        if (enemyUnit->health <= 0.0f)
-        {
-            [enemyUnit kill];
-        }
+        
         
         if ([otherEntity isKindOfClass:[BossUnit class]])
         {
@@ -213,6 +203,21 @@
         *enemyRect->targetHealth -= damage;
         [((GameLayer *)[self parent])->shaker shakeWithShakeValue:5 forTime:0.7f];
     }
+}
+
+-(void) damageHealth:(CGFloat)points
+{
+    health -= points;
+    if (health <= 0.0f)
+    {
+        [self kill];
+    }
+}
+
+// ONLY FOR USE OF LINKING HEALTH BARS TO RESOURCE BARS
+-(CGFloat *) healthPtr
+{
+    return &health;
 }
 
 -(Unit *)UnitWithPosition:(CGPoint)pos

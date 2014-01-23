@@ -13,7 +13,7 @@
 #import "GameLayer.h"
 #import "BossUnit.h"
 
-#define UNIT_COST 8
+#define UNIT_COST 1
 // super units cost 6 times what regular units cost
 #define SUPER_UNIT_MULTIPLIER 6
 #define SHAKE_TIME 0.7f
@@ -126,7 +126,7 @@ CCTimer *bossSpawnTimer;
     } */
     
     [array addObject:entity];
-    entity->otherParent = self;
+    entity->gameModel = self;
     
     if ([entity isKindOfClass:[Unit class]] && ![entity parent]) {
         Unit *unit = (Unit *)entity;
@@ -231,10 +231,6 @@ CCTimer *bossSpawnTimer;
         {
             // we don't want to do anything else if it's going to be removed from the game
             continue;
-        }
-        if (enemyUnit->health < 0.0f)
-        {
-            [enemyUnit kill];
         }
         /*
         if (CGRectIntersectsRect(enemyUnit->boundingRect, viewController->spawnArea))
@@ -358,9 +354,8 @@ CCTimer *bossSpawnTimer;
             CGFloat unitDistance = sqrt((xChange*xChange) + (yChange*yChange));
             if (unitDistance <= distance)
             {
-                enemyUnit->health -= damage;
+                [enemyUnit hitFor:damage];
                 [enemyUnit flashWhiteFor:1.0f];
-                [enemyUnit pushBack:0.8f];
             }
         }
     }
@@ -379,6 +374,68 @@ CCTimer *bossSpawnTimer;
     }
 }
 */
+
+-(NSMutableArray *) returnLeadingPlayer:(NSUInteger)numUnits UnitsInRange:(NSRange)range
+{
+    assert(numUnits > 0);
+    NSMutableArray *retArray = [[NSMutableArray alloc] initWithCapacity:numUnits];
+    // iterate through player units
+    for (NSInteger i=0; i<(NSInteger)[playerUnits count]; i++)
+    {
+        Entity *playerUnit = [playerUnits objectAtIndex:i];
+        if (![playerUnit isKindOfClass:[Unit class]])
+        {
+            continue;
+        }
+        Unit *currPlayerUnit = (Unit *)playerUnit;
+        if (currPlayerUnit->dead)
+        {
+            continue;
+        }
+        // for all units in that range
+        if (NSLocationInRange(currPlayerUnit->origin.y, range))
+        {
+            bool replaceInArray = false;
+            NSUInteger replaceIndex;
+            CGFloat leastX = -1;
+            for (Unit *unit in retArray)
+            {
+                if (unit->origin.x < currPlayerUnit->origin.x)
+                {
+                    replaceInArray = true;
+                    // if this is the first unit the current one is ahead of
+                    if (leastX == -1)
+                    {
+                        leastX = unit->origin.x;
+                        replaceIndex = [retArray indexOfObject:unit];
+                    }
+                    // else make sure the unit is behind the other one checked
+                    else
+                    {
+                        // if unit is behind
+                        if (leastX > unit->origin.x)
+                        {
+                            leastX = unit->origin.x;
+                            replaceIndex = [retArray indexOfObject:unit];
+                        }
+                        // otherwise don't replace it (replace the furtherest back unit)
+                    }
+                }
+            }
+            // add unit that is in range if array is not full
+            if ([retArray count] < numUnits)
+            {
+                [retArray addObject:currPlayerUnit];
+            }
+            // replace least x unit only if array is full
+            else if (replaceInArray && [retArray count] >= numUnits)
+            {
+                [retArray replaceObjectAtIndex:replaceIndex withObject:currPlayerUnit];
+            }
+        }
+    }
+    return retArray;
+}
 
 -(void) reset
 {

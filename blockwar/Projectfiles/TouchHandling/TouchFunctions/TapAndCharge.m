@@ -27,7 +27,7 @@
         spawnSize = [[tapAndChargeProperties objectForKey:@"spawnSize"] integerValue];
         if (spawnSize == 0)
         {
-            spawnSize = 3;
+            spawnSize = 8;
         }
     }
     return self;

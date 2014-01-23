@@ -12,7 +12,7 @@
 @interface Entity : CCSprite
 {
     @public
-    GameModel *otherParent;
+    GameModel *gameModel;
 }
 
 -(bool) isCollidingWith:(Entity *)otherEntity;

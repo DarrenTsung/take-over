@@ -14,7 +14,7 @@
     CGPoint origin;
     CGFloat velocity, acceleration, maxVelocity;
     CGFloat baseMaxVelocity, baseDamage, baseHealth;
-    CGFloat damage, health, pushBack;
+    CGFloat damage, pushBack;
     CGFloat flashTimer;
     NSString *owner, *name;
     CGRect boundingRect;
@@ -24,10 +24,15 @@
     CGFloat frameTimer, frameDelay;
     
     CCSprite *whiteSprite;
+    
+    @protected
+    CGFloat health;
 }
 
 -(id) initWithPosition:(CGPoint)pos;
 -(void) update:(ccTime) delta;
+-(void) computeFrame:(ccTime) delta;
+-(void) computePosition:(ccTime) delta;
 
 -(void) setFPS:(CGFloat)framesPerSecond;
 -(void) finishInit;
@@ -38,13 +43,14 @@
 -(void) setInvincibleForTime:(ccTime)time;
 -(void) flashWhiteFor:(CGFloat)time;
 -(void) hitFor:(CGFloat)hitDamage;
--(void) pushBack:(CGFloat)percentage;
 
 -(void) setMaxVelocity:(CGFloat)theMaxVelocity;
 -(void) setDamage:(CGFloat)theDamage;
 
 // factory method to reproduce units
 -(Unit *) UnitWithPosition:(CGPoint)pos;
+// ONLY FOR USE OF LINKING HEALTH BARS TO RESOURCE BARS
+-(CGFloat *) healthPtr;
 
 
 -(void)kill;

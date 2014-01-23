@@ -80,7 +80,7 @@
     [theBoss setInvincibleForTime:0.4f];
     NSArray *layerColors = [bossProperties objectForKey:@"layerProperties"];
     NSInteger layerCount = [layerColors count];
-    [viewController->enemyHP changeLinkTo:&theBoss->health with:layerCount layersWithColors:layerColors];
+    [viewController->enemyHP changeLinkTo:[theBoss healthPtr] with:layerCount layersWithColors:layerColors];
     [viewController->enemyHP loadingToMaxAnimationWithTime:1.7f];
 }
 
