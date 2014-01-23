@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "GameLayer.h"
+#import "Unit.h"
 
 @class GameModel; // please don't make a fowarding error, I love you Xcode
 
@@ -20,18 +21,19 @@ typedef enum
     BOSS
 } UnitType;
 
-@interface EnemyAI : NSObject
+@interface EnemyAI : CCNode
 {
     @public
     GameModel *model;
-    int waveSize, rowSize;
-    CGFloat spawnTimer, waveTimer, probabilityWaveDelay, waveDelay, playHeight;
     GameLayer *viewController;
-    int waveConsecutiveCount, maxConsecutiveWaves;
+    
+    @private
+    NSMutableArray *factories_;
+    
 }
 
 -(id) initAIType:(NSString *)theType withReferenceToGameModel:(GameModel *)modelMaster andViewController:(GameLayer *)theViewController andPlayHeight:(CGFloat)thePlayHeight;
--(void) spawnWave;
+-(Unit *) returnBasicUnit:(UnitType)unitType;
 -(void) update:(ccTime)delta;
 -(void) spawnBosswithProperties:(NSDictionary *)bossProperties;
 -(void) reset;

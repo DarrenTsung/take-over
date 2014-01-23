@@ -19,7 +19,7 @@
         
         [self setMaxVelocity:120.0f];
         velocity = 120.0f;
-        acceleration = 100.0f;
+        acceleration = 70.0f;
         
         pushBack = -80.0f;
         

@@ -19,7 +19,7 @@
     NSDictionary *bossProperties;
     GameLayer *viewController;
     EnemyAI *theEnemy;
-    
+    CGFloat playHeight;
     CGFloat playerHP, playerResources, enemyHP;
 }
 

@@ -15,7 +15,7 @@
 {
     if (self = [super initWithPosition:pos])
     {
-        name = @"bossrussian";
+        name = @"boss_russian";
         owner = @"opponent";
         
         // holy shit hahaha

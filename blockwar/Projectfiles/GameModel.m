@@ -37,6 +37,7 @@ CCTimer *bossSpawnTimer;
             bossProperties = [levelProperties objectForKey:@"Boss"];
         }
         
+        playHeight = viewController->playHeight;
         playerHP = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerHP"];
         playerResources = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerResources"];
         enemyHP = [[levelProperties objectForKey:@"enemyHP"] floatValue];;

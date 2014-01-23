@@ -15,6 +15,15 @@
 
 @implementation Unit
 
+-(id)init
+{
+    if ((self = [self initWithPosition:CGPointMake(0, 0)]))
+    {
+        
+    }
+    return self;
+}
+
 -(id)initWithPosition:(CGPoint)pos
 {
     if ((self = [super init]))
@@ -204,6 +213,11 @@
         *enemyRect->targetHealth -= damage;
         [((GameLayer *)[self parent])->shaker shakeWithShakeValue:5 forTime:0.7f];
     }
+}
+
+-(Unit *)UnitWithPosition:(CGPoint)pos
+{
+    return [[[self class] alloc] initWithPosition:pos];
 }
 
 -(CGRect) boundingBox

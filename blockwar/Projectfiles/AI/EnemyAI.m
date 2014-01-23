@@ -10,12 +10,9 @@
 #import "Unit.h"
 #import "GameModel.h"
 #import "GameLayer.h"
-#import "RussianVillager.h"
-#import "RussianMelee.h"
-#import "RussianBoss.h"
+#import "UnitFactory.h"
 
 #define PADDING 20.0f
-#define UNIT_SIZE_Y 15.0f
 
 #define ARC4RANDOM_MAX 0x100000000
 
@@ -26,105 +23,59 @@
     if((self = [super init]))
     {
         NSString *AIpath = [[NSBundle mainBundle] pathForResource:theType ofType:@"plist"];
-        NSDictionary *AIproperties = [NSDictionary dictionaryWithContentsOfFile:AIpath];
+        NSArray *AIproperties = [NSArray arrayWithContentsOfFile:AIpath];
         
         model = theModel;
-        waveSize = [[AIproperties objectForKey:@"waveSize"] floatValue];
-        rowSize = [[AIproperties objectForKey:@"rowSize"] floatValue];
-        
-        waveTimer = [[AIproperties objectForKey:@"waveTimer"] floatValue];
-    
-        waveConsecutiveCount = 0;
-        maxConsecutiveWaves = [[AIproperties objectForKey:@"maxConsecutiveWaves"] intValue];
-        
-        probabilityWaveDelay = [[AIproperties objectForKey:@"probabilityWaveDelay"] floatValue];
-        waveDelay = [[AIproperties objectForKey:@"waveDelay"] floatValue];
-        
-        playHeight = thePlayHeight;
-        
-        // add delay to initial wave
-        spawnTimer = waveTimer + 0.9f;
         viewController = theViewController;
+        
+        factories_ = [[NSMutableArray alloc] init];
+        for (NSInteger i=0; i<(NSInteger)[AIproperties count]; i++)
+        {
+            NSDictionary *factoryProperties = [AIproperties objectAtIndex:i];
+            NSInteger intUnitType = [[factoryProperties objectForKey:@"UnitType"] integerValue];
+            UnitType *unitType;
+            switch (intUnitType)
+            {
+                case 0:
+                    unitType = VILLAGER;
+                    break;
+                case 1:
+                    unitType = MELEE;
+                    break;
+                case 2:
+                    unitType = SPECIAL;
+                    break;
+                case 3:
+                    unitType = GUNMAN;
+                    break;
+                case 4:
+                    unitType = BOSS;
+                    break;
+                default:
+                    [NSException raise:NSInternalInconsistencyException format:@"Invalid UnitType!"];
+                    break;
+            }
+            UnitFactory *thisFactory = [[UnitFactory alloc] initWithUnitToCopy:[self returnBasicUnit:unitType] andFactoryProperties:factoryProperties andGameModel:model];
+            
+            [factories_ addObject:thisFactory];
+        }
     }
     return self;
 }
 
--(void) spawnWave
-{
-    int x = 0;
-    int counter = 0;
-    CGPoint spawnPoint = CGPointMake(575, arc4random()%(int)(playHeight - ((rowSize - 1)*PADDING + UNIT_SIZE_Y)) + 10.0f);
-    
-    while(x < waveSize)
-    {
-        int offset = (counter%2 == 1) ? 5.0f : 0.0f;
-        for(int i=0; i<rowSize; i++)
-        {
-            CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);
-            [self createUnit:VILLAGER atPoint:lesserPoint];
-            x++;
-        }
-        //NSLog(@"added a row! offset %d", counter%2);
-        counter++;
-    }
-}
-
 // override this for each AI type
--(void) createUnit:(UnitType)unitType atPoint:(CGPoint)thePoint
+-(Unit *) returnBasicUnit:(UnitType)unitType
 {
-    Unit *unit;
-    switch (unitType) {
-        case VILLAGER:
-            unit = [[RussianVillager alloc] initWithPosition:thePoint];
-            break;
-            
-        case MELEE:
-            unit = [[RussianMelee alloc] initWithPosition:thePoint];
-            break;
-        
-        default:
-            break;
-    }
-    [model insertEntity:unit intoSortedArrayWithName:@"enemy"];
-}
-
--(void) update:(ccTime)delta
-{
-    if (spawnTimer > 0.0f)
-    {
-        spawnTimer -= delta;
-    }
-    else
-    {
-        if (waveConsecutiveCount < maxConsecutiveWaves)
-        {
-            // send enemy wave every 5 seconds
-            [self spawnWave];
-            spawnTimer = waveTimer;
-            // p of the time, add 3 seconds to the next timer to space it out
-            if ((arc4random_uniform(10)/10.0f) <= probabilityWaveDelay)
-            {
-                spawnTimer += waveDelay;
-                waveConsecutiveCount = 0;
-            }
-            waveConsecutiveCount++;
-        }
-        else
-        {
-            spawnTimer += waveDelay;
-            waveConsecutiveCount = 0;
-        }
-    }
+    [NSException raise:NSInternalInconsistencyException
+                format:@"You must override returnBasicUnit in a subclass"];
+    return nil;
 }
 
 -(void) spawnBosswithProperties:(NSDictionary *)bossProperties
 {
-    Unit *theBoss;
-    CGFloat randomPos = arc4random_uniform(playHeight/3) + playHeight/3;
-    if ([[bossProperties objectForKey:@"name"] isEqualToString:@"russian"])
-    {
-        theBoss = [[RussianBoss alloc] initWithPosition:CGPointMake(595, randomPos)];
-    }
+    Unit *bossUnit = [self returnBasicUnit:BOSS];
+    CGFloat randomPos = arc4random_uniform(viewController->playHeight/3) + viewController->playHeight/3;
+    Unit *theBoss = [bossUnit UnitWithPosition:CGPointMake(595, randomPos)];
     [model insertEntity:theBoss intoSortedArrayWithName:@"enemy"];
     [theBoss setInvincibleForTime:0.4f];
     NSArray *layerColors = [bossProperties objectForKey:@"layerProperties"];
@@ -133,9 +84,23 @@
     [viewController->enemyHP loadingToMaxAnimationWithTime:1.7f];
 }
 
+-(void) update:(ccTime)delta
+{
+    // pass along updates to children
+    for (NSInteger i=0; i<(NSInteger)[factories_ count]; i++)
+    {
+        UnitFactory *curr = (UnitFactory *)[factories_ objectAtIndex:i];
+        [curr update:delta];
+    }
+}
+
 -(void) reset
 {
-    spawnTimer = waveTimer;
+    // reset factories
+    for (NSInteger i=0; i<(NSInteger)[factories_ count]; i++)
+    {
+        [(UnitFactory *)[factories_ objectAtIndex:i] reset];
+    }
 }
 
 @end

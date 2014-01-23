@@ -29,6 +29,7 @@
 		6C1F2C8A188F349400F6BC3C /* russianframes-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6C1F2C88188F349400F6BC3C /* russianframes-hd.pvr.ccz */; };
 		6C1F2C8D188F429800F6BC3C /* RussianVillager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C8C188F429800F6BC3C /* RussianVillager.m */; };
 		6C1F2C90188F46F900F6BC3C /* RussianAI.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C8F188F46F900F6BC3C /* RussianAI.m */; };
+		6C1F2C941890806100F6BC3C /* UnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C931890806100F6BC3C /* UnitFactory.m */; };
 		6C83A79C186EBEA6002EB16B /* Russia_Level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */; };
 		6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */; };
 		6C83A7A0186F437B002EB16B /* UpgradeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C83A79F186F437B002EB16B /* UpgradeLayer.m */; };
@@ -146,6 +147,8 @@
 		6C1F2C8C188F429800F6BC3C /* RussianVillager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianVillager.m; path = Units/Units/RussianVillager.m; sourceTree = "<group>"; };
 		6C1F2C8E188F46F900F6BC3C /* RussianAI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianAI.h; path = AI/RussianAI.h; sourceTree = "<group>"; };
 		6C1F2C8F188F46F900F6BC3C /* RussianAI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianAI.m; path = AI/RussianAI.m; sourceTree = "<group>"; };
+		6C1F2C921890806100F6BC3C /* UnitFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnitFactory.h; path = AI/UnitFactory.h; sourceTree = "<group>"; };
+		6C1F2C931890806100F6BC3C /* UnitFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnitFactory.m; path = AI/UnitFactory.m; sourceTree = "<group>"; };
 		6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level2.plist; path = Worlds/World1/Levels/Russia_Level2.plist; sourceTree = "<group>"; };
 		6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level3.plist; path = Worlds/World1/Levels/Russia_Level3.plist; sourceTree = "<group>"; };
 		6C83A79E186F437B002EB16B /* UpgradeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgradeLayer.h; path = Layers/UpgradeLayer.h; sourceTree = "<group>"; };
@@ -316,6 +319,28 @@
 			name = Bars;
 			sourceTree = "<group>";
 		};
+		6C1F2C911890801B00F6BC3C /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				6C1F2C921890806100F6BC3C /* UnitFactory.h */,
+				6C1F2C931890806100F6BC3C /* UnitFactory.m */,
+			);
+			name = Factory;
+			sourceTree = "<group>";
+		};
+		6C1F2C95189100EC00F6BC3C /* Russian */ = {
+			isa = PBXGroup;
+			children = (
+				6C1F2C8B188F429800F6BC3C /* RussianVillager.h */,
+				6C1F2C8C188F429800F6BC3C /* RussianVillager.m */,
+				6C9BB8BC187DD65B00E14BAA /* RussianMelee.h */,
+				6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */,
+				6C9BB8BF187DDC7200E14BAA /* RussianBoss.h */,
+				6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */,
+			);
+			name = Russian;
+			sourceTree = "<group>";
+		};
 		6C83A7A7186F663A002EB16B /* Upgrade Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -444,14 +469,9 @@
 		6C9BB8B7187DCF1700E14BAA /* Subunits */ = {
 			isa = PBXGroup;
 			children = (
-				6C1F2C8B188F429800F6BC3C /* RussianVillager.h */,
-				6C1F2C8C188F429800F6BC3C /* RussianVillager.m */,
-				6C9BB8BC187DD65B00E14BAA /* RussianMelee.h */,
-				6C9BB8BD187DD65B00E14BAA /* RussianMelee.m */,
+				6C1F2C95189100EC00F6BC3C /* Russian */,
 				6C9BB8B4187DCF0E00E14BAA /* Zombie.h */,
 				6C9BB8B5187DCF0E00E14BAA /* Zombie.m */,
-				6C9BB8BF187DDC7200E14BAA /* RussianBoss.h */,
-				6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */,
 			);
 			name = Subunits;
 			sourceTree = "<group>";
@@ -470,6 +490,7 @@
 		6CAE6D9B182C362D00602F39 /* Artifical Intelligence */ = {
 			isa = PBXGroup;
 			children = (
+				6C1F2C911890801B00F6BC3C /* Factory */,
 				6C021A23186B94B8000C11FC /* EnemyAI.h */,
 				6C021A24186B94B8000C11FC /* EnemyAI.m */,
 				6C1F2C8E188F46F900F6BC3C /* RussianAI.h */,
@@ -778,6 +799,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C1F2C941890806100F6BC3C /* UnitFactory.m in Sources */,
 				6C9BB8AD187C63ED00E14BAA /* Entity.m in Sources */,
 				6C021A4F186B972C000C11FC /* LevelSelectLayer.m in Sources */,
 				6C021A36186B94CA000C11FC /* Unit.m in Sources */,

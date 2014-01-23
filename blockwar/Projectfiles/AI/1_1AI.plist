@@ -1,25 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>waveSize</key>
-	<integer>1</integer>
-	<key>rowSize</key>
-	<integer>1</integer>
-	<key>maxConsecutiveWaves</key>
-	<integer>20</integer>
-	<key>probabilityWaveDelay</key>
-	<real>0.2</real>
-	<key>waveDelay</key>
-	<real>0.11</real>
-	<key>color</key>
-	<array>
-		<string>0.3</string>
-		<string>0.5</string>
-		<string>0.9</string>
-		<real>1</real>
-	</array>
-	<key>waveTimer</key>
-	<real>1.4</real>
-</dict>
+<array>
+	<dict>
+		<key>UnitType</key>
+		<integer>0</integer>
+		<key>waveTimer</key>
+		<real>1.4</real>
+		<key>waveDelay</key>
+		<real>0.11</real>
+		<key>probabilityWaveDelay</key>
+		<real>0.2</real>
+		<key>maxConsecutiveWaves</key>
+		<integer>20</integer>
+		<key>rowSize</key>
+		<integer>1</integer>
+		<key>waveSize</key>
+		<integer>1</integer>
+	</dict>
+</array>
 </plist>

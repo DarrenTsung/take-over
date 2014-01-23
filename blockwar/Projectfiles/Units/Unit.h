@@ -43,6 +43,8 @@
 -(void) setMaxVelocity:(CGFloat)theMaxVelocity;
 -(void) setDamage:(CGFloat)theDamage;
 
+// factory method to reproduce units
+-(Unit *) UnitWithPosition:(CGPoint)pos;
 
 
 -(void)kill;

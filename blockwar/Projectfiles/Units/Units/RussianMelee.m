@@ -19,9 +19,9 @@
         
         [self setMaxVelocity:120.0f];
         velocity = 120.0f;
-        acceleration = 100.0f;
+        acceleration = 70.0f;
         
-        pushBack = -50.0f;
+        pushBack = -70.0f;
         
         health = 4.0f;
         [self setDamage:0.8f];

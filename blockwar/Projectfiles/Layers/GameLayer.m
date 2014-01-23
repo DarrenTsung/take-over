@@ -21,6 +21,7 @@
 #import "NodeShaker.h"
 #import "TouchHandler.h"
 #import "RectTarget.h"
+#import "RussianAI.h"
 
 GameModel *model;
 
@@ -84,6 +85,7 @@ TouchHandler *myTouchHandler;
         currentLevel = level;
         
         NSString *prefix;
+        Class AIClass;
         if (region == AFRICA)
         {
             prefix = @"Africa";
@@ -95,6 +97,7 @@ TouchHandler *myTouchHandler;
         else if (region == RUSSIA)
         {
             prefix = @"Russia";
+            AIClass = [RussianAI class];
         }
         else if (region == AMERICA)
         {
@@ -115,7 +118,7 @@ TouchHandler *myTouchHandler;
         model = [[GameModel alloc] initWithReferenceToViewController:self andReferenceToLevelProperties:levelProperties];
         
         // theEnemy.. oo ominous!
-        theEnemy = [[EnemyAI alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self andPlayHeight:playHeight];
+        theEnemy = [[AIClass alloc] initAIType:AIName withReferenceToGameModel:model andViewController:self andPlayHeight:playHeight];
         // now give model a pointer to theEnemy
         [model setReferenceToEnemyAI:theEnemy];
         [self addChild:model];
@@ -243,7 +246,6 @@ TouchHandler *myTouchHandler;
     [playerHP updateAnimation:delta];
     [enemyHP updateAnimation:delta];
     [playerResources updateAnimation:delta];
-
 }
 
 -(void) nextFrame
