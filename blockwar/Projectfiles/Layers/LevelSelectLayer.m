@@ -165,6 +165,10 @@ UpgradeLayer *upgradeMenu;
 -(void)unlockLevel:(int)levelNum ofRegion:(RegionType)region
 {
     NSLog(@"unlock Level called!");
+    // don't unlock any levels beyond 5
+    if (levelNum > 5) {
+        return;
+    }
     NSString *key = [NSString stringWithFormat:@"region%d_levelUnlocked", region];
     int unlockedLevelTag = (10 * region) + [[NSUserDefaults standardUserDefaults] integerForKey:key] + 1;
     [[NSUserDefaults standardUserDefaults] setInteger:[[NSUserDefaults standardUserDefaults] integerForKey:key] + 1 forKey:key];

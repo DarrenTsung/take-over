@@ -75,6 +75,9 @@
 		6CCD4F441892247C00201E4A /* bigLocked.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F431892247C00201E4A /* bigLocked.png */; };
 		6CCD4F471892272B00201E4A /* Russia_Level4.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F451892272B00201E4A /* Russia_Level4.plist */; };
 		6CCD4F481892272B00201E4A /* Russia_Level5.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F461892272B00201E4A /* Russia_Level5.plist */; };
+		6CCD4F4B18922A7400201E4A /* RussianBeserker.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD4F4A18922A7400201E4A /* RussianBeserker.m */; };
+		6CCD4F4E18922B3100201E4A /* 1_4AI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F4C18922B3100201E4A /* 1_4AI.plist */; };
+		6CCD4F4F18922B3100201E4A /* 1_5AI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F4D18922B3100201E4A /* 1_5AI.plist */; };
 		6CD361671826CF2E00A56D5C /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD361661826CF2E00A56D5C /* GameModel.m */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
@@ -216,6 +219,10 @@
 		6CCD4F431892247C00201E4A /* bigLocked.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = bigLocked.png; path = Worlds/World1/bigLocked.png; sourceTree = "<group>"; };
 		6CCD4F451892272B00201E4A /* Russia_Level4.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level4.plist; path = Worlds/World1/Levels/Russia_Level4.plist; sourceTree = "<group>"; };
 		6CCD4F461892272B00201E4A /* Russia_Level5.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level5.plist; path = Worlds/World1/Levels/Russia_Level5.plist; sourceTree = "<group>"; };
+		6CCD4F4918922A7400201E4A /* RussianBeserker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianBeserker.h; path = Units/Units/RussianBeserker.h; sourceTree = "<group>"; };
+		6CCD4F4A18922A7400201E4A /* RussianBeserker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianBeserker.m; path = Units/Units/RussianBeserker.m; sourceTree = "<group>"; };
+		6CCD4F4C18922B3100201E4A /* 1_4AI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 1_4AI.plist; path = AI/1_4AI.plist; sourceTree = "<group>"; };
+		6CCD4F4D18922B3100201E4A /* 1_5AI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 1_5AI.plist; path = AI/1_5AI.plist; sourceTree = "<group>"; };
 		6CD361651826CF2E00A56D5C /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
 		6CD361661826CF2E00A56D5C /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
@@ -355,6 +362,8 @@
 				6C9BB8C0187DDC7200E14BAA /* RussianBoss.m */,
 				6C1F2C991891AD6F00F6BC3C /* RussianGunman.h */,
 				6C1F2C9A1891AD6F00F6BC3C /* RussianGunman.m */,
+				6CCD4F4918922A7400201E4A /* RussianBeserker.h */,
+				6CCD4F4A18922A7400201E4A /* RussianBeserker.m */,
 			);
 			name = Russian;
 			sourceTree = "<group>";
@@ -404,6 +413,11 @@
 				6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */,
 				6CCD4F451892272B00201E4A /* Russia_Level4.plist */,
 				6CCD4F461892272B00201E4A /* Russia_Level5.plist */,
+				6C021A20186B94B8000C11FC /* 1_1AI.plist */,
+				6C021A21186B94B8000C11FC /* 1_2AI.plist */,
+				6C021A22186B94B8000C11FC /* 1_3AI.plist */,
+				6CCD4F4C18922B3100201E4A /* 1_4AI.plist */,
+				6CCD4F4D18922B3100201E4A /* 1_5AI.plist */,
 			);
 			name = Levels;
 			sourceTree = "<group>";
@@ -411,9 +425,6 @@
 		6C9BB8671872024300E14BAA /* AI Types */ = {
 			isa = PBXGroup;
 			children = (
-				6C021A20186B94B8000C11FC /* 1_1AI.plist */,
-				6C021A21186B94B8000C11FC /* 1_2AI.plist */,
-				6C021A22186B94B8000C11FC /* 1_3AI.plist */,
 				6C021A25186B94B8000C11FC /* randomAI.plist */,
 			);
 			name = "AI Types";
@@ -785,6 +796,7 @@
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				6CCD4F411892017100201E4A /* level5.png in Resources */,
+				6CCD4F4F18922B3100201E4A /* 1_5AI.plist in Resources */,
 				6CCD4F3E1892017100201E4A /* level2.png in Resources */,
 				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
 				6CCD4F351891FE7F00201E4A /* levelSelectFrames-hd.plist in Resources */,
@@ -803,6 +815,7 @@
 				6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				6CCD4F481892272B00201E4A /* Russia_Level5.plist in Resources */,
+				6CCD4F4E18922B3100201E4A /* 1_4AI.plist in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
 				6C9BB8A21877869B00E14BAA /* equipToggleS.png in Resources */,
 				6CAB076D18529AE7008749D5 /* background.png in Resources */,
@@ -857,6 +870,7 @@
 				6C1F2C9B1891AD6F00F6BC3C /* RussianGunman.m in Sources */,
 				6CD361671826CF2E00A56D5C /* GameModel.m in Sources */,
 				6C021A34186B94CA000C11FC /* BossUnit.m in Sources */,
+				6CCD4F4B18922A7400201E4A /* RussianBeserker.m in Sources */,
 				6C9BB889187625EB00E14BAA /* TouchFunction.m in Sources */,
 				6C021A3F186B94D6000C11FC /* GameLayer.m in Sources */,
 				6C83A7A0186F437B002EB16B /* UpgradeLayer.m in Sources */,

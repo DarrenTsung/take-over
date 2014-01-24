@@ -17,11 +17,11 @@
         name = @"russian_villager";
         owner = @"opponent";
         
-        [self setMaxVelocity:120.0f];
-        velocity = 120.0f;
-        acceleration = 70.0f;
+        [self setMaxVelocity:35.0f];
+        velocity = 35.0f;
+        acceleration = 35.0f;
         
-        pushBack = -80.0f;
+        pushBack = -35.0f;
         
         health = 2.0f;
         [self setDamage:0.6f];

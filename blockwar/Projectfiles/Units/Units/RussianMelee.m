@@ -17,11 +17,11 @@
         name = @"russian_melee";
         owner = @"opponent";
         
-        [self setMaxVelocity:120.0f];
-        velocity = 120.0f;
-        acceleration = 70.0f;
+        [self setMaxVelocity:40.0f];
+        velocity = 40.0f;
+        acceleration = 40.0f;
         
-        pushBack = -70.0f;
+        pushBack = -40.0f;
         
         health = 4.0f;
         [self setDamage:0.8f];

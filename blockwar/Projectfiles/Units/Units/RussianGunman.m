@@ -21,7 +21,7 @@
         velocity = 20.0f;
         acceleration = 30.0f;
         
-        pushBack = -50.0f;
+        pushBack = -30.0f;
         
         // GUNMAN PROPERTIES
         rangeDamage = 1.5f;

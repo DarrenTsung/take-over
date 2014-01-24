@@ -12,6 +12,7 @@
 #import "RussianMelee.h"
 #import "RussianBoss.h"
 #import "RussianGunman.h"
+#import "RussianBeserker.h"
 
 @implementation RussianAI
 
@@ -25,6 +26,10 @@
             
         case MELEE:
             unit = [[RussianMelee alloc] init];
+            break;
+            
+        case SPECIAL:
+            unit = [[RussianBeserker alloc] init];
             break;
             
         case GUNMAN:
