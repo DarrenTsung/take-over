@@ -17,6 +17,9 @@
     CGPoint touchIndicatorCenter;
     ccColor4F touchIndicatorColor;
     int spawnSize;
+    
+    @protected
+    bool started_;
 }
 
 @end

@@ -10,8 +10,6 @@
 
 #define TOUCH_RADIUS_MAX 53.0f
 #define TOUCH_RADIUS_MIN 40.0f
-#define TOUCH_DAMAGE_RADIUS_MIN 56.0f
-#define TOUCH_DAMAGE_RADIUS_MAX 66.0f
 #define TOUCH_DAMAGE 2.0f
 
 #define UNIT_PADDING 10.0f
@@ -27,8 +25,9 @@
         spawnSize = [[tapAndChargeProperties objectForKey:@"spawnSize"] integerValue];
         if (spawnSize == 0)
         {
-            spawnSize = 8;
+            spawnSize = 3;
         }
+        started_ = false;
     }
     return self;
 }
@@ -47,6 +46,7 @@
     // don't do anything if there is nothing to look at lol
     if (currentTouch == nil)
     {
+        started_ = false;
         return;
     }
     KKTouchPhase currentPhase = [currentTouch phase];
@@ -55,10 +55,21 @@
     {
         touchIndicatorCenter = pos;
         touchIndicatorRadius = TOUCH_RADIUS_MIN;
+        started_ = true;
     }
     // if phase ends spawn units at touchIndicatorCenter
-    else if(currentPhase == KKTouchPhaseEnded || currentPhase == KKTouchPhaseLifted || currentPhase == KKTouchPhaseCancelled)
+    else if(currentPhase == KKTouchPhaseEnded ||
+            ((currentPhase == KKTouchPhaseLifted || currentPhase == KKTouchPhaseCancelled) && !started_))
     {
+        // BUG-FIX :: Player touches bottom and only registers end of the touch
+        if (touchIndicatorRadius == 0)
+        {
+            touchIndicatorRadius = TOUCH_RADIUS_MIN;
+            // ALSO :: it doesn't return a valid position (sends (0, 0)), so guess the player's finger position
+            touchIndicatorCenter = CGPointMake(33.0f + arc4random_uniform(14), 20.0f);
+            [self draw];
+        }
+        
         // spawn SuperGerm if radius is greater than max (and fluctuating)
         if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
         {
@@ -119,6 +130,11 @@
         // IMPORTANT: WHEN TOUCH IS IN ENDING PHASE, UNSCHEDULE AND REMOVE TAPANDCHARGE OBJECT FROM VIEWCONTROLLER
         [self reset];
     }
+    else if (currentPhase == KKTouchPhaseLifted || currentPhase == KKTouchPhaseCancelled)
+    {
+        // RESET
+        [self reset];
+    }
     else
     {
         if (pos.y <= area.size.height)
@@ -157,6 +173,7 @@
 {
     [super reset];
     touchIndicatorRadius = 0.0f;
+    touchIndicatorCenter = CGPointZero;
 }
 
 @end
