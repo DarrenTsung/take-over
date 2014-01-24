@@ -11,7 +11,7 @@
 @interface NodeShaker : CCNode
 {
     @public
-    CCNode *reference;
+    CCNode *reference, *otherReference;
     CGPoint origin;
     unsigned int shakeValue;
     
@@ -19,6 +19,8 @@
 }
 
 -(id) initWithReferenceToNode:(CCNode *)theReference;
+-(void) changeReferenceToNode:(CCNode *)theReference;
 -(void) shakeWithShakeValue:(unsigned int)theShakeValue forTime:(ccTime)time;
+-(void) changeReferenceToNode:(CCNode *)theReference andOtherNode:(CCNode *)theOtherReference;
 
 @end

@@ -453,4 +453,17 @@ CCTimer *bossSpawnTimer;
     [array removeAllObjects];
 }
 
+-(void) pauseSchedulerAndActions
+{
+    [super pauseSchedulerAndActions];
+    for (Unit *playerUnit in playerUnits)
+    {
+        [playerUnit pauseSchedulerAndActions];
+    }
+    for (Unit *enemyUnit in enemyUnits)
+    {
+        [enemyUnit pauseSchedulerAndActions];
+    }
+}
+
 @end

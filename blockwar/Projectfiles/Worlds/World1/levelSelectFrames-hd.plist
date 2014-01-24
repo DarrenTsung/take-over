@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>frames</key>
+	<dict>
+		<key>Russia_background.png</key>
+		<dict>
+			<key>frame</key>
+			<string>{{2,2},{1136,640}}</string>
+			<key>offset</key>
+			<string>{0,0}</string>
+			<key>rotated</key>
+			<false/>
+			<key>sourceColorRect</key>
+			<string>{{0,0},{1136,640}}</string>
+			<key>sourceSize</key>
+			<string>{1136,640}</string>
+		</dict>
+	</dict>
+	<key>metadata</key>
+	<dict>
+		<key>format</key>
+		<integer>2</integer>
+		<key>realTextureFileName</key>
+		<string>levelSelectFrames-hd.pvr.ccz</string>
+		<key>size</key>
+		<string>{1140,644}</string>
+		<key>smartupdate</key>
+		<string>$TexturePacker:SmartUpdate:536bca4c3d678300ba23ef5488c786a7:00e1aa719570b134806e89255151d8b2:9706a4555148c31283188dd50ca3ae62$</string>
+		<key>textureFileName</key>
+		<string>levelSelectFrames-hd.pvr.ccz</string>
+	</dict>
+</dict>
+</plist>

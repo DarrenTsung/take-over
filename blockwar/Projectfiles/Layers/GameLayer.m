@@ -339,7 +339,7 @@ TouchHandler *myTouchHandler;
     }
     
     winState = theWinState;
-    paused = true;
+    [self pause];
     [playerHP stopShake];
     [enemyHP stopShake];
     
@@ -379,20 +379,24 @@ TouchHandler *myTouchHandler;
 {
     NSMutableArray *overlayFrames = [NSMutableArray array];
     NSString *prefix;
+    NSInteger frameCount = 0;
     if ([overlayType isEqualToString:@"win"])
     {
         prefix = @"win_overlay_";
+        frameCount = 16;
     }
     else if ([overlayType isEqualToString:@"lose"])
     {
         prefix = @"lose_overlay_";
+        frameCount = 16;
     }
     else if ([overlayType isEqualToString:@"start"])
     {
         prefix = @"start_overlay_";
+        frameCount = 14;
     }
     
-    for (int i=1; i<=14; i++)
+    for (int i=1; i<=frameCount; i++)
     {
         [overlayFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"%@%d.png", prefix, i]]];
@@ -428,9 +432,16 @@ TouchHandler *myTouchHandler;
     [self scheduleOnce:@selector(unpause) delay:0.7f];
 }
 
+-(void) pause
+{
+    paused = true;
+    [model pauseSchedulerAndActions];
+}
+
 -(void) unpause
 {
     paused = false;
+    [model resumeSchedulerAndActions];
 }
 
 @end

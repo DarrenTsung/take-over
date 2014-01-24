@@ -32,6 +32,8 @@ UpgradeLayer *upgradeMenu;
 {
     if ((self = [super init]))
 	{
+        [self setUpFrames];
+        
         [self setUpMenuWithRegion:region];
         
         isDragging = false;
@@ -40,9 +42,18 @@ UpgradeLayer *upgradeMenu;
         currentPosition = CGPointMake(0, 0);
         [self setPosition:currentPosition];
         levelPointers = [[NSMutableDictionary alloc] init];
+        myShaker = [[NodeShaker alloc] initWithReferenceToNode:nil];
+        [self addChild:myShaker];
     }
     [self scheduleUpdate];
     return self;
+}
+
+-(void) setUpFrames
+{
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"levelSelectFrames.plist"];
+    CCSpriteBatchNode *levelSelectSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"levelSelectFrames.pvr.ccz"];
+    [self addChild:levelSelectSpriteSheet];
 }
 
 -(void) setUpMenuWithRegion:(RegionType) region
@@ -68,6 +79,12 @@ UpgradeLayer *upgradeMenu;
         prefix = @"America";
     }
     NSLog(@"Prefix: %@", prefix);
+    
+    // set-up background
+    CCSprite *background = [CCSprite spriteWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_background.png", prefix]]];
+    background.position = ccp( 280, 160 );
+    [self addChild: background z:-1];
+    
     NSString *worldPath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@_levelselect", prefix] ofType:@"plist"];
     NSDictionary *worldProperties = [NSDictionary dictionaryWithContentsOfFile:worldPath];
     
@@ -167,8 +184,11 @@ UpgradeLayer *upgradeMenu;
     [unlockSelectedSprite setOpacity:0];
     
     [self addChild:unlockSelectedSprite];
-    // and fade it out over 2 seconds
+    // and fade it out over 1.2 seconds
     [unlockSelectedSprite runAction:[CCFadeTo actionWithDuration:1.2f opacity:255]];
+    // also shake it
+    [myShaker changeReferenceToNode:unlockSelectedSprite andOtherNode:unlockItem];
+    [myShaker shakeWithShakeValue:5 forTime:1.2f];
     
     // set the item to enabled when animation is finished
     [self scheduleOnce:@selector(enableNextLevel) delay:1.2f];
@@ -177,6 +197,9 @@ UpgradeLayer *upgradeMenu;
 -(void)enableNextLevel
 {
     CCMenuItemImage *item = (CCMenuItemImage *)unlockItem;
+    [unlockSelectedSprite setPosition:unlockItem.position];
+    [unlockSelectedSprite setOpacity:0];
+    [self removeChild:unlockSelectedSprite];
     [item setIsEnabled:YES];
 }
 

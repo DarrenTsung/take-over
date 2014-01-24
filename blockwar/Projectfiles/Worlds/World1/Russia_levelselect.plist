@@ -8,39 +8,63 @@
 	<array>
 		<dict>
 			<key>x</key>
-			<integer>50</integer>
+			<real>111.5</real>
 			<key>y</key>
-			<integer>280</integer>
+			<real>194.5</real>
 			<key>icon</key>
 			<string>level1.png</string>
 			<key>lockedIcon</key>
-			<string>level1_locked.png</string>
+			<string>locked.png</string>
 			<key>levelNumber</key>
 			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>x</key>
-			<integer>130</integer>
+			<integer>146</integer>
 			<key>y</key>
-			<integer>280</integer>
+			<integer>118</integer>
 			<key>icon</key>
 			<string>level2.png</string>
 			<key>lockedIcon</key>
-			<string>level2_locked.png</string>
+			<string>locked.png</string>
 			<key>levelNumber</key>
 			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>x</key>
-			<integer>210</integer>
+			<integer>266</integer>
 			<key>y</key>
-			<integer>280</integer>
+			<integer>136</integer>
 			<key>icon</key>
 			<string>level3.png</string>
 			<key>lockedIcon</key>
-			<string>level3_locked.png</string>
+			<string>locked.png</string>
 			<key>levelNumber</key>
 			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>x</key>
+			<integer>375</integer>
+			<key>y</key>
+			<integer>96</integer>
+			<key>icon</key>
+			<string>level4.png</string>
+			<key>lockedIcon</key>
+			<string>locked.png</string>
+			<key>levelNumber</key>
+			<integer>4</integer>
+		</dict>
+		<dict>
+			<key>x</key>
+			<integer>490</integer>
+			<key>y</key>
+			<integer>57</integer>
+			<key>icon</key>
+			<string>level5.png</string>
+			<key>lockedIcon</key>
+			<string>bigLocked.png</string>
+			<key>levelNumber</key>
+			<integer>5</integer>
 		</dict>
 	</array>
 </dict>

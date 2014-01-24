@@ -17,10 +17,24 @@
         reference = theReference;
         origin = [theReference position];
         isShaking = NO;
+        otherReference = nil;
         shakeValue = 0;
     }
     [self scheduleUpdate];
     return self;
+}
+
+-(void) changeReferenceToNode:(CCNode *)theReference
+{
+    reference = theReference;
+    origin = [theReference position];
+}
+
+-(void) changeReferenceToNode:(CCNode *)theReference andOtherNode:(CCNode *)theOtherReference
+{
+    reference = theReference;
+    otherReference = theOtherReference;
+    origin = [theReference position];
 }
 
 -(void) update:(ccTime)delta
@@ -31,6 +45,10 @@
         CGFloat randY = ((CGFloat)arc4random_uniform(shakeValue)) - shakeValue/2;
         CGPoint randomPoint = ccp(origin.x + randX, origin.y + randY);
         [reference setPosition:randomPoint];
+        if (otherReference != nil)
+        {
+            [otherReference setPosition:randomPoint];
+        }
     }
 }
 

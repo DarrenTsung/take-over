@@ -3,29 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>enemyHP</key>
-	<string>35</string>
+	<string>30</string>
 	<key>bossExists</key>
-	<true/>
-	<key>Boss</key>
-	<dict>
-		<key>name</key>
-		<string>russian</string>
-		<key>layerProperties</key>
-		<array>
-			<array>
-				<real>0.93333</real>
-				<real>0.31</real>
-				<real>0.25</real>
-				<integer>1</integer>
-			</array>
-			<array>
-				<integer>1</integer>
-				<real>0.725</real>
-				<real>0.0588</real>
-				<integer>1</integer>
-			</array>
-		</array>
-	</dict>
+	<false/>
 	<key>AIName</key>
 	<string>1_3AI</string>
 </dict>

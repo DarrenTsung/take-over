@@ -3,10 +3,10 @@
 <plist version="1.0">
 <dict>
 	<key>enemyHP</key>
-	<integer>10</integer>
+	<string>30</string>
 	<key>bossExists</key>
 	<false/>
 	<key>AIName</key>
-	<string>1_1AI</string>
+	<string>1_4AI</string>
 </dict>
 </plist>
