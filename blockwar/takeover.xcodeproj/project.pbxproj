@@ -23,6 +23,7 @@
 		6C021A4A186B94ED000C11FC /* HealthBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A46186B94ED000C11FC /* HealthBar.m */; };
 		6C021A4B186B94ED000C11FC /* RegeneratableBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A48186B94ED000C11FC /* RegeneratableBar.m */; };
 		6C021A4F186B972C000C11FC /* LevelSelectLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C021A4E186B972C000C11FC /* LevelSelectLayer.m */; };
+		6C127F4B18989FB400EF39E5 /* zombieframes-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6C127F4A18989FB400EF39E5 /* zombieframes-hd.pvr.ccz */; };
 		6C1F2C85188F348000F6BC3C /* overlayframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C1F2C83188F348000F6BC3C /* overlayframes-hd.plist */; };
 		6C1F2C86188F348000F6BC3C /* overlayframes-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6C1F2C84188F348000F6BC3C /* overlayframes-hd.pvr.ccz */; };
 		6C1F2C89188F349400F6BC3C /* russianframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C1F2C87188F349400F6BC3C /* russianframes-hd.plist */; };
@@ -63,7 +64,6 @@
 		6CAB07791852D5F4008749D5 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB07761852D5F4008749D5 /* play.png */; };
 		6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB07771852D5F4008749D5 /* winscreen.png */; };
 		6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */; };
-		6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */; };
 		6CCD4F351891FE7F00201E4A /* levelSelectFrames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F331891FE7F00201E4A /* levelSelectFrames-hd.plist */; };
 		6CCD4F361891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F341891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz */; };
 		6CCD4F3D1892017100201E4A /* level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F371892017100201E4A /* level1.png */; };
@@ -149,6 +149,7 @@
 		6C021A48186B94ED000C11FC /* RegeneratableBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegeneratableBar.m; path = Bars/RegeneratableBar.m; sourceTree = "<group>"; };
 		6C021A4D186B972C000C11FC /* LevelSelectLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LevelSelectLayer.h; path = Layers/LevelSelectLayer.h; sourceTree = "<group>"; };
 		6C021A4E186B972C000C11FC /* LevelSelectLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LevelSelectLayer.m; path = Layers/LevelSelectLayer.m; sourceTree = "<group>"; };
+		6C127F4A18989FB400EF39E5 /* zombieframes-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "zombieframes-hd.pvr.ccz"; path = "Sprites/zombieframes-hd.pvr.ccz"; sourceTree = "<group>"; };
 		6C1F2C83188F348000F6BC3C /* overlayframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "overlayframes-hd.plist"; path = "Overlays/overlayframes-hd.plist"; sourceTree = "<group>"; };
 		6C1F2C84188F348000F6BC3C /* overlayframes-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "overlayframes-hd.pvr.ccz"; path = "Overlays/overlayframes-hd.pvr.ccz"; sourceTree = "<group>"; };
 		6C1F2C87188F349400F6BC3C /* russianframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "russianframes-hd.plist"; path = "Sprites/russianframes-hd.plist"; sourceTree = "<group>"; };
@@ -207,7 +208,6 @@
 		6CAB07761852D5F4008749D5 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		6CAB07771852D5F4008749D5 /* winscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = winscreen.png; sourceTree = "<group>"; };
 		6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "zombieframes-hd.plist"; path = "Sprites/zombieframes-hd.plist"; sourceTree = "<group>"; };
-		6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "zombieframes-hd.png"; path = "Sprites/zombieframes-hd.png"; sourceTree = "<group>"; };
 		6CCD4F331891FE7F00201E4A /* levelSelectFrames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "levelSelectFrames-hd.plist"; path = "Worlds/World1/levelSelectFrames-hd.plist"; sourceTree = "<group>"; };
 		6CCD4F341891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "levelSelectFrames-hd.pvr.ccz"; path = "Worlds/World1/levelSelectFrames-hd.pvr.ccz"; sourceTree = "<group>"; };
 		6CCD4F371892017100201E4A /* level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level1.png; path = Worlds/World1/level1.png; sourceTree = "<group>"; };
@@ -518,7 +518,7 @@
 				6C1F2C87188F349400F6BC3C /* russianframes-hd.plist */,
 				6C1F2C88188F349400F6BC3C /* russianframes-hd.pvr.ccz */,
 				6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */,
-				6CAE6DA9182C5D8F00602F39 /* zombieframes-hd.png */,
+				6C127F4A18989FB400EF39E5 /* zombieframes-hd.pvr.ccz */,
 			);
 			name = Sprites;
 			sourceTree = "<group>";
@@ -798,7 +798,6 @@
 				6CCD4F411892017100201E4A /* level5.png in Resources */,
 				6CCD4F4F18922B3100201E4A /* 1_5AI.plist in Resources */,
 				6CCD4F3E1892017100201E4A /* level2.png in Resources */,
-				6CAE6DB1182C5D8F00602F39 /* zombieframes-hd.png in Resources */,
 				6CCD4F351891FE7F00201E4A /* levelSelectFrames-hd.plist in Resources */,
 				6C021A27186B94B8000C11FC /* 1_2AI.plist in Resources */,
 				DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */,
@@ -815,6 +814,7 @@
 				6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				6CCD4F481892272B00201E4A /* Russia_Level5.plist in Resources */,
+				6C127F4B18989FB400EF39E5 /* zombieframes-hd.pvr.ccz in Resources */,
 				6CCD4F4E18922B3100201E4A /* 1_4AI.plist in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,
 				6C9BB8A21877869B00E14BAA /* equipToggleS.png in Resources */,

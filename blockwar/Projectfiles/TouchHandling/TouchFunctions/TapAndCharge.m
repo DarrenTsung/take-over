@@ -67,7 +67,6 @@
             touchIndicatorRadius = TOUCH_RADIUS_MIN;
             // ALSO :: it doesn't return a valid position (sends (0, 0)), so guess the player's finger position
             touchIndicatorCenter = CGPointMake(33.0f + arc4random_uniform(14), 20.0f);
-            [self draw];
         }
         
         // spawn SuperGerm if radius is greater than max (and fluctuating)

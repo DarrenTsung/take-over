@@ -206,7 +206,7 @@ TouchHandler *myTouchHandler;
     CCSpriteBatchNode *russianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.pvr.ccz"];
     [self addChild:russianSpriteSheet];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
-    CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.png"];
+    CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.pvr.ccz"];
     [self addChild:zombieSpriteSheet];
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"superzombieframes.plist"];
     CCSpriteBatchNode *superzombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"superzombieframes.png"];
@@ -311,7 +311,6 @@ TouchHandler *myTouchHandler;
             [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LoseLayer alloc] init]]];
     }
     winState = nil;
-    [self unloadGameLayerWithRegion:currentRegion];
 }
 
 // returns the screen bounds, flipped since we're working in landscape mode
@@ -344,35 +343,6 @@ TouchHandler *myTouchHandler;
     [enemyHP stopShake];
     
     [self scheduleOnce:@selector(reset) delay:3.0f];
-}
-
--(void) unloadGameLayerWithRegion:(RegionType)region
-{
-    if (region == AFRICA)
-    {
-        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"african_frames.plist"];
-    }
-    else if (region == RUSSIA)
-    {
-        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"russian_frames.plist"];
-    }
-    else if (region == AMERICA)
-    {
-        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"american_frames.plist"];
-    }
-    else if (region == ASIA)
-    {
-        [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"asian_frames.plist"];
-    }
-    
-    //[self unloadOverlays];
-    [self unloadIndicators];
-}
-
--(void) unloadIndicators
-{
-    // tap indicator
-    [[CCSpriteFrameCache sharedSpriteFrameCache] removeSpriteFramesFromFile:@"tap_indicator_frames.plist"];
 }
 
 -(void) playOverlay:(NSString *)overlayType withDelay:(ccTime)delay cleanup:(BOOL)cleanup

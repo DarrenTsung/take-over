@@ -7,54 +7,54 @@
             <key>zombie0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{42,49}}</string>
+                <string>{{2,189},{44,59}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{1,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{3,4},{44,59}}</string>
                 <key>sourceSize</key>
-                <string>{42,49}</string>
+                <string>{48,63}</string>
             </dict>
             <key>zombie1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,2},{42,49}}</string>
+                <string>{{2,65},{46,61}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{1,-1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{2,2},{46,61}}</string>
                 <key>sourceSize</key>
-                <string>{42,49}</string>
+                <string>{48,63}</string>
             </dict>
             <key>zombie_white0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,53},{42,49}}</string>
+                <string>{{2,128},{44,59}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{1,-2}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{3,4},{44,59}}</string>
                 <key>sourceSize</key>
-                <string>{42,49}</string>
+                <string>{48,63}</string>
             </dict>
             <key>zombie_white1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{46,53},{42,49}}</string>
+                <string>{{2,2},{46,61}}</string>
                 <key>offset</key>
-                <string>{0,0}</string>
+                <string>{1,-1}</string>
                 <key>rotated</key>
                 <false/>
                 <key>sourceColorRect</key>
-                <string>{{0,0},{42,49}}</string>
+                <string>{{2,2},{46,61}}</string>
                 <key>sourceSize</key>
-                <string>{42,49}</string>
+                <string>{48,63}</string>
             </dict>
         </dict>
         <key>metadata</key>
@@ -62,13 +62,13 @@
             <key>format</key>
             <integer>2</integer>
             <key>realTextureFileName</key>
-            <string>zombieframes-hd.png</string>
+            <string>zombieframes-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{128,128}</string>
+            <string>{50,250}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:ea39ded0a6e2c923f5f321a729ca9542:e51875275d58b8f8945b13f1ca6709f5:2ad5c83d254b1bbed18673292b04d94b$</string>
+            <string>$TexturePacker:SmartUpdate:a0741cfc1fcf4eb7dfd45ac54a37484a:f64546c36e0e08d063ced2bff9c1aca6:5c81cfe899bcfbd9929e71e079678d1f$</string>
             <key>textureFileName</key>
-            <string>zombieframes-hd.png</string>
+            <string>zombieframes-hd.pvr.ccz</string>
         </dict>
     </dict>
 </plist>
