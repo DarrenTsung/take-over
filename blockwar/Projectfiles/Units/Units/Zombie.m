@@ -17,9 +17,7 @@
         name = @"zombie";
         owner = @"player";
         
-        [self setMaxVelocity:45.0f];
-        velocity = 45.0f;
-        acceleration = 45.0f;
+        [self setMaxVelocity:100.0f];
         
         pushBack = -45.0f;
         

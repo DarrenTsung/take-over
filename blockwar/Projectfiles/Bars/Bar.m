@@ -14,8 +14,8 @@
 {
     if ((self = [super init]))
     {
-        // default size is 150 pixels
-        size = CGSizeMake(150.0f, 10.0f);
+        // set the size of the resource bars
+        size = CGSizeMake(160.0f, 12.0f);
         
         max = *linkedValue;
         currentPtr = linkedValue;
@@ -134,6 +134,8 @@
         CGPoint otherPoint = CGPointMake(newOrigin.x + modifier*size.width*(localCurrent/localMax), newOrigin.y - size.height);
         CGPoint otherLightPoint = CGPointMake(newOrigin.x + modifier*size.width*(localLightCurrent/localMax), newOrigin.y - size.height);
         CGPoint maxPoint = CGPointMake(newOrigin.x + modifier*size.width, newOrigin.y - size.height);
+        // fixes the alpha not working..
+        glBlendFunc(GL_SRC_ALPHA,GL_ONE_MINUS_SRC_ALPHA);
         if (localLightCurrent > 0.0f)
         {
             ccDrawSolidRect(newOrigin, otherLightPoint, [self lightenColor:localColor]);
@@ -142,6 +144,7 @@
         {
             ccDrawSolidRect(newOrigin, otherPoint, localColor);
         }
+        glBlendFunc(GL_ONE,GL_ONE_MINUS_SRC_ALPHA);
         // draw black around the bars
         ccDrawColor4F(0.0f, 0.0f, 0.0f, 1.0f);
         ccDrawRect(newOrigin, maxPoint);

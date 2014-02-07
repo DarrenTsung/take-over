@@ -173,6 +173,9 @@
 {
     maxVelocity = theMaxVelocity;
     baseMaxVelocity = maxVelocity;
+    
+    velocity = theMaxVelocity;
+    acceleration = theMaxVelocity;
 }
 
 -(void) kill

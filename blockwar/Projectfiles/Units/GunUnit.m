@@ -21,7 +21,6 @@
         cantShoot_ = false;
         pushBack = -30.0f;
         [self setDamage:0.2];
-        
     }
     [self schedule:@selector(scanForTargets) interval:1.0f];
     return self;

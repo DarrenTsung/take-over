@@ -17,9 +17,7 @@
         name = @"russian_gunman";
         owner = @"opponent";
         
-        [self setMaxVelocity:20.0f];
-        velocity = 20.0f;
-        acceleration = 30.0f;
+        [self setMaxVelocity:60.0f];
         
         pushBack = -30.0f;
         

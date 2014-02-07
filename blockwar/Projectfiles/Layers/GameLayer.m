@@ -32,7 +32,7 @@ NSMutableArray *particleArray;
 CGSize screenBounds;
 EnemyAI *theEnemy;
 
-#define BAR_PADDING 10.0f
+#define BAR_PADDING 5.0f
 
 int currentLevel;
 RegionType currentRegion;
@@ -110,7 +110,7 @@ TouchHandler *myTouchHandler;
         // returns screenBounds flipped automatically (since we're in landscape mode)
         screenBounds = [self returnScreenBounds];
         NSLog(@"The screen width and height are (%f, %f)", screenBounds.width, screenBounds.height);
-        playHeight = 10.2 * screenBounds.height/12.2;
+        playHeight = 10.8 * screenBounds.height/12.2;
         
         [self loadSpriteSheets];
         
@@ -188,12 +188,12 @@ TouchHandler *myTouchHandler;
 -(void) setUpResourceBars
 {
     // Resource Bars
-    enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 1.0f) withLinkTo:&model->enemyHP];
-    playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 1.0f) withLinkTo:&model->playerHP];
-    playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 35.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 1.0f) withLinkTo:&model->playerResources];
-    [self addChild:enemyHP];
-    [self addChild:playerHP];
-    [self addChild:playerResources];
+    enemyHP = [[HealthBar node] initWithOrigin:CGPointMake(screenBounds.width - BAR_PADDING, screenBounds.height - 5.0f) andOrientation:@"Left" andColor:ccc4f(0.9f, 0.3f, 0.4f, 0.7f) withLinkTo:&model->enemyHP];
+    playerHP = [[HealthBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 5.0f) andOrientation:@"Right" andColor:ccc4f(107.0f/255.0f, 214.0f/255.0f, 119.0f/255.0f, 0.7f) withLinkTo:&model->playerHP];
+    playerResources = [[RegeneratableBar node] initWithOrigin:CGPointMake(BAR_PADDING, screenBounds.height - 20.0f) andOrientation:@"Right" andColor:ccc4f(151.0f/255.0f, 176.0f/255.0f, 113.0f/255.0f, 0.7f) withLinkTo:&model->playerResources];
+    [self addChild:enemyHP z:321];
+    [self addChild:playerHP z:321];
+    [self addChild:playerResources z:321];
     [enemyHP loadingToMaxAnimationWithTime:1.5f];
     [playerHP loadingToMaxAnimationWithTime:1.5f];
     [playerResources loadingToMaxAnimationWithTime:1.5f];
@@ -234,11 +234,6 @@ TouchHandler *myTouchHandler;
 {
     ccColor4F area_color = ccc4f(0.3f, 0.3f, 0.3f, 0.5f);
     ccDrawSolidRect(spawnArea.origin, CGPointMake(spawnArea.size.width + spawnArea.origin.x, spawnArea.size.height + spawnArea.origin.y), area_color);
-
-    if (bombAvaliable)
-    {
-        ccDrawSolidRect(CGPointMake(170.0f, screenBounds.height - 20.0f), CGPointMake(180.0f, screenBounds.height - 30.0f), ccc4f(0.7f, 0.7f, 0.7f, 1.0f));
-    }
 }
 
 -(void) update:(ccTime)delta
