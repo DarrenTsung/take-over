@@ -20,6 +20,7 @@
     
     @protected
     bool started_;
+    bool dirtyBit_;
 }
 
 @end

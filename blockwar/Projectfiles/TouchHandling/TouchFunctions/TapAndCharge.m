@@ -44,9 +44,10 @@
 -(void) update:(ccTime)delta
 {
     // don't do anything if there is nothing to look at lol
-    if (currentTouch == nil)
+    if (currentTouch == nil || currentTouch->isInvalid)
     {
         started_ = false;
+        dirtyBit_ = false;
         return;
     }
     KKTouchPhase currentPhase = [currentTouch phase];
@@ -59,7 +60,7 @@
     }
     // if phase ends spawn units at touchIndicatorCenter
     else if(currentPhase == KKTouchPhaseEnded ||
-            ((currentPhase == KKTouchPhaseLifted || currentPhase == KKTouchPhaseCancelled) && !started_))
+            ((currentPhase == KKTouchPhaseLifted || currentPhase == KKTouchPhaseCancelled) && !started_ && !dirtyBit_))
     {
         // BUG-FIX :: Player touches bottom and only registers end of the touch
         if (touchIndicatorRadius == 0)
@@ -67,6 +68,8 @@
             touchIndicatorRadius = TOUCH_RADIUS_MIN;
             // ALSO :: it doesn't return a valid position (sends (0, 0)), so guess the player's finger position
             touchIndicatorCenter = CGPointMake(33.0f + arc4random_uniform(14), 20.0f);
+            // we already did the hack once (don't do it again..)
+            dirtyBit_ = true;
         }
         
         // spawn SuperGerm if radius is greater than max (and fluctuating)
@@ -171,6 +174,7 @@
 -(void) reset
 {
     [super reset];
+    [[KKInput sharedInput] removeTouch:currentTouch];
     touchIndicatorRadius = 0.0f;
     touchIndicatorCenter = CGPointZero;
 }

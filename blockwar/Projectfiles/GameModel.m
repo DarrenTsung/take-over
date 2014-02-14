@@ -125,21 +125,25 @@ CCTimer *bossSpawnTimer;
         [array insertObject:unit atIndex:mid];
     } */
     
-    [array addObject:entity];
-    entity->gameModel = self;
-    
-    if ([entity isKindOfClass:[Unit class]] && ![entity parent]) {
-        Unit *unit = (Unit *)entity;
-        // the closer to the front (y = 0) the unit is, the higher z value it should have.
-        // therefore we subtract the max y value (320) with the unit's bottom edge y value (origin.y - half the unit height (since origin is the middle))
-        NSInteger calculatedZ = 320 - (unit->origin.y - (unit->boundingRect.size.height / 2));
-        [viewController addChild:unit->whiteSprite z:calculatedZ];
-        [viewController addChild:entity z:calculatedZ];
-    }
-    // otherwise it's a target and doesn't need to be on top of things
-    else if (![entity parent])
+    // make sure entity is non-nil
+    if (entity)
     {
-        [viewController addChild:entity z:0];
+        [array addObject:entity];
+        entity->gameModel = self;
+        
+        if ([entity isKindOfClass:[Unit class]] && ![entity parent]) {
+            Unit *unit = (Unit *)entity;
+            // the closer to the front (y = 0) the unit is, the higher z value it should have.
+            // therefore we subtract the max y value (320) with the unit's bottom edge y value (origin.y - half the unit height (since origin is the middle))
+            NSInteger calculatedZ = 320 - (unit->origin.y - (unit->boundingRect.size.height / 2));
+            [viewController addChild:unit->whiteSprite z:calculatedZ];
+            [viewController addChild:entity z:calculatedZ];
+        }
+        // otherwise it's a target and doesn't need to be on top of things
+        else if (![entity parent])
+        {
+            [viewController addChild:entity z:0];
+        }
     }
 }
 

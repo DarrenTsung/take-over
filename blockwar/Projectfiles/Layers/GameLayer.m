@@ -154,9 +154,9 @@ TouchHandler *myTouchHandler;
         }
         
         myTouchHandler = [[TouchHandler alloc] initWithReferenceToViewController:self andReferenceToGameModel:model];
-        paused = true;
+        [self pause];
     }
-    [self scheduleOnce:@selector(playStartOverlay) delay:0.5];
+    [self scheduleOnce:@selector(playStartOverlay) delay:0.5f];
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
     return self;
@@ -325,11 +325,11 @@ TouchHandler *myTouchHandler;
     
     if ([theWinState isEqualToString:@"player"] || [theWinState isEqualToString:@"win"])
     {
-        [self playOverlay:@"win" withDelay:3.0f cleanup:NO];
+        [self playOverlay:@"win" withAdditionalDelayToCleanup:0.0f cleanup:NO];
     }
     else if ([theWinState isEqualToString:@"enemy"] || [theWinState isEqualToString:@"lose"])
     {
-        [self playOverlay:@"lose" withDelay:3.0f cleanup:NO];
+        [self playOverlay:@"lose" withAdditionalDelayToCleanup:0.0f cleanup:NO];
     }
     
     winState = theWinState;
@@ -340,7 +340,7 @@ TouchHandler *myTouchHandler;
     [self scheduleOnce:@selector(reset) delay:3.0f];
 }
 
--(void) playOverlay:(NSString *)overlayType withDelay:(ccTime)delay cleanup:(BOOL)cleanup
+-(void) playOverlay:(NSString *)overlayType withAdditionalDelayToCleanup:(ccTime)delay cleanup:(BOOL)cleanup
 {
     NSMutableArray *overlayFrames = [NSMutableArray array];
     NSString *prefix;
@@ -366,12 +366,16 @@ TouchHandler *myTouchHandler;
         [overlayFrames addObject:
          [[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName: [NSString stringWithFormat:@"%@%d.png", prefix, i]]];
     }
+    // play animation at 20 fps
     CCAnimation *overlayAnimation = [CCAnimation animationWithSpriteFrames:overlayFrames delay:1/20.0f];
     CCSprite *overlaySprite = [[CCSprite alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"win_overlay_1.png"]];
     
+    // framecount / fps = time in seconds to finish the animation
+    ccTime animationRunTime = frameCount / 20.0f;
+    
     CCFiniteTimeAction *playOverlay = [CCAnimate actionWithAnimation:overlayAnimation];
     CCCallFuncND *cleanUpAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpSprite:) data:(__bridge void *)(overlaySprite)];
-    CCSequence *playAndRemove = [CCSequence actions:playOverlay, [CCDelayTime actionWithDuration:delay], cleanUpAction, nil];
+    CCSequence *playAndRemove = [CCSequence actions:playOverlay, [CCDelayTime actionWithDuration:animationRunTime + delay], cleanUpAction, nil];
     
     [overlaySprite setPosition:ccp(284, 160)];
     [self addChild:overlaySprite z:587];
@@ -386,15 +390,17 @@ TouchHandler *myTouchHandler;
     }
 }
 
+// needed so we can call a slightly delayed start overlay at the beginning
+-(void) playStartOverlay
+{
+    [self playOverlay:@"start" withAdditionalDelayToCleanup:0.2f cleanup:YES];
+}
+
 -(void) cleanUpSprite:(CCSprite *)sprite
 {
     [self removeChild:sprite cleanup:YES];
-}
-
--(void) playStartOverlay
-{
-    [self playOverlay:@"start" withDelay:0.7f cleanup:YES];
-    [self scheduleOnce:@selector(unpause) delay:0.7f];
+    [self unpause];
+    [myTouchHandler cleanTouches];
 }
 
 -(void) pause

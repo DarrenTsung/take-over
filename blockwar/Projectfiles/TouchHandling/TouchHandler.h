@@ -35,6 +35,7 @@ typedef enum
 -(id) initWithReferenceToViewController:(GameLayer *)theReference andReferenceToGameModel:(GameModel *)theGameModel;
 -(void) reset;
 -(void) update:(ccTime)delta;
+-(void) cleanTouches;
 
 
 @end

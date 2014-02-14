@@ -10,7 +10,7 @@
 #import "EnemyAI.h"
 #import "GameModel.h"
 
-#define PADDING 10.0f
+#define PADDING 25.0f
 
 #define PROBABILITY_LENGTH 20
 
@@ -53,7 +53,7 @@
     
     while(x < waveSize)
     {
-        int offset = (counter%2 == 1) ? 5.0f : 0.0f;
+        int offset = (counter%2 == 1) ? PADDING/2 : 0.0f;
         for(int i=0; i<rowSize; i++)
         {
             CGPoint lesserPoint = CGPointMake(spawnPoint.x+(PADDING*counter), spawnPoint.y + PADDING*i + offset);

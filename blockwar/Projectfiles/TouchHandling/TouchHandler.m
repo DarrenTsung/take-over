@@ -134,6 +134,17 @@
     }
 }
 
+-(void) cleanTouches
+{
+    KKInput *input = [KKInput sharedInput];
+    CCArray *touches = [input touches];
+    
+    for (KKTouch *touch in touches)
+    {
+        [[KKInput sharedInput] removeTouch:touch];
+    }
+}
+
 
 -(void) reset
 {
