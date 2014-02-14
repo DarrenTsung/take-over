@@ -67,13 +67,19 @@
     if (!shooting_ && !cantShoot_) {
         // the shot range starts at half height below the bottom of the unit
         // and goes to half height above the top of the unit
-        targets_ = [gameModel returnLeadingPlayer:1 UnitsInRange:shotRange];
+        // also don't shoot behind the unit
+        [self getTargets];
         
         if ([targets_ count] > 0)
         {
             [self prepareToShoot];
         }
     }
+}
+
+-(void) getTargets
+{
+    targets_ = [gameModel returnLeadingPlayer:1 UnitsInRange:shotRange andLeftOf:(origin.x - 30.0f)];
 }
 
 -(void) finishInit
@@ -94,7 +100,7 @@
 
 -(void) shoot
 {
-    targets_ = [gameModel returnLeadingPlayer:1 UnitsInRange:shotRange];
+    [self getTargets];
     Unit *unitToShootAt;
     if ([targets_ count] > 0)
     {

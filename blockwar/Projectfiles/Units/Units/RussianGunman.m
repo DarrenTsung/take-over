@@ -19,10 +19,10 @@
         
         [self setMaxVelocity:60.0f];
         
-        pushBack = -30.0f;
+        pushBack = -40.0f;
         
         // GUNMAN PROPERTIES
-        rangeDamage = 1.5f;
+        rangeDamage = 2.0f;
         percentHit_ = 0.8f;
         magazineSize_ = 6;
         shotsPerSecond_ = 3;

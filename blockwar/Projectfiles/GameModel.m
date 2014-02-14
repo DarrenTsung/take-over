@@ -375,7 +375,7 @@ CCTimer *bossSpawnTimer;
 }
 */
 
--(NSMutableArray *) returnLeadingPlayer:(NSUInteger)numUnits UnitsInRange:(NSRange)range
+-(NSMutableArray *) returnLeadingPlayer:(NSUInteger)numUnits UnitsInRange:(NSRange)range andLeftOf:(CGFloat)xPosition
 {
     assert(numUnits > 0);
     NSMutableArray *retArray = [[NSMutableArray alloc] initWithCapacity:numUnits];
@@ -392,6 +392,12 @@ CCTimer *bossSpawnTimer;
         {
             continue;
         }
+        // if past this x position dont return (past the shooter)
+        if (currPlayerUnit->origin.x > xPosition)
+        {
+            continue;
+        }
+
         // for all units in that range
         if (NSLocationInRange(currPlayerUnit->origin.y, range))
         {

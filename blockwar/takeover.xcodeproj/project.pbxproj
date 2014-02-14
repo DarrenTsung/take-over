@@ -379,15 +379,15 @@
 			name = "Upgrade Resources";
 			sourceTree = "<group>";
 		};
-		6C902082186E368F001D1183 /* Worlds */ = {
+		6C902082186E368F001D1183 /* Regions */ = {
 			isa = PBXGroup;
 			children = (
-				6C902083186E369F001D1183 /* World1 */,
+				6C902083186E369F001D1183 /* Russia */,
 			);
-			name = Worlds;
+			name = Regions;
 			sourceTree = "<group>";
 		};
-		6C902083186E369F001D1183 /* World1 */ = {
+		6C902083186E369F001D1183 /* Russia */ = {
 			isa = PBXGroup;
 			children = (
 				6CCD4F431892247C00201E4A /* bigLocked.png */,
@@ -402,7 +402,7 @@
 				6C902085186E3732001D1183 /* Russia_levelselect.plist */,
 				6C902098186EAC52001D1183 /* Levels */,
 			);
-			name = World1;
+			name = Russia;
 			sourceTree = "<group>";
 		};
 		6C902098186EAC52001D1183 /* Levels */ = {
@@ -634,7 +634,7 @@
 		DCC1A38C13A94F1A005BD75D /* Projectfiles */ = {
 			isa = PBXGroup;
 			children = (
-				6C902082186E368F001D1183 /* Worlds */,
+				6C902082186E368F001D1183 /* Regions */,
 				6C021A1918681828000C11FC /* Layers */,
 				6C021A37186B94D6000C11FC /* GameLayer.h */,
 				6C021A38186B94D6000C11FC /* GameLayer.m */,

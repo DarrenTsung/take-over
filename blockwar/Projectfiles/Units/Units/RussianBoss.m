@@ -19,12 +19,12 @@
         owner = @"opponent";
         
         // holy shit hahaha
-        health = 250.0f;
+        health = 300.0f;
         // super fucking slow
-        [self setMaxVelocity:15.0f];
+        [self setMaxVelocity:10.0f];
         acceleration = 50.0f;
         
-        [self setDamage:0.8f];
+        [self setDamage:1.0f];
         
         [self setFPS:2.0f];
         

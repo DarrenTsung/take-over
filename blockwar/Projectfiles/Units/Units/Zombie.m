@@ -19,10 +19,10 @@
         
         [self setMaxVelocity:100.0f];
         
-        pushBack = -45.0f;
+        pushBack = -80.0f;
         
-        health = 5.0f;
-        [self setDamage:1.0f];
+        health = 10.0f;
+        [self setDamage:2.0f];
         
         [self setFPS:10.0f];
         
