@@ -24,7 +24,6 @@
 }
 
 -(void) setUpShootingAnimationAction;
--(void) prepareToShoot:(NSInteger)numShots;
 -(void) shoot;
 
 @end

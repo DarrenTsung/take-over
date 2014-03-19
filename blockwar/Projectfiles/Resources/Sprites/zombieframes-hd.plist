@@ -4,14 +4,66 @@
     <dict>
         <key>frames</key>
         <dict>
+            <key>tombstone0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,176},{60,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,56}}</string>
+                <key>sourceSize</key>
+                <string>{60,56}</string>
+            </dict>
+            <key>tombstone1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,118},{60,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,56}}</string>
+                <key>sourceSize</key>
+                <string>{60,56}</string>
+            </dict>
+            <key>tombstone_white0.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,60},{60,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,56}}</string>
+                <key>sourceSize</key>
+                <string>{60,56}</string>
+            </dict>
+            <key>tombstone_white1.png</key>
+            <dict>
+                <key>frame</key>
+                <string>{{2,2},{60,56}}</string>
+                <key>offset</key>
+                <string>{0,0}</string>
+                <key>rotated</key>
+                <false/>
+                <key>sourceColorRect</key>
+                <string>{{0,0},{60,56}}</string>
+                <key>sourceSize</key>
+                <string>{60,56}</string>
+            </dict>
             <key>zombie0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,189},{44,59}}</string>
+                <string>{{2,280},{44,59}}</string>
                 <key>offset</key>
                 <string>{1,-2}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{3,4},{44,59}}</string>
                 <key>sourceSize</key>
@@ -20,7 +72,7 @@
             <key>zombie1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,65},{46,61}}</string>
+                <string>{{2,389},{46,61}}</string>
                 <key>offset</key>
                 <string>{1,-1}</string>
                 <key>rotated</key>
@@ -33,11 +85,11 @@
             <key>zombie_white0.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,128},{44,59}}</string>
+                <string>{{2,234},{44,59}}</string>
                 <key>offset</key>
                 <string>{1,-2}</string>
                 <key>rotated</key>
-                <false/>
+                <true/>
                 <key>sourceColorRect</key>
                 <string>{{3,4},{44,59}}</string>
                 <key>sourceSize</key>
@@ -46,7 +98,7 @@
             <key>zombie_white1.png</key>
             <dict>
                 <key>frame</key>
-                <string>{{2,2},{46,61}}</string>
+                <string>{{2,326},{46,61}}</string>
                 <key>offset</key>
                 <string>{1,-1}</string>
                 <key>rotated</key>
@@ -64,9 +116,9 @@
             <key>realTextureFileName</key>
             <string>zombieframes-hd.pvr.ccz</string>
             <key>size</key>
-            <string>{50,250}</string>
+            <string>{64,452}</string>
             <key>smartupdate</key>
-            <string>$TexturePacker:SmartUpdate:a0741cfc1fcf4eb7dfd45ac54a37484a:f64546c36e0e08d063ced2bff9c1aca6:5c81cfe899bcfbd9929e71e079678d1f$</string>
+            <string>$TexturePacker:SmartUpdate:c654929769541e99e68e4e0dff5d63b7:e4556ee1bc694a36515145b51e5a8576:5c81cfe899bcfbd9929e71e079678d1f$</string>
             <key>textureFileName</key>
             <string>zombieframes-hd.pvr.ccz</string>
         </dict>

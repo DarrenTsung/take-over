@@ -234,6 +234,9 @@ TouchHandler *myTouchHandler;
 {
     ccColor4F area_color = ccc4f(0.3f, 0.3f, 0.3f, 0.5f);
     ccDrawSolidRect(spawnArea.origin, CGPointMake(spawnArea.size.width + spawnArea.origin.x, spawnArea.size.height + spawnArea.origin.y), area_color);
+    
+    //area_color = ccc4f(0.4, 0.0f, 0.0f, 0.5f);
+    //ccDrawSolidRect(battleArea.origin, CGPointMake(battleArea.size.width + battleArea.origin.x, battleArea.size.height + battleArea.origin.y), area_color);
 }
 
 -(void) update:(ccTime)delta

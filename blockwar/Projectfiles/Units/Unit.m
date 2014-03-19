@@ -48,7 +48,7 @@
     whiteSprite.position = origin;
     // make the bounding rect here so we don't have to construct each time we're checking collisions
     // make it 1.5x the size of the blocks so that they hit each other more often
-    boundingRect = CGRectMake(origin.x - [self width]/2, origin.y - [self height]*BOUNDING_RECT_MODIFIER/2, [self width], [self height]*BOUNDING_RECT_MODIFIER);
+    boundingRect = CGRectMake(origin.x - [self width]/2, origin.y - [self height]*BOUNDING_RECT_MODIFIER/2 - ([self height]/3), [self width], 2*[self height]/3);
 }
 
 -(void)setInvincibleForTime:(ccTime)time

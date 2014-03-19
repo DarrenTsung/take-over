@@ -64,6 +64,8 @@
 		6CAB07791852D5F4008749D5 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB07761852D5F4008749D5 /* play.png */; };
 		6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB07771852D5F4008749D5 /* winscreen.png */; };
 		6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */; };
+		6CC8C0E518B2E0D30046BE18 /* Tombstone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0E418B2E0D30046BE18 /* Tombstone.m */; };
+		6CC8C0E818B2E2F90046BE18 /* TombstoneWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0E718B2E2F90046BE18 /* TombstoneWall.m */; };
 		6CCD4F351891FE7F00201E4A /* levelSelectFrames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F331891FE7F00201E4A /* levelSelectFrames-hd.plist */; };
 		6CCD4F361891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F341891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz */; };
 		6CCD4F3D1892017100201E4A /* level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F371892017100201E4A /* level1.png */; };
@@ -208,6 +210,10 @@
 		6CAB07761852D5F4008749D5 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		6CAB07771852D5F4008749D5 /* winscreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = winscreen.png; sourceTree = "<group>"; };
 		6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "zombieframes-hd.plist"; path = "Sprites/zombieframes-hd.plist"; sourceTree = "<group>"; };
+		6CC8C0E318B2E0D30046BE18 /* Tombstone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tombstone.h; path = Units/Tombstone.h; sourceTree = "<group>"; };
+		6CC8C0E418B2E0D30046BE18 /* Tombstone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tombstone.m; path = Units/Tombstone.m; sourceTree = "<group>"; };
+		6CC8C0E618B2E2F90046BE18 /* TombstoneWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TombstoneWall.h; path = TouchHandling/TouchFunctions/TombstoneWall.h; sourceTree = "<group>"; };
+		6CC8C0E718B2E2F90046BE18 /* TombstoneWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TombstoneWall.m; path = TouchHandling/TouchFunctions/TombstoneWall.m; sourceTree = "<group>"; };
 		6CCD4F331891FE7F00201E4A /* levelSelectFrames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "levelSelectFrames-hd.plist"; path = "Worlds/World1/levelSelectFrames-hd.plist"; sourceTree = "<group>"; };
 		6CCD4F341891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "levelSelectFrames-hd.pvr.ccz"; path = "Worlds/World1/levelSelectFrames-hd.pvr.ccz"; sourceTree = "<group>"; };
 		6CCD4F371892017100201E4A /* level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level1.png; path = Worlds/World1/level1.png; sourceTree = "<group>"; };
@@ -464,6 +470,8 @@
 				6C9BB896187666B800E14BAA /* SummonGiantFoot.m */,
 				6C9BB898187752C000E14BAA /* HoldDown.h */,
 				6C9BB899187752C000E14BAA /* HoldDown.m */,
+				6CC8C0E618B2E2F90046BE18 /* TombstoneWall.h */,
+				6CC8C0E718B2E2F90046BE18 /* TombstoneWall.m */,
 			);
 			name = "Touch Functions";
 			sourceTree = "<group>";
@@ -489,6 +497,8 @@
 		6C9BB8B3187C838900E14BAA /* Units */ = {
 			isa = PBXGroup;
 			children = (
+				6CC8C0E318B2E0D30046BE18 /* Tombstone.h */,
+				6CC8C0E418B2E0D30046BE18 /* Tombstone.m */,
 				6C021A31186B94CA000C11FC /* Unit.h */,
 				6C021A32186B94CA000C11FC /* Unit.m */,
 				6C1F2C9618918D0500F6BC3C /* GunUnit.h */,
@@ -736,7 +746,7 @@
 		DCC1A0D813A94EC0005BD75D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0510;
 				TargetAttributes = {
 					DCC1A0E213A94ED5005BD75D = {
 						DevelopmentTeam = SN2MPNRVQW;
@@ -859,6 +869,8 @@
 				6C1F2C9818918D0500F6BC3C /* GunUnit.m in Sources */,
 				6C9BB8B0187C69B800E14BAA /* RectTarget.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
+				6CC8C0E818B2E2F90046BE18 /* TombstoneWall.m in Sources */,
+				6CC8C0E518B2E0D30046BE18 /* Tombstone.m in Sources */,
 				6C9BB8B6187DCF0E00E14BAA /* Zombie.m in Sources */,
 				6C9BB8901876371800E14BAA /* TouchHandler.m in Sources */,
 				6C9BB8C1187DDC7200E14BAA /* RussianBoss.m in Sources */,
@@ -913,6 +925,7 @@
 		DCC1A0DD13A94EC0005BD75D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};
@@ -948,6 +961,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9C33E713B5024400931BF2 /* BuildSettings-Debug-Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "takeover-Mac";
 			};
 			name = Debug;
@@ -956,6 +970,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DC9C33E913B5024400931BF2 /* BuildSettings-Release-Mac.xcconfig */;
 			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
 				PRODUCT_NAME = "takeover-Mac";
 			};
 			name = Release;

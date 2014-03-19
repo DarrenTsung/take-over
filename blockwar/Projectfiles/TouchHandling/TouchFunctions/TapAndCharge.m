@@ -48,6 +48,7 @@
     {
         started_ = false;
         dirtyBit_ = false;
+        [super reset];
         return;
     }
     KKTouchPhase currentPhase = [currentTouch phase];
@@ -75,8 +76,8 @@
         // spawn SuperGerm if radius is greater than max (and fluctuating)
         if (touchIndicatorRadius >= TOUCH_RADIUS_MAX)
         {
-            SuperUnit *unit = [[SuperUnit alloc] initWithPosition:touchIndicatorCenter];
-            [gameModel insertEntity:unit intoSortedArrayWithName:@"player"];
+            //SuperUnit *unit = [[SuperUnit alloc] initWithPosition:touchIndicatorCenter];
+            //[gameModel insertEntity:unit intoSortedArrayWithName:@"player"];
         }
         else if (touchIndicatorRadius >= TOUCH_RADIUS_MIN)
         {
@@ -157,7 +158,7 @@
             {
                 touchIndicatorRadius += 0.33f;
             }
-            // otherwise change the radius between MAX and MAX + 3 randomly
+            // otherwise change the radius between MAX and MAX + 2 randomly
             else
             {
                 touchIndicatorRadius = TOUCH_RADIUS_MAX + arc4random()%3;
@@ -167,6 +168,8 @@
         else
         {
             touchIndicatorRadius = 0.0f;
+            // and remove the touch
+            [[KKInput sharedInput] removeTouch:currentTouch];
         }
     }
 }

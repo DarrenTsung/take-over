@@ -64,6 +64,8 @@
                 [NSException raise:NSInternalInconsistencyException format:@"Where's my primary equip bitch? All I got was %d.", primaryEquip];
                 break;
         }
+        
+        commanderPower = [[TombstoneWall alloc] initWithReferenceToArea:viewController->battleArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
     }
     [self scheduleUpdate];
     [viewController addChild:self];
@@ -130,6 +132,7 @@
             {
                 [secondarySummon handleTouch:touch];
             }
+            [commanderPower handleTouch:touch];
         }
     }
 }

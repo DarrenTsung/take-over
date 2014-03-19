@@ -4629,7 +4629,7 @@
 		DC8B5B0A13A90ADA00F86331 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0510;
 			};
 			buildConfigurationList = DC8B5B0D13A90ADA00F86331 /* Build configuration list for PBXProject "Kobold2D-Libraries" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -5428,6 +5428,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DCAEDF2213A9FB5300FEC740 /* Common-Debug.xcconfig */;
 			buildSettings = {
+				ONLY_ACTIVE_ARCH = YES;
 			};
 			name = Debug;
 		};

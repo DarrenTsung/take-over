@@ -15,6 +15,5 @@
 }
 
 -(id) initWithPosition:(CGPoint)pos;
--(void) influenceUnits:(NSMutableArray *)unitArray;
 
 @end

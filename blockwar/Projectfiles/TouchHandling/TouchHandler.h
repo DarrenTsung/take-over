@@ -11,7 +11,9 @@
 #import "TouchFunction.h"
 #import "TapAndCharge.h"
 #import "SummonGiantFoot.h"
+#import "TombstoneWall.h"
 #import "HoldDown.h"
+
 
 typedef enum
 {
