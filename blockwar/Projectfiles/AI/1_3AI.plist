@@ -38,7 +38,7 @@
 		<key>UnitType</key>
 		<integer>0</integer>
 		<key>waveTimer</key>
-		<real>0.5</real>
+		<real>0.7</real>
 		<key>waveDelay</key>
 		<integer>2</integer>
 		<key>probabilityWaveDelay</key>
@@ -46,9 +46,9 @@
 		<key>maxConsecutiveWaves</key>
 		<integer>8</integer>
 		<key>rowSize</key>
-		<integer>4</integer>
+		<integer>2</integer>
 		<key>waveSize</key>
-		<integer>8</integer>
+		<integer>4</integer>
 	</dict>
 </array>
 </plist>

@@ -65,7 +65,7 @@ CCSprite *background;
             [[NSUserDefaults standardUserDefaults] setFloat:5.0f forKey:@"playerRegenRate"];
         }
         
-        background = [CCSprite spriteWithFile: @"menubackground.png"];
+        background = [CCSprite spriteWithFile: @"menubackground1.png"];
         background.position = ccp( 280, 160 );
         
         [self addChild: background z:-1];

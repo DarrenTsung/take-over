@@ -22,7 +22,7 @@
         currentFrame = arc4random_uniform(2);
         
         // 1 <= scalefactor <= 1.4
-        CGFloat scaleFactor = arc4random_uniform(5) / 10.0f + 1.0f;
+        CGFloat scaleFactor = arc4random_uniform(3) / 10.0f + 1.0f;
         [self setScale:scaleFactor];
         
         name = @"tombstone";

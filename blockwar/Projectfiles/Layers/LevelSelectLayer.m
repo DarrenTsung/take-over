@@ -122,8 +122,9 @@ UpgradeLayer *upgradeMenu;
     {
         if (input.anyTouchBeganThisFrame)
         {
+            NSLog(@"current touch: %f, %f", currentPoint.x, currentPoint.y);
             // touch bottom right corner to reset the unlocked progress and reload the level select layer
-            if (currentPoint.x > 280 && currentPoint.y < 40)
+            if (currentPoint.x > 500 && currentPoint.y < 40)
             {
                 for (int i=0; i<4; i++)
                 {
@@ -133,10 +134,10 @@ UpgradeLayer *upgradeMenu;
                  [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
             }
             // touch top right corner to open up upgrade menu
-            else if (currentPoint.x < 40 && currentPoint.y < 40)
+            else if (currentPoint.x < 60 && currentPoint.y < 60)
             {
                 [[CCDirector sharedDirector] pushScene:
-                 [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[UpgradeLayer alloc] init]]];
+                 [CCTransitionMoveInT transitionWithDuration:0.5f scene:(CCScene*)[[UpgradeLayer alloc] init]]];
             }
             else
             {

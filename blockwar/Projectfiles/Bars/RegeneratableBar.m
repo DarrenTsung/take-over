@@ -35,7 +35,7 @@
             lightCurrent = current;
         }
         
-        else if (current != *currentPtr)
+        if (current != *currentPtr)
         {
             if (!boutToUnlock)
             {

@@ -81,6 +81,7 @@
 		6CCD4F4E18922B3100201E4A /* 1_4AI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F4C18922B3100201E4A /* 1_4AI.plist */; };
 		6CCD4F4F18922B3100201E4A /* 1_5AI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F4D18922B3100201E4A /* 1_5AI.plist */; };
 		6CD361671826CF2E00A56D5C /* GameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CD361661826CF2E00A56D5C /* GameModel.m */; };
+		6CEE81321904A03300F8CA53 /* menubackground1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE81311904A03300F8CA53 /* menubackground1.png */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -231,6 +232,7 @@
 		6CCD4F4D18922B3100201E4A /* 1_5AI.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = 1_5AI.plist; path = AI/1_5AI.plist; sourceTree = "<group>"; };
 		6CD361651826CF2E00A56D5C /* GameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameModel.h; sourceTree = "<group>"; };
 		6CD361661826CF2E00A56D5C /* GameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameModel.m; sourceTree = "<group>"; };
+		6CEE81311904A03300F8CA53 /* menubackground1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menubackground1.png; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 				6CAB07771852D5F4008749D5 /* winscreen.png */,
 				6CAB076A18529AE7008749D5 /* background.png */,
 				6CAB076B18529AE7008749D5 /* menubackground.png */,
+				6CEE81311904A03300F8CA53 /* menubackground1.png */,
 				6CAB076118529AD0008749D5 /* Sprites */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
 			);
@@ -803,6 +806,7 @@
 				6CCD4F441892247C00201E4A /* bigLocked.png in Resources */,
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				6C902087186E3732001D1183 /* Russia_levelselect.plist in Resources */,
+				6CEE81321904A03300F8CA53 /* menubackground1.png in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				6CCD4F411892017100201E4A /* level5.png in Resources */,

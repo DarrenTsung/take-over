@@ -13,7 +13,7 @@
 #import "GameLayer.h"
 #import "BossUnit.h"
 
-#define UNIT_COST 1
+#define UNIT_COST 5
 // super units cost 6 times what regular units cost
 #define SUPER_UNIT_MULTIPLIER 6
 #define SHAKE_TIME 0.7f
