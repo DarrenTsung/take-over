@@ -25,7 +25,7 @@
     
     TouchHandler *myTouchHandler;
     
-    bool paused;
+    bool paused, loading;
     
     @private
     CCSprite *paused_text;

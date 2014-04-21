@@ -154,7 +154,8 @@ TouchHandler *myTouchHandler;
         }
         
         myTouchHandler = [[TouchHandler alloc] initWithReferenceToViewController:self andReferenceToGameModel:model];
-        [self pause];
+        [self pauseModel];
+        loading = true;
         
         paused_text = [[CCSprite alloc] initWithFile:@"paused_text.png"];
         [paused_text setPosition:CGPointMake([self returnScreenBounds].width/2.0f, [self returnScreenBounds].height/2.0f)];
@@ -189,7 +190,7 @@ TouchHandler *myTouchHandler;
 -(void) addTapIndicatorToSelf
 {
     [self addChild:tapIndicatorSprite z:321];
-    paused = true;
+    [self pauseModel];
 }
 
 -(void) setUpResourceBars
@@ -248,7 +249,7 @@ TouchHandler *myTouchHandler;
 
 -(void) update:(ccTime)delta
 {
-    if (!paused)
+    if (!paused || loading)
     {
         [playerHP updateAnimation:delta];
         [enemyHP updateAnimation:delta];
@@ -382,7 +383,8 @@ TouchHandler *myTouchHandler;
     }
     
     winState = theWinState;
-    [self pause];
+    [self pauseModel];
+    loading = true;
     [playerHP stopShake];
     [enemyHP stopShake];
     
@@ -448,8 +450,24 @@ TouchHandler *myTouchHandler;
 -(void) cleanUpSprite:(CCSprite *)sprite
 {
     [self removeChild:sprite cleanup:YES];
-    [self unpause];
+    [self unpauseModel];
+    if (loading)
+    {
+        loading = false;
+    }
     [myTouchHandler cleanTouches];
+}
+
+-(void) pauseModel
+{
+    paused = true;
+    [model pauseSchedulerAndActions];
+}
+
+-(void) unpauseModel
+{
+    paused = false;
+    [model resumeSchedulerAndActions];
 }
 
 -(void) pause

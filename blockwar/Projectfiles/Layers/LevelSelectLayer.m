@@ -10,6 +10,7 @@
 #import "UpgradeLayer.h"
 #import "GameLayer.h"
 
+
 @implementation LevelSelectLayer
 
 bool upgradeOnScreen;
@@ -44,6 +45,12 @@ UpgradeLayer *upgradeMenu;
         levelPointers = [[NSMutableDictionary alloc] init];
         myShaker = [[NodeShaker alloc] initWithReferenceToNode:nil];
         [self addChild:myShaker];
+        
+        // add label
+        CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Day %d", [[NSUserDefaults standardUserDefaults] integerForKey:@"dayNumber"]] fontName:@"Krungthep" fontSize:30.0f];
+        [label setColor:ccc3(95, 13, 24)];
+        [label setPosition:CGPointMake(280.0f, 270.0f)];
+        [self addChild:label z:321];
     }
     [self scheduleUpdate];
     return self;
@@ -98,6 +105,8 @@ UpgradeLayer *upgradeMenu;
                                       disabledImage:[level objectForKey:@"lockedIcon"]
                                               block:^(id sender){
                                                         NSLog(@"Level %d loaded!", levelNum);
+                                                        // increment day count
+                                                        [[NSUserDefaults standardUserDefaults] setInteger:([[NSUserDefaults standardUserDefaults] integerForKey:@"dayNumber"]+1) forKey:@"dayNumber"];
                                                         [self loadRegion:region withLevel:levelNum];
                                                     }];
         if (levelNum > levelUnlocked)
