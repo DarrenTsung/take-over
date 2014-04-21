@@ -19,7 +19,7 @@
     CGFloat shakeTimer;
     
     CGFloat lightCurrent, lighterBarFallRate;
-    bool lighterBarUnlocked, boutToUnlock;
+    bool lighterBarUnlocked, boutToUnlock, paused;
     
     int layerCount;
     

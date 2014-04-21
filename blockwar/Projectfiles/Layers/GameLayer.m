@@ -155,6 +155,13 @@ TouchHandler *myTouchHandler;
         
         myTouchHandler = [[TouchHandler alloc] initWithReferenceToViewController:self andReferenceToGameModel:model];
         [self pause];
+        
+        paused_text = [[CCSprite alloc] initWithFile:@"paused_text.png"];
+        [paused_text setPosition:CGPointMake([self returnScreenBounds].width/2.0f, [self returnScreenBounds].height/2.0f)];
+        
+        CCSprite *paused_icon = [[CCSprite alloc] initWithFile:@"pause.png"];
+        [paused_icon setPosition:CGPointMake(544, 286)];
+        [self addChild:paused_icon];
     }
     [self scheduleOnce:@selector(playStartOverlay) delay:0.5f];
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
@@ -241,9 +248,48 @@ TouchHandler *myTouchHandler;
 
 -(void) update:(ccTime)delta
 {
-    [playerHP updateAnimation:delta];
-    [enemyHP updateAnimation:delta];
-    [playerResources updateAnimation:delta];
+    if (!paused)
+    {
+        [playerHP updateAnimation:delta];
+        [enemyHP updateAnimation:delta];
+        [playerResources updateAnimation:delta];
+    }
+    
+    KKInput *input = [KKInput sharedInput];
+    CCArray *touches = [input touches];
+    
+    for (KKTouch *touch in touches)
+    {
+        if (!winState)
+        {
+            if (paused)
+            {
+                if ([touch phase] == KKTouchPhaseEnded || [touch phase] == KKTouchPhaseLifted || [touch phase] == KKTouchPhaseCancelled)
+                {
+                    [self unpause];
+                    [self removeChild:paused_text];
+                }
+            }
+            else
+            {
+                CGPoint pos = [touch location];
+                NSLog(@"pos: %f, %f", pos.x, pos.y);
+                float size_y = 40.0f;
+                float size_x = 40.0f;
+                if (pos.x > 544 - size_x/2 && pos.x < 544 + size_x/2 && pos.y > 286 - size_y/2 && pos.y < 286 + size_y/2)
+                {
+                    [self pause];
+                    for (KKTouch *touch in touches)
+                    {
+                        [[KKInput sharedInput] removeTouch:touch];
+                    }
+                    
+                    [self addChild:paused_text z:231];
+                    break;
+                }
+            }
+        }
+    }
 }
 
 -(void) nextFrame
@@ -410,12 +456,20 @@ TouchHandler *myTouchHandler;
 {
     paused = true;
     [model pauseSchedulerAndActions];
+    [playerHP pauseSchedulerAndActions];
+    [enemyHP pauseSchedulerAndActions];
+    [playerResources pauseSchedulerAndActions];
+    [shaker pauseSchedulerAndActions];
 }
 
 -(void) unpause
 {
     paused = false;
     [model resumeSchedulerAndActions];
+    [playerHP resumeSchedulerAndActions];
+    [enemyHP resumeSchedulerAndActions];
+    [playerResources resumeSchedulerAndActions];
+    [shaker resumeSchedulerAndActions];
 }
 
 @end

@@ -476,4 +476,17 @@ CCTimer *bossSpawnTimer;
     }
 }
 
+-(void) resumeSchedulerAndActions
+{
+    [super resumeSchedulerAndActions];
+    for (Unit *playerUnit in playerUnits)
+    {
+        [playerUnit resumeSchedulerAndActions];
+    }
+    for (Unit *enemyUnit in enemyUnits)
+    {
+        [enemyUnit resumeSchedulerAndActions];
+    }
+}
+
 @end

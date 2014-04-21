@@ -26,6 +26,9 @@
     TouchHandler *myTouchHandler;
     
     bool paused;
+    
+    @private
+    CCSprite *paused_text;
 }
 // returns the screen bounds, flipped since we're working in landscape mode
 -(CGSize) returnScreenBounds;

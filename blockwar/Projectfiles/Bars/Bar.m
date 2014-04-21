@@ -107,7 +107,7 @@
 -(void) draw
 {
     CGPoint offset = CGPointMake(0.0f, 0.0f);
-    if (shakeTimer > 0.0f && *currentPtr > 0.0f)
+    if (shakeTimer > 0.0f && *currentPtr > 0.0f && !paused)
     {
         offset = CGPointMake(arc4random()%17/5.0f, arc4random()%17/5.0f);
     }
@@ -246,6 +246,18 @@
 -(void) stopShake
 {
     shakeTimer = 0.0f;
+}
+
+-(void) pauseSchedulerAndActions
+{
+    [super pauseSchedulerAndActions];
+    paused = true;
+}
+
+-(void) resumeSchedulerAndActions
+{
+    [super resumeSchedulerAndActions];
+    paused = false;
 }
 
 @end
