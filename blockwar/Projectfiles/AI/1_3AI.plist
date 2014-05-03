@@ -8,7 +8,7 @@
 		<key>waveTimer</key>
 		<integer>2</integer>
 		<key>waveDelay</key>
-		<integer>2</integer>
+		<integer>1</integer>
 		<key>probabilityWaveDelay</key>
 		<real>0.2</real>
 		<key>maxConsecutiveWaves</key>
@@ -24,15 +24,15 @@
 		<key>waveTimer</key>
 		<integer>1</integer>
 		<key>waveDelay</key>
-		<integer>2</integer>
+		<integer>1</integer>
 		<key>probabilityWaveDelay</key>
 		<real>0.2</real>
 		<key>maxConsecutiveWaves</key>
 		<integer>3</integer>
 		<key>rowSize</key>
-		<integer>1</integer>
+		<integer>3</integer>
 		<key>waveSize</key>
-		<integer>1</integer>
+		<integer>3</integer>
 	</dict>
 	<dict>
 		<key>UnitType</key>

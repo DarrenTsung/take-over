@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>levelNum</key>
+	<string>4</string>
 	<key>enemyHP</key>
-	<string>30</string>
+	<string>70</string>
 	<key>bossExists</key>
 	<false/>
 	<key>AIName</key>

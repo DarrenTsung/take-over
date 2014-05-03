@@ -24,16 +24,19 @@
         // GUNMAN PROPERTIES
         rangeDamage = 0.5f;
         percentHit_ = 0.8f;
-        magazineSize_ = 6;
-        shotsPerSecond_ = 3;
-        reloadTime_ = 1.0f;
+        magazineSize_ = 8;
+        shotsPerSecond_ = 2;
+        reloadTime_ = 2.0f;
         
-        health = 3.0f;
+        health = 15.0f;
         
         [self setFPS:9.0f];
         
         [self finishInit];
         [self setUpShootingAnimationAction];
+        
+        [self setScale:1.6f];
+        [self->whiteSprite setScale:1.6f];
     }
     return self;
 }

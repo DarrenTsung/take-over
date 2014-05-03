@@ -38,8 +38,36 @@ CCTimer *bossSpawnTimer;
         }
         
         playHeight = viewController->playHeight;
-        playerHP = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerHP"];
-        playerResources = [[NSUserDefaults standardUserDefaults] floatForKey:@"playerResources"];
+        int levelNum = [[levelProperties objectForKey:@"levelNum"] integerValue];
+        switch(levelNum)
+        {
+            case 1:
+                playerHP = 20.0f;
+                playerResources = 30.0f;
+                [[NSUserDefaults standardUserDefaults] setFloat:5.0f forKey:@"playerRegenRate"];
+                break;
+            case 2:
+                playerHP = 30.0f;
+                playerResources = 50.0f;
+                [[NSUserDefaults standardUserDefaults] setFloat:9.0f forKey:@"playerRegenRate"];
+                break;
+            case 3:
+                playerHP = 40.0f;
+                playerResources = 70.0f;
+                [[NSUserDefaults standardUserDefaults] setFloat:13.0f forKey:@"playerRegenRate"];
+                break;
+            case 4:
+                playerHP = 50.0f;
+                playerResources = 90.0f;
+                [[NSUserDefaults standardUserDefaults] setFloat:16.0f forKey:@"playerRegenRate"];
+                break;
+            case 5:
+                playerHP = 60.0f;
+                playerResources = 110.0f;
+                [[NSUserDefaults standardUserDefaults] setFloat:16.0f forKey:@"playerRegenRate"];
+                break;
+        }
+        
         enemyHP = [[levelProperties objectForKey:@"enemyHP"] floatValue];;
     }
     return self;

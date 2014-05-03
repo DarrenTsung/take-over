@@ -49,7 +49,7 @@ UpgradeLayer *upgradeMenu;
         // add label
         CCLabelTTF *label = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Day %d", [[NSUserDefaults standardUserDefaults] integerForKey:@"dayNumber"]] fontName:@"Krungthep" fontSize:30.0f];
         [label setColor:ccc3(95, 13, 24)];
-        [label setPosition:CGPointMake(280.0f, 270.0f)];
+        [label setPosition:CGPointMake(260.0f, 275.0f)];
         [self addChild:label z:321];
     }
     [self scheduleUpdate];

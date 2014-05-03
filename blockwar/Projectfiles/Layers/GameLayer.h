@@ -24,6 +24,7 @@
     HealthBar *playerHP, *enemyHP;
     
     TouchHandler *myTouchHandler;
+    CCLabelTTF *timeLabel;
     
     bool paused, loading;
     

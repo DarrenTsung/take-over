@@ -4,9 +4,9 @@
 <array>
 	<dict>
 		<key>UnitType</key>
-		<integer>3</integer>
+		<integer>0</integer>
 		<key>waveTimer</key>
-		<integer>2</integer>
+		<real>2.6</real>
 		<key>waveDelay</key>
 		<real>0.35</real>
 		<key>probabilityWaveDelay</key>
@@ -14,31 +14,31 @@
 		<key>maxConsecutiveWaves</key>
 		<integer>3</integer>
 		<key>rowSize</key>
-		<integer>2</integer>
+		<integer>6</integer>
 		<key>waveSize</key>
-		<integer>2</integer>
+		<integer>12</integer>
 	</dict>
 	<dict>
 		<key>UnitType</key>
 		<integer>3</integer>
 		<key>waveTimer</key>
-		<integer>20</integer>
+		<integer>30</integer>
 		<key>waveDelay</key>
 		<integer>3</integer>
 		<key>probabilityWaveDelay</key>
 		<real>0.3</real>
 		<key>maxConsecutiveWaves</key>
-		<integer>4</integer>
+		<integer>1</integer>
 		<key>rowSize</key>
-		<integer>2</integer>
+		<integer>1</integer>
 		<key>waveSize</key>
-		<integer>2</integer>
+		<integer>1</integer>
 	</dict>
 	<dict>
 		<key>UnitType</key>
 		<integer>1</integer>
 		<key>waveTimer</key>
-		<integer>2</integer>
+		<integer>3</integer>
 		<key>waveDelay</key>
 		<real>0.35</real>
 		<key>probabilityWaveDelay</key>
@@ -46,9 +46,9 @@
 		<key>maxConsecutiveWaves</key>
 		<integer>3</integer>
 		<key>rowSize</key>
-		<integer>2</integer>
+		<integer>1</integer>
 		<key>waveSize</key>
-		<integer>2</integer>
+		<integer>1</integer>
 	</dict>
 </array>
 </plist>

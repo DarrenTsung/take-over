@@ -48,14 +48,16 @@
 	<true/>
 	<key>UIStatusBarStyle</key>
 	<string>UIStatusBarStyleBlackTranslucent</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>UIAppFonts</key>
-    <array>
-        <string>Krungthep.ttf</string>
-    </array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Krungthep.ttf</string>
+	</array>
 </dict>
 </plist>

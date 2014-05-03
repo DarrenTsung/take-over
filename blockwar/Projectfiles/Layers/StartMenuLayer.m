@@ -9,6 +9,7 @@
 #import "StartMenuLayer.h"
 #import "LevelSelectLayer.h"
 #import "LevelSelectLayer.h"
+#import "GameLayer.h"
 
 @implementation StartMenuLayer
 
@@ -79,8 +80,11 @@ CCSprite *background;
 
 -(void) doTransition: (CCMenuItem  *) menuItem
 {
+    // create the timer
+    [[NSUserDefaults standardUserDefaults] setFloat:0.0f forKey:@"playTime"];
+    // start this shit!!!
     [[CCDirector sharedDirector] replaceScene:
-     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
+     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithRegion:RUSSIA andLevel:1]]];
 }
 
 

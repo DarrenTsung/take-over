@@ -163,8 +163,17 @@ TouchHandler *myTouchHandler;
         CCSprite *paused_icon = [[CCSprite alloc] initWithFile:@"pause.png"];
         [paused_icon setPosition:CGPointMake(544, 286)];
         [self addChild:paused_icon];
+        
+        // add label
+        self->timeLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"%.1f", [[NSUserDefaults standardUserDefaults] floatForKey:@"playTime"]] fontName:@"Krungthep" fontSize:15.0f];
+        [self->timeLabel setColor:ccc3(255, 255, 255)];
+        [self->timeLabel setPosition:CGPointMake(282.0f, 307.0f)];
+        [self addChild:self->timeLabel z:321];
+        
+        [self pauseModel];
     }
     [self scheduleOnce:@selector(playStartOverlay) delay:0.5f];
+    [self scheduleOnce:@selector(unpauseModel) delay:3.5f];
     [self schedule:@selector(nextFrame) interval:UPDATE_INTERVAL]; // updates 30 frames a second (hopefully?)
     [self scheduleUpdate];
     return self;
@@ -256,6 +265,13 @@ TouchHandler *myTouchHandler;
         [playerResources updateAnimation:delta];
     }
     
+    if (!paused)
+    {
+        // update the playTime!!!
+        [[NSUserDefaults standardUserDefaults] setFloat:[[NSUserDefaults standardUserDefaults] floatForKey:@"playTime"]+delta forKey:@"playTime"];
+        [timeLabel setString:[NSString stringWithFormat:@"%.1f", [[NSUserDefaults standardUserDefaults] floatForKey:@"playTime"]]];
+    }
+    
     KKInput *input = [KKInput sharedInput];
     CCArray *touches = [input touches];
     
@@ -321,7 +337,7 @@ TouchHandler *myTouchHandler;
     [theEnemy reset];
     [myTouchHandler reset];
     
-    paused = false;
+    paused = true;
     winFlag = false;
     boss = false;
     
@@ -329,6 +345,7 @@ TouchHandler *myTouchHandler;
     
     if ([winState isEqualToString:@"player"])
     {
+        /*
         // go back to the level select screen
         LevelSelectLayer *levelSelect = [[LevelSelectLayer alloc] initWithRegion:currentRegion];
         int currentUnlockedLevel = [[NSUserDefaults standardUserDefaults] integerForKey:[NSString stringWithFormat:@"region%d_levelUnlocked", currentRegion]];
@@ -339,11 +356,15 @@ TouchHandler *myTouchHandler;
         }
         [[CCDirector sharedDirector] replaceScene:
          [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)levelSelect]];
+        */
+        
+        [[CCDirector sharedDirector] replaceScene:
+         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithRegion:currentRegion andLevel:currentLevel+1]]];
     }
     else if ([winState isEqualToString:@"enemy"])
     {
         [[CCDirector sharedDirector] replaceScene:
-         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[LevelSelectLayer alloc] init]]];
+         [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithRegion:currentRegion andLevel:currentLevel]]];
     }
     else if ([winState isEqualToString:@"win"])
     {
