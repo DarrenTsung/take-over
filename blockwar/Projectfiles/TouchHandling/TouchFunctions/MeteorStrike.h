@@ -9,7 +9,7 @@
 #import "TouchFunction.h"
 #import "Tombstone.h"
 
-@interface TombstoneWall : TouchFunction
+@interface MeteorStrike : TouchFunction
 {
 @public
     CGFloat touchIndicatorRadius;
@@ -19,7 +19,11 @@
 @protected
     bool started_;
     bool dirtyBit_;
-    bool avaliable_;
+    bool avaliable_, animating_;
+    float currentAnimationRadius_;
+    CGPoint pos_;
+    
+    CCSprite *indicator, *timingIndicator;
 }
 
 

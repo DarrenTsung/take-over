@@ -10,12 +10,13 @@
 
 @implementation RectTarget
 
--(id) initWithRectLink:(CGRect *)rect andLink:(CGFloat *)theLink
+-(id) initWithRectLink:(CGRect *)rect andLink:(CGFloat *)theLink andLayer:(GameLayer *)theController
 {
     if (self = [super init])
     {
         target = rect;
         targetHealth = theLink;
+        controller = theController;
     }
     return self;
 }
@@ -27,13 +28,13 @@
 
 -(void) actOnEntity:(Entity *)otherEntity
 {
-    if ([otherEntity isKindOfClass:[Unit class]])
+    if ([otherEntity isKindOfClass:[BossUnit class]])
+    {
+        [controller endGameWithWinState:@"enemy"];
+    }
+    else if ([otherEntity isKindOfClass:[Unit class]])
     {
         [(Unit *)otherEntity kill];
-    }
-    else
-    {
-        
     }
 }
 @end

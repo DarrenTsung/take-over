@@ -17,15 +17,15 @@
         name = @"russian_gunman";
         owner = @"opponent";
         
-        [self setMaxVelocity:80.0f];
+        [self setMaxVelocity:30.0f];
         
         pushBack = -40.0f;
         
         // GUNMAN PROPERTIES
         rangeDamage = 0.5f;
         percentHit_ = 0.8f;
-        magazineSize_ = 8;
-        shotsPerSecond_ = 2;
+        magazineSize_ = 9;
+        shotsPerSecond_ = 3;
         reloadTime_ = 2.0f;
         
         health = 15.0f;

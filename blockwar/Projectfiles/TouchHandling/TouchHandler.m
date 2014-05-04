@@ -22,6 +22,7 @@
         viewController = theReference;
         gameModel = theGameModel;
         
+        /*
         equip = [[CCMenuItemImage alloc] initWithNormalImage:@"equipToggleP.png" selectedImage:@"equipToggleP.png" disabledImage:@"equipToggleS.png" target:self selector:@selector(equipToggle)];
         [equip setOpacity:OPACITY_LOW];
         CCMenu *equipMenu = [CCMenu menuWithItems:equip, nil];
@@ -29,6 +30,7 @@
         // put menu at bottom right corner
         equipMenu.position = ccp(568 - [equip boundingBox].size.width/2 - 15.0f, [equip boundingBox].size.height/2 + 15.0f);
         [self addChild:equipMenu z:321];
+         */
         
         // start out with primaryEquip
         equipped = equippedPrimary;
@@ -65,13 +67,14 @@
                 break;
         }
         
-        commanderPower = [[TombstoneWall alloc] initWithReferenceToArea:viewController->battleArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
+        commanderPower = [[MeteorStrike alloc] initWithReferenceToArea:viewController->battleArea andReferenceToViewController:viewController andReferenceToGameModel:gameModel];
     }
     [self scheduleUpdate];
     [viewController addChild:self];
     return self;
 }
 
+/*
 -(void) equipToggle
 {
     if (equipped == equippedPrimary)
@@ -114,6 +117,7 @@
     }
     [equip setOpacity:OPACITY_LOW];
 }
+ */
 
 -(void) update:(ccTime)delta
 {

@@ -132,7 +132,7 @@ TouchHandler *myTouchHandler;
         // spawnArea is the player's spawning area
         spawnArea.origin = CGPointZero;
         spawnArea.size = CGSizeMake(screenBounds.width/7, playHeight);
-        RectTarget *playerTarget = [[RectTarget alloc] initWithRectLink:&spawnArea andLink:&model->playerHP];
+        RectTarget *playerTarget = [[RectTarget alloc] initWithRectLink:&spawnArea andLink:&model->playerHP andLayer:self];
         [model insertEntity:playerTarget intoSortedArrayWithName:@"player"];
         
         // battleArea is the area of the battle
@@ -140,7 +140,7 @@ TouchHandler *myTouchHandler;
         battleArea.size = CGSizeMake(6*screenBounds.width/7, playHeight);
         
         rightSide = CGRectMake(568, 0, 60, 320);
-        RectTarget *enemyTarget = [[RectTarget alloc] initWithRectLink:&rightSide andLink:&model->enemyHP];
+        RectTarget *enemyTarget = [[RectTarget alloc] initWithRectLink:&rightSide andLink:&model->enemyHP andLayer:self];
         [model insertEntity:enemyTarget intoSortedArrayWithName:@"enemy"];
         
         // see if we need to play the tapAnimation
@@ -171,6 +171,29 @@ TouchHandler *myTouchHandler;
         [self addChild:self->timeLabel z:321];
         
         [self pauseModel];
+        
+        CGSize size = [[CCDirector sharedDirector] winSize];
+        
+        whiteScreen = [CCSprite node];
+        
+        GLubyte *buffer = (GLubyte *) malloc(sizeof(GLubyte)*4);
+        
+        for (int i=0;i<4;i++) {*(buffer+i)=255;}
+        
+        CCTexture2D *tex = [[CCTexture2D alloc] initWithData:buffer pixelFormat:kCCTexture2DPixelFormat_RGBA8888 pixelsWide:1 pixelsHigh:1 contentSize:size];
+        
+        [whiteScreen setTexture:tex];
+        
+        [whiteScreen setTextureRect:CGRectMake(0, 0, size.width, size.height)];
+        [whiteScreen setPosition:CGPointMake(size.width/2, size.height/2)];
+        
+        free(buffer);
+        
+        CCLabelTTF *levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Arena %d", currentLevel] fontName:@"Krungthep" fontSize:17.0f];
+        [levelLabel setColor:ccc3(255, 255, 255)];
+        [levelLabel setPosition:ccp(568 - 45.0f, 15.0f)];
+        [self addChild:levelLabel z:321];
+        
     }
     [self scheduleOnce:@selector(playStartOverlay) delay:0.5f];
     [self scheduleOnce:@selector(unpauseModel) delay:3.5f];
@@ -509,6 +532,20 @@ TouchHandler *myTouchHandler;
     [enemyHP resumeSchedulerAndActions];
     [playerResources resumeSchedulerAndActions];
     [shaker resumeSchedulerAndActions];
+}
+
+-(void)flashWhiteScreen
+{
+    [self addChild:whiteScreen z:322];
+    
+    [whiteScreen runAction:[CCFadeTo actionWithDuration:0.7f opacity:0]];
+    [self scheduleOnce:@selector(cleanScreen) delay:0.7f];
+}
+
+-(void)cleanScreen
+{
+    [self removeChild:whiteScreen];
+    [whiteScreen setOpacity:255];
 }
 
 @end

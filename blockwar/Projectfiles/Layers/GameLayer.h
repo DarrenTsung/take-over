@@ -25,6 +25,7 @@
     
     TouchHandler *myTouchHandler;
     CCLabelTTF *timeLabel;
+    CCSprite *whiteScreen;
     
     bool paused, loading;
     
@@ -36,5 +37,7 @@
 
 -(id) initWithRegion:(RegionType)world andLevel:(int)level;
 -(void) endGameWithWinState:(NSString *)theWinState;
+
+-(void) flashWhiteScreen;
 
 @end

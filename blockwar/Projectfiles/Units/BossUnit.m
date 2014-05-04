@@ -17,7 +17,6 @@
 {
     [((GameLayer *)[self parent]) endGameWithWinState:@"player"];
     [super removeAndCleanup];
-    
 }
 
 @end

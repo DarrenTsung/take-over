@@ -42,27 +42,27 @@ CCTimer *bossSpawnTimer;
         switch(levelNum)
         {
             case 1:
-                playerHP = 20.0f;
+                playerHP = 23.0f;
                 playerResources = 30.0f;
                 [[NSUserDefaults standardUserDefaults] setFloat:5.0f forKey:@"playerRegenRate"];
                 break;
             case 2:
-                playerHP = 30.0f;
+                playerHP = 33.0f;
                 playerResources = 50.0f;
                 [[NSUserDefaults standardUserDefaults] setFloat:9.0f forKey:@"playerRegenRate"];
                 break;
             case 3:
-                playerHP = 40.0f;
+                playerHP = 43.0f;
                 playerResources = 70.0f;
                 [[NSUserDefaults standardUserDefaults] setFloat:13.0f forKey:@"playerRegenRate"];
                 break;
             case 4:
-                playerHP = 50.0f;
+                playerHP = 53.0f;
                 playerResources = 90.0f;
                 [[NSUserDefaults standardUserDefaults] setFloat:16.0f forKey:@"playerRegenRate"];
                 break;
             case 5:
-                playerHP = 60.0f;
+                playerHP = 63.0f;
                 playerResources = 110.0f;
                 [[NSUserDefaults standardUserDefaults] setFloat:16.0f forKey:@"playerRegenRate"];
                 break;
@@ -311,7 +311,18 @@ CCTimer *bossSpawnTimer;
     }
     for (Entity *entity in enemyUnits)
     {
-        if ([entity isKindOfClass:[Unit class]])
+        if ([entity isKindOfClass:[BossUnit class]])
+        {
+            BossUnit *unit = (BossUnit *)entity;
+            if (unit->dead && unit->velocity >= 0.0f)
+            {
+                [enemyDiscardedUnits addObject:unit];
+                [enemyDiscardedUnits addObject:unit->whiteSprite];
+                
+                [viewController endGameWithWinState:@"win"];
+            }
+        }
+        else if ([entity isKindOfClass:[Unit class]])
         {
             Unit *unit = (Unit *)entity;
             if (unit->dead && unit->velocity >= 0.0f)
@@ -379,12 +390,27 @@ CCTimer *bossSpawnTimer;
 {
     for (Unit *enemyUnit in enemyUnits)
     {
-        if (!enemyUnit->dead)
+        if (!enemyUnit->dead && [enemyUnit isKindOfClass:[Unit class]])
         {
             CGFloat xChange = enemyUnit->origin.x - point.x;
             CGFloat yChange = enemyUnit->origin.y - point.y;
             CGFloat unitDistance = sqrt((xChange*xChange) + (yChange*yChange));
             if (unitDistance <= distance)
+            {
+                [enemyUnit hitFor:damage];
+                [enemyUnit flashWhiteFor:1.0f];
+            }
+        }
+    }
+}
+
+-(void) dealDamage:(CGFloat)damage toUnitsInSprite:(CCSprite *)sprite
+{
+    for (Unit *enemyUnit in enemyUnits)
+    {
+        if (!enemyUnit->dead && [enemyUnit isKindOfClass:[Unit class]])
+        {
+            if ([enemyUnit intersectsNode:sprite])
             {
                 [enemyUnit hitFor:damage];
                 [enemyUnit flashWhiteFor:1.0f];

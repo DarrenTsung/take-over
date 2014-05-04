@@ -24,7 +24,7 @@
         [self setMaxVelocity:10.0f];
         acceleration = 50.0f;
         
-        [self setDamage:1.0f];
+        [self setDamage:2.0f];
         
         [self setFPS:2.0f];
         

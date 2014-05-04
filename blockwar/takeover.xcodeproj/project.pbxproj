@@ -33,6 +33,8 @@
 		6C1F2C941890806100F6BC3C /* UnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C931890806100F6BC3C /* UnitFactory.m */; };
 		6C1F2C9818918D0500F6BC3C /* GunUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C9718918D0500F6BC3C /* GunUnit.m */; };
 		6C1F2C9B1891AD6F00F6BC3C /* RussianGunman.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C9A1891AD6F00F6BC3C /* RussianGunman.m */; };
+		6C2DFFAE1915EB7500DDE011 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DFFAD1915EB7500DDE011 /* indicator.png */; };
+		6C2DFFB01915EFAB00DDE011 /* timingIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DFFAF1915EFAB00DDE011 /* timingIndicator.png */; };
 		6C83A79C186EBEA6002EB16B /* Russia_Level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */; };
 		6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */; };
 		6C83A7A0186F437B002EB16B /* UpgradeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C83A79F186F437B002EB16B /* UpgradeLayer.m */; };
@@ -65,7 +67,7 @@
 		6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CAB07771852D5F4008749D5 /* winscreen.png */; };
 		6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */; };
 		6CC8C0E518B2E0D30046BE18 /* Tombstone.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0E418B2E0D30046BE18 /* Tombstone.m */; };
-		6CC8C0E818B2E2F90046BE18 /* TombstoneWall.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0E718B2E2F90046BE18 /* TombstoneWall.m */; };
+		6CC8C0E818B2E2F90046BE18 /* MeteorStrike.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CC8C0E718B2E2F90046BE18 /* MeteorStrike.m */; };
 		6CCD4F351891FE7F00201E4A /* levelSelectFrames-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F331891FE7F00201E4A /* levelSelectFrames-hd.plist */; };
 		6CCD4F361891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F341891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz */; };
 		6CCD4F3D1892017100201E4A /* level1.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD4F371892017100201E4A /* level1.png */; };
@@ -170,6 +172,8 @@
 		6C1F2C9718918D0500F6BC3C /* GunUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GunUnit.m; path = Units/GunUnit.m; sourceTree = "<group>"; };
 		6C1F2C991891AD6F00F6BC3C /* RussianGunman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianGunman.h; path = Units/Units/RussianGunman.h; sourceTree = "<group>"; };
 		6C1F2C9A1891AD6F00F6BC3C /* RussianGunman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianGunman.m; path = Units/Units/RussianGunman.m; sourceTree = "<group>"; };
+		6C2DFFAD1915EB7500DDE011 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator.png; sourceTree = "<group>"; };
+		6C2DFFAF1915EFAB00DDE011 /* timingIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timingIndicator.png; sourceTree = "<group>"; };
 		6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level2.plist; path = Worlds/World1/Levels/Russia_Level2.plist; sourceTree = "<group>"; };
 		6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level3.plist; path = Worlds/World1/Levels/Russia_Level3.plist; sourceTree = "<group>"; };
 		6C83A79E186F437B002EB16B /* UpgradeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgradeLayer.h; path = Layers/UpgradeLayer.h; sourceTree = "<group>"; };
@@ -216,8 +220,8 @@
 		6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "zombieframes-hd.plist"; path = "Sprites/zombieframes-hd.plist"; sourceTree = "<group>"; };
 		6CC8C0E318B2E0D30046BE18 /* Tombstone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Tombstone.h; path = Units/Tombstone.h; sourceTree = "<group>"; };
 		6CC8C0E418B2E0D30046BE18 /* Tombstone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Tombstone.m; path = Units/Tombstone.m; sourceTree = "<group>"; };
-		6CC8C0E618B2E2F90046BE18 /* TombstoneWall.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TombstoneWall.h; path = TouchHandling/TouchFunctions/TombstoneWall.h; sourceTree = "<group>"; };
-		6CC8C0E718B2E2F90046BE18 /* TombstoneWall.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TombstoneWall.m; path = TouchHandling/TouchFunctions/TombstoneWall.m; sourceTree = "<group>"; };
+		6CC8C0E618B2E2F90046BE18 /* MeteorStrike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MeteorStrike.h; path = TouchHandling/TouchFunctions/MeteorStrike.h; sourceTree = "<group>"; };
+		6CC8C0E718B2E2F90046BE18 /* MeteorStrike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MeteorStrike.m; path = TouchHandling/TouchFunctions/MeteorStrike.m; sourceTree = "<group>"; };
 		6CCD4F331891FE7F00201E4A /* levelSelectFrames-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "levelSelectFrames-hd.plist"; path = "Worlds/World1/levelSelectFrames-hd.plist"; sourceTree = "<group>"; };
 		6CCD4F341891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "levelSelectFrames-hd.pvr.ccz"; path = "Worlds/World1/levelSelectFrames-hd.pvr.ccz"; sourceTree = "<group>"; };
 		6CCD4F371892017100201E4A /* level1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = level1.png; path = Worlds/World1/level1.png; sourceTree = "<group>"; };
@@ -480,8 +484,8 @@
 				6C9BB896187666B800E14BAA /* SummonGiantFoot.m */,
 				6C9BB898187752C000E14BAA /* HoldDown.h */,
 				6C9BB899187752C000E14BAA /* HoldDown.m */,
-				6CC8C0E618B2E2F90046BE18 /* TombstoneWall.h */,
-				6CC8C0E718B2E2F90046BE18 /* TombstoneWall.m */,
+				6CC8C0E618B2E2F90046BE18 /* MeteorStrike.h */,
+				6CC8C0E718B2E2F90046BE18 /* MeteorStrike.m */,
 			);
 			name = "Touch Functions";
 			sourceTree = "<group>";
@@ -675,6 +679,8 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6C2DFFAF1915EFAB00DDE011 /* timingIndicator.png */,
+				6C2DFFAD1915EB7500DDE011 /* indicator.png */,
 				6C9BB8811875EE3A00E14BAA /* NodeShaker.h */,
 				6C9BB8821875EE3A00E14BAA /* NodeShaker.m */,
 				6C9BB8A71878AFC200E14BAA /* Indicators */,
@@ -792,6 +798,7 @@
 				6CEE81381904D29000F8CA53 /* Krungthep.ttf in Resources */,
 				6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */,
 				6CCD4F401892017100201E4A /* level4.png in Resources */,
+				6C2DFFAE1915EB7500DDE011 /* indicator.png in Resources */,
 				6CCD4F361891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
@@ -809,6 +816,7 @@
 				6CCD4F471892272B00201E4A /* Russia_Level4.plist in Resources */,
 				6CCD4F421892017100201E4A /* locked.png in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
+				6C2DFFB01915EFAB00DDE011 /* timingIndicator.png in Resources */,
 				6C83A7A6186F6637002EB16B /* upgradeConfig.plist in Resources */,
 				6CAB076E18529AE7008749D5 /* menubackground.png in Resources */,
 				6C021A26186B94B8000C11FC /* 1_1AI.plist in Resources */,
@@ -885,7 +893,7 @@
 				6C1F2C9818918D0500F6BC3C /* GunUnit.m in Sources */,
 				6C9BB8B0187C69B800E14BAA /* RectTarget.m in Sources */,
 				DCC1A3A913A94F1A005BD75D /* AppDelegate.m in Sources */,
-				6CC8C0E818B2E2F90046BE18 /* TombstoneWall.m in Sources */,
+				6CC8C0E818B2E2F90046BE18 /* MeteorStrike.m in Sources */,
 				6CC8C0E518B2E0D30046BE18 /* Tombstone.m in Sources */,
 				6C9BB8B6187DCF0E00E14BAA /* Zombie.m in Sources */,
 				6C9BB8901876371800E14BAA /* TouchHandler.m in Sources */,

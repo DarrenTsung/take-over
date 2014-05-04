@@ -11,7 +11,7 @@
 #import "TouchFunction.h"
 #import "TapAndCharge.h"
 #import "SummonGiantFoot.h"
-#import "TombstoneWall.h"
+#import "MeteorStrike.h"
 #import "HoldDown.h"
 
 

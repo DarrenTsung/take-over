@@ -36,8 +36,10 @@
 {
     if (touchIndicatorRadius > 30.0f)
     {
+        glLineWidth(3);
         ccDrawColor4F(touchIndicatorColor.r, touchIndicatorColor.g, touchIndicatorColor.b, touchIndicatorColor.a);
         ccDrawCircle(touchIndicatorCenter, touchIndicatorRadius, CC_DEGREES_TO_RADIANS(60), 16, NO);
+        glLineWidth(1);
     }
 }
 
