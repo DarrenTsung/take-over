@@ -23,8 +23,6 @@
 #import "RectTarget.h"
 #import "RussianAI.h"
 
-GameModel *model;
-
 NSMutableArray *unitsToBeDeleted;
 NSMutableArray *particleArray;
 
@@ -132,7 +130,7 @@ TouchHandler *myTouchHandler;
         // spawnArea is the player's spawning area
         spawnArea.origin = CGPointZero;
         spawnArea.size = CGSizeMake(screenBounds.width/7, playHeight);
-        RectTarget *playerTarget = [[RectTarget alloc] initWithRectLink:&spawnArea andLink:&model->playerHP andLayer:self];
+        playerTarget = [[RectTarget alloc] initWithRectLink:&spawnArea andLink:&model->playerHP andLayer:self];
         [model insertEntity:playerTarget intoSortedArrayWithName:@"player"];
         
         // battleArea is the area of the battle
@@ -140,7 +138,7 @@ TouchHandler *myTouchHandler;
         battleArea.size = CGSizeMake(6*screenBounds.width/7, playHeight);
         
         rightSide = CGRectMake(568, 0, 60, 320);
-        RectTarget *enemyTarget = [[RectTarget alloc] initWithRectLink:&rightSide andLink:&model->enemyHP andLayer:self];
+        enemyTarget = [[RectTarget alloc] initWithRectLink:&rightSide andLink:&model->enemyHP andLayer:self];
         [model insertEntity:enemyTarget intoSortedArrayWithName:@"enemy"];
         
         // see if we need to play the tapAnimation
@@ -189,9 +187,9 @@ TouchHandler *myTouchHandler;
         
         free(buffer);
         
-        CCLabelTTF *levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Arena %d", currentLevel] fontName:@"Krungthep" fontSize:17.0f];
+        CCLabelTTF *levelLabel = [CCLabelTTF labelWithString:[NSString stringWithFormat:@"Arena %d/5", currentLevel] fontName:@"Krungthep" fontSize:17.0f];
         [levelLabel setColor:ccc3(255, 255, 255)];
-        [levelLabel setPosition:ccp(568 - 45.0f, 15.0f)];
+        [levelLabel setPosition:ccp(568 - 55.0f, 15.0f)];
         [self addChild:levelLabel z:321];
         
     }

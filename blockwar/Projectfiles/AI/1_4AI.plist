@@ -4,6 +4,22 @@
 <array>
 	<dict>
 		<key>UnitType</key>
+		<integer>2</integer>
+		<key>waveTimer</key>
+		<integer>3</integer>
+		<key>waveDelay</key>
+		<real>0.35</real>
+		<key>probabilityWaveDelay</key>
+		<real>0.2</real>
+		<key>maxConsecutiveWaves</key>
+		<integer>3</integer>
+		<key>rowSize</key>
+		<integer>1</integer>
+		<key>waveSize</key>
+		<integer>1</integer>
+	</dict>
+	<dict>
+		<key>UnitType</key>
 		<integer>0</integer>
 		<key>waveTimer</key>
 		<real>2.6</real>

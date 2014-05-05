@@ -9,6 +9,10 @@
 #import "Unit.h"
 
 @interface BossUnit : Unit
+{
+    bool doingSpecialAction_;
+}
 
+-(void) doSpecialAction;
 
 @end

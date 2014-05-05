@@ -404,6 +404,24 @@ CCTimer *bossSpawnTimer;
     }
 }
 
+-(void) dealFriendlyDamage:(CGFloat)damage toUnitsInDistance:(CGFloat)distance ofPoint:(CGPoint)point
+{
+    for (Unit *friendlyUnit in playerUnits)
+    {
+        if (!friendlyUnit->dead && [friendlyUnit isKindOfClass:[Unit class]])
+        {
+            CGFloat xChange = friendlyUnit->origin.x - point.x;
+            CGFloat yChange = friendlyUnit->origin.y - point.y;
+            CGFloat unitDistance = sqrt((xChange*xChange) + (yChange*yChange));
+            if (unitDistance <= distance)
+            {
+                [friendlyUnit hitFor:damage];
+                [friendlyUnit flashWhiteFor:1.0f];
+            }
+        }
+    }
+}
+
 -(void) dealDamage:(CGFloat)damage toUnitsInSprite:(CCSprite *)sprite
 {
     for (Unit *enemyUnit in enemyUnits)

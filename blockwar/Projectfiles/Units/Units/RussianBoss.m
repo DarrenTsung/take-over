@@ -8,6 +8,7 @@
 
 #import "RussianBoss.h"
 #import "GameLayer.h"
+#import "GameModel.h"
 
 @implementation RussianBoss
 
@@ -19,7 +20,7 @@
         owner = @"opponent";
         
         // holy shit hahaha
-        health = 300.0f;
+        health = 400.0f;
         // super fucking slow
         [self setMaxVelocity:10.0f];
         acceleration = 50.0f;
@@ -36,11 +37,42 @@
     return self;
 }
 
+-(void) computePosition:(ccTime)delta
+{
+    if (!doingSpecialAction_)
+    {
+        [super computePosition:delta];
+    }
+}
+
 -(void) kill
 {
     [super kill];
     [((GameLayer *)[self parent]) endGameWithWinState:@"player"];
 }
 
+
+#define SHOUT_DURATION 3.0f
+
+-(void) shout
+{
+    [self setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_special0.png", name]]];
+    [self->whiteSprite setDisplayFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:[NSString stringWithFormat:@"%@_special_white0.png", name]]];
+    [self scheduleOnce:@selector(finishShout) delay:SHOUT_DURATION];
+}
+
+-(void) finishShout
+{
+    doingSpecialAction_ = false;
+    [((GameLayer *)[self parent])->shaker shakeWithShakeValue:9 forTime:0.8f];
+    [((GameLayer *)[self parent]) flashWhiteScreen];
+    [((GameLayer *)[self parent])->model dealFriendlyDamage:7.0f toUnitsInDistance:200.0f ofPoint:CGPointMake(origin.x-20.0f, origin.y)];
+}
+
+-(void) doSpecialAction
+{
+    doingSpecialAction_ = true;
+    [self shout];
+}
 
 @end

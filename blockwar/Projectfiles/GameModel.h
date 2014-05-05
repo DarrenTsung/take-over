@@ -32,6 +32,7 @@
 -(void) removeDeadUnitsAndCheckWinState;
 -(void) update:(ccTime)delta;
 -(void) dealDamage:(CGFloat)damage toUnitsInDistance:(CGFloat)distance ofPoint:(CGPoint)point;
+-(void) dealFriendlyDamage:(CGFloat)damage toUnitsInDistance:(CGFloat)distance ofPoint:(CGPoint)point;
 -(void) dealDamage:(CGFloat)damage toUnitsInSprite:(CCSprite *)sprite;
 -(NSMutableArray *) returnLeadingPlayer:(NSUInteger)numUnits UnitsInRange:(NSRange)range andLeftOf:(CGFloat)xPosition;
 //-(void) drawUnits;

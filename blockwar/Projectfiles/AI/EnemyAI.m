@@ -11,6 +11,7 @@
 #import "GameModel.h"
 #import "GameLayer.h"
 #import "UnitFactory.h"
+#import "RectTarget.h"
 
 #define PADDING 20.0f
 
@@ -59,6 +60,7 @@
             
             [factories_ addObject:thisFactory];
         }
+         
     }
     return self;
 }
@@ -82,6 +84,7 @@
     NSInteger layerCount = [layerColors count];
     [viewController->enemyHP changeLinkTo:[theBoss healthPtr] with:layerCount layersWithColors:layerColors];
     [viewController->enemyHP loadingToMaxAnimationWithTime:1.7f];
+    viewController->enemyTarget->targetHealth = [theBoss healthPtr];
 }
 
 -(void) update:(ccTime)delta

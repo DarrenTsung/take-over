@@ -11,6 +11,8 @@
 #import "NodeShaker.h"
 #import "IndicatorSprite.h"
 #import "LevelSelectLayer.h"
+@class RectTarget;
+@class GameModel;
 @class TouchHandler; // please don't make a fowarding error, I love you Xcode
 
 @interface GameLayer : CCLayerColor
@@ -21,11 +23,14 @@
     NodeShaker *shaker;
     IndicatorSprite *tapIndicatorSprite;
     
+    RectTarget *enemyTarget, *playerTarget;
     HealthBar *playerHP, *enemyHP;
     
     TouchHandler *myTouchHandler;
     CCLabelTTF *timeLabel;
     CCSprite *whiteScreen;
+    
+    GameModel *model;
     
     bool paused, loading;
     
