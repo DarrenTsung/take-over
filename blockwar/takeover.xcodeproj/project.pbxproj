@@ -33,8 +33,6 @@
 		6C1F2C941890806100F6BC3C /* UnitFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C931890806100F6BC3C /* UnitFactory.m */; };
 		6C1F2C9818918D0500F6BC3C /* GunUnit.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C9718918D0500F6BC3C /* GunUnit.m */; };
 		6C1F2C9B1891AD6F00F6BC3C /* RussianGunman.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C1F2C9A1891AD6F00F6BC3C /* RussianGunman.m */; };
-		6C2DFFAE1915EB7500DDE011 /* indicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DFFAD1915EB7500DDE011 /* indicator.png */; };
-		6C2DFFB01915EFAB00DDE011 /* timingIndicator.png in Resources */ = {isa = PBXBuildFile; fileRef = 6C2DFFAF1915EFAB00DDE011 /* timingIndicator.png */; };
 		6C83A79C186EBEA6002EB16B /* Russia_Level2.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */; };
 		6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */; };
 		6C83A7A0186F437B002EB16B /* UpgradeLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6C83A79F186F437B002EB16B /* UpgradeLayer.m */; };
@@ -87,6 +85,13 @@
 		6CEE81341904C94700F8CA53 /* paused_text.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE81331904C94700F8CA53 /* paused_text.png */; };
 		6CEE81361904CA8B00F8CA53 /* pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE81351904CA8B00F8CA53 /* pause.png */; };
 		6CEE81381904D29000F8CA53 /* Krungthep.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CEE81371904D29000F8CA53 /* Krungthep.ttf */; };
+		6CF000E9191992740080FB4C /* meteorframes-hd.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6CF000E7191992740080FB4C /* meteorframes-hd.plist */; };
+		6CF000EA191992740080FB4C /* meteorframes-hd.pvr.ccz in Resources */ = {isa = PBXBuildFile; fileRef = 6CF000E8191992740080FB4C /* meteorframes-hd.pvr.ccz */; };
+		6CF000EC191998C00080FB4C /* meteorframes-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF000EB191998C00080FB4C /* meteorframes-hd.png */; };
+		6CF000EE1919A0270080FB4C /* explosion_mark2.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF000ED1919A0270080FB4C /* explosion_mark2.png */; };
+		6CF000F01919A7BE0080FB4C /* instructions.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF000EF1919A7BE0080FB4C /* instructions.png */; };
+		6CF000F31919A9090080FB4C /* instructions_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF000F11919A9090080FB4C /* instructions_selected.png */; };
+		6CF000F41919A9090080FB4C /* play_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6CF000F21919A9090080FB4C /* play_selected.png */; };
 		DC21B88B1511078F00FD4891 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8881511078F00FD4891 /* fps_images-hd.png */; };
 		DC21B88C1511078F00FD4891 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */; };
 		DC21B88D1511078F00FD4891 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = DC21B88A1511078F00FD4891 /* fps_images.png */; };
@@ -172,8 +177,6 @@
 		6C1F2C9718918D0500F6BC3C /* GunUnit.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GunUnit.m; path = Units/GunUnit.m; sourceTree = "<group>"; };
 		6C1F2C991891AD6F00F6BC3C /* RussianGunman.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RussianGunman.h; path = Units/Units/RussianGunman.h; sourceTree = "<group>"; };
 		6C1F2C9A1891AD6F00F6BC3C /* RussianGunman.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RussianGunman.m; path = Units/Units/RussianGunman.m; sourceTree = "<group>"; };
-		6C2DFFAD1915EB7500DDE011 /* indicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = indicator.png; sourceTree = "<group>"; };
-		6C2DFFAF1915EFAB00DDE011 /* timingIndicator.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = timingIndicator.png; sourceTree = "<group>"; };
 		6C83A79A186EBEA6002EB16B /* Russia_Level2.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level2.plist; path = Worlds/World1/Levels/Russia_Level2.plist; sourceTree = "<group>"; };
 		6C83A79B186EBEA6002EB16B /* Russia_Level3.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Russia_Level3.plist; path = Worlds/World1/Levels/Russia_Level3.plist; sourceTree = "<group>"; };
 		6C83A79E186F437B002EB16B /* UpgradeLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UpgradeLayer.h; path = Layers/UpgradeLayer.h; sourceTree = "<group>"; };
@@ -243,6 +246,13 @@
 		6CEE81331904C94700F8CA53 /* paused_text.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paused_text.png; sourceTree = "<group>"; };
 		6CEE81351904CA8B00F8CA53 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
 		6CEE81371904D29000F8CA53 /* Krungthep.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Krungthep.ttf; sourceTree = "<group>"; };
+		6CF000E7191992740080FB4C /* meteorframes-hd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "meteorframes-hd.plist"; path = "Sprites/meteorframes-hd.plist"; sourceTree = "<group>"; };
+		6CF000E8191992740080FB4C /* meteorframes-hd.pvr.ccz */ = {isa = PBXFileReference; lastKnownFileType = file; name = "meteorframes-hd.pvr.ccz"; path = "Sprites/meteorframes-hd.pvr.ccz"; sourceTree = "<group>"; };
+		6CF000EB191998C00080FB4C /* meteorframes-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "meteorframes-hd.png"; path = "Sprites/meteorframes-hd.png"; sourceTree = "<group>"; };
+		6CF000ED1919A0270080FB4C /* explosion_mark2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explosion_mark2.png; path = Sprites/explosion_mark2.png; sourceTree = "<group>"; };
+		6CF000EF1919A7BE0080FB4C /* instructions.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instructions.png; sourceTree = "<group>"; };
+		6CF000F11919A9090080FB4C /* instructions_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = instructions_selected.png; sourceTree = "<group>"; };
+		6CF000F21919A9090080FB4C /* play_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_selected.png; sourceTree = "<group>"; };
 		DC21B8881511078F00FD4891 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-hd.png"; sourceTree = "<group>"; };
 		DC21B8891511078F00FD4891 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fps_images-ipadhd.png"; sourceTree = "<group>"; };
 		DC21B88A1511078F00FD4891 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fps_images.png; sourceTree = "<group>"; };
@@ -539,6 +549,10 @@
 		6CAB076118529AD0008749D5 /* Sprites */ = {
 			isa = PBXGroup;
 			children = (
+				6CF000ED1919A0270080FB4C /* explosion_mark2.png */,
+				6CF000E7191992740080FB4C /* meteorframes-hd.plist */,
+				6CF000E8191992740080FB4C /* meteorframes-hd.pvr.ccz */,
+				6CF000EB191998C00080FB4C /* meteorframes-hd.png */,
 				6C1F2C87188F349400F6BC3C /* russianframes-hd.plist */,
 				6C1F2C88188F349400F6BC3C /* russianframes-hd.pvr.ccz */,
 				6CAE6DA8182C5D8F00602F39 /* zombieframes-hd.plist */,
@@ -679,8 +693,6 @@
 		DCC1A39413A94F1A005BD75D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				6C2DFFAF1915EFAB00DDE011 /* timingIndicator.png */,
-				6C2DFFAD1915EB7500DDE011 /* indicator.png */,
 				6C9BB8811875EE3A00E14BAA /* NodeShaker.h */,
 				6C9BB8821875EE3A00E14BAA /* NodeShaker.m */,
 				6C9BB8A71878AFC200E14BAA /* Indicators */,
@@ -692,6 +704,9 @@
 				6CAB076A18529AE7008749D5 /* background.png */,
 				6CAB076B18529AE7008749D5 /* menubackground.png */,
 				6CEE81311904A03300F8CA53 /* menubackground1.png */,
+				6CF000EF1919A7BE0080FB4C /* instructions.png */,
+				6CF000F11919A9090080FB4C /* instructions_selected.png */,
+				6CF000F21919A9090080FB4C /* play_selected.png */,
 				6CAB076118529AD0008749D5 /* Sprites */,
 				DCC1A39513A94F1A005BD75D /* config.lua */,
 			);
@@ -798,25 +813,27 @@
 				6CEE81381904D29000F8CA53 /* Krungthep.ttf in Resources */,
 				6C83A79D186EBEA6002EB16B /* Russia_Level3.plist in Resources */,
 				6CCD4F401892017100201E4A /* level4.png in Resources */,
-				6C2DFFAE1915EB7500DDE011 /* indicator.png in Resources */,
 				6CCD4F361891FE7F00201E4A /* levelSelectFrames-hd.pvr.ccz in Resources */,
 				DCC1A0FA13A94ED5005BD75D /* Default.png in Resources */,
 				DCC1A0FE13A94ED5005BD75D /* Icon-72.png in Resources */,
 				6C9BB8A61878AFBF00E14BAA /* tap_indicator_frames.png in Resources */,
 				6CCD4F3F1892017100201E4A /* level3.png in Resources */,
+				6CF000EE1919A0270080FB4C /* explosion_mark2.png in Resources */,
 				6CAB077A1852D5F4008749D5 /* winscreen.png in Resources */,
 				DCC1A10013A94ED5005BD75D /* Icon-Small-50.png in Resources */,
 				6CAB07781852D5F4008749D5 /* losescreen.png in Resources */,
 				6CEE81361904CA8B00F8CA53 /* pause.png in Resources */,
 				DCC1A10213A94ED5005BD75D /* Icon-Small.png in Resources */,
+				6CF000EC191998C00080FB4C /* meteorframes-hd.png in Resources */,
 				6C1F2C89188F349400F6BC3C /* russianframes-hd.plist in Resources */,
+				6CF000F01919A7BE0080FB4C /* instructions.png in Resources */,
 				6C902097186EAC4E001D1183 /* Russia_Level1.plist in Resources */,
 				6C1F2C8A188F349400F6BC3C /* russianframes-hd.pvr.ccz in Resources */,
 				6C9BB8A51878AFBF00E14BAA /* tap_indicator_frames.plist in Resources */,
 				6CCD4F471892272B00201E4A /* Russia_Level4.plist in Resources */,
 				6CCD4F421892017100201E4A /* locked.png in Resources */,
 				DCC1A10413A94ED5005BD75D /* Icon-Small@2x.png in Resources */,
-				6C2DFFB01915EFAB00DDE011 /* timingIndicator.png in Resources */,
+				6CF000F31919A9090080FB4C /* instructions_selected.png in Resources */,
 				6C83A7A6186F6637002EB16B /* upgradeConfig.plist in Resources */,
 				6CAB076E18529AE7008749D5 /* menubackground.png in Resources */,
 				6C021A26186B94B8000C11FC /* 1_1AI.plist in Resources */,
@@ -826,6 +843,8 @@
 				DCC1A10613A94ED5005BD75D /* Icon.png in Resources */,
 				6C902087186E3732001D1183 /* Russia_levelselect.plist in Resources */,
 				6CEE81321904A03300F8CA53 /* menubackground1.png in Resources */,
+				6CF000EA191992740080FB4C /* meteorframes-hd.pvr.ccz in Resources */,
+				6CF000F41919A9090080FB4C /* play_selected.png in Resources */,
 				DCC1A10813A94ED5005BD75D /* Icon@2x.png in Resources */,
 				DCC1A3AF13A94F1A005BD75D /* config.lua in Resources */,
 				6CCD4F411892017100201E4A /* level5.png in Resources */,
@@ -847,6 +866,7 @@
 				6CAE6DB0182C5D8F00602F39 /* zombieframes-hd.plist in Resources */,
 				DC27219F160CADFF00D88944 /* Default-568h@2x.png in Resources */,
 				6CCD4F481892272B00201E4A /* Russia_Level5.plist in Resources */,
+				6CF000E9191992740080FB4C /* meteorframes-hd.plist in Resources */,
 				6C127F4B18989FB400EF39E5 /* zombieframes-hd.pvr.ccz in Resources */,
 				6CCD4F4E18922B3100201E4A /* 1_4AI.plist in Resources */,
 				DC2721A8160CAFA600D88944 /* iTunesArtwork in Resources */,

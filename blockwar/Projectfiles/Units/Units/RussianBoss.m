@@ -65,7 +65,7 @@
 {
     doingSpecialAction_ = false;
     [((GameLayer *)[self parent])->shaker shakeWithShakeValue:9 forTime:0.8f];
-    [((GameLayer *)[self parent]) flashWhiteScreen];
+    [((GameLayer *)[self parent]) flashLongerWhiteScreen:0.2f];
     [((GameLayer *)[self parent])->model dealFriendlyDamage:7.0f toUnitsInDistance:200.0f ofPoint:CGPointMake(origin.x-20.0f, origin.y)];
 }
 

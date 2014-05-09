@@ -23,7 +23,9 @@
     float currentAnimationRadius_;
     CGPoint pos_;
     
-    CCSprite *indicator, *timingIndicator;
+    CCSprite *indicator, *timingIndicator, *mark;
+    
+    CCFiniteTimeAction *strikeAction;
 }
 
 

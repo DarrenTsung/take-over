@@ -25,6 +25,16 @@
         
         indicator = [[CCSprite alloc] initWithFile:@"indicator.png"];
         timingIndicator = [[CCSprite alloc] initWithFile:@"timingIndicator.png"];
+        mark = [[CCSprite alloc] initWithFile:@"explosion_mark2.png"];
+        
+        // set up lazer strikeeeee
+        NSMutableArray *meteorFrames = [NSMutableArray array];
+        
+        // play animation at 20 fps
+        CCAnimation *animation = [CCAnimation animationWithSpriteFrames:meteorFrames delay:1/30.0f];
+        
+        strikeAction = [CCAnimate actionWithAnimation:animation];
+        
     }
     return self;
 }
@@ -223,7 +233,7 @@
     currentAnimationRadius_ = touchIndicatorRadius;
     pos_ = pos;
     
-    [self scheduleOnce:@selector(animateMeteorStrike) delay:0.7f];
+    //[self scheduleOnce:@selector(animateMeteorStrike) delay:0.8f];
     [self scheduleOnce:@selector(meteorStrike) delay:1.0f];
 }
 
@@ -231,15 +241,28 @@
 {
     CGPoint pos = pos_;
     
-    CCSprite *meteor = [[CCSprite alloc] initWithFile:@"meteor"];
+    CCSprite *meteor = [[CCSprite alloc] initWithSpriteFrame:[[CCSpriteFrameCache sharedSpriteFrameCache] spriteFrameByName:@"lazer0.png"]];
+    
+    CCCallFuncND *cleanUpAction = [CCCallFuncND actionWithTarget:self selector:@selector(cleanUpSprite:) data:(__bridge void *)(meteor)];
+    CCSequence *playAndRemove = [CCSequence actions:strikeAction, [CCDelayTime actionWithDuration:0.3], cleanUpAction, nil];
+    
+    [meteor setPosition:CGPointMake(pos.x-30, pos.y + 230)];
+    [self addChild:meteor z:pos.y];
+    [meteor runAction:playAndRemove];
 }
+
+-(void) cleanUpSprite:(CCSprite *)sprite
+{
+    [self removeChild:sprite cleanup:YES];
+}
+
 
 -(void) meteorStrike
 {
     CGPoint pos = pos_;
     
     // flash white screen
-    [self->viewController flashWhiteScreen];
+    [self->viewController flashLongerWhiteScreen:0.35f];
     // shake screen
     [self->viewController->shaker shakeWithShakeValue:12 forTime:1.1f];
     
@@ -256,6 +279,21 @@
     currentAnimationRadius_ = 0.0f;
     [self removeChild:indicator];
     [self removeChild:timingIndicator];
+    
+    [mark setPosition:pos];
+    [mark setOpacity:255];
+    [self addChild:mark];
+    [self scheduleOnce:@selector(startRemovingMark) delay:2.0f];
+}
+
+-(void) startRemovingMark
+{
+    [self scheduleOnce:@selector(removeMark) delay:2.6f];
+    [mark runAction:[CCFadeTo actionWithDuration:2.6f opacity:0]];
+}
+-(void) removeMark
+{
+    [self removeChild:mark];
 }
 
 

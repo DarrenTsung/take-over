@@ -239,6 +239,7 @@ TouchHandler *myTouchHandler;
 
 -(void) loadSpriteSheets
 {
+    [CCTexture2D setDefaultAlphaPixelFormat:kCCTexture2DPixelFormat_RGBA8888];
     // unit sprite sheets
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"russianframes.plist"];
     CCSpriteBatchNode *russianSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"russianframes.pvr.ccz"];
@@ -246,9 +247,11 @@ TouchHandler *myTouchHandler;
     [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"zombieframes.plist"];
     CCSpriteBatchNode *zombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"zombieframes.pvr.ccz"];
     [self addChild:zombieSpriteSheet];
-    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"superzombieframes.plist"];
-    CCSpriteBatchNode *superzombieSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"superzombieframes.png"];
-    [self addChild:superzombieSpriteSheet];
+    
+    // meteor sprite sheets
+    [[CCSpriteFrameCache sharedSpriteFrameCache] addSpriteFramesWithFile:@"meteorframes.plist"];
+    CCSpriteBatchNode *meteorSpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"meteorframes.pvr.ccz"];
+    [self addChild:meteorSpriteSheet];
     
     CCSpriteBatchNode *overlaySpriteSheet = [CCSpriteBatchNode batchNodeWithFile:@"overlayframes.pvr.ccz"];
     [self addChild:overlaySpriteSheet];
@@ -263,7 +266,7 @@ TouchHandler *myTouchHandler;
 {
     [super onEnter];
     CCSprite *background = [CCSprite spriteWithFile: @"background.png"];
-    background.position = ccp( 280, 160 );
+    background.position = ccp( screenBounds.width/2, screenBounds.height/2 );
         
     [self addChild: background z:-1];
 }
@@ -311,7 +314,7 @@ TouchHandler *myTouchHandler;
             else
             {
                 CGPoint pos = [touch location];
-                NSLog(@"pos: %f, %f", pos.x, pos.y);
+                //NSLog(@"pos: %f, %f", pos.x, pos.y);
                 float size_y = 40.0f;
                 float size_x = 40.0f;
                 if (pos.x > 544 - size_x/2 && pos.x < 544 + size_x/2 && pos.y > 286 - size_y/2 && pos.y < 286 + size_y/2)
@@ -530,6 +533,18 @@ TouchHandler *myTouchHandler;
     [enemyHP resumeSchedulerAndActions];
     [playerResources resumeSchedulerAndActions];
     [shaker resumeSchedulerAndActions];
+}
+
+-(void)flashLongerWhiteScreen:(ccTime)time
+{
+    [self addChild:whiteScreen z:322];
+    [self scheduleOnce:@selector(startRemovingWhiteScreen) delay:time];
+}
+
+-(void)startRemovingWhiteScreen
+{
+    [whiteScreen runAction:[CCFadeTo actionWithDuration:0.7f opacity:0]];
+    [self scheduleOnce:@selector(cleanScreen) delay:0.7f];
 }
 
 -(void)flashWhiteScreen

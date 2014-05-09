@@ -18,12 +18,17 @@ CCSprite *background;
 -(void) setupMenus
 {
     CCMenuItemImage *startBtn = [CCMenuItemImage itemWithNormalImage:@"play.png"
-                                                       selectedImage: @"play.png"
+                                                       selectedImage: @"play_selected.png"
                                                               target:self
                                                             selector:@selector(doTransition:)];
     
-    CCMenu *myMenu = [CCMenu menuWithItems:startBtn, nil];
-    [myMenu alignItemsHorizontally];
+    CCMenuItemImage *instructionBtn = [CCMenuItemImage itemWithNormalImage:@"instructions.png"
+                                                       selectedImage: @"instructions_selected.png"
+                                                              target:self
+                                                            selector:@selector(showInstructions:)];
+    
+    CCMenu *myMenu = [CCMenu menuWithItems:startBtn, instructionBtn, nil];
+    [myMenu alignItemsVertically];
     myMenu.position = ccp(280, 100);
     [self addChild:myMenu z:1];
     
@@ -77,6 +82,10 @@ CCSprite *background;
     return self;
 }
 
+-(void) showInstructions:(CCMenuItem *)menuItem
+{
+    
+}
 
 -(void) doTransition: (CCMenuItem  *) menuItem
 {
@@ -85,6 +94,11 @@ CCSprite *background;
     // start this shit!!!
     [[CCDirector sharedDirector] replaceScene:
      [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[GameLayer alloc] initWithRegion:RUSSIA andLevel:1]]];
+    
+    /*
+    [[CCDirector sharedDirector] replaceScene:
+     [CCTransitionFade transitionWithDuration:0.5f scene:(CCScene*)[[WinLayer alloc] init]]];
+    */
 }
 
 

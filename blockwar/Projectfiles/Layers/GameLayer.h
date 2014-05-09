@@ -43,6 +43,7 @@
 -(id) initWithRegion:(RegionType)world andLevel:(int)level;
 -(void) endGameWithWinState:(NSString *)theWinState;
 
+-(void)flashLongerWhiteScreen:(ccTime)time;
 -(void) flashWhiteScreen;
 
 @end
