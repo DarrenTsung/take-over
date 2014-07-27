@@ -54,16 +54,16 @@ CCTimer *bossSpawnTimer;
             case 3:
                 playerHP = 43.0f;
                 playerResources = 70.0f;
-                [[NSUserDefaults standardUserDefaults] setFloat:13.0f forKey:@"playerRegenRate"];
+                [[NSUserDefaults standardUserDefaults] setFloat:12.0f forKey:@"playerRegenRate"];
                 break;
             case 4:
                 playerHP = 53.0f;
-                playerResources = 90.0f;
-                [[NSUserDefaults standardUserDefaults] setFloat:16.0f forKey:@"playerRegenRate"];
+                playerResources = 80.0f;
+                [[NSUserDefaults standardUserDefaults] setFloat:14.0f forKey:@"playerRegenRate"];
                 break;
             case 5:
                 playerHP = 63.0f;
-                playerResources = 110.0f;
+                playerResources = 80.0f;
                 [[NSUserDefaults standardUserDefaults] setFloat:16.0f forKey:@"playerRegenRate"];
                 break;
         }
